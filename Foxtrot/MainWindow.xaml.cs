@@ -23,6 +23,7 @@ namespace Foxtrot
         public MainWindow()
         {
             InitializeComponent();
+            Console.WriteLine("Hej");
         }
     }
 }
