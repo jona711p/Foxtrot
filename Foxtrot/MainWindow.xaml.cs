@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Foxtrot
@@ -17,9 +18,7 @@ namespace Foxtrot
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
-      
-    
     }
 }
