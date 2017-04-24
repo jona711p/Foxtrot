@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foxtrot", "Foxtrot\Foxtrot.csproj", "{8E7A7287-19E7-4D04-A74B-FAF3E3D63B26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML_Import", "XML_Import\XML_Import.csproj", "{60014BDA-1663-48A0-AABB-6E6C0221B6E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML_Import", "XML_Import\XML_Import.csproj", "{F3C5847B-1008-4EC7-A415-E8A95D592DF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8E7A7287-19E7-4D04-A74B-FAF3E3D63B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E7A7287-19E7-4D04-A74B-FAF3E3D63B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E7A7287-19E7-4D04-A74B-FAF3E3D63B26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60014BDA-1663-48A0-AABB-6E6C0221B6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60014BDA-1663-48A0-AABB-6E6C0221B6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60014BDA-1663-48A0-AABB-6E6C0221B6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60014BDA-1663-48A0-AABB-6E6C0221B6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C5847B-1008-4EC7-A415-E8A95D592DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C5847B-1008-4EC7-A415-E8A95D592DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C5847B-1008-4EC7-A415-E8A95D592DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C5847B-1008-4EC7-A415-E8A95D592DF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

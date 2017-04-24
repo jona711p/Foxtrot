@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{60014BDA-1663-48A0-AABB-6E6C0221B6E8}</ProjectGuid>
+    <ProjectGuid>{F3C5847B-1008-4EC7-A415-E8A95D592DF7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XML_Import</RootNamespace>
