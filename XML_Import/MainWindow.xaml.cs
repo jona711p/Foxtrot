@@ -34,20 +34,24 @@ namespace XML_Import
                 switch (reader.NodeType)
                 {
                     case XmlNodeType.Element: // The node is an element.
-                        Console.Write("<" + reader.Name);
-                        Console.WriteLine(">");
+                        MessageBox.Show("<" + reader.Name + ">");
                         break;
+                        
                     case XmlNodeType.Text: //Display the text in each element.
-                        Console.WriteLine(reader.Value);
+                        MessageBox.Show("Værdi: " + reader.Value);
                         break;
-                    case XmlNodeType.EndElement: //Display the end of the element.
-                        Console.Write("</" + reader.Name);
-                        Console.WriteLine(">");
+
+                    case XmlNodeType.EndElement: //Display the end of the element.                    
+                        MessageBox.Show("</" + reader.Name + ">");
                         break;
+
                 }
-                MessageBox.Show("Navn:" + reader.Name);
-                MessageBox.Show("Value:" + reader.Value);
-                
+
+                string[] element = new string[1000];
+                string[] value = new string[1000];
+
+
+                //https://support.microsoft.com/da-dk/help/307548/how-to-read-xml-from-a-file-by-using-visual-c
             }
         }
     }
