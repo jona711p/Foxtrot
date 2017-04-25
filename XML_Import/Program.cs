@@ -16,7 +16,7 @@ namespace XML_Import
             xmlDoc.Load(@"c://skive_xml.xml"); // Load the XML document from the specified file
 
             // Get elements
-            xmlimport import = new xmlimport();
+            Xmlimport import = new Xmlimport();
 
             XmlNodeList Adress2 = xmlDoc.GetElementsByTagName("AddressLine1");
             for (int i = 0; i < Adress2.Count; i++)
@@ -26,15 +26,4 @@ namespace XML_Import
             Console.ReadLine();
         }
      }
-    class xmlimport
-    {
-        private string adress;
-
-        public string Adress
-        {
-            get { return adress; }
-            set { adress = value; }
-        }
-
-    }
 }
