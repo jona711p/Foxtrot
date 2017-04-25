@@ -8,6 +8,7 @@ namespace XML_Import
 {
     class Xmlimport
     {
+        public string Product { get; set; }
         public string Adress { get; set; }
         public string City { get; set; }
         public string Latitude { get; set; }
@@ -23,160 +24,154 @@ namespace XML_Import
         public string Fax { get; set; }
         public string linkName { get; set; }
         public string linkUrl { get; set; }
+        public int mobile { get; set; }
+        public int phone { get; set; }
+        public string Created { get; set; }
+        public string CreatedBy { get; set; }
+        public string DescriptionType { get; set; }
+        public int DescriptionTypeID { get; set; }
+        public string Html { get; set; }
+        public string Text { get; set; }
+        public string EksternalLinkName { get; set; }
+        public string EksternalUrl { get; set; }
+        public string EksternalLinkType { get; set; }
+        public string File1Alttext { get; set; }
+        public string File1Copyright { get; set; }
+        public string File1Description { get; set; }
+        public string file1Filetype { get; set; }
+        public int File1ID { get; set; }
+        public string File1Metatag { get; set; }
+        public string File1Name { get; set; }
+        public string File1Photographer { get; set; }
+        public string File1Uri { get; set; }
 
-
-            Mobile
-            Phone
-            Created
-            CreatedBy
-            DescriptionType
-            DescriptionTypeID
-            Html
-            Text
-            EksternalLinkName
-            EksternalUrl
-            EksternalLinkType
-
-
-
-
-            File1Alttext
-            File1Copyright
-            File1Description
-            file1Filetype
-            File1ID
-            File1Metatag
-            File1Name
-            File1Photographer
-            File1Uri
-
-            File2Alttext
-            File2Copyright
-            File2Description
-            file2Filetype
-            File2ID
-            File2Metatag
-            File2Name
-            File2Photographer
-            File2Uri
-
-                        File3Alttext
-            File3Copyright
-            File3Description
-            file3Filetype
-            File3ID
-            File3Metatag
-            File3Name
-            File3Photographer
-            File3Uri
-
-                        File4Alttext
-            File4Copyright
-            File4Description
-            file4Filetype
-            File4ID
-            File4Metatag
-            File4Name
-            File4Photographer
-            File4Uri
-
-                        File5Alttext
-            File5Copyright
-            File5Description
-            file5Filetype
-            File5ID
-            File5Metatag
-            File5Name
-            File5Photographer
-            File5Uri
-
-                        File6Alttext
-            File6Copyright
-            File6Description
-            file6Filetype
-            File6ID
-            File6Metatag
-            File6Name
-            File6Photographer
-            File6Uri
-
-            MaincatID
-            MaincatName
-
-            Channelname1
-            ChannelID1
-
-            Channelname2
-            ChannelID2
-
-            Channelname3
-            ChannelID3
-
-Channelname4
-            ChannelID4
-
-
-            Channelname5
-            ChannelID5
-
-
-            Channelname6
-            ChannelID6
-
-
-            Channelname7
-            ChannelID7
-
-
-            Channelname8
-            ChannelID8
-
-
-            Channelname9
-            ChannelID9
-
-
-            Channelname10
-            ChannelID10
-
-
-            Channelname11
-            ChannelID11
-
-
-            Channelname12
-            ChannelID12
-
-
-            Channelname13
-            ChannelID13
-
-
-            Channelname14
-            ChannelID14
-
-
-            Channelname15
-            ChannelID15
-
-
-            Channelname16
-            ChannelID16
-
-
-            Channelname17
-            ChannelID17
-
-
-            Channelname18
-            ChannelID18
-
-
-            Channelname19
-            ChannelID19
 
 
 
 
     }
+//            File2Alttext
+//            File2Copyright
+//            File2Description
+//            file2Filetype
+//            File2ID
+//            File2Metatag
+//            File2Name
+//            File2Photographer
+//            File2Uri
+
+//                        File3Alttext
+//            File3Copyright
+//            File3Description
+//            file3Filetype
+//            File3ID
+//            File3Metatag
+//            File3Name
+//            File3Photographer
+//            File3Uri
+
+//                        File4Alttext
+//            File4Copyright
+//            File4Description
+//            file4Filetype
+//            File4ID
+//            File4Metatag
+//            File4Name
+//            File4Photographer
+//            File4Uri
+
+//                        File5Alttext
+//            File5Copyright
+//            File5Description
+//            file5Filetype
+//            File5ID
+//            File5Metatag
+//            File5Name
+//            File5Photographer
+//            File5Uri
+
+//                        File6Alttext
+//            File6Copyright
+//            File6Description
+//            file6Filetype
+//            File6ID
+//            File6Metatag
+//            File6Name
+//            File6Photographer
+//            File6Uri
+
+//            MaincatID
+//            MaincatName
+
+//            Channelname1
+//            ChannelID1
+
+//            Channelname2
+//            ChannelID2
+
+//            Channelname3
+//            ChannelID3
+
+//Channelname4
+//            ChannelID4
+
+
+//            Channelname5
+//            ChannelID5
+
+
+//            Channelname6
+//            ChannelID6
+
+
+//            Channelname7
+//            ChannelID7
+
+
+//            Channelname8
+//            ChannelID8
+
+
+//            Channelname9
+//            ChannelID9
+
+
+//            Channelname10
+//            ChannelID10
+
+
+//            Channelname11
+//            ChannelID11
+
+
+//            Channelname12
+//            ChannelID12
+
+
+//            Channelname13
+//            ChannelID13
+
+
+//            Channelname14
+//            ChannelID14
+
+
+//            Channelname15
+//            ChannelID15
+
+
+//            Channelname16
+//            ChannelID16
+
+
+//            Channelname17
+//            ChannelID17
+
+
+//            Channelname18
+//            ChannelID18
+
+
+//            Channelname19
+//            ChannelID19
 }
