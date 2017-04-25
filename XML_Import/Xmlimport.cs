@@ -35,177 +35,106 @@ namespace XML_Import
         public string EksternalLinkName { get; set; }
         public string EksternalUrl { get; set; }
         public string EksternalLinkType { get; set; }
+        //FILE 1
         public string File1Alttext { get; set; }
         public string File1Copyright { get; set; }
         public string File1Description { get; set; }
         public string file1Filetype { get; set; }
-        public int File1ID { get; set; }
+        public string File1ID { get; set; }
         public string File1Metatag { get; set; }
         public string File1Name { get; set; }
         public string File1Photographer { get; set; }
         public string File1Uri { get; set; }
-
-
-            Mobile
-            Phone
-            Created
-            CreatedBy
-            DescriptionType
-            DescriptionTypeID
-            Html
-            Text
-            EksternalLinkName
-            EksternalUrl
-            EksternalLinkType
-
-
-//            asd
-
-
-            File1Alttext
-            File1Copyright
-            File1Description
-            file1Filetype
-            File1ID
-            File1Metatag
-            File1Name
-            File1Photographer
-            File1Uri
-
-            File2Alttext
-            File2Copyright
-            File2Description
-            file2Filetype
-            File2ID
-            File2Metatag
-            File2Name
-            File2Photographer
-            File2Uri
-
-                        File3Alttext
-            File3Copyright
-            File3Description
-            file3Filetype
-            File3ID
-            File3Metatag
-            File3Name
-            File3Photographer
-            File3Uri
-
-                        File4Alttext
-            File4Copyright
-            File4Description
-            file4Filetype
-            File4ID
-            File4Metatag
-            File4Name
-            File4Photographer
-            File4Uri
-
-                        File5Alttext
-            File5Copyright
-            File5Description
-            file5Filetype
-            File5ID
-            File5Metatag
-            File5Name
-            File5Photographer
-            File5Uri
-
-                        File6Alttext
-            File6Copyright
-            File6Description
-            file6Filetype
-            File6ID
-            File6Metatag
-            File6Name
-            File6Photographer
-            File6Uri
-
-            MaincatID
-            MaincatName
-
-            Channelname1
-            ChannelID1
-
-            Channelname2
-            ChannelID2
-
-            Channelname3
-            ChannelID3
-
-Channelname4
-            ChannelID4
-
-//            Channelname1
-//            ChannelID1
-
-            Channelname5
-            ChannelID5
-
-//            Channelname3
-//            ChannelID3
-
-            Channelname6
-            ChannelID6
-
-
-            Channelname7
-            ChannelID7
-
-
-            Channelname8
-            ChannelID8
-
-
-            Channelname9
-            ChannelID9
-
-
-            Channelname10
-            ChannelID10
-
-
-            Channelname11
-            ChannelID11
-
-
-            Channelname12
-            ChannelID12
-
-
-            Channelname13
-            ChannelID13
-
-
-            Channelname14
-            ChannelID14
-
-
-            Channelname15
-            ChannelID15
-
-
-            Channelname16
-            ChannelID16
-
-
-            Channelname17
-            ChannelID17
-
-
-            Channelname18
-            ChannelID18
-
-
-            Channelname19
-            ChannelID19
-
-
-//            Channelname18
-//            ChannelID18
-
-
-//            Channelname19
-//            ChannelID19
+        //FILE 2
+        public string File2Alttext { get; set; }
+        public string File2Copyright { get; set; }
+        public string File2Description { get; set; }
+        public string file2Filetype { get; set; }
+        public string File2ID { get; set; }
+        public string File2Metatag { get; set; }
+        public string File2Name { get; set; }
+        public string File2Photographer { get; set; }
+        public string File2Uri { get; set; }
+        //FILE 3
+        public string File3Alttext { get; set; }
+        public string File3Copyright { get; set; }
+        public string File3Description { get; set; }
+        public string file3Filetype { get; set; }
+        public string File3ID { get; set; }
+        public string File3Metatag { get; set; }
+        public string File3Name { get; set; }
+        public string File3Photographer { get; set; }
+        public string File3Uri { get; set; }
+        //FILE 4
+        public string File4Alttext { get; set; }
+        public string File4Copyright { get; set; }
+        public string File4Description { get; set; }
+        public string file4Filetype { get; set; }
+        public string File4ID { get; set; }
+        public string File4Metatag { get; set; }
+        public string File4Name { get; set; }
+        public string File4Photographer { get; set; }
+        public string File4Uri { get; set; }
+        //FILE 5
+        public string File5Alttext { get; set; }
+        public string File5Copyright { get; set; }
+        public string File5Description { get; set; }
+        public string file5Filetype { get; set; }
+        public string File5ID { get; set; }
+        public string File5Metatag { get; set; }
+        public string File5Name { get; set; }
+        public string File5Photographer { get; set; }
+        public string File5Uri { get; set; }
+        //FILE 6
+        public string File6Alttext { get; set; }
+        public string File6Copyright { get; set; }
+        public string File6Description { get; set; }
+        public string file6Filetype { get; set; }
+        public string File6ID { get; set; }
+        public string File6Metatag { get; set; }
+        public string File6Name { get; set; }
+        public string File6Photographer { get; set; }
+        public string File6Uri { get; set; }
+        public int MainCatId { get; set; }
+        public string MainCatName { get; set; }
+        public string Channelname1 { get; set; }
+        public int ChannelID1 { get; set; }
+        public string Channelname2 { get; set; }
+        public int ChannelID2 { get; set; }
+        public string Channelname3 { get; set; }
+        public int ChannelID3 { get; set; }
+        public string Channelname4 { get; set; }
+        public int ChannelID4 { get; set; }
+        public string Channelname5 { get; set; }
+        public int ChannelID5 { get; set; }
+        public string Channelname6 { get; set; }
+        public int ChannelID6 { get; set; }
+        public string Channelname7 { get; set; }
+        public int ChannelID7 { get; set; }
+        public string Channelname8 { get; set; }
+        public int ChannelID8 { get; set; }
+        public string Channelname9 { get; set; }
+        public int ChannelID9 { get; set; }
+        public string Channelname10 { get; set; }
+        public int ChannelID10 { get; set; }
+        public string Channelname11 { get; set; }
+        public int ChannelID11 { get; set; }
+        public string Channelname12 { get; set; }
+        public int ChannelID12 { get; set; }
+        public string Channelname13 { get; set; }
+        public int ChannelID13 { get; set; }
+        public string Channelname14 { get; set; }
+        public int ChannelID14 { get; set; }
+        public string Channelname15 { get; set; }
+        public int ChannelID15 { get; set; }
+        public string Channelname16 { get; set; }
+        public int ChannelID16 { get; set; }
+        public string Channelname17 { get; set; }
+        public int ChannelID17 { get; set; }
+        public string Channelname18 { get; set; }
+        public int ChannelID18 { get; set; }
+        public string Channelname19 { get; set; }
+        public int ChannelID19 { get; set; }
+      
+    }
 }
