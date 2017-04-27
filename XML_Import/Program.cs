@@ -58,7 +58,7 @@ namespace XML_Import
                 Email = x.XPathSelectElement(".//*[name()='Email']").Value,
                 Fax = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
                 CanonicalUrl = x.XPathSelectElement(".//*[name()='CanonicalUrl']").Value,
-                Url = x.XPathSelectElement(".//*[name()='Url']").Value,
+                //Url = x.XPathSelectElement(".//*[name()='Url']").Value,
                 //Created = DateTime.Parse(x.XPathSelectElement(".//*[name()='Created']").Value),
                 //Description = x.XPathSelectElement(".//*[name()='Text']").Value,
 
@@ -96,8 +96,8 @@ namespace XML_Import
 
             else
             {
-                string[] moreNumbers = node.Value.Split('/');
-                foreach (string number in moreNumbers)
+                string[] moreThanOneNumbers = node.Value.Split('/');
+                foreach (string number in moreThanOneNumbers)
                 {
                     if (!number.Equals("Fur Fossiler 55.000."))
                     {
