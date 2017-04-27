@@ -96,12 +96,12 @@ namespace XML_Import
 
             else
             {
-                string[] delnumre = node.Value.Split('/');
-                foreach (string nummer in delnumre)
+                string[] moreNumbers = node.Value.Split('/');
+                foreach (string number in moreNumbers)
                 {
-                    if (!nummer.Equals("Fur Fossiler 55.000."))
+                    if (!number.Equals("Fur Fossiler 55.000."))
                     {
-                        output.Add(int.Parse(nummer.Replace(" ", "").Replace("+45", "")));
+                        output.Add(int.Parse(number.Replace(" ", "").Replace("+45", "")));
                     }
                 }
             }
