@@ -14,8 +14,21 @@
         public int Permission { get; set; }
     }
 
+    public class Administrators : Users
+    {
+        public Administrators()
+        {
+            Permission = 1;
+        }
+    }
+
     public class Actors : Users
     {
+        public Actors()
+        {
+            Permission = 2;
+        }
+
         public string CompanyName { get; set; }
     }
 }
