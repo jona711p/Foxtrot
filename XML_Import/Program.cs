@@ -7,7 +7,7 @@ using System.Xml.XPath;
 namespace XML_Import
 {
     /// <summary>
-    /// Skrevet af Jonas, Mikael & Thomas
+    /// Jonas, Mikael & Thomas
     /// </summary>
     class Program
     {
