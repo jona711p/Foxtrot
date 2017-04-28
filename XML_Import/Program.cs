@@ -14,9 +14,9 @@ namespace XML_Import
         private static XDocument xmlDocument;
         static void Main(string[] args)
         {
-            //ReadCitysFromXML();
+            ReadCitysFromXML();
             //ReadCategorysFromXML();
-            ReadAllFromXML();
+            //ReadAllFromXML();
             Console.ReadLine();
         }
 
