@@ -63,6 +63,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\Categorys.cs" />
+    <Compile Include="Classes\CombiProducts.cs" />
+    <Compile Include="Classes\Events.cs" />
+    <Compile Include="Classes\Products.cs" />
+    <Compile Include="Classes\Users.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,12 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Classes\Classes.csproj">
-      <Project>{779B19A5-21BE-4B4C-884C-08664DC1444F}</Project>
-      <Name>Classes</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
