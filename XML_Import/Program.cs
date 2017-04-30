@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -11,53 +13,98 @@ namespace XML_Import
     /// </summary>
     class Program
     {
-        private static XDocument xmlDocument;
+        static XDocument xmlDocument;
+        private static FileSystemWatcher watcher;
         static void Main(string[] args)
         {
-            ReadCitysFromXML();
-            ReadCategorysFromXML();
-            ReadMainCategorysFromXML();
-            ReadAllFromXML();
+            WatchXMLDir();
+        }
+
+        static void WatchXMLDir()
+        {
+            watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
+            watcher.Created += ReadCitiesAndCategoriesAndMainCategoriesFromXML;
+            watcher.EnableRaisingEvents = true;
+
+            Console.WriteLine("Systemet venter på en XML fil...");
             Console.ReadLine();
         }
 
-        private static void ReadCitysFromXML()
+        static void DeleteXMLFile(string path)
         {
-            xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
-
-            List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(y => new City()
-            {
-                ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']")),
-                PostalCode = TryToConvertNodeValueToInt(y.XPathSelectElement("../*[name()='PostalCode']"))
-            }).Distinct().OrderBy(y => y.ID).ToList();
+            System.IO.File.Delete(path);
         }
 
-        private static void ReadCategorysFromXML()
+        static void ReadCitiesAndCategoriesAndMainCategoriesFromXML(object sender, FileSystemEventArgs args)
         {
-            XDocument xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
-
-            List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
+            Thread[] readFromXML = new Thread[]
             {
-                ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
-            }).Distinct().OrderBy(y => y.ID).ToList();
+                new Thread(() =>
+                {
+                    ReadCitiesFromXML(args.FullPath);
+                }),
+
+                new Thread(() =>
+                {
+                    ReadCategoriesFromXML(args.FullPath);
+                }),
+
+                new Thread(() =>
+                {
+                    ReadMainCategoriesFromXML(args.FullPath);
+                })
+            };
+
+            foreach (Thread thread in readFromXML)
+            {
+                thread.Start();
+            }
+
+            foreach (Thread thread in readFromXML)
+            {
+                thread.Join();
+            }
+
+            ReadAllFromXML(args.FullPath);
         }
 
-        private static void ReadMainCategorysFromXML()
+        static void ReadCitiesFromXML(string path)
         {
-            XDocument xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
+            xmlDocument = XDocument.Load(path);
 
-            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
+            List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(x => new City()
             {
-                ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
-            }).Distinct().OrderBy(y => y.ID).ToList();
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                PostalCode = TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
         }
 
-        public static void ReadAllFromXML()
+        static void ReadCategoriesFromXML(string path)
         {
-            XDocument xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
+        }
+
+        static void ReadMainCategoriesFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
+        }
+
+        static void ReadAllFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
             List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
@@ -95,24 +142,26 @@ namespace XML_Import
                     Uri = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Uri']"))
                 }).OrderBy(y => y.ID).ToList()
             }).ToList();
+
+            DeleteXMLFile(path);
         }
 
-        private static int? TryToConvertNodeValueToInt(XElement node)
+        static int? TryToConvertNodeValueToInt(XElement node)
         {
             return node == null ? null : (int?)int.Parse(node.Value);
         }
 
-        private static string TryToConvertNodeValueToString(XElement node)
+        static string TryToConvertNodeValueToString(XElement node)
         {
             return node == null || node.Value.Equals("") ? null : node.Value;
         }
 
-        private static float? TryToConvertNodeValueToFloat(XElement node)
+        static float? TryToConvertNodeValueToFloat(XElement node)
         {
             return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
         }
 
-        private static List<int?> TryToConvertNodeValueToIntList(XElement node)
+        static List<int?> TryToConvertNodeValueToIntList(XElement node)
         {
             List<int?> output = new List<int?>();
 
@@ -136,7 +185,7 @@ namespace XML_Import
             return output;
         }
 
-        private static List<string> TryToConvertNodeValueToStringList(XElement node)
+        static List<string> TryToConvertNodeValueToStringList(XElement node)
         {
             List<string> output = new List<string>();
 
@@ -151,13 +200,13 @@ namespace XML_Import
 
                 foreach (string emails in moreThanOneEmails)
                 {
-                        output.Add(emails);
+                    output.Add(emails);
                 }
             }
             return output;
         }
 
-        private static DateTime? TryToConvertNodeValueToDateTime(XElement node)
+        static DateTime? TryToConvertNodeValueToDateTime(XElement node)
         {
             return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
         }
