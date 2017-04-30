@@ -13,14 +13,15 @@ namespace XML_Import
     /// </summary>
     class Program
     {
+        static FileSystemWatcher watcher;
         static XDocument xmlDocument;
-        private static FileSystemWatcher watcher;
+
         static void Main(string[] args)
         {
             WatchXMLDir();
         }
 
-        static void WatchXMLDir()
+        static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
             watcher.Created += ReadCitiesAndCategoriesAndMainCategoriesFromXML;
@@ -78,6 +79,8 @@ namespace XML_Import
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
                 PostalCode = TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
+
+            //WhiteCitiesToDB(cities);
         }
 
         static void ReadCategoriesFromXML(string path)
@@ -89,6 +92,8 @@ namespace XML_Import
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
+
+            //WhiteCategoriesToDB(categories);
         }
 
         static void ReadMainCategoriesFromXML(string path)
@@ -100,11 +105,14 @@ namespace XML_Import
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
+
+            //WhiteMainCategoriesToDB(mainCategories);
         }
 
         static void ReadAllFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
+
             List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
@@ -141,27 +149,30 @@ namespace XML_Import
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                     Uri = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Uri']"))
                 }).OrderBy(y => y.ID).ToList()
+
             }).ToList();
+
+            //WhiteProductsToDB(products);
 
             DeleteXMLFile(path);
         }
 
-        static int? TryToConvertNodeValueToInt(XElement node)
+        static int? TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
             return node == null ? null : (int?)int.Parse(node.Value);
         }
 
-        static string TryToConvertNodeValueToString(XElement node)
+        static string TryToConvertNodeValueToString(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
             return node == null || node.Value.Equals("") ? null : node.Value;
         }
 
-        static float? TryToConvertNodeValueToFloat(XElement node)
+        static float? TryToConvertNodeValueToFloat(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And with "." replaced by ",", because float needs "," to read it properly
         {
             return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
         }
 
-        static List<int?> TryToConvertNodeValueToIntList(XElement node)
+        static List<int?> TryToConvertNodeValueToIntList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one number seperated by "/". It also removes "+45" and spaces between numbers, so that we end up with 8 digits!
         {
             List<int?> output = new List<int?>();
 
@@ -176,7 +187,7 @@ namespace XML_Import
 
                 foreach (string number in moreThanOneNumbers)
                 {
-                    if (!number.Equals("Fur Fossiler 55.000."))
+                    if (!number.Equals("Fur Fossiler 55.000.")) // <-- Come on S.E.T. :P Thats just sad :D
                     {
                         output.Add(int.Parse(number.Replace(" ", "").Replace("+45", "")));
                     }
@@ -185,7 +196,7 @@ namespace XML_Import
             return output;
         }
 
-        static List<string> TryToConvertNodeValueToStringList(XElement node)
+        static List<string> TryToConvertNodeValueToStringList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one string seperated by "/".
         {
             List<string> output = new List<string>();
 
@@ -206,7 +217,7 @@ namespace XML_Import
             return output;
         }
 
-        static DateTime? TryToConvertNodeValueToDateTime(XElement node)
+        static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
             return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
         }

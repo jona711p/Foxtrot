@@ -6,7 +6,7 @@ namespace XML_Import
     /// <summary>
     /// Jonas, Mikael & Thomas
     /// </summary>
-    class Product
+    public class Product
     {
         public int? ID { get; set; }
         public string Name { get; set; }
@@ -27,19 +27,19 @@ namespace XML_Import
         public MainCategory MainCategories { get; set; }
     }
 
-    class File
+    public class File
     {
         public int? ID { get; set; }
         public string Uri { get; set; }
     }
 
-    class City : IEquatable<City>
+    public class City : IEquatable<City> // Used by "Distinct()" to find dupes in the list
     {
         public int? ID { get; set; }
         public string Name { get; set; }
         public int? PostalCode { get; set; }
 
-        public bool Equals(City other)
+        public bool Equals(City other) // Checks if the same "ID" and "Name" already exists in the list
         {
             if (ID == other.ID && Name == other.Name && PostalCode == other.PostalCode)
             {
@@ -48,7 +48,7 @@ namespace XML_Import
             return false;
         }
 
-        public override int GetHashCode()
+        public override int GetHashCode() // Checks if the same "ID", "Name" and "PostalCode" with the equal HASHCODE already exists in the list
         {
             int hashID = ID == null ? 0 : ID.GetHashCode();
             int hashName = Name == null ? 0 : Name.GetHashCode();
@@ -58,12 +58,12 @@ namespace XML_Import
         }
     }
 
-    class Category : IEquatable<Category>
+    public class Category : IEquatable<Category> // Used by "Distinct()" to find dupes in the list
     {
         public int? ID { get; set; }
         public string Name { get; set; }
 
-        public bool Equals(Category other)
+        public bool Equals(Category other) // Checks if the same "ID" and "Name" already exists in the list
         {
             if (ID == other.ID && Name == other.Name)
             {
@@ -72,7 +72,7 @@ namespace XML_Import
             return false;
         }
 
-        public override int GetHashCode()
+        public override int GetHashCode() // Checks if the same "ID" and "Name" with the equal HASHCODE already exists in the list
         {
             int hashID = ID == null ? 0 : ID.GetHashCode();
             int hashName = Name == null ? 0 : Name.GetHashCode();
@@ -81,9 +81,9 @@ namespace XML_Import
         }
     }
 
-    class MainCategory : Category, IEquatable<MainCategory>
+    public class MainCategory : Category, IEquatable<MainCategory> // Used by "Distinct()" to find dupes in the list
     {
-        public bool Equals(MainCategory other)
+        public bool Equals(MainCategory other) // Checks if the same "ID" and "Name" already exists in the list
         {
             if (ID == other.ID && Name == other.Name)
             {
@@ -92,7 +92,7 @@ namespace XML_Import
             return false;
         }
 
-        public override int GetHashCode()
+        public override int GetHashCode() // Checks if the same "ID" and "Name" with the equal HASHCODE already exists in the list
         {
             int hashID = ID == null ? 0 : ID.GetHashCode();
             int hashName = Name == null ? 0 : Name.GetHashCode();
