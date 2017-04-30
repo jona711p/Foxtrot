@@ -15,31 +15,43 @@ namespace XML_Import
         static void Main(string[] args)
         {
             ReadCitysFromXML();
-            //ReadCategorysFromXML();
-            //ReadAllFromXML();
+            ReadCategorysFromXML();
+            ReadMainCategorysFromXML();
+            ReadAllFromXML();
             Console.ReadLine();
         }
 
-        public static void ReadCitysFromXML()
+        private static void ReadCitysFromXML()
         {
             xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
 
             List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(y => new City()
             {
-                ID = int.Parse(y.XPathSelectElement("./*[name()='Id']").Value),
-                Name = y.XPathSelectElement("./*[name()='Name']").Value,
-                PostalCode = int.Parse(y.XPathSelectElement("../*[name()='PostalCode']").Value)
+                ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']")),
+                PostalCode = TryToConvertNodeValueToInt(y.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(y => y.ID).ToList();
         }
 
-        public static void ReadCategorysFromXML()
+        private static void ReadCategorysFromXML()
         {
             XDocument xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
 
             List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
             {
-                ID = int.Parse(y.XPathSelectElement("./*[name()='Id']").Value),
-                Name = y.XPathSelectElement("./*[name()='Name']").Value
+                ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
+            }).Distinct().OrderBy(y => y.ID).ToList();
+        }
+
+        private static void ReadMainCategorysFromXML()
+        {
+            XDocument xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
+
+            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
+            {
+                ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(y => y.ID).ToList();
         }
 
@@ -48,47 +60,62 @@ namespace XML_Import
             XDocument xmlDocument = XDocument.Load(@"c://Temp//skive_xml.xml");
             List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
             {
-                ID = int.Parse(x.XPathSelectElement("./*[name()='Id']").Value),
-                Name = x.XPathSelectElement("./*[name()='Name']").Value,
-                Actor = x.XPathSelectElement("./*[name()='Name']").Value,
-                Address = x.XPathSelectElement(".//*[name()='AddressLine1']").Value,
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                Actor = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                Address = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
                 Latitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
                 Longitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
                 Phone = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
-                Email = x.XPathSelectElement(".//*[name()='Email']").Value,
+                Email = TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
                 Fax = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
-                CanonicalUrl = x.XPathSelectElement(".//*[name()='CanonicalUrl']").Value,
-                //Url = x.XPathSelectElement(".//*[name()='Url']").Value,
-                //Created = DateTime.Parse(x.XPathSelectElement(".//*[name()='Created']").Value),
-                //Description = x.XPathSelectElement(".//*[name()='Text']").Value,
+                CanonicalUrl = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
+                Url = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
+                Created = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
+                Description = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
 
+                Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
+                {
+                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                }).FirstOrDefault(),
 
-                //Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
-                //{
-                //    ID = int.Parse(y.XPathSelectElement("./*[name()='Id']").Value)
-                //}).FirstOrDefault(),
+                Categories = x.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
+                {
+                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                }).FirstOrDefault(),
 
-                //Categories = x.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
-                //{
-                //    ID = int.Parse(y.XPathSelectElement("./*[name()='Id']").Value)
-                //}).ToList(),
+                MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
+                {
+                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                }).FirstOrDefault(),
 
-                //Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
-                //{
-                //    ID = int.Parse(y.XPathSelectElement("./*[name()='Id']").Value),
-                //    Uri = y.XPathSelectElement("./*[name()='Uri']").Value
-                //}).OrderBy(y => y.ID).ToList()
+                Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
+                {
+                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                    Uri = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Uri']"))
+                }).OrderBy(y => y.ID).ToList()
             }).ToList();
         }
 
-        public static float? TryToConvertNodeValueToFloat(XElement node)
+        private static int? TryToConvertNodeValueToInt(XElement node)
+        {
+            return node == null ? null : (int?)int.Parse(node.Value);
+        }
+
+        private static string TryToConvertNodeValueToString(XElement node)
+        {
+            return node == null || node.Value.Equals("") ? null : node.Value;
+        }
+
+        private static float? TryToConvertNodeValueToFloat(XElement node)
         {
             return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
         }
 
-        public static List<int?> TryToConvertNodeValueToIntList(XElement node)
+        private static List<int?> TryToConvertNodeValueToIntList(XElement node)
         {
             List<int?> output = new List<int?>();
+
             if (node == null || node.Value.Equals(""))
             {
                 return null;
@@ -97,6 +124,7 @@ namespace XML_Import
             else
             {
                 string[] moreThanOneNumbers = node.Value.Split('/');
+
                 foreach (string number in moreThanOneNumbers)
                 {
                     if (!number.Equals("Fur Fossiler 55.000."))
@@ -108,49 +136,30 @@ namespace XML_Import
             return output;
         }
 
-        //public void orgKode()
-        //{
-        //    XmlDocument xmlDoc = new XmlDocument(); // Create an XML document object
-        //    xmlDoc.Load(@"c://Temp//skive_xml.xml"); // Load the XML document from the specified file
+        private static List<string> TryToConvertNodeValueToStringList(XElement node)
+        {
+            List<string> output = new List<string>();
 
-        //    XmlNodeList Product = xmlDoc.GetElementsByTagName("Product");
-        //    int Count = Product.Count;
-        //    // Get elements
-        //    Xmlimport[] import = new Xmlimport[Count];
+            if (node == null || node.Value.Equals(""))
+            {
+                return null;
+            }
 
-        //    XmlNodeList Adress = xmlDoc.GetElementsByTagName("AddressLine1");
-        //    XmlNodeList City = xmlDoc.GetElementsByTagName("City");
-        //    XmlNodeList Latitude = xmlDoc.GetElementsByTagName("Latitude");
-        //    XmlNodeList Longitude = xmlDoc.GetElementsByTagName("Longitude");
-        //    XmlNodeList Id = xmlDoc.GetElementsByTagName("Id");
-        //    //XmlNodeList Name = xmlDoc.GetElementsByTagName("/Category/Name"); // forkert sti
-        //    XmlNodeList PostalCode = xmlDoc.GetElementsByTagName("PostalCode");
-        //    XmlNodeList Region = xmlDoc.GetElementsByTagName("Region");
+            else
+            {
+                string[] moreThanOneEmails = node.Value.Split('/');
 
-        //    for (int i = 0; i < Count; i++)
-        //    {
-        //        import[i] = new Xmlimport();
-        //        import[i].Adress = Adress[i].InnerText.ToString();
-        //        import[i].City = City[i].InnerText.ToString();
-        //        import[i].Latitude = Latitude[i].InnerText.ToString();
-        //        import[i].Longitude = Longitude[i].InnerText.ToString();
-        //        import[i].Id = Id[i].InnerText.ToString();
-        //        //import[i].Name = Name[i].InnerText.ToString();
-        //        import[i].PostalCode = PostalCode[i].InnerText.ToString();
-        //        import[i].Region = Region[i].InnerText.ToString();
-        //    }
+                foreach (string emails in moreThanOneEmails)
+                {
+                        output.Add(emails);
+                }
+            }
+            return output;
+        }
 
-        //for (int i = 0; i < antal; i++)  // Test purposes
-        //{
-        //    Console.WriteLine("Adress:  " + import[i].Adress);
-        //    Console.WriteLine("City:  " +import[i].City);
-        //    Console.WriteLine("Latitude:  " +import[i].Latitude);
-        //    Console.WriteLine("Longtitude:  " +import[i].Longitude);
-        //    Console.WriteLine("Id:  " +import[i].Id);
-        //    //Console.WriteLine("Name:  " + import[i].Name);
-        //    Console.WriteLine("PostalCode:  " +import[i].PostalCode);
-        //    Console.WriteLine("Region:  " +import[i].Region);
-        //    Console.WriteLine("");
-        //}
+        private static DateTime? TryToConvertNodeValueToDateTime(XElement node)
+        {
+            return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
+        }
     }
 }
