@@ -55,7 +55,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWhiteCitiesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteCitiesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = city.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = city.Name;
@@ -83,7 +83,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWhiteCategoriesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteCategoriesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
@@ -110,7 +110,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWhiteMainCategoriesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteMainCategoriesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
@@ -137,7 +137,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWhiteProductsToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteProductsToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
