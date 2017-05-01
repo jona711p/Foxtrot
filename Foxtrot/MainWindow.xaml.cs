@@ -7,6 +7,7 @@ namespace Foxtrot
     {
         public MainWindow()
         {
+            XMLLogic.WatchXMLDir();
             InitializeComponent();
         }
     }

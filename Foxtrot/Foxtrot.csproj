@@ -67,9 +67,11 @@
     <Compile Include="Classes\Categories.cs" />
     <Compile Include="Classes\Cities.cs" />
     <Compile Include="Classes\CombiProducts.cs" />
+    <Compile Include="Classes\XML_Import\DBLogic.cs" />
     <Compile Include="Classes\Events.cs" />
-    <Compile Include="Classes\Products.cs" />
+    <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\Users.cs" />
+    <Compile Include="Classes\XML_Import\XMLLogic.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

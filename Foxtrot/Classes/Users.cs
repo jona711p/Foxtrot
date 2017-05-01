@@ -1,4 +1,6 @@
-﻿namespace Classes
+﻿
+
+namespace Classes
 {
     /// <summary>
     /// Jonas Lykke
