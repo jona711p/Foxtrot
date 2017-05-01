@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Windows;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Foxtrot.Classes;
@@ -24,6 +25,7 @@ namespace Classes
         static void DeleteXMLFile(string path)
         {
             System.IO.File.Delete(path);
+            MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
         static void ReadCitiesAndCategoriesAndMainCategoriesFromXML(object sender, FileSystemEventArgs args)
