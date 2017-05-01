@@ -6,7 +6,6 @@ using System.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Foxtrot.Classes;
-using File = System.IO.File;
 
 namespace Classes
 {
@@ -44,6 +43,11 @@ namespace Classes
                 new Thread(() =>
                 {
                     ReadMainCategoriesFromXML(args.FullPath);
+                }),
+                    
+                new Thread(() =>
+                {
+                    ReadFilesFromXML(args.FullPath);
                 })
             };
 
@@ -71,7 +75,7 @@ namespace Classes
                 PostalCode = TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WriteCitiesToDB(cities);
+            DBLogic.WriteCitiesToDB(cities);
         }
 
         static void ReadCategoriesFromXML(string path)
@@ -98,6 +102,18 @@ namespace Classes
             }).Distinct().OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteMainCategoriesToDB(mainCategories);
+        }
+        static void ReadFilesFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new File()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Uri = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
+
+            DBLogic.WriteFilesToDB(files);
         }
 
         static void ReadAllFromXML(string path)
@@ -138,11 +154,9 @@ namespace Classes
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                    Uri = TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Uri']"))
-                }).OrderBy(y => y.ID).ToList()
+                }).OrderBy(y => y.ID).ToList(),
 
             }).ToList();
-
             //WriteProductsToDB(products);
 
             DeleteXMLFile(path);
