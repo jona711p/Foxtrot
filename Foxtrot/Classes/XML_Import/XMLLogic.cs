@@ -6,7 +6,6 @@ using System.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Foxtrot.Classes;
-using File = System.IO.File;
 
 namespace Classes
 {
@@ -71,7 +70,7 @@ namespace Classes
                 PostalCode = TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WriteCitiesToDB(cities);
+            DBLogic.WriteCitiesToDB(cities);
         }
 
         static void ReadCategoriesFromXML(string path)
