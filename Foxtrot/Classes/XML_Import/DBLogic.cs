@@ -55,7 +55,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWhiteCitiesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteCitiesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = city.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = city.Name;
@@ -146,9 +146,9 @@ namespace Classes
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
 
-                    //command.Parameters.Add("@Phone", SqlDbType.Int).Value = product.Phone;
-                    //command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = product.Email;
-                    //command.Parameters.Add("@Fax", SqlDbType.Int).Value = product.Fax;
+                    command.Parameters.Add("@Phone", SqlDbType.Int).Value = product.Phone[0].Value;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = product.Email[0];
+                    command.Parameters.Add("@Fax", SqlDbType.Int).Value = product.Fax[0].Value;
 
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
                     command.Parameters.Add("@Url", SqlDbType.NVarChar).Value = product.Url;
