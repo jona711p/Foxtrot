@@ -158,6 +158,7 @@ namespace Classes
                 }).OrderBy(y => y.ID).ToList(),
 
             }).ToList();
+
             //WriteProductsToDB(products);
 
             DeleteXMLFile(path);
