@@ -171,5 +171,33 @@ namespace Classes
 
             connection = DisconnectFromDB(connection);
         }
+        public static void WriteFilesToDB(List<File> Files)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (File file in Files)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteFiles", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
+                    command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.Uri;
+                    //command.Parameters.Add("@FK_ProductID", SqlDbType.NVarChar).Value = file.ID;
+
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
     }
 }
