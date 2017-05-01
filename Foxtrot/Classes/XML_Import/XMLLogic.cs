@@ -20,9 +20,6 @@ namespace Classes
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
             watcher.Created += ReadCitiesAndCategoriesAndMainCategoriesFromXML;
             watcher.EnableRaisingEvents = true;
-
-            Console.WriteLine("Systemet venter på en XML fil...");
-            Console.ReadLine();
         }
 
         static void DeleteXMLFile(string path)
