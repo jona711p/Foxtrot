@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Foxtrot.Classes
+namespace Classes
 {
     public class City : IEquatable<City> // Used by "Distinct()" to find dupes in the list
     {

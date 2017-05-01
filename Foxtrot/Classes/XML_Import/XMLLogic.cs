@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Foxtrot.Classes;
 
 namespace Classes
 {
@@ -113,7 +112,7 @@ namespace Classes
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Uri = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
-            }).Distinct().OrderBy(x => x.ID).ToList();
+            }).OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteFilesToDB(files);
         }
