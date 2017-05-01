@@ -90,7 +90,7 @@ namespace Classes
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WriteCategoriesToDB(categories);
+            DBLogic.WriteCategoriesToDB(categories);
         }
 
         static void ReadMainCategoriesFromXML(string path)
@@ -103,7 +103,7 @@ namespace Classes
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WriteMainCategoriesToDB(mainCategories);
+            DBLogic.WriteMainCategoriesToDB(mainCategories);
         }
         static void ReadFilesFromXML(string path)
         {
