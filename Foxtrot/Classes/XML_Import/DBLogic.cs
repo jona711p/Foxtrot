@@ -45,7 +45,7 @@ namespace Classes
             return connection;
         }
 
-        public static void WhiteCitiesToDB(List<City> cities)
+        public static void WriteCitiesToDB(List<City> cities)
         {
             SqlConnection connection = null;
 
@@ -73,7 +73,7 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WhiteCategoriesToDB(List<Category> categories)
+        public static void WriteCategoriesToDB(List<Category> categories)
         {
             SqlConnection connection = null;
 
@@ -100,7 +100,7 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WhiteMainCategoriesToDB(List<MainCategory> mainCategories)
+        public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
         {
             SqlConnection connection = null;
 
@@ -127,7 +127,7 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WhiteProductsToDB(List<Product> products)
+        public static void WriteProductsToDB(List<Product> products)
         {
             SqlConnection connection = null;
 

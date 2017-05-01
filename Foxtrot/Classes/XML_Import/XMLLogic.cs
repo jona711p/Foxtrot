@@ -71,7 +71,7 @@ namespace Classes
                 PostalCode = TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WhiteCitiesToDB(cities);
+            //WriteCitiesToDB(cities);
         }
 
         static void ReadCategoriesFromXML(string path)
@@ -84,7 +84,7 @@ namespace Classes
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WhiteCategoriesToDB(categories);
+            //WriteCategoriesToDB(categories);
         }
 
         static void ReadMainCategoriesFromXML(string path)
@@ -97,7 +97,7 @@ namespace Classes
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            //WhiteMainCategoriesToDB(mainCategories);
+            //WriteMainCategoriesToDB(mainCategories);
         }
 
         static void ReadAllFromXML(string path)
@@ -143,7 +143,7 @@ namespace Classes
 
             }).ToList();
 
-            //WhiteProductsToDB(products);
+            //WriteProductsToDB(products);
 
             DeleteXMLFile(path);
         }
