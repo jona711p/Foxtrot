@@ -127,6 +127,33 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
+        public static void WriteFilesToDB(List<File> Files)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (File file in Files)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteFilesToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
+                    command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.Uri;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
         public static void WriteProductsToDB(List<Product> products)
         {
             SqlConnection connection = null;
@@ -159,34 +186,6 @@ namespace Classes
                     command.Parameters.Add("@MainCategory", SqlDbType.Int).Value = product.MainCategories.ID;
 
                     //command.Parameters.Add("@Files", SqlDbType.NVarChar).Value = product.Files;
-
-                    command.ExecuteNonQuery();
-                }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            connection = DisconnectFromDB(connection);
-        }
-        public static void WriteFilesToDB(List<File> Files)
-        {
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            foreach (File file in Files)
-            {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteFiles", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
-                    command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.Uri;
-                    //command.Parameters.Add("@FK_ProductID", SqlDbType.NVarChar).Value = file.ID;
-
 
                     command.ExecuteNonQuery();
                 }
