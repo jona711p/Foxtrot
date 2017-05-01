@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using Foxtrot.Classes;
+using File = System.IO.File;
 
 namespace Classes
 {

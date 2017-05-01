@@ -1,11 +1,7 @@
 ﻿
-
 namespace Classes
 {
-    /// <summary>
-    /// Jonas Lykke
-    /// </summary>
-    public class Users
+    public class User
     {
         public int ID { get; set; }
         public string FirstName { get; set; }
@@ -15,24 +11,24 @@ namespace Classes
         public int? WorkFax { get; set; }
     }
 
-    public class Administrators : Users
+    public class Administrator : User
     {
         public int User_ID { get; set; }
         public int Permission { get; set; }
 
-        public Administrators()
+        public Administrator()
         {
             Permission = 1;
         }
     }
 
-    public class Actors : Users
+    public class Actor : User
     {
         public int User_ID { get; set; }
         public int Permission { get; set; }
         public string CompanyName { get; set; }
 
-        public Actors()
+        public Actor()
         {
             Permission = 2;
         }
