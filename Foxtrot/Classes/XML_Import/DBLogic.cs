@@ -182,8 +182,6 @@ namespace Classes
                     command.Parameters.Add("@Fax", SqlDbType.Int).Value = product.ContactFax[0].Value;
 
                     command.Parameters.Add("@Created", SqlDbType.DateTime).Value = product.CreationDate;
-                    command.Parameters.Add("@Period", SqlDbType.DateTime).Value = product.Period;
-                    command.Parameters.Add("@OpeningHours", SqlDbType.DateTime).Value = product.OpeningHours;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;

@@ -15,7 +15,6 @@ namespace Classes
         public List<string> ContactEmail { get; set; }
         public List<int?> ContactFax { get; set; }
         public DateTime? CreationDate { get; set; }
-        public DateTime? Period { get; set; }
         public DateTime? OpeningHours { get; set; }
         public float? Price { get; set; }
         public string Description { get; set; } //Text
