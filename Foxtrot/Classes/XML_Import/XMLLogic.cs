@@ -118,15 +118,7 @@ namespace Classes
 
             DBLogic.WriteFilesToDB(files);
         }
-        static void ReadOpeningHours(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-            List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new File()
-            {
-
-            }
-        }
+       
 
         static void ReadAllFromXML(string path)
         {
