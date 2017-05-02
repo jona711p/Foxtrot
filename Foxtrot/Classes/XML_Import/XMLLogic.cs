@@ -121,6 +121,7 @@ namespace Classes
         }
        static void ReadOpeningHoursFromXML(string path)
         {
+    
             XDocument xmlDocument = XDocument.Load(path);
 
             List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
@@ -137,7 +138,6 @@ namespace Classes
                 Friday = bool.Parse(x.XPathSelectElement("./*[name()='Friday']").Value),
                 Saturday = bool.Parse(x.XPathSelectElement("./*[name()='Saturday']").Value),
                 Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value),
-
 
             }).OrderBy(x => x.ID).ToList();
 
