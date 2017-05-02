@@ -87,10 +87,12 @@ namespace Classes
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
-                    command.Parameters.Add("@StartDate", SqlDbType.Date).Value = openingHour.StartDate;
-                    command.Parameters.Add("@EndDate", SqlDbType.Date).Value = openingHour.EndDate;
-                    command.Parameters.Add("@StartTime", SqlDbType.Time).Value = openingHour.StartTime;
-                    command.Parameters.Add("@EndTime", SqlDbType.Time).Value = openingHour.EndTime;
+
+                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
+                    command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
+                    command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
+                    command.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = openingHour.EndTime;
+
                     command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
                     command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
                     command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
