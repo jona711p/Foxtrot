@@ -99,8 +99,8 @@ namespace Classes
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
                 EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
-                StartTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartTime']")),
-                EndTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                StartTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                EndTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
                 Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
                 Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
                 Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
@@ -278,6 +278,32 @@ namespace Classes
         static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
             return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
+        }
+
+        static DateTime? TryToConvertNodeValueToTime(XElement node) // If the output from the XML is "Empty", "NULL" or contains "S" it returns NULL, else it returns the right value in the right format, and removes "P", "T" and "H" and only gets the timed format
+        {
+            if (node == null || node.Value.Equals("") || node.Value.Contains("S"))
+            {
+                return null;
+            }
+
+            else
+            {
+                if (!node.Value.Contains("M"))
+                {
+                    DateTime timeTD = DateTime.Parse(node.Value.Replace("PT", "").Replace("H", "") + ":00:00");
+                    string timeString = timeTD.ToString("HH:mm:ss");
+                    return DateTime.Parse(timeString);
+                }
+
+                else
+                {
+                    string[] withMinuts = node.Value.Split('H');
+                    DateTime timeTD = DateTime.Parse(withMinuts[0].Replace("PT", "").Replace("H", "") + ":" + withMinuts[1].Replace("M", "") + ":00");
+                    string timeString = timeTD.ToString("HH:mm:ss");
+                    return DateTime.Parse(timeString);
+                }
+            }
         }
     }
 }
