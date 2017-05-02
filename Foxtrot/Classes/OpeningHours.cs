@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class OpeningHours
+    public class OpeningHours : IEquatable<OpeningHours>
     {
         public int? ID { get; set; }
         public DateTime? StartDate { get; set; }
@@ -20,5 +16,22 @@ namespace Classes
         public bool Friday { get; set; }
         public bool Saturday { get; set; }
         public bool Sunday { get; set; }
+
+        public bool Equals(OpeningHours other) // Checks if the same "ID" already exists in the list
+        {
+            if (ID == other.ID)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        // Checks if the same "ID" with the equal HASHCODE already exists in the list
+        {
+            int hashID = ID == null ? 0 : ID.GetHashCode();
+
+            return hashID;
+        }
     }
 }

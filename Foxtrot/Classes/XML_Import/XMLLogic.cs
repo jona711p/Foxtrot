@@ -200,9 +200,7 @@ namespace Classes
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
-
-
-
+                
             }).ToList();
 
             //DBLogic.WriteProductsToDB(products);

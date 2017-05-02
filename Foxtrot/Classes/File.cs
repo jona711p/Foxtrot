@@ -7,9 +7,9 @@ namespace Classes
         public int? ID { get; set; }
         public string URI { get; set; }
 
-        public bool Equals(File other) // Checks if the same "ID" and "URI" already exists in the list
+        public bool Equals(File other) // Checks if the same "ID" already exists in the list
         {
-            if (ID == other.ID && URI == other.URI)
+            if (ID == other.ID)
             {
                 return true;
             }
@@ -17,12 +17,11 @@ namespace Classes
         }
 
         public override int GetHashCode()
-            // Checks if the same "ID" and "Uri" with the equal HASHCODE already exists in the list
+            // Checks if the same "ID" with the equal HASHCODE already exists in the list
         {
             int hashID = ID == null ? 0 : ID.GetHashCode();
-            int hashURI = URI == null ? 0 : URI.GetHashCode();
 
-            return hashID ^ hashURI;
+            return hashID;
         }
     }
 }
