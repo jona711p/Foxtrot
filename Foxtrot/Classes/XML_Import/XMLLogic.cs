@@ -36,10 +36,10 @@ namespace Classes
                     ReadCitiesFromXML(args.FullPath);
                 }),
 
-                // new Thread(() =>
-                //{
-                //    ReadOpeningHoursFromXML(args.FullPath);
-                //}),
+                 new Thread(() =>
+                {
+                    ReadOpeningHoursFromXML(args.FullPath);
+                }),
 
                 new Thread(() =>
                 {
