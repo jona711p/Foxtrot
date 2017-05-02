@@ -170,6 +170,8 @@ namespace Classes
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
+
+
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
