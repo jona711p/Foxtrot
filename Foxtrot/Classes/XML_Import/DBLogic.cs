@@ -165,6 +165,8 @@ namespace Classes
 
             foreach (Product product in products)
             {
+                int? currentProductID = product.ID; // Gets the ID foreach product, so the FK can be correct!
+
                 try
                 {
                     SqlCommand command = new SqlCommand("spWriteProductsToDB", connection);
@@ -187,16 +189,31 @@ namespace Classes
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
                     command.Parameters.Add("@ExtraDesription", SqlDbType.NVarChar).Value = product.ExtraDesription;
 
-                    command.Parameters.Add("@Url", SqlDbType.NVarChar).Value = product.Website;
+                    command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
 
                     command.Parameters.Add("@City", SqlDbType.Int).Value = product.Cities.ID;
+
                     command.Parameters.Add("@MainCategory", SqlDbType.Int).Value = product.MainCategories.ID;
                     command.Parameters.Add("@Category", SqlDbType.Int).Value = product.Categories.ID;
-                    
-                    //command.Parameters.Add("@Files", SqlDbType.NVarChar).Value = product.Files;
 
                     command.ExecuteNonQuery();
+
+                    foreach (OpeningHours OpeningHour in product.OpeningHours)
+                    {
+                        command.Parameters.Add("@FK_OpeningHours", SqlDbType.Int).Value = OpeningHour.ID;
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    foreach (File file in product.Files)
+                    {
+                        command.Parameters.Add("@FK_Files", SqlDbType.NVarChar).Value = file.ID;
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
+
+                        command.ExecuteNonQuery();
+                    }
                 }
 
                 catch (Exception ex)

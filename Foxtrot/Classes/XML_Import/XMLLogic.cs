@@ -160,6 +160,11 @@ namespace Classes
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
+                OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
+                {
+                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                }).OrderBy(y => y.ID).ToList(),
+
                 MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
@@ -170,17 +175,10 @@ namespace Classes
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
-
-
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                }).OrderBy(y => y.ID).ToList(),
-
-                OpeningHours = x.XPathSelectElements("//*[name()='Period']").Select(y => new OpeningHours()
-                {
-                    
-                }
+                }).OrderBy(y => y.ID).ToList()
                 
             }).ToList();
 
