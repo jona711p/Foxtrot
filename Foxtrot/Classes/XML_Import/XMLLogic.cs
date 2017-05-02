@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -24,7 +25,7 @@ namespace Classes
         static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
             ReadFromXMLInThreads(args.FullPath);
-            ReadProductsFromXML(args.FullPath);
+            //ReadProductsFromXML(args.FullPath);
 
             System.IO.File.Delete(args.FullPath);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
@@ -36,27 +37,32 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    ReadCitiesFromXML(path);
+                    ReadActorsFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadCategoriesFromXML(path);
+                    //ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadFilesFromXML(path);
+                    //ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadMainCategoriesFromXML(path);
+                    //ReadFilesFromXML(path);
+                }),
+
+                new Thread(() =>
+                {
+                    //ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    ReadOpeningHoursFromXML(path);
+                    //ReadOpeningHoursFromXML(path);
                 })
             };
 
@@ -69,6 +75,25 @@ namespace Classes
             {
                 thread.Join();
             }
+        }
+
+        static void ReadActorsFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<Actor> actors = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Actor()
+            {
+                FirstName = null,
+                LastName = null,
+                WorkPhone = null,
+                WorkEmail = null,
+                WorkFax = null,
+
+                CompanyName = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+
+            }).OrderBy(x => x.ID).ToList();
+
+            DBLogic.WriteActorToDB(actors);
         }
 
         static void ReadCitiesFromXML(string path)
@@ -148,7 +173,7 @@ namespace Classes
 
             DBLogic.WriteOpeningHoursToDB(openingHours);
         }
-        
+
         static void ReadProductsFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);

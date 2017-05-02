@@ -44,6 +44,40 @@ namespace Classes
             return connection;
         }
 
+        public static void WriteActorToDB(List<Actor> actors)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Actor actor in actors)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteActorsToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = actor.FirstName;
+                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = actor.LastName;
+                    command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = actor.WorkPhone;
+                    command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = actor.WorkEmail;
+                    command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = actor.WorkFax;
+
+                    command.Parameters.Add("@Permission", SqlDbType.Int).Value = actor.Permission;
+                    command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
         public static void WriteCitiesToDB(List<City> cities)
         {
             SqlConnection connection = null;
@@ -60,74 +94,6 @@ namespace Classes
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = city.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = city.Name;
                     command.Parameters.Add("@PostalCode", SqlDbType.Int).Value = city.PostalCode;
-
-                    command.ExecuteNonQuery();
-                }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            connection = DisconnectFromDB(connection);
-        }
-
-        public static void WriteOpeningHoursToDB(List<OpeningHours> openingHours)
-        {
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            foreach (OpeningHours openingHour in openingHours)
-            {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteOpeningHoursToDB", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
-
-                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
-                    command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
-                    command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
-                    command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = openingHour.EndTime;
-
-                    command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
-                    command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
-                    command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
-                    command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = openingHour.Thursday;
-                    command.Parameters.Add("@Friday", SqlDbType.Bit).Value = openingHour.Friday;
-                    command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = openingHour.Saturday;
-                    command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = openingHour.Sunday;
-
-                    command.ExecuteNonQuery();
-                }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            connection = DisconnectFromDB(connection);
-        }
-
-        public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
-        {
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            foreach (MainCategory maincategory in mainCategories)
-            {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteMainCategoriesToDB", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
 
                     command.ExecuteNonQuery();
                 }
@@ -169,13 +135,13 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WriteFilesToDB(List<File> Files)
+        public static void WriteFilesToDB(List<File> files)
         {
             SqlConnection connection = null;
 
             connection = ConnectToDB(connection);
 
-            foreach (File file in Files)
+            foreach (File file in files)
             {
                 try
                 {
@@ -184,6 +150,74 @@ namespace Classes
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
                     command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.URI;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (MainCategory maincategory in mainCategories)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteMainCategoriesToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static void WriteOpeningHoursToDB(List<OpeningHours> openingHours)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (OpeningHours openingHour in openingHours)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteOpeningHoursToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
+
+                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
+                    command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
+                    command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
+                    command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = openingHour.EndTime;
+
+                    command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
+                    command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
+                    command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
+                    command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = openingHour.Thursday;
+                    command.Parameters.Add("@Friday", SqlDbType.Bit).Value = openingHour.Friday;
+                    command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = openingHour.Saturday;
+                    command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = openingHour.Sunday;
 
                     command.ExecuteNonQuery();
                 }
@@ -255,6 +289,43 @@ namespace Classes
 
                         command.ExecuteNonQuery();
                     }
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static void WriteActorToDB(List<User> users)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (User user in users)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteUsersToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName;
+                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = user.LastName;
+                    command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = user.WorkPhone;
+                    command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = user.WorkEmail;
+                    command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = user.WorkFax;
+
+                    command.Parameters.Add(outputID);
+                    outputID.Direction = ParameterDirection.Output;
+
+                    command.ExecuteNonQuery();
+
+                    int id = int.Parse(outputID.Value.ToString());
                 }
 
                 catch (Exception ex)
