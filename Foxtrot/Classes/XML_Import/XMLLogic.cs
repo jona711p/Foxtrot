@@ -122,9 +122,10 @@ namespace Classes
        static void ReadOpeningHoursFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
-            List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new File()
-            {
 
+            List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
             }
 
         }
