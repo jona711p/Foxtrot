@@ -37,11 +37,6 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    ReadActorsFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
                     //ReadCitiesFromXML(path);
                 }),
 
@@ -77,34 +72,15 @@ namespace Classes
             }
         }
 
-        static void ReadActorsFromXML(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-            List<Actor> actors = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Actor()
-            {
-                FirstName = null,
-                LastName = null,
-                WorkPhone = null,
-                WorkEmail = null,
-                WorkFax = null,
-
-                CompanyName = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
-
-            }).OrderBy(x => x.ID).ToList();
-
-            DBLogic.WriteActorToDB(actors);
-        }
-
         static void ReadCitiesFromXML(string path)
         {
             xmlDocument = XDocument.Load(path);
 
             List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(x => new City()
             {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
-                PostalCode = TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteCitiesToDB(cities);
@@ -116,8 +92,8 @@ namespace Classes
 
             List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
             {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteCategoriesToDB(categories);
@@ -129,8 +105,8 @@ namespace Classes
 
             List<File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new File()
             {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                URI = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                URI = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
 
             }).OrderBy(x => x.ID).ToList();
 
@@ -143,8 +119,8 @@ namespace Classes
 
             List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
             {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteMainCategoriesToDB(mainCategories);
@@ -156,11 +132,11 @@ namespace Classes
 
             List<OpeningHours> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
             {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
-                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
-                StartTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
-                EndTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                StartDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
+                EndDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
+                StartTime = SortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                EndTime = SortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
                 Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
                 Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
                 Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
@@ -180,50 +156,51 @@ namespace Classes
 
             List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
             {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
-                Actor = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
 
-                Address = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
-                Latitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
-                Longitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
 
-                ContactPhone = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
-                ContactEmail = TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
-                ContactFax = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
 
-                CreationDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
-                Price = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
+                Address = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
+                Latitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
+                Longitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
 
-                Description = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
-                ExtraDesription = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
+                ContactPhone = SortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
+                ContactEmail = SortingLogic.TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
+                ContactFax = SortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
 
-                Website = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
-                CanonicalUrl = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
+                CreationDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
+                Price = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
+
+                Description = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
+                ExtraDesription = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
+
+                Website = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
+                CanonicalUrl = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
 
                 Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
                 {
-                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
                 MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
-                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
                 Categories = x.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
                 {
-                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
-                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
 
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
                 {
-                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
                 
             }).ToList();
@@ -231,95 +208,23 @@ namespace Classes
             //DBLogic.WriteProductsToDB(products);
         }
 
-        static int? TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
+        static void ReadActorFromXML(string path)
         {
-            return node == null ? null : (int?)int.Parse(node.Value);
-        }
+            XDocument xmlDocument = XDocument.Load(path);
 
-        static string TryToConvertNodeValueToString(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
-        {
-            return node == null || node.Value.Equals("") ? null : node.Value;
-        }
-
-        static float? TryToConvertNodeValueToFloat(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And with "." replaced by ",", because float needs "," to read it properly
-        {
-            return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
-        }
-
-        static List<int?> TryToConvertNodeValueToIntList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one number seperated by "/". It also removes "+45" and spaces between numbers, so that we end up with 8 digits!
-        {
-            List<int?> output = new List<int?>();
-
-            if (node == null || node.Value.Equals(""))
+            List<Actor> actors = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Actor()
             {
-                return null;
-            }
+                FirstName = null,
+                LastName = null,
+                WorkPhone = null,
+                WorkEmail = null,
+                WorkFax = null,
 
-            else
-            {
-                string[] moreThanOneNumbers = node.Value.Split('/');
+                CompanyName = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
 
-                foreach (string number in moreThanOneNumbers)
-                {
-                    if (!number.Equals("Fur Fossiler 55.000.")) // <-- Come on S.E.T. :P Thats just sad :D
-                    {
-                        output.Add(int.Parse(number.Replace(" ", "").Replace("+45", "")));
-                    }
-                }
-            }
-            return output;
-        }
+            }).ToList();
 
-        static List<string> TryToConvertNodeValueToStringList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one string seperated by "/".
-        {
-            List<string> output = new List<string>();
-
-            if (node == null || node.Value.Equals(""))
-            {
-                return null;
-            }
-
-            else
-            {
-                string[] moreThanOneEmails = node.Value.Split('/');
-
-                foreach (string emails in moreThanOneEmails)
-                {
-                    output.Add(emails);
-                }
-            }
-            return output;
-        }
-
-        static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
-        {
-            return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
-        }
-
-        static DateTime? TryToConvertNodeValueToTime(XElement node) // If the output from the XML is "Empty", "NULL" or contains "S" it returns NULL, else it returns the right value in the right format, and removes "P", "T" and "H" and only gets the timed format
-        {
-            if (node == null || node.Value.Equals("") || node.Value.Contains("S"))
-            {
-                return null;
-            }
-
-            else
-            {
-                if (!node.Value.Contains("M"))
-                {
-                    DateTime timeTD = DateTime.Parse(node.Value.Replace("PT", "").Replace("H", "") + ":00:00");
-                    string timeString = timeTD.ToString("HH:mm:ss");
-                    return DateTime.Parse(timeString);
-                }
-
-                else
-                {
-                    string[] withMinuts = node.Value.Split('H');
-                    DateTime timeTD = DateTime.Parse(withMinuts[0].Replace("PT", "").Replace("H", "") + ":" + withMinuts[1].Replace("M", "") + ":00");
-                    string timeString = timeTD.ToString("HH:mm:ss");
-                    return DateTime.Parse(timeString);
-                }
-            }
+            DBLogic.WriteActorToDB(actors);
         }
     }
 }

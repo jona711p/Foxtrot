@@ -73,6 +73,7 @@
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\XML_Import\SortingLogic.cs" />
     <Compile Include="Classes\XML_Import\XMLLogic.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
