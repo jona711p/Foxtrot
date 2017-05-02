@@ -36,16 +36,6 @@ namespace Classes
                     ReadCitiesFromXML(args.FullPath);
                 }),
 
-                 new Thread(() =>
-                {
-                    ReadOpeningHoursFromXML(args.FullPath);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadMainCategoriesFromXML(args.FullPath);
-                }),
-
                 new Thread(() =>
                 {
                     ReadCategoriesFromXML(args.FullPath);
@@ -58,9 +48,13 @@ namespace Classes
 
                 new Thread(() =>
                 {
-                    ReadAllFromXML(args.FullPath);
-                })
+                    ReadMainCategoriesFromXML(args.FullPath);
+                }),
 
+                 new Thread(() =>
+                {
+                    ReadOpeningHoursFromXML(args.FullPath);
+                })
             };
 
             foreach (Thread thread in readFromXML)
@@ -90,43 +84,6 @@ namespace Classes
             DBLogic.WriteCitiesToDB(cities);
         }
 
-        static void ReadOpeningHoursFromXML(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-            List<OpeningHours> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
-            {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
-                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
-                StartTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
-                EndTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
-                Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
-                Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
-                Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
-                Thursday = bool.Parse(x.XPathSelectElement("./*[name()='Thursday']").Value),
-                Friday = bool.Parse(x.XPathSelectElement("./*[name()='Friday']").Value),
-                Saturday = bool.Parse(x.XPathSelectElement("./*[name()='Saturday']").Value),
-                Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value),
-
-            }).OrderBy(x => x.ID).ToList();
-
-            DBLogic.WriteOpeningHoursToDB(openingHours);
-        }
-
-        static void ReadMainCategoriesFromXML(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
-            {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
-            }).Distinct().OrderBy(x => x.ID).ToList();
-
-            DBLogic.WriteMainCategoriesToDB(mainCategories);
-        }
-
         static void ReadCategoriesFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
@@ -152,6 +109,43 @@ namespace Classes
             }).OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteFilesToDB(files);
+        }
+
+        static void ReadMainCategoriesFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
+
+            DBLogic.WriteMainCategoriesToDB(mainCategories);
+        }
+
+        static void ReadOpeningHoursFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<OpeningHours> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
+                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
+                StartTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                EndTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
+                Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
+                Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
+                Thursday = bool.Parse(x.XPathSelectElement("./*[name()='Thursday']").Value),
+                Friday = bool.Parse(x.XPathSelectElement("./*[name()='Friday']").Value),
+                Saturday = bool.Parse(x.XPathSelectElement("./*[name()='Saturday']").Value),
+                Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value),
+
+            }).OrderBy(x => x.ID).ToList();
+
+            DBLogic.WriteOpeningHoursToDB(openingHours);
         }
         
         static void ReadAllFromXML(string path)
@@ -210,7 +204,7 @@ namespace Classes
 
             }).ToList();
 
-            DBLogic.WriteProductsToDB(products);
+            //DBLogic.WriteProductsToDB(products);
 
             DeleteXMLFile(path);
         }
