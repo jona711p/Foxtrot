@@ -87,12 +87,10 @@ namespace Classes
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
-
                     command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
                     command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
                     command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
-                    command.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = openingHour.EndTime;
-
+                    command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = openingHour.EndTime;
                     command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
                     command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
                     command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
@@ -214,28 +212,29 @@ namespace Classes
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
-                    command.Parameters.Add("@Actor", SqlDbType.NVarChar).Value = product.Actor;
+                    command.Parameters.Add("@FK_ActorID", SqlDbType.NVarChar).Value = product.Actor;  //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = product.Address;
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
 
-                    command.Parameters.Add("@Phone", SqlDbType.Int).Value = product.ContactPhone[0].Value;
-                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = product.ContactEmail[0];
-                    command.Parameters.Add("@Fax", SqlDbType.Int).Value = product.ContactFax[0].Value;
+                    command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value = product.ContactPhone[0].Value;
+                    command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail[0];
+                    command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax[0].Value;
 
-                    command.Parameters.Add("@Created", SqlDbType.DateTime).Value = product.CreationDate;
+                    command.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = product.CreationDate;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
-                    command.Parameters.Add("@ExtraDesription", SqlDbType.NVarChar).Value = product.ExtraDesription;
+                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription;
 
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
 
-                    command.Parameters.Add("@City", SqlDbType.Int).Value = product.Cities.ID;
+                    command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID; //Er en foreign Key 
 
-                    command.Parameters.Add("@MainCategory", SqlDbType.Int).Value = product.MainCategories.ID;
-                    command.Parameters.Add("@Category", SqlDbType.Int).Value = product.Categories.ID;
+                    command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID; //Er en foreign Key 
+                    command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
+                    //command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
 
                     command.ExecuteNonQuery();
 
