@@ -114,9 +114,19 @@ namespace Classes
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 URI = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
+                
             }).OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteFilesToDB(files);
+        }
+       static void ReadOpeningHoursFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+            List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new File()
+            {
+
+            }
+
         }
 
         static void ReadAllFromXML(string path)
@@ -167,6 +177,11 @@ namespace Classes
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
 
+                OpeningHours = x.XPathSelectElements("//*[name()='Period']").Select(y => new OpeningHours()
+                {
+                    
+                }
+                
             }).ToList();
 
             //WriteProductsToDB(products);
