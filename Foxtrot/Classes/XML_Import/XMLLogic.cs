@@ -189,7 +189,7 @@ namespace Classes
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
 
-                OpeningHours = x.XPathSelectElements(".//*[name()='File']").Select(y => new OpeningHours()
+                OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
