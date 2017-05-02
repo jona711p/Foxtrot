@@ -137,9 +137,16 @@ namespace Classes
                 ContactFax = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
                 
                 CreationDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
-                Period = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Periods']")),
-                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='OpeningHours']")),
                 Price = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
+
+                //Opening Hours
+                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
+                EndTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
+                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
+                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
+                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
+
+
 
                 Description = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
                 ExtraDesription = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),

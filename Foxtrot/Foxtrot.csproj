@@ -68,6 +68,7 @@
     <Compile Include="Classes\City.cs" />
     <Compile Include="Classes\CombiProduct.cs" />
     <Compile Include="Classes\File.cs" />
+    <Compile Include="Classes\OpeningHours.cs" />
     <Compile Include="Classes\XML_Import\DBLogic.cs" />
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
