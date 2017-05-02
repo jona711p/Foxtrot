@@ -126,7 +126,20 @@ namespace Classes
             List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-            }
+                StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
+                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
+                StartTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                Endtime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
+                Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
+                Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
+                Thursday = bool.Parse(x.XPathSelectElement("./*[name()='Thursday']").Value),
+                Friday = bool.Parse(x.XPathSelectElement("./*[name()='Friday']").Value),
+                Saturday = bool.Parse(x.XPathSelectElement("./*[name()='Saturday']").Value),
+                Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value),
+
+
+            }).OrderBy(x => x.ID).ToList();
 
         }
 
