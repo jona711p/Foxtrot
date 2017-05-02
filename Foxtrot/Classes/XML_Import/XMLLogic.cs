@@ -17,7 +17,7 @@ namespace Classes
         public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadFromXMLÍnThreads;
+            watcher.Created += ReadFromXMLInThreads;
             watcher.EnableRaisingEvents = true;
         }
 
@@ -27,7 +27,7 @@ namespace Classes
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
-        static void ReadFromXMLÍnThreads(object sender, FileSystemEventArgs args)
+        static void ReadFromXMLInThreads(object sender, FileSystemEventArgs args)
         {
             Thread[] readFromXML = new Thread[]
             {
@@ -36,10 +36,10 @@ namespace Classes
                     ReadCitiesFromXML(args.FullPath);
                 }),
 
-                // new Thread(() =>
-                //{
-                //    ReadOpeningHoursFromXML(args.FullPath);
-                //}),
+                 new Thread(() =>
+                {
+                    ReadOpeningHoursFromXML(args.FullPath);
+                }),
 
                 new Thread(() =>
                 {
@@ -111,7 +111,7 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
-            DBLogic.WriteopeningHoursToDB(openingHours);
+            DBLogic.WriteOpeningHoursToDB(openingHours);
         }
 
         static void ReadMainCategoriesFromXML(string path)

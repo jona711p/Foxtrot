@@ -73,7 +73,7 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WriteopeningHoursToDB(List<OpeningHours> openingHours)
+        public static void WriteOpeningHoursToDB(List<OpeningHours> openingHours)
         {
             SqlConnection connection = null;
 
