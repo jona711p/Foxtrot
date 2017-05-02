@@ -36,10 +36,10 @@ namespace Classes
                     ReadCitiesFromXML(args.FullPath);
                 }),
 
-                 new Thread(() =>
-                {
-                    ReadOpeningHoursFromXML(args.FullPath);
-                }),
+                // new Thread(() =>
+                //{
+                //    ReadOpeningHoursFromXML(args.FullPath);
+                //}),
 
                 new Thread(() =>
                 {
@@ -54,7 +54,13 @@ namespace Classes
                 new Thread(() =>
                 {
                     ReadFilesFromXML(args.FullPath);
+                }),
+
+                new Thread(() =>
+                {
+                    ReadAllFromXML(args.FullPath);
                 })
+
             };
 
             foreach (Thread thread in readFromXML)
@@ -94,7 +100,7 @@ namespace Classes
                 StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
                 EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
                 StartTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartTime']")),
-                Endtime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                EndTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndTime']")),
                 Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
                 Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
                 Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
@@ -204,7 +210,7 @@ namespace Classes
 
             }).ToList();
 
-            //WriteProductsToDB(products);
+            DBLogic.WriteProductsToDB(products);
 
             DeleteXMLFile(path);
         }
