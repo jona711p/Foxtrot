@@ -72,33 +72,6 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WriteCategoriesToDB(List<Category> categories)
-        {
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            foreach (Category category in categories)
-            {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteCategoriesToDB", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
-
-                    command.ExecuteNonQuery();
-                }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            connection = DisconnectFromDB(connection);
-        }
-
         public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
         {
             SqlConnection connection = null;
@@ -113,6 +86,33 @@ namespace Classes
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static void WriteCategoriesToDB(List<Category> categories)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Category category in categories)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteCategoriesToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
 
                     command.ExecuteNonQuery();
                 }
@@ -172,18 +172,25 @@ namespace Classes
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
 
-                    command.Parameters.Add("@Phone", SqlDbType.Int).Value = product.Phone[0].Value;
-                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = product.Email[0];
-                    command.Parameters.Add("@Fax", SqlDbType.Int).Value = product.Fax[0].Value;
+                    command.Parameters.Add("@Phone", SqlDbType.Int).Value = product.ContactPhone[0].Value;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = product.ContactEmail[0];
+                    command.Parameters.Add("@Fax", SqlDbType.Int).Value = product.ContactFax[0].Value;
 
-                    command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
-                    command.Parameters.Add("@Url", SqlDbType.NVarChar).Value = product.Url;
-                    command.Parameters.Add("@Created", SqlDbType.DateTime).Value = product.Created;
+                    command.Parameters.Add("@Created", SqlDbType.DateTime).Value = product.CreationDate;
+                    command.Parameters.Add("@Period", SqlDbType.DateTime).Value = product.Period;
+                    command.Parameters.Add("@OpeningHours", SqlDbType.DateTime).Value = product.OpeningHours;
+                    command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
+
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
-                    command.Parameters.Add("@City", SqlDbType.Int).Value = product.Cities.ID;
-                    command.Parameters.Add("@Category", SqlDbType.Int).Value = product.Categories.ID;
-                    command.Parameters.Add("@MainCategory", SqlDbType.Int).Value = product.MainCategories.ID;
+                    command.Parameters.Add("@ExtraDesription", SqlDbType.NVarChar).Value = product.ExtraDesription;
 
+                    command.Parameters.Add("@Url", SqlDbType.NVarChar).Value = product.Website;
+                    command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
+
+                    command.Parameters.Add("@City", SqlDbType.Int).Value = product.Cities.ID;
+                    command.Parameters.Add("@MainCategory", SqlDbType.Int).Value = product.MainCategories.ID;
+                    command.Parameters.Add("@Category", SqlDbType.Int).Value = product.Categories.ID;
+                    
                     //command.Parameters.Add("@Files", SqlDbType.NVarChar).Value = product.Files;
 
                     command.ExecuteNonQuery();

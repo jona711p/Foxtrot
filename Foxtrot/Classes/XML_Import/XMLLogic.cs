@@ -38,12 +38,13 @@ namespace Classes
 
                 new Thread(() =>
                 {
-                    ReadCategoriesFromXML(args.FullPath);
+                    ReadMainCategoriesFromXML(args.FullPath);
+
                 }),
 
                 new Thread(() =>
                 {
-                    ReadMainCategoriesFromXML(args.FullPath);
+                    ReadCategoriesFromXML(args.FullPath);
                 }),
                     
                 new Thread(() =>
@@ -79,6 +80,19 @@ namespace Classes
             DBLogic.WriteCitiesToDB(cities);
         }
 
+        static void ReadMainCategoriesFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
+
+            DBLogic.WriteMainCategoriesToDB(mainCategories);
+        }
+
         static void ReadCategoriesFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
@@ -92,18 +106,6 @@ namespace Classes
             DBLogic.WriteCategoriesToDB(categories);
         }
 
-        static void ReadMainCategoriesFromXML(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-            List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
-            {
-                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
-            }).Distinct().OrderBy(x => x.ID).ToList();
-
-            DBLogic.WriteMainCategoriesToDB(mainCategories);
-        }
         static void ReadFilesFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
@@ -129,25 +131,33 @@ namespace Classes
                 Address = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
                 Latitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
                 Longitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
-                Phone = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
-                Email = TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
-                Fax = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
-                CanonicalUrl = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
-                Url = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
-                Created = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
+
+                ContactPhone = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
+                ContactEmail = TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
+                ContactFax = TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
+                
+                CreationDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
+                Period = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Periods']")),
+                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='OpeningHours']")),
+                Price = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
+
                 Description = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
+                ExtraDesription = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
+
+                Website = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
+                CanonicalUrl = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
 
                 Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
-                Categories = x.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
+                MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
-                MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
+                Categories = x.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
