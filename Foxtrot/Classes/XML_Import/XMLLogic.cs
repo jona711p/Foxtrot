@@ -121,11 +121,25 @@ namespace Classes
         }
        static void ReadOpeningHoursFromXML(string path)
         {
+    
             XDocument xmlDocument = XDocument.Load(path);
-            List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new File()
-            {
 
-            }
+            List<OpeningHours> OpeningHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
+            {
+                ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
+                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
+                StartTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                Endtime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
+                Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
+                Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
+                Thursday = bool.Parse(x.XPathSelectElement("./*[name()='Thursday']").Value),
+                Friday = bool.Parse(x.XPathSelectElement("./*[name()='Friday']").Value),
+                Saturday = bool.Parse(x.XPathSelectElement("./*[name()='Saturday']").Value),
+                Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value),
+
+            }).OrderBy(x => x.ID).ToList();
 
         }
 
@@ -160,11 +174,6 @@ namespace Classes
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
-                OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
-                {
-                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
-                }).OrderBy(y => y.ID).ToList(),
-
                 MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
@@ -178,8 +187,15 @@ namespace Classes
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                }).OrderBy(y => y.ID).ToList()
-                
+                }).OrderBy(y => y.ID).ToList(),
+
+                OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
+                {
+                    ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                }).OrderBy(y => y.ID).ToList(),
+
+
+
             }).ToList();
 
             //WriteProductsToDB(products);
