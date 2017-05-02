@@ -73,6 +73,44 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
+        public static void WriteopeningHoursToDB(List<OpeningHours> openingHours)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (OpeningHours openingHour in openingHours)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteOpeningHoursToDB", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
+                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
+                    command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
+                    command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
+                    command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = openingHour.Endtime;
+                    command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
+                    command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
+                    command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
+                    command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = openingHour.Thursday;
+                    command.Parameters.Add("@Friday", SqlDbType.Bit).Value = openingHour.Friday;
+                    command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = openingHour.Saturday;
+                    command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = openingHour.Sunday;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
         public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
         {
             SqlConnection connection = null;
@@ -209,7 +247,7 @@ namespace Classes
 
                     foreach (File file in product.Files)
                     {
-                        command.Parameters.Add("@FK_Files", SqlDbType.NVarChar).Value = file.ID;
+                        command.Parameters.Add("@FK_Files", SqlDbType.Int).Value = file.ID;
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
 
                         command.ExecuteNonQuery();
