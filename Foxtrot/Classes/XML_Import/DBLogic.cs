@@ -44,35 +44,46 @@ namespace Classes
             return connection;
         }
 
-        public static void WriteActorToDB(List<Actor> actors)
+        public static void WriteActorsToDB(List<Actor> actors)
+        {
+            foreach (Actor actor in actors)
+            {
+                int notCoingToBeUsedAtThisPoint = WriteActorToDB(actor);
+            }
+        }
+
+        public static int WriteActorToDB(Actor actor)
         {
             SqlConnection connection = null;
 
             connection = ConnectToDB(connection);
 
-            foreach (Actor actor in actors)
+            try
             {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteActorsToDB", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    
-                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = actor.FirstName;
-                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = actor.LastName;
-                    command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = actor.WorkPhone;
-                    command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = actor.WorkEmail;
-                    command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = actor.WorkFax;
+                SqlCommand command = new SqlCommand("spWriteActorsToDB", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@Permission", SqlDbType.Int).Value = actor.Permission;
-                    command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+                SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = actor.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = actor.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = actor.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = actor.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = actor.WorkFax;
 
-                    command.ExecuteNonQuery();
-                }
+                command.Parameters.Add("@Permission", SqlDbType.Int).Value = actor.Permission;
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
 
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                command.Parameters.Add(outputID);
+                outputID.Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                return int.Parse(outputID.Value.ToString());
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             connection = DisconnectFromDB(connection);
@@ -191,13 +202,13 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WriteOpeningHoursToDB(List<OpeningHours> openingHours)
+        public static void WriteOpeningHoursToDB(List<OpeningHour> openingHours)
         {
             SqlConnection connection = null;
 
             connection = ConnectToDB(connection);
 
-            foreach (OpeningHours openingHour in openingHours)
+            foreach (OpeningHour openingHour in openingHours)
             {
                 try
                 {
@@ -248,7 +259,7 @@ namespace Classes
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
-                    command.Parameters.Add("@FK_ActorID", SqlDbType.NVarChar).Value = product.Actor;  //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
+                    command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;  //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = product.Address;
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
@@ -274,7 +285,7 @@ namespace Classes
 
                     command.ExecuteNonQuery();
 
-                    foreach (OpeningHours OpeningHour in product.OpeningHours)
+                    foreach (OpeningHour OpeningHour in product.OpeningHours)
                     {
                         command.Parameters.Add("@FK_OpeningHours", SqlDbType.Int).Value = OpeningHour.ID;
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
@@ -300,7 +311,7 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WriteActorToDB(List<User> users)
+        public static void WriteAdministratorToDB(List<User> users)
         {
             SqlConnection connection = null;
 

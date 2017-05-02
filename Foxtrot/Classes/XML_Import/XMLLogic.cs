@@ -130,7 +130,7 @@ namespace Classes
         {
             XDocument xmlDocument = XDocument.Load(path);
 
-            List<OpeningHours> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHours()
+            List<OpeningHour> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHour()
             {
                 ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 StartDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
@@ -158,8 +158,6 @@ namespace Classes
             {
                 ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
-
-
 
                 Address = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
                 Latitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
@@ -198,33 +196,30 @@ namespace Classes
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
 
-                OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
+                OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHour()
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
                 }).OrderBy(y => y.ID).ToList(),
-                
+
+                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+
             }).ToList();
 
             //DBLogic.WriteProductsToDB(products);
         }
 
-        static void ReadActorFromXML(string path)
+        static int? ReadActorFromXML(string name)
         {
-            XDocument xmlDocument = XDocument.Load(path);
+            Actor actor = new Actor();
 
-            List<Actor> actors = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Actor()
-            {
-                FirstName = null,
-                LastName = null,
-                WorkPhone = null,
-                WorkEmail = null,
-                WorkFax = null,
-
-                CompanyName = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
-
-            }).ToList();
-
-            DBLogic.WriteActorToDB(actors);
+            actor.FirstName = null;
+            actor.LastName = null;
+            actor.WorkPhone = null;
+            actor.WorkEmail = null;
+            actor.WorkFax = null;
+            actor.CompanyName = name;
+            
+            return DBLogic.WriteActorToDB(actor);
         }
     }
 }

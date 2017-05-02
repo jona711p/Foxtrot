@@ -2,7 +2,7 @@
 
 namespace Classes
 {
-    public class OpeningHours : IEquatable<OpeningHours>
+    public class OpeningHour : IEquatable<OpeningHour>
     {
         public int? ID { get; set; }
         public DateTime? StartDate { get; set; }
@@ -17,7 +17,7 @@ namespace Classes
         public bool Saturday { get; set; }
         public bool Sunday { get; set; }
 
-        public bool Equals(OpeningHours other) // Checks if the same "ID" already exists in the list
+        public bool Equals(OpeningHour other) // Checks if the same "ID" already exists in the list
         {
             if (ID == other.ID)
             {
