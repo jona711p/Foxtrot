@@ -114,6 +114,7 @@ namespace Classes
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 URI = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
+                
             }).OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteFilesToDB(files);
