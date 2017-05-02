@@ -56,6 +56,7 @@ namespace Classes
                 {
                     SqlCommand command = new SqlCommand("spWriteCitiesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = city.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = city.Name;
                     command.Parameters.Add("@PostalCode", SqlDbType.Int).Value = city.PostalCode;
@@ -84,6 +85,7 @@ namespace Classes
                 {
                     SqlCommand command = new SqlCommand("spWriteMainCategoriesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
 
@@ -111,6 +113,7 @@ namespace Classes
                 {
                     SqlCommand command = new SqlCommand("spWriteCategoriesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
 
@@ -138,8 +141,9 @@ namespace Classes
                 {
                     SqlCommand command = new SqlCommand("spWriteFilesToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
-                    command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.Uri;
+                    command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.URI;
 
                     command.ExecuteNonQuery();
                 }
@@ -165,6 +169,7 @@ namespace Classes
                 {
                     SqlCommand command = new SqlCommand("spWriteProductsToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
                     command.Parameters.Add("@Actor", SqlDbType.NVarChar).Value = product.Actor;

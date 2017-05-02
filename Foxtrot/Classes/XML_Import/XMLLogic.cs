@@ -113,7 +113,7 @@ namespace Classes
             List<File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new File()
             {
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Uri = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
+                URI = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
             }).OrderBy(x => x.ID).ToList();
 
             DBLogic.WriteFilesToDB(files);
