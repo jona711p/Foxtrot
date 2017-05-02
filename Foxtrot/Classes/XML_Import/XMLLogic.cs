@@ -147,11 +147,7 @@ namespace Classes
 
             DBLogic.WriteFilesToDB(files);
         }
-        static void ReadActorsfromXML(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-        }
+        
         static void ReadAllFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
