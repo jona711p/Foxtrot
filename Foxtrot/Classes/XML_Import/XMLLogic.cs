@@ -17,7 +17,7 @@ namespace Classes
         public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadFromXMLInThreads;
+            watcher.Created += ReadFromXMLÍnThreads;
             watcher.EnableRaisingEvents = true;
         }
 
@@ -27,7 +27,7 @@ namespace Classes
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
-        static void ReadFromXMLInThreads(object sender, FileSystemEventArgs args)
+        static void ReadFromXMLÍnThreads(object sender, FileSystemEventArgs args)
         {
             Thread[] readFromXML = new Thread[]
             {
@@ -36,10 +36,10 @@ namespace Classes
                     ReadCitiesFromXML(args.FullPath);
                 }),
 
-                // new Thread(() =>
-                //{
-                //    ReadOpeningHoursFromXML(args.FullPath);
-                //}),
+                 new Thread(() =>
+                {
+                    ReadOpeningHoursFromXML(args.FullPath);
+                }),
 
                 new Thread(() =>
                 {
@@ -93,8 +93,8 @@ namespace Classes
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 StartDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
                 EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
-                StartTime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
-                Endtime = TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                StartTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                Endtime = TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndTime']")),
                 Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
                 Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
                 Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
@@ -157,6 +157,7 @@ namespace Classes
                 ID = TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
                 Actor = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+
                 Address = TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
                 Latitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
                 Longitude = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
@@ -197,7 +198,9 @@ namespace Classes
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHours()
                 {
                     ID = TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                }).OrderBy(y => y.ID).ToList()
+                }).OrderBy(y => y.ID).ToList(),
+
+
 
             }).ToList();
 
@@ -269,32 +272,6 @@ namespace Classes
         static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
             return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
-        }
-
-        static DateTime? TryToConvertNodeValueToTime(XElement node) // If the output from the XML is "Empty", "NULL" or contains "S" it returns NULL, else it returns the right value in the right format, and removes "P", "T" and "H" and only gets the timed format
-        {
-            if (node == null || node.Value.Equals("") || node.Value.Contains("S"))
-            {
-                return null;
-            }
-
-            else
-            {
-                if (!node.Value.Contains("M"))
-                {
-                    DateTime timeTD = DateTime.Parse(node.Value.Replace("PT", "").Replace("H", "") + ":00:00");
-                    string timeString = timeTD.ToString("HH:mm:ss");
-                    return DateTime.Parse(timeString);
-                }
-
-                else
-                {
-                    string[] withMinuts = node.Value.Split('H');
-                    DateTime timeTD = DateTime.Parse(withMinuts[0].Replace("PT", "").Replace("H", "") + ":" + withMinuts[1].Replace("M", "") + ":00");
-                    string timeString = timeTD.ToString("HH:mm:ss");
-                    return DateTime.Parse(timeString);
-                }
-            }
         }
     }
 }
