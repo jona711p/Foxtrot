@@ -5,11 +5,11 @@ namespace Classes
     public class File : IEquatable<File>
     {
         public int? ID { get; set; }
-        public string Uri { get; set; }
+        public string URI { get; set; }
 
-        public bool Equals(File other) // Checks if the same "ID" and "Uri" already exists in the list
+        public bool Equals(File other) // Checks if the same "ID" and "URI" already exists in the list
         {
-            if (ID == other.ID && Uri == other.Uri)
+            if (ID == other.ID && URI == other.URI)
             {
                 return true;
             }
@@ -20,9 +20,9 @@ namespace Classes
             // Checks if the same "ID" and "Uri" with the equal HASHCODE already exists in the list
         {
             int hashID = ID == null ? 0 : ID.GetHashCode();
-            int hashUri = Uri == null ? 0 : Uri.GetHashCode();
+            int hashURI = URI == null ? 0 : URI.GetHashCode();
 
-            return hashID ^ hashUri;
+            return hashID ^ hashURI;
         }
     }
 }
