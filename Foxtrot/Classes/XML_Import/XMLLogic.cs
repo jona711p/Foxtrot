@@ -17,43 +17,46 @@ namespace Classes
         public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadFromXMLInThreads;
+            watcher.Created += ReadFromNewXML;
             watcher.EnableRaisingEvents = true;
         }
 
-        static void DeleteXMLFile(string path)
+        static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
-            System.IO.File.Delete(path);
+            ReadFromXMLInThreads(args.FullPath);
+            ReadProductsFromXML(args.FullPath);
+
+            System.IO.File.Delete(args.FullPath);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
-        static void ReadFromXMLInThreads(object sender, FileSystemEventArgs args)
+        static void ReadFromXMLInThreads(string path)
         {
             Thread[] readFromXML = new Thread[]
             {
                 new Thread(() =>
                 {
-                    ReadCitiesFromXML(args.FullPath);
+                    ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadCategoriesFromXML(args.FullPath);
+                    ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadFilesFromXML(args.FullPath);
+                    ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadMainCategoriesFromXML(args.FullPath);
+                    ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    ReadOpeningHoursFromXML(args.FullPath);
+                    ReadOpeningHoursFromXML(path);
                 })
             };
 
@@ -66,8 +69,6 @@ namespace Classes
             {
                 thread.Join();
             }
-
-            ReadAllFromXML(args.FullPath);
         }
 
         static void ReadCitiesFromXML(string path)
@@ -148,7 +149,7 @@ namespace Classes
             DBLogic.WriteOpeningHoursToDB(openingHours);
         }
         
-        static void ReadAllFromXML(string path)
+        static void ReadProductsFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
 
@@ -205,8 +206,6 @@ namespace Classes
             }).ToList();
 
             //DBLogic.WriteProductsToDB(products);
-
-            DeleteXMLFile(path);
         }
 
         static int? TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
