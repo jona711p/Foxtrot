@@ -139,15 +139,6 @@ namespace Classes
                 CreationDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
                 Price = TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
 
-                //Opening Hours
-                EndDate = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
-                EndTime = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
-                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
-                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
-                OpeningHours = TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='EndDate']")),
-
-
-
                 Description = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
                 ExtraDesription = TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
 
