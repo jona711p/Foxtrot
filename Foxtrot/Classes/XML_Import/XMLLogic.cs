@@ -36,10 +36,10 @@ namespace Classes
                     ReadCitiesFromXML(args.FullPath);
                 }),
 
-                 new Thread(() =>
-                {
-                    ReadOpeningHoursFromXML(args.FullPath);
-                }),
+                // new Thread(() =>
+                //{
+                //    ReadOpeningHoursFromXML(args.FullPath);
+                //}),
 
                 new Thread(() =>
                 {
@@ -147,7 +147,7 @@ namespace Classes
 
             DBLogic.WriteFilesToDB(files);
         }
-
+        
         static void ReadAllFromXML(string path)
         {
             XDocument xmlDocument = XDocument.Load(path);
