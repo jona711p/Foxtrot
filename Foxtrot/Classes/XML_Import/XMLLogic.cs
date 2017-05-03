@@ -24,8 +24,8 @@ namespace Classes
 
         static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
-            ReadFromXMLInThreads(args.FullPath);
-            //ReadProductsFromXML(args.FullPath);
+            //ReadFromXMLInThreads(args.FullPath);
+            ReadProductsFromXML(args.FullPath);
 
             System.IO.File.Delete(args.FullPath);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
