@@ -290,7 +290,6 @@ namespace Classes
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
-                        //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = product.Address;
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
@@ -309,12 +308,13 @@ namespace Classes
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
 
                     command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID; //Er en foreign Key 
+                    //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
                     command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;
 
                     command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
-                        //Er en foreign Key 
+                    //Er en foreign Key 
                     command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
-                        //Er en foreign Key 
+                    //Er en foreign Key 
                     //command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID;
                     //Er en foreign Key 
 
@@ -515,8 +515,8 @@ namespace Classes
         //            SqlDataReader reader = command.ExecuteReader();
         //            reader.Read();
 
-                return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
-            }
+        //return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
+        //}
 
         //        catch (Exception ex)
         //        {
