@@ -24,8 +24,8 @@ namespace Classes
 
         static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
-            ReadFromXMLInThreads(args.FullPath);
-            //ReadProductsFromXML(args.FullPath);
+            //ReadFromXMLInThreads(args.FullPath);
+            ReadProductsFromXML(args.FullPath);
 
             System.IO.File.Delete(args.FullPath);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
@@ -37,27 +37,27 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    //ReadCitiesFromXML(path);
+                    ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadCategoriesFromXML(path);
+                    ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadFilesFromXML(path);
+                    ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadMainCategoriesFromXML(path);
+                    ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    //ReadOpeningHoursFromXML(path);
+                    ReadOpeningHoursFromXML(path);
                 })
             };
 
@@ -218,8 +218,8 @@ namespace Classes
             actor.WorkEmail = null;
             actor.WorkFax = null;
             actor.CompanyName = name;
-            
-            return DBLogic.WriteActorToDB(actor);
+
+            return DBLogic.CheckActorDuplicatesInDB(actor);
         }
     }
 }
