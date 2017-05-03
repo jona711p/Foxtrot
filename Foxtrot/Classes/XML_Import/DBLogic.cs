@@ -336,7 +336,7 @@ namespace Classes
 
                     command.ExecuteNonQuery();
 
-                    int id = int.Parse(outputID.Value.ToString());
+                    //return int.Parse(outputID.Value.ToString());
                 }
 
                 catch (Exception ex)
@@ -347,5 +347,37 @@ namespace Classes
 
             connection = DisconnectFromDB(connection);
         }
+
+        public static int CheckActorDuplicatesInDB(Actor actor)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            try
+                {
+                    SqlCommand command = new SqlCommand(@"SELECT ID FROM Actors WHERE CompanyName = '@CompanyName'", connection);
+                    
+                    command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+                    SqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    string temp_check = reader["ID"].ToString();
+                    if (temp_check == "")
+                    {
+                       return WriteActorToDB(actor);
+                    }
+                    return int.Parse(temp_check); 
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            
+            connection = DisconnectFromDB(connection);
+
+
+        }
+
     }
 }
