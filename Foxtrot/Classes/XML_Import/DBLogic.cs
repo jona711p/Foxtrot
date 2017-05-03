@@ -361,12 +361,15 @@ namespace Classes
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
-                string temp_check = reader[0].ToString();
-                if (temp_check == "")
+
+                string check = reader[0].ToString();
+
+                if (check == "")
                 {
                     return WriteActorToDB(actor);
                 }
-                return int.Parse(temp_check);
+
+                return int.Parse(check);
             }
 
             catch (Exception ex)
