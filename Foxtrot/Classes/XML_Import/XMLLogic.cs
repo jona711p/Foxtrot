@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -70,91 +69,6 @@ namespace Classes
                 thread.Join();
             }
         }
-        
-        static List<City> DupeChecking(List<City> cities)
-        {
-            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Cities");
-            List<City> copyOfCitiesList = cities.ToList();
-
-
-            foreach (City city in copyOfCitiesList)
-            {
-                if (dupeCheckList.Contains(city.ID.Value))
-                {
-                    cities.Remove(city);
-                }
-            }
-
-            return cities;
-        }
-
-        static List<Category> DupeChecking(List<Category> categories)
-        {
-            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Categories");
-            List<Category> copyOfCategoriesList = categories.ToList();
-
-
-            foreach (Category category in copyOfCategoriesList)
-            {
-                if (dupeCheckList.Contains(category.ID.Value))
-                {
-                    categories.Remove(category);
-                }
-            }
-
-            return categories;
-        }
-
-        static List<File> DupeChecking(List<File> files)
-        {
-            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Files");
-            List<File> copyOfFilesList = files.ToList();
-
-
-            foreach (File file in copyOfFilesList)
-            {
-                if (dupeCheckList.Contains(file.ID.Value))
-                {
-                    files.Remove(file);
-                }
-            }
-
-            return files;
-        }
-
-        static List<MainCategory> DupeChecking(List<MainCategory> mainCategories)
-        {
-            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("MainCategories");
-            List<MainCategory> copyOfMainCategoriesList = mainCategories.ToList();
-
-
-            foreach (MainCategory mainCategory in copyOfMainCategoriesList)
-            {
-                if (dupeCheckList.Contains(mainCategory.ID.Value))
-                {
-                    mainCategories.Remove(mainCategory);
-                }
-            }
-
-            return mainCategories;
-        }
-
-        static List<OpeningHour> DupeChecking(List<OpeningHour> openingHours)
-        {
-            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("OpeningHours");
-            List<OpeningHour> copyOfOpeningHoursList = openingHours.ToList();
-
-
-            foreach (OpeningHour openingHour in copyOfOpeningHoursList)
-            {
-                if (dupeCheckList.Contains(openingHour.ID.Value))
-                {
-                    openingHours.Remove(openingHour);
-                }
-            }
-
-            return openingHours;
-        }
 
         static void ReadCitiesFromXML(string path)
         {
@@ -167,7 +81,7 @@ namespace Classes
                 PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            cities = DupeChecking(cities);
+            cities = SortingLogic.DupeChecking(cities);
             DBLogic.WriteCitiesToDB(cities);
         }
 
@@ -181,7 +95,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            categories = DupeChecking(categories);
+            categories = SortingLogic.DupeChecking(categories);
             DBLogic.WriteCategoriesToDB(categories);
         }
 
@@ -196,7 +110,7 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
-            files = DupeChecking(files);
+            files = SortingLogic.DupeChecking(files);
             DBLogic.WriteFilesToDB(files);
         }
 
@@ -210,7 +124,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            mainCategories = DupeChecking(mainCategories);
+            mainCategories = SortingLogic.DupeChecking(mainCategories);
             DBLogic.WriteMainCategoriesToDB(mainCategories);
         }
 
@@ -235,7 +149,7 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
-            openingHours = DupeChecking(openingHours);
+            openingHours = SortingLogic.DupeChecking(openingHours);
             DBLogic.WriteOpeningHoursToDB(openingHours);
         }
 

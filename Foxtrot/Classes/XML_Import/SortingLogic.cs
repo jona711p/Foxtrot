@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace Classes
@@ -96,6 +97,91 @@ namespace Classes
                     return DateTime.Parse(timeString);
                 }
             }
+        }
+
+        public static List<City> DupeChecking(List<City> cities)
+        {
+            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Cities");
+            List<City> copyOfCitiesList = cities.ToList();
+
+
+            foreach (City city in copyOfCitiesList)
+            {
+                if (dupeCheckList.Contains(city.ID.Value))
+                {
+                    cities.Remove(city);
+                }
+            }
+
+            return cities;
+        }
+
+        public static List<Category> DupeChecking(List<Category> categories)
+        {
+            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Categories");
+            List<Category> copyOfCategoriesList = categories.ToList();
+
+
+            foreach (Category category in copyOfCategoriesList)
+            {
+                if (dupeCheckList.Contains(category.ID.Value))
+                {
+                    categories.Remove(category);
+                }
+            }
+
+            return categories;
+        }
+
+        public static List<File> DupeChecking(List<File> files)
+        {
+            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Files");
+            List<File> copyOfFilesList = files.ToList();
+
+
+            foreach (File file in copyOfFilesList)
+            {
+                if (dupeCheckList.Contains(file.ID.Value))
+                {
+                    files.Remove(file);
+                }
+            }
+
+            return files;
+        }
+
+        public static List<MainCategory> DupeChecking(List<MainCategory> mainCategories)
+        {
+            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("MainCategories");
+            List<MainCategory> copyOfMainCategoriesList = mainCategories.ToList();
+
+
+            foreach (MainCategory mainCategory in copyOfMainCategoriesList)
+            {
+                if (dupeCheckList.Contains(mainCategory.ID.Value))
+                {
+                    mainCategories.Remove(mainCategory);
+                }
+            }
+
+            return mainCategories;
+        }
+
+        public static List<OpeningHour> DupeChecking(List<OpeningHour> openingHours)
+        {
+            List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("OpeningHours");
+            List<OpeningHour> copyOfOpeningHoursList = openingHours.ToList();
+
+
+            foreach (OpeningHour openingHour in copyOfOpeningHoursList)
+            {
+                if (dupeCheckList.Contains(openingHour.ID.Value))
+                {
+                    openingHours.Remove(openingHour);
+                }
+            }
+
+            return openingHours;
         }
     }
 }
