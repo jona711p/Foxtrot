@@ -23,7 +23,7 @@ namespace Classes
         static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
             ReadFromXMLInThreads(args.FullPath);
-            //ReadProductsFromXML(args.FullPath);
+            ReadProductsFromXML(args.FullPath);
 
             System.IO.File.Delete(args.FullPath);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
@@ -33,11 +33,30 @@ namespace Classes
         {
             Thread[] readFromXML = new Thread[]
             {
-                new Thread(() => { ReadCitiesFromXML(path);         }),
-                new Thread(() => { ReadCategoriesFromXML(path);     }),
-                new Thread(() => { ReadFilesFromXML(path);          }),
-                new Thread(() => { ReadMainCategoriesFromXML(path); }),
-                new Thread(() => { ReadOpeningHoursFromXML(path);   })
+                new Thread(() =>
+                {
+                    ReadCitiesFromXML(path);
+                }),
+
+                new Thread(() =>
+                {
+                    ReadCategoriesFromXML(path);
+                }),
+
+                new Thread(() =>
+                {
+                    ReadFilesFromXML(path);
+                }),
+
+                new Thread(() =>
+                {
+                    ReadMainCategoriesFromXML(path);
+                }),
+
+                 new Thread(() =>
+                {
+                    ReadOpeningHoursFromXML(path);
+                })
             };
 
             foreach (Thread thread in readFromXML)
@@ -189,19 +208,10 @@ namespace Classes
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.ID).ToList(),
 
-
-                //Actors = x.XPathSelectElements(".//*[name()='Owner']").Select(y => new Actor()
-                //{
-                //    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
-                //}).OrderBy(y => y.ID).ToList(),
-
-                ActorID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")), //peger forkert sted hen?
-
-
-                //Actor = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+                
+                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
             }).ToList();
-
 
             DBLogic.WriteProductsToDB(products);
             DBLogic.WriteRelFileTable(products);
@@ -211,7 +221,7 @@ namespace Classes
 
         }
 
-        static int? ReadActorFromXML(string name)
+        static int ReadActorFromXML(string name)
         {
             Actor actor = new Actor();
 
@@ -221,9 +231,8 @@ namespace Classes
             actor.WorkEmail = null;
             actor.WorkFax = null;
             actor.CompanyName = name;
-            DBLogic.WriteActorToDB(actor);
-            return actor.ID;
-            //return DBLogic.CheckActorDuplicatesInDB(actor);
+            //DBLogic.WriteActorToDB(actor);
+            return DBLogic. WriteActorToDB(actor);
         }
     }
 }
