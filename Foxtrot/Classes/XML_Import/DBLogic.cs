@@ -335,8 +335,6 @@ namespace Classes
                     outputID.Direction = ParameterDirection.Output;
 
                     command.ExecuteNonQuery();
-
-                    //return int.Parse(outputID.Value.ToString());
                 }
 
                 catch (Exception ex)
@@ -364,12 +362,7 @@ namespace Classes
 
                 string check = reader[0].ToString();
 
-                if (check == "")
-                {
-                    return WriteActorToDB(actor);
-                }
-
-                return int.Parse(check);
+                return check == "" ? WriteActorToDB(actor) : int.Parse(check);
             }
 
             catch (Exception ex)

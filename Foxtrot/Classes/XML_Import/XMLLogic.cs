@@ -173,12 +173,15 @@ namespace Classes
                 Website = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
                 CanonicalUrl = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
 
-                ExtraDesription = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
-
                 Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
+
+                ExtraDesription = x.XPathSelectElements(".//*[name()='ProductMetaTag']").Select(y => new ExtraDesription()
+                {
+                    Description = SortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
+                }).ToList(),
 
                 MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
@@ -192,13 +195,13 @@ namespace Classes
 
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
-                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.ID).ToList(),
 
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHour()
                 {
-                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                }).OrderBy(y => y.ID).ToList(),
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                }).OrderBy(y => y.ID).ToList()
 
                 //ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
