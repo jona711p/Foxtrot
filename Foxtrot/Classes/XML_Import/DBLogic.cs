@@ -509,9 +509,7 @@ namespace Classes
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
-                string check = reader[0].ToString();
-
-                return check == "" ? WriteActorToDB(actor) : int.Parse(check);
+                return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
             }
 
             catch (Exception ex)

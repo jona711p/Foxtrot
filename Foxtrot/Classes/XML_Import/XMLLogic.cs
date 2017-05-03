@@ -33,30 +33,11 @@ namespace Classes
         {
             Thread[] readFromXML = new Thread[]
             {
-                new Thread(() =>
-                {
-                    ReadCitiesFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadCategoriesFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadFilesFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadMainCategoriesFromXML(path);
-                }),
-
-                 new Thread(() =>
-                {
-                    ReadOpeningHoursFromXML(path);
-                })
+                new Thread(() => { ReadCitiesFromXML(path);         }),
+                new Thread(() => { ReadCategoriesFromXML(path);     }),
+                new Thread(() => { ReadFilesFromXML(path);          }),
+                new Thread(() => { ReadMainCategoriesFromXML(path); }),
+                new Thread(() => { ReadOpeningHoursFromXML(path);   })
             };
 
             foreach (Thread thread in readFromXML)
