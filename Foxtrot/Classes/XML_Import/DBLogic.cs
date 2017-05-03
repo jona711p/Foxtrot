@@ -356,6 +356,7 @@ namespace Classes
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
                         command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = time.ID;
+                        command.Parameters.Add("FK_EventID", SqlDbType.Int).Value = 
 
                         command.ExecuteNonQuery();
                     }
