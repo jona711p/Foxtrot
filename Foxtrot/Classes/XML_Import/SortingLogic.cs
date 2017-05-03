@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 
 namespace Classes
@@ -99,11 +100,22 @@ namespace Classes
             }
         }
 
+        public static string TryToConvertNodeValueToStringBuilder(List<ExtraDesription> ExtraDesriptions)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (ExtraDesription extraDesription in ExtraDesriptions)
+            {
+                sb.AppendLine(extraDesription.Description);
+            }
+
+            return sb.ToString();
+        }
+
         public static List<City> DupeChecking(List<City> cities)
         {
             List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Cities");
             List<City> copyOfCitiesList = cities.ToList();
-
 
             foreach (City city in copyOfCitiesList)
             {
@@ -121,7 +133,6 @@ namespace Classes
             List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Categories");
             List<Category> copyOfCategoriesList = categories.ToList();
 
-
             foreach (Category category in copyOfCategoriesList)
             {
                 if (dupeCheckList.Contains(category.ID.Value))
@@ -137,7 +148,6 @@ namespace Classes
         {
             List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("Files");
             List<File> copyOfFilesList = files.ToList();
-
 
             foreach (File file in copyOfFilesList)
             {
@@ -155,7 +165,6 @@ namespace Classes
             List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("MainCategories");
             List<MainCategory> copyOfMainCategoriesList = mainCategories.ToList();
 
-
             foreach (MainCategory mainCategory in copyOfMainCategoriesList)
             {
                 if (dupeCheckList.Contains(mainCategory.ID.Value))
@@ -171,8 +180,7 @@ namespace Classes
         {
             List<int> dupeCheckList = DBLogic.DupeCheckingFromDB("OpeningHours");
             List<OpeningHour> copyOfOpeningHoursList = openingHours.ToList();
-
-
+            
             foreach (OpeningHour openingHour in copyOfOpeningHoursList)
             {
                 if (dupeCheckList.Contains(openingHour.ID.Value))

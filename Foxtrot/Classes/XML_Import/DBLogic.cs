@@ -302,7 +302,8 @@ namespace Classes
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
-                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription[0].ToString();  //konstant værdi pt.
+                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
+                        SortingLogic.TryToConvertNodeValueToStringBuilder(product.ExtraDesription);
 
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;

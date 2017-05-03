@@ -202,6 +202,7 @@ namespace Classes
 
             }).ToList();
 
+
             DBLogic.WriteProductsToDB(products);
             DBLogic.WriteRelFileTable(products);
             DBLogic.WriteRelOpeningHoursTable(products);
