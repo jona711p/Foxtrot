@@ -23,7 +23,7 @@ namespace Classes
         static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
             ReadFromXMLInThreads(args.FullPath);
-            ReadProductsFromXML(args.FullPath);
+            //ReadProductsFromXML(args.FullPath);
 
             System.IO.File.Delete(args.FullPath);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
@@ -81,6 +81,7 @@ namespace Classes
                 PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
+            cities = SortingLogic.DupeChecking(cities);
             DBLogic.WriteCitiesToDB(cities);
         }
 
@@ -94,6 +95,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
+            categories = SortingLogic.DupeChecking(categories);
             DBLogic.WriteCategoriesToDB(categories);
         }
 
@@ -108,6 +110,7 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
+            files = SortingLogic.DupeChecking(files);
             DBLogic.WriteFilesToDB(files);
         }
 
@@ -121,6 +124,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
+            mainCategories = SortingLogic.DupeChecking(mainCategories);
             DBLogic.WriteMainCategoriesToDB(mainCategories);
         }
 
@@ -145,6 +149,7 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
+            openingHours = SortingLogic.DupeChecking(openingHours);
             DBLogic.WriteOpeningHoursToDB(openingHours);
         }
 

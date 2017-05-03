@@ -44,6 +44,37 @@ namespace Classes
             return connection;
         }
 
+        public static List<int> DupeCheckingFromDB(string tableName)
+        {
+            List<int> dupeCheckList = new List<int>();
+
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName, connection);
+
+                DataTable dt = new DataTable();
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    dupeCheckList.Add(int.Parse(row[0].ToString()));
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DisconnectFromDB(connection);
+
+            return dupeCheckList;
+        }
+
         public static void WriteActorsToDB(List<Actor> actors)
         {
             foreach (Actor actor in actors)
