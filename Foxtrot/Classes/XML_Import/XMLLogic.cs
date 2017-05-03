@@ -205,7 +205,8 @@ namespace Classes
 
             }).ToList();
 
-            //DBLogic.WriteProductsToDB(products);
+            DBLogic.WriteProductsToDB(products);
+            DBLogic.WriteRelFileTable(products);
         }
 
         static int? ReadActorFromXML(string name)

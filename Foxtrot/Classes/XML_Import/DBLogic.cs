@@ -311,6 +311,63 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
+        public static void WriteRelFileTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+            connection = ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                foreach (File file in product.Files)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRelFiles", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_FileID", SqlDbType.Int).Value = file.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DisconnectFromDB(connection);
+        }
+        public static void WriteRelOpeningHoursTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                foreach (OpeningHour time in product.OpeningHours)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRelOpeningHours", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = time.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DisconnectFromDB(connection);
+        }
         public static void WriteAdministratorToDB(List<User> users)
         {
             SqlConnection connection = null;
