@@ -16,9 +16,9 @@ namespace Classes
             return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
         }
 
-        public static int? TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
+        public static int TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
-            return node == null ? null : (int?)int.Parse(node.Value);
+            return (int) (node == null ? null : (int?)int.Parse(node.Value));
         }
 
         public static List<int?> TryToConvertNodeValueToIntList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one number seperated by "/". It also removes "+45" and spaces between numbers, so that we end up with 8 digits!
