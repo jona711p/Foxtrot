@@ -303,7 +303,7 @@ namespace Classes
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
-                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription;
+                    //command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription;
 
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
@@ -316,13 +316,13 @@ namespace Classes
 
                     command.ExecuteNonQuery();
 
-                    foreach (OpeningHour OpeningHour in product.OpeningHours)
-                    {
-                        command.Parameters.Add("@FK_OpeningHours", SqlDbType.Int).Value = OpeningHour.ID;
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
+                    //foreach (OpeningHour OpeningHour in product.OpeningHours)
+                    //{
+                    //    command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = OpeningHour.ID;
+                    //    command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
 
-                        command.ExecuteNonQuery();
-                    }
+                    //    command.ExecuteNonQuery();
+                    //}
 
                     foreach (File file in product.Files)
                     {
@@ -387,6 +387,7 @@ namespace Classes
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
                         command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = time.ID;
+                        command.Parameters.Add("FK_EventID", SqlDbType.Int).Value = product.Event;
 
                         command.ExecuteNonQuery();
                     }
@@ -399,6 +400,66 @@ namespace Classes
             }
             connection = DisconnectFromDB(connection);
         }
+        public static void WriteRelEventTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                foreach (Event events in product.Event)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRelEvent", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static void WriteRelCombiTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                foreach (CombiProducts combi in product.CombiProducts)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRelCombi", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DisconnectFromDB(connection);
+        }
+
         public static void WriteAdministratorToDB(List<User> users)
         {
             SqlConnection connection = null;

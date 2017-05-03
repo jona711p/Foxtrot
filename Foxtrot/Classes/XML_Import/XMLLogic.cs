@@ -292,14 +292,18 @@ namespace Classes
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHour()
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
-                }).OrderBy(y => y.ID).ToList()
+                }).OrderBy(y => y.ID).ToList(),
 
-                //ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
             }).ToList();
 
             DBLogic.WriteProductsToDB(products);
             DBLogic.WriteRelFileTable(products);
+            DBLogic.WriteRelOpeningHoursTable(products);
+            DBLogic.WriteRelCombiTable(products);
+            DBLogic.WriteRelEventTable(products);
+
         }
 
         static int? ReadActorFromXML(string name)
