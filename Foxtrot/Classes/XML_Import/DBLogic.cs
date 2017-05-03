@@ -369,6 +369,66 @@ namespace Classes
             }
             connection = DisconnectFromDB(connection);
         }
+        public static void WriteReEventTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                foreach (Event events in product.Event)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRelEvent", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static void WriteReCombiTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                foreach (CombiProducts combi in product.CombiProducts)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRelCombi", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DisconnectFromDB(connection);
+        }
+
         public static void WriteAdministratorToDB(List<User> users)
         {
             SqlConnection connection = null;
