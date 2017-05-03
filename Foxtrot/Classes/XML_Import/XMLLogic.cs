@@ -35,27 +35,27 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    //ReadCitiesFromXML(path);
+                    ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadCategoriesFromXML(path);
+                    ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadFilesFromXML(path);
+                    ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadMainCategoriesFromXML(path);
+                    ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    //ReadOpeningHoursFromXML(path);
+                    ReadOpeningHoursFromXML(path);
                 })
             };
 
@@ -166,7 +166,7 @@ namespace Classes
                 ContactFax = SortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
 
                 CreationDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
-                Price = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
+                Price = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='PriceFrom']")),
 
                 Description = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
 
@@ -207,7 +207,7 @@ namespace Classes
 
             }).ToList();
 
-            //DBLogic.WriteProductsToDB(products);
+            DBLogic.WriteProductsToDB(products);
         }
 
         static int? ReadActorFromXML(string name)

@@ -281,7 +281,7 @@ namespace Classes
 
                     command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID; //Er en foreign Key 
                     command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
-                    //command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
+                    command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
 
                     command.ExecuteNonQuery();
 
