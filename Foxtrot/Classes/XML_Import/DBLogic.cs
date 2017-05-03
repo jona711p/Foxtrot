@@ -272,7 +272,7 @@ namespace Classes
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
-                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription;
+                    //command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription;
 
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
@@ -285,13 +285,13 @@ namespace Classes
 
                     command.ExecuteNonQuery();
 
-                    foreach (OpeningHour OpeningHour in product.OpeningHours)
-                    {
-                        command.Parameters.Add("@FK_OpeningHours", SqlDbType.Int).Value = OpeningHour.ID;
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
+                    //foreach (OpeningHour OpeningHour in product.OpeningHours)
+                    //{
+                    //    command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = OpeningHour.ID;
+                    //    command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
 
-                        command.ExecuteNonQuery();
-                    }
+                    //    command.ExecuteNonQuery();
+                    //}
 
                     foreach (File file in product.Files)
                     {
