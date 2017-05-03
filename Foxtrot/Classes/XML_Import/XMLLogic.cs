@@ -189,7 +189,16 @@ namespace Classes
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.ID).ToList(),
 
-                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+
+                //Actors = x.XPathSelectElements(".//*[name()='Owner']").Select(y => new Actor()
+                //{
+                //    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                //}).OrderBy(y => y.ID).ToList(),
+
+                ActorID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")), //peger forkert sted hen?
+
+
+                //Actor = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
             }).ToList();
 
@@ -211,8 +220,9 @@ namespace Classes
             actor.WorkEmail = null;
             actor.WorkFax = null;
             actor.CompanyName = name;
-
-            return DBLogic.CheckActorDuplicatesInDB(actor);
+            DBLogic.WriteActorToDB(actor);
+            return actor.ID;
+            //return DBLogic.CheckActorDuplicatesInDB(actor);
         }
     }
 }

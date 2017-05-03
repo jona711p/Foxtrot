@@ -290,7 +290,7 @@ namespace Classes
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
-                    command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;  //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
+                        //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = product.Address;
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
@@ -303,16 +303,20 @@ namespace Classes
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
-                    //command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription;
+                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = product.ExtraDesription[0].ToString();  //konstant værdi pt.
 
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
 
                     command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID; //Er en foreign Key 
+                    command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;
 
-                    command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID; //Er en foreign Key 
-                    command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
-                    command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID; //Er en foreign Key 
+                    command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
+                        //Er en foreign Key 
+                    command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
+                        //Er en foreign Key 
+                    //command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID;
+                    //Er en foreign Key 
 
                     command.ExecuteNonQuery();
 
@@ -324,13 +328,13 @@ namespace Classes
                     //    command.ExecuteNonQuery();
                     //}
 
-                    foreach (File file in product.Files)
-                    {
-                        command.Parameters.Add("@FK_Files", SqlDbType.Int).Value = file.ID;
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
+                    //foreach (File file in product.Files)
+                    //{
+                    //    command.Parameters.Add("@FK_Files", SqlDbType.Int).Value = file.ID;
+                    //    command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
 
-                        command.ExecuteNonQuery();
-                    }
+                    //    command.ExecuteNonQuery();
+                    //}
                 }
 
                 catch (Exception ex)
@@ -370,6 +374,7 @@ namespace Classes
             }
             connection = DisconnectFromDB(connection);
         }
+
         public static void WriteRelOpeningHoursTable(List<Product> input_product)
         {
             SqlConnection connection = null;
@@ -400,6 +405,7 @@ namespace Classes
             }
             connection = DisconnectFromDB(connection);
         }
+
         public static void WriteRelEventTable(List<Product> input_product)
         {
             SqlConnection connection = null;
@@ -495,30 +501,31 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static int CheckActorDuplicatesInDB(Actor actor)
-        {
-            SqlConnection connection = null;
+        //public static int CheckActorDuplicatesInDB(Actor actor)
+        //    {
+        //        SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+        //        connection = ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
+        //        try
+        //        {
+        //            SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
 
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
+        //            command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+        //            SqlDataReader reader = command.ExecuteReader();
+        //            reader.Read();
 
                 return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
             }
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
 
-            connection = DisconnectFromDB(connection);
-        }
+        //        connection = DisconnectFromDB(connection);
+        //    }
 
+        //}
     }
 }
