@@ -6,19 +6,19 @@ namespace Classes
 {
     public class SortingLogic
     {
-        public static int? TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
+        public static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
-            return node == null ? null : (int?)int.Parse(node.Value);
-        }
-
-        public static string TryToConvertNodeValueToString(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
-        {
-            return node == null || node.Value.Equals("") ? null : node.Value;
+            return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
         }
 
         public static float? TryToConvertNodeValueToFloat(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And with "." replaced by ",", because float needs "," to read it properly
         {
             return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
+        }
+
+        public static int? TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
+        {
+            return node == null ? null : (int?)int.Parse(node.Value);
         }
 
         public static List<int?> TryToConvertNodeValueToIntList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one number seperated by "/". It also removes "+45" and spaces between numbers, so that we end up with 8 digits!
@@ -42,7 +42,13 @@ namespace Classes
                     }
                 }
             }
+
             return output;
+        }
+
+        public static string TryToConvertNodeValueToString(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
+        {
+            return node == null || node.Value.Equals("") ? null : node.Value;
         }
 
         public static List<string> TryToConvertNodeValueToStringList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one string seperated by "/".
@@ -64,11 +70,6 @@ namespace Classes
                 }
             }
             return output;
-        }
-
-        public static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
-        {
-            return node == null ? null : (DateTime?)DateTime.Parse(node.Value);
         }
 
         public static DateTime? TryToConvertNodeValueToTime(XElement node) // If the output from the XML is "Empty", "NULL" or contains "S" it returns NULL, else it returns the right value in the right format, and removes "P", "T" and "H" and only gets the timed format

@@ -17,7 +17,7 @@ namespace Classes
         public List<OpeningHour> OpeningHours { get; set; }
         public float? Price { get; set; }
         public string Description { get; set; } //Text
-        public string ExtraDesription { get; set; }
+        public List<ExtraDesription> ExtraDesription { get; set; }
         public string Website { get; set; }
         public string CanonicalUrl { get; set; }
         public List<File> Files { get; set; }
@@ -25,5 +25,10 @@ namespace Classes
         public MainCategory MainCategories { get; set; }
         public Category Categories { get; set; }
         public int? ActorID { get; set; }
+    }
+
+    public class ExtraDesription
+    {
+        public string Description { get; set; }
     }
 }

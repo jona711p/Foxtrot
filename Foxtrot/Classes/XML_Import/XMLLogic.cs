@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -37,27 +35,27 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    //ReadCitiesFromXML(path);
+                    ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadCategoriesFromXML(path);
+                    ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadFilesFromXML(path);
+                    ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadMainCategoriesFromXML(path);
+                    ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    //ReadOpeningHoursFromXML(path);
+                    ReadOpeningHoursFromXML(path);
                 })
             };
 
@@ -159,7 +157,7 @@ namespace Classes
                 ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
 
-                Address = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='AddressLine1']")),
+                Address = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='AddressLine1']")),
                 Latitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
                 Longitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
 
@@ -168,10 +166,9 @@ namespace Classes
                 ContactFax = SortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
 
                 CreationDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
-                Price = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Price']")),
+                Price = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='PriceFrom']")),
 
                 Description = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
-                ExtraDesription = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
 
                 Website = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
                 CanonicalUrl = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
@@ -180,6 +177,11 @@ namespace Classes
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
+
+                ExtraDesription = x.XPathSelectElements(".//*[name()='ProductMetaTag']").Select(y => new ExtraDesription()
+                {
+                    Description = SortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
+                }).ToList(),
 
                 MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
@@ -193,15 +195,15 @@ namespace Classes
 
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
-                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.ID).ToList(),
 
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHour()
                 {
-                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']")),
-                }).OrderBy(y => y.ID).ToList(),
+                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                }).OrderBy(y => y.ID).ToList()
 
-                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+                //ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
             }).ToList();
 
