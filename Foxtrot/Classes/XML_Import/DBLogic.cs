@@ -369,7 +369,7 @@ namespace Classes
             }
             connection = DisconnectFromDB(connection);
         }
-        public static void WriteReEventTable(List<Product> input_product)
+        public static void WriteRelEventTable(List<Product> input_product)
         {
             SqlConnection connection = null;
 
@@ -399,7 +399,7 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        public static void WriteReCombiTable(List<Product> input_product)
+        public static void WriteRelCombiTable(List<Product> input_product)
         {
             SqlConnection connection = null;
 
