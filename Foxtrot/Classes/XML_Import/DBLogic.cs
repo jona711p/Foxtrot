@@ -355,28 +355,26 @@ namespace Classes
             connection = ConnectToDB(connection);
 
             try
-                {
-                    SqlCommand command = new SqlCommand(@"SELECT ID FROM Actors WHERE CompanyName = '@CompanyName'", connection);
-                    
-                    command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
-                    SqlDataReader reader = command.ExecuteReader();
-                    reader.Read();
-                    string temp_check = reader["ID"].ToString();
-                    if (temp_check == "")
-                    {
-                       return WriteActorToDB(actor);
-                    }
-                    return int.Parse(temp_check); 
-                }
+            {
+                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
 
-                catch (Exception ex)
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                string temp_check = reader[0].ToString();
+                if (temp_check == "")
                 {
-                    throw ex;
+                    return WriteActorToDB(actor);
                 }
-            
+                return int.Parse(temp_check);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             connection = DisconnectFromDB(connection);
-
-
         }
 
     }

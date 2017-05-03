@@ -24,7 +24,7 @@ namespace Classes
 
         static void ReadFromNewXML(object sender, FileSystemEventArgs args)
         {
-            //ReadFromXMLInThreads(args.FullPath);
+            ReadFromXMLInThreads(args.FullPath);
             ReadProductsFromXML(args.FullPath);
 
             System.IO.File.Delete(args.FullPath);
@@ -37,27 +37,27 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    ReadCitiesFromXML(path);
+                    //ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadCategoriesFromXML(path);
+                    //ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadFilesFromXML(path);
+                    //ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadMainCategoriesFromXML(path);
+                    //ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    ReadOpeningHoursFromXML(path);
+                    //ReadOpeningHoursFromXML(path);
                 })
             };
 
