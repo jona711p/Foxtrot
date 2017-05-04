@@ -80,9 +80,10 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
                 PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
+            
+            List<City> dupeCheckList = cities.Where(x => !DBLogic.DupeCheckingFromDB("Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            cities = SortingLogic.DupeChecking(cities);
-            DBLogic.WriteCitiesToDB(cities);
+            DBLogic.WriteCitiesToDB(dupeCheckList);
         }
 
         static void ReadCategoriesFromXML(string path)
@@ -95,8 +96,9 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            categories = SortingLogic.DupeChecking(categories);
-            DBLogic.WriteCategoriesToDB(categories);
+            List<Category> dupeCheckList = categories.Where(x => !DBLogic.DupeCheckingFromDB("Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            DBLogic.WriteCategoriesToDB(dupeCheckList);
         }
 
         static void ReadFilesFromXML(string path)
@@ -110,8 +112,9 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
-            files = SortingLogic.DupeChecking(files);
-            DBLogic.WriteFilesToDB(files);
+            List<File> dupeCheckList = files.Where(x => !DBLogic.DupeCheckingFromDB("Files").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            DBLogic.WriteFilesToDB(dupeCheckList);
         }
 
         static void ReadMainCategoriesFromXML(string path)
@@ -124,8 +127,9 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            mainCategories = SortingLogic.DupeChecking(mainCategories);
-            DBLogic.WriteMainCategoriesToDB(mainCategories);
+            List<MainCategory> dupeCheckList = mainCategories.Where(x => !DBLogic.DupeCheckingFromDB("MainCategories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            DBLogic.WriteMainCategoriesToDB(dupeCheckList);
         }
 
         static void ReadOpeningHoursFromXML(string path)
@@ -149,8 +153,9 @@ namespace Classes
 
             }).OrderBy(x => x.ID).ToList();
 
-            openingHours = SortingLogic.DupeChecking(openingHours);
-            DBLogic.WriteOpeningHoursToDB(openingHours);
+            List<OpeningHour> dupeCheckList = openingHours.Where(x => !DBLogic.DupeCheckingFromDB("OpeningHours").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            DBLogic.WriteOpeningHoursToDB(dupeCheckList);
         }
 
         static void ReadProductsFromXML(string path)
