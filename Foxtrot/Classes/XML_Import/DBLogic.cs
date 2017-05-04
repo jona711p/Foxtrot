@@ -424,24 +424,29 @@ namespace Classes
 
             foreach (Product product in input_product)
             {
-                foreach (Event events in product.Event)
+                if (product.Event != null)
                 {
-                    try
+                    foreach (Event events in product.Event)
                     {
-                        SqlCommand command = new SqlCommand("spWriteRel_EventsProductsToDB", connection);
-                        command.CommandType = CommandType.StoredProcedure;
+                        try
+                        {
+                            SqlCommand command = new SqlCommand("spWriteRel_EventsProductsToDB", connection);
+                            command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
+                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                            command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
 
-                        command.ExecuteNonQuery();
-                    }
+                            command.ExecuteNonQuery();
+                        }
 
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }       
                 }
+                else break;
+
             }
             connection = DisconnectFromDB(connection);
         }
@@ -454,24 +459,29 @@ namespace Classes
 
             foreach (Product product in input_product)
             {
-                foreach (CombiProducts combi in product.CombiProducts)
+                if (product.CombiProducts !=null)
                 {
-                    try
+                    foreach (CombiProducts combi in product.CombiProducts)
                     {
-                        SqlCommand command = new SqlCommand("spWriteRelCombi", connection);
-                        command.CommandType = CommandType.StoredProcedure;
+                        try
+                        {
+                            SqlCommand command = new SqlCommand("spWrite_RelCombiProductsToDB", connection);
+                            command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
+                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                            command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
 
-                        command.ExecuteNonQuery();
-                    }
+                            command.ExecuteNonQuery();
+                        }
 
-                    catch (Exception ex)
-                    {
-                        throw ex;
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
+                else break;
+                
             }
             connection = DisconnectFromDB(connection);
         }
@@ -537,5 +547,4 @@ namespace Classes
         }
 
     }
-}
 }

@@ -217,9 +217,9 @@ namespace Classes
 
             }).ToList();
 
-            DBLogic.WriteProductsToDB(products);
-            DBLogic.WriteRelFileTable(products);
-            DBLogic.WriteRelOpeningHoursTable(products); //skal ændre parameter og eller sp
+            //DBLogic.WriteProductsToDB(products);
+            //DBLogic.WriteRelFileTable(products);
+            //DBLogic.WriteRelOpeningHoursTable(products); //skal ændre parameter og eller sp
             DBLogic.WriteRelCombiTable(products); //pt har vi ingen combier så vi skal lave en eller tjekker efter null
             DBLogic.WriteRelEventTable(products); //pt har vi ingen events så vi skal lave en eller tjekker efter null
 
