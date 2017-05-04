@@ -188,12 +188,12 @@ namespace Classes
                     Description = SortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
                 }).ToList(),
 
-                MainCategories = x.XPathSelectElements("//*[name()='MainCategory']").Select(y => new MainCategory()
+                MainCategories = x.XPathSelectElements(".//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
 
-                Categories = x.XPathSelectElements("//*[name()='Category']").Select(y => new Category()
+                Categories = x.XPathSelectElements(".//*[name()='Category']").Select(y => new Category()
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
@@ -207,9 +207,8 @@ namespace Classes
                 {
                     ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.ID).ToList(),
-
                 
-                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+                //ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
             }).ToList();
 
