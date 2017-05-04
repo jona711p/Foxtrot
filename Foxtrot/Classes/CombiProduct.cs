@@ -10,5 +10,10 @@ namespace Classes
         public bool Availability { get; set; }
         public int Product_ID { get; set; }
         public int Actor_ID { get; set; }
+
+        public CombiProducts()
+        {
+            Availability = true;
+        }
     }
 }

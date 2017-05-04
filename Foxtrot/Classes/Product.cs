@@ -18,6 +18,7 @@ namespace Classes
         public float? Price { get; set; }
         public string Description { get; set; } //Text
         public List<ExtraDesription> ExtraDesription { get; set; }
+        public bool Availability { get; set; }
         public string Website { get; set; }
         public string CanonicalUrl { get; set; }
         public List<File> Files { get; set; }
@@ -27,6 +28,11 @@ namespace Classes
         public int ActorID { get; set; }
         public List<Event> Event { get; set; }
         public List<CombiProducts>  CombiProducts { get; set; }
+
+        public Product()
+        {
+            Availability = true;
+        }
     }
 
     public class ExtraDesription
