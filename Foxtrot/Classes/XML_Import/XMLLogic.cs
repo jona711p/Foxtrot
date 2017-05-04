@@ -35,27 +35,27 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    ReadCitiesFromXML(path);
+                    //ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadCategoriesFromXML(path);
+                    //ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadFilesFromXML(path);
+                    //ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    ReadMainCategoriesFromXML(path);
+                    //ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    ReadOpeningHoursFromXML(path);
+                    //ReadOpeningHoursFromXML(path);
                 })
             };
 
@@ -235,7 +235,8 @@ namespace Classes
             actor.WorkEmail = null;
             actor.WorkFax = null;
             actor.CompanyName = name;
-            return DBLogic. WriteActorToDB(actor);
+
+            return DBLogic.CheckActorDuplicatesInDB(actor);
         }
     }
 }
