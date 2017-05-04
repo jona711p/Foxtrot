@@ -284,8 +284,8 @@ namespace Classes
             {
                 int? currentProductID = product.ID; // Gets the ID foreach product, so the FK can be correct!
 
-              //  try
-                //{
+                try
+                {
                     SqlCommand command = new SqlCommand("spWriteProductsToDB", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -330,27 +330,10 @@ namespace Classes
 
                     command.ExecuteNonQuery();
 
-                    //foreach (OpeningHour OpeningHour in product.OpeningHours)
-                    //{
-                    //    command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = OpeningHour.ID;
-                    //    command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
-
-                    //    command.ExecuteNonQuery();
-                    //}
-
-                    //foreach (File file in product.Files)
-                    //{
-                    //    command.Parameters.Add("@FK_Files", SqlDbType.Int).Value = file.ID;
-                    //    command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = currentProductID;
-
-                    //    command.ExecuteNonQuery();
-                    //}
-                //}
-
-                //catch (Exception ex)
-                //{
-                //    throw ex;
-                //}
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
 
             connection = DisconnectFromDB(connection);
