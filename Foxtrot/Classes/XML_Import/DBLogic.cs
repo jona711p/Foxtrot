@@ -511,31 +511,31 @@ namespace Classes
             connection = DisconnectFromDB(connection);
         }
 
-        //public static int CheckActorDuplicatesInDB(Actor actor)
-        //    {
-        //        SqlConnection connection = null;
+        public static int CheckActorDuplicatesInDB(Actor actor)
+        {
+            SqlConnection connection = null;
 
-        //        connection = ConnectToDB(connection);
+            connection = ConnectToDB(connection);
 
-        //        try
-        //        {
-        //            SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
 
-        //            command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
-        //            SqlDataReader reader = command.ExecuteReader();
-        //            reader.Read();
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
 
-        //return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
-        //}
+                return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
+            }
 
-        //        catch (Exception ex)
-        //        {
-        //            throw ex;
-        //        }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-        //        connection = DisconnectFromDB(connection);
-        //    }
+            connection = DisconnectFromDB(connection);
+        }
 
-        //}
     }
+}
 }
