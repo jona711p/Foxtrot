@@ -282,8 +282,6 @@ namespace Classes
 
             foreach (Product product in products)
             {
-                int? currentProductID = product.ID; // Gets the ID foreach product, so the FK can be correct!
-
                 try
                 {
                     SqlCommand command = new SqlCommand("spWriteProductsToDB", connection);
@@ -295,17 +293,22 @@ namespace Classes
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
 
-                    command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value = 
-                    product.ContactPhone == null 
-                    || product.ContactPhone.Count==0
-                    ? null : (int?)product.ContactPhone[0].Value;
-                    command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail == null ? null : product.ContactEmail[0];
+                    command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value =
+                        product.ContactPhone == null
+                        || product.ContactPhone.Count == 0
+                            ? null
+                            : (int?)product.ContactPhone[0].Value;
+                    command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail == null
+                        ? null
+                        : product.ContactEmail[0];
                     /*
                      * ContactFax er defineret som et array. Men i har kun plads til 1 faxnummer på produktet? 
                      * I skal have en tabel med faxnumre med felterne ID,Nummer og ProductID Hvor productID er en foreign key til product.
                      * Her skal i ikke bruge en rel tabel, da hvert faxnummer formentligt kun bruges til et product.
-                     */                
-                    command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null ?null: (int?)product.ContactFax[0].Value;
+                     */
+                    command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null
+                        ? null
+                        : (int?)product.ContactFax[0].Value;
 
                     command.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = product.CreationDate;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
@@ -329,6 +332,7 @@ namespace Classes
                     //Er en foreign Key 
 
                     command.ExecuteNonQuery();
+                }
 
                 catch (Exception ex)
                 {
@@ -426,7 +430,7 @@ namespace Classes
                         {
                             throw ex;
                         }
-                    }       
+                    }
                 }
                 else break;
 
@@ -442,7 +446,7 @@ namespace Classes
 
             foreach (Product product in input_product)
             {
-                if (product.CombiProducts !=null)
+                if (product.CombiProducts != null)
                 {
                     foreach (CombiProducts combi in product.CombiProducts)
                     {
@@ -464,7 +468,7 @@ namespace Classes
                     }
                 }
                 else break;
-                
+
             }
             connection = DisconnectFromDB(connection);
         }
@@ -519,7 +523,14 @@ namespace Classes
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
-                return reader[0].ToString() == "" ? WriteActorToDB(actor) : int.Parse(reader[0].ToString());
+                if (reader[0].ToString() == "")
+                {
+                    return int.Parse(WriteActorToDB(actor).ToString());
+                }
+                else
+                {
+                    return int.Parse(reader[0].ToString());
+                }
             }
 
             catch (Exception ex)
