@@ -295,17 +295,17 @@ namespace Classes
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
 
-                    command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value = 
-                    product.ContactPhone == null 
-                    || product.ContactPhone.Count==0
+                    command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value =
+                    product.ContactPhone == null
+                    || product.ContactPhone.Count == 0
                     ? null : (int?)product.ContactPhone[0].Value;
                     command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail == null ? null : product.ContactEmail[0];
                     /*
                      * ContactFax er defineret som et array. Men i har kun plads til 1 faxnummer på produktet? 
                      * I skal have en tabel med faxnumre med felterne ID,Nummer og ProductID Hvor productID er en foreign key til product.
                      * Her skal i ikke bruge en rel tabel, da hvert faxnummer formentligt kun bruges til et product.
-                     */                
-                    command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null ?null: (int?)product.ContactFax[0].Value;
+                     */
+                    command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null ? null : (int?)product.ContactFax[0].Value;
 
                     command.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = product.CreationDate;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
@@ -329,6 +329,7 @@ namespace Classes
                     //Er en foreign Key 
 
                     command.ExecuteNonQuery();
+                }
 
                 catch (Exception ex)
                 {
