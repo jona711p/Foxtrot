@@ -521,16 +521,16 @@ namespace Classes
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
 
                 SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
 
-                if (reader[0].ToString() == "")
+                if (reader.HasRows)
                 {
-                    return int.Parse(WriteActorToDB(actor).ToString());
-                }
-                else
-                {
+                    reader.Read();
+
                     return int.Parse(reader[0].ToString());
                 }
+
+                return int.Parse(WriteActorToDB(actor).ToString());
+
             }
 
             catch (Exception ex)
