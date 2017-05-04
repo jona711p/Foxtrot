@@ -33,30 +33,11 @@ namespace Classes
         {
             Thread[] readFromXML = new Thread[]
             {
-                new Thread(() =>
-                {
-                    ReadCitiesFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadCategoriesFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadFilesFromXML(path);
-                }),
-
-                new Thread(() =>
-                {
-                    ReadMainCategoriesFromXML(path);
-                }),
-
-                 new Thread(() =>
-                {
-                    ReadOpeningHoursFromXML(path);
-                })
+                new Thread(() => { ReadCitiesFromXML(path); }),
+                new Thread(() => { ReadCategoriesFromXML(path); }),
+                new Thread(() => { ReadFilesFromXML(path); }),
+                new Thread(() => { ReadMainCategoriesFromXML(path); }),
+                new Thread(() => { ReadOpeningHoursFromXML(path); })
             };
 
             foreach (Thread thread in readFromXML)
@@ -70,6 +51,20 @@ namespace Classes
             }
         }
 
+        static int ReadActorFromXML(string name)
+        {
+            Actor actor = new Actor();
+
+            actor.FirstName = null;
+            actor.LastName = null;
+            actor.WorkPhone = null;
+            actor.WorkEmail = null;
+            actor.WorkFax = null;
+            actor.CompanyName = name;
+
+            return DBLogic.DupeCheckActorsInDB(actor);
+        }
+
         static void ReadCitiesFromXML(string path)
         {
             xmlDocument = XDocument.Load(path);
@@ -81,7 +76,7 @@ namespace Classes
                 PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
             
-            List<City> dupeCheckList = cities.Where(x => !DBLogic.DupeCheckingFromDB("Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<City> dupeCheckList = cities.Where(x => !DBLogic.DupeCheckListFromDB("Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBLogic.WriteCitiesToDB(dupeCheckList);
         }
@@ -96,7 +91,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<Category> dupeCheckList = categories.Where(x => !DBLogic.DupeCheckingFromDB("Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Category> dupeCheckList = categories.Where(x => !DBLogic.DupeCheckListFromDB("Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBLogic.WriteCategoriesToDB(dupeCheckList);
         }
@@ -110,9 +105,9 @@ namespace Classes
                 ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 URI = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
 
-            }).OrderBy(x => x.ID).ToList();
+            }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<File> dupeCheckList = files.Where(x => !DBLogic.DupeCheckingFromDB("Files").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<File> dupeCheckList = files.Where(x => !DBLogic.DupeCheckListFromDB("Files").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBLogic.WriteFilesToDB(dupeCheckList);
         }
@@ -127,7 +122,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<MainCategory> dupeCheckList = mainCategories.Where(x => !DBLogic.DupeCheckingFromDB("MainCategories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<MainCategory> dupeCheckList = mainCategories.Where(x => !DBLogic.DupeCheckListFromDB("MainCategories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBLogic.WriteMainCategoriesToDB(dupeCheckList);
         }
@@ -151,9 +146,9 @@ namespace Classes
                 Saturday = bool.Parse(x.XPathSelectElement("./*[name()='Saturday']").Value),
                 Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value),
 
-            }).OrderBy(x => x.ID).ToList();
+            }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<OpeningHour> dupeCheckList = openingHours.Where(x => !DBLogic.DupeCheckingFromDB("OpeningHours").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<OpeningHour> dupeCheckList = openingHours.Where(x => !DBLogic.DupeCheckListFromDB("OpeningHours").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBLogic.WriteOpeningHoursToDB(dupeCheckList);
         }
@@ -215,9 +210,9 @@ namespace Classes
 
                 ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
-            }).ToList();
+            }).OrderBy(x => x.ID).ToList();
 
-            List<Product> dupeCheckList = products.Where(x => !DBLogic.DupeCheckingFromDB("Products").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Product> dupeCheckList = products.Where(x => !DBLogic.DupeCheckListFromDB("Products").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBLogic.WriteProductsToDB(dupeCheckList);
             DBLogic.WriteRelFileTable(dupeCheckList);
@@ -225,20 +220,6 @@ namespace Classes
             DBLogic.WriteRelCombiTable(dupeCheckList); //pt har vi ingen combier så vi skal lave en eller tjekker efter null
             DBLogic.WriteRelEventTable(dupeCheckList); //pt har vi ingen events så vi skal lave en eller tjekker efter null
 
-        }
-
-        static int ReadActorFromXML(string name)
-        {
-            Actor actor = new Actor();
-
-            actor.FirstName = null;
-            actor.LastName = null;
-            actor.WorkPhone = null;
-            actor.WorkEmail = null;
-            actor.WorkFax = null;
-            actor.CompanyName = name;
-
-            return DBLogic.CheckActorDuplicatesInDB(actor);
         }
     }
 }

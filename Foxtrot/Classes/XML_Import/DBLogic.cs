@@ -45,7 +45,40 @@ namespace Classes
             return connection;
         }
 
-        public static List<int> DupeCheckingFromDB(string tableName)
+        public static int DupeCheckActorsInDB(Actor actor)
+        {
+            SqlConnection connection = null;
+
+            connection = ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
+
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    return int.Parse(reader[0].ToString());
+                }
+
+                return int.Parse(WriteActorToDB(actor).ToString());
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DisconnectFromDB(connection);
+        }
+
+        public static List<int> DupeCheckListFromDB(string tableName)
         {
             List<int> dupeCheckList = new List<int>();
 
@@ -508,39 +541,5 @@ namespace Classes
 
             connection = DisconnectFromDB(connection);
         }
-
-        public static int CheckActorDuplicatesInDB(Actor actor)
-        {
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
-
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    return int.Parse(reader[0].ToString());
-                }
-
-                return int.Parse(WriteActorToDB(actor).ToString());
-
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DisconnectFromDB(connection);
-        }
-
     }
 }
