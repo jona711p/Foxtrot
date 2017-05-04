@@ -15,7 +15,6 @@ namespace Classes
     {
         public int User_ID { get; set; }
         public int Permission { get; set; }
-
         public Administrator()
         {
             Permission = 1;
@@ -27,7 +26,6 @@ namespace Classes
         public int User_ID { get; set; }
         public int Permission { get; set; }
         public string CompanyName { get; set; }
-
         public Actor()
         {
             Permission = 2;

@@ -6,7 +6,6 @@ namespace Classes
     {
         public int? ID { get; set; }
         public string URI { get; set; }
-
         public bool Equals(File other) // Checks if the same "ID" already exists in the list
         {
             if (ID == other.ID)
@@ -15,7 +14,6 @@ namespace Classes
             }
             return false;
         }
-
         public override int GetHashCode()
             // Checks if the same "ID" with the equal HASHCODE already exists in the list
         {
