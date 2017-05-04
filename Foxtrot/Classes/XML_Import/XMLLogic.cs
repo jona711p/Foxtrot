@@ -35,27 +35,27 @@ namespace Classes
             {
                 new Thread(() =>
                 {
-                    //ReadCitiesFromXML(path);
+                    ReadCitiesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadCategoriesFromXML(path);
+                    ReadCategoriesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadFilesFromXML(path);
+                    ReadFilesFromXML(path);
                 }),
 
                 new Thread(() =>
                 {
-                    //ReadMainCategoriesFromXML(path);
+                    ReadMainCategoriesFromXML(path);
                 }),
 
                  new Thread(() =>
                 {
-                    //ReadOpeningHoursFromXML(path);
+                    ReadOpeningHoursFromXML(path);
                 })
             };
 
