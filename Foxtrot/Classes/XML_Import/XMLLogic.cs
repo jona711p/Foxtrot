@@ -235,7 +235,6 @@ namespace Classes
             actor.WorkEmail = null;
             actor.WorkFax = null;
             actor.CompanyName = name;
-            //DBLogic.WriteActorToDB(actor);
             return DBLogic. WriteActorToDB(actor);
         }
     }
