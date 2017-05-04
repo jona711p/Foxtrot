@@ -217,11 +217,13 @@ namespace Classes
 
             }).ToList();
 
-            //DBLogic.WriteProductsToDB(products);
-            //DBLogic.WriteRelFileTable(products);
-            //DBLogic.WriteRelOpeningHoursTable(products); //skal ændre parameter og eller sp
-            DBLogic.WriteRelCombiTable(products); //pt har vi ingen combier så vi skal lave en eller tjekker efter null
-            DBLogic.WriteRelEventTable(products); //pt har vi ingen events så vi skal lave en eller tjekker efter null
+            List<Product> dupeCheckList = products.Where(x => !DBLogic.DupeCheckingFromDB("Products").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            DBLogic.WriteProductsToDB(dupeCheckList);
+            DBLogic.WriteRelFileTable(dupeCheckList);
+            DBLogic.WriteRelOpeningHoursTable(dupeCheckList); //skal ændre parameter og eller sp
+            DBLogic.WriteRelCombiTable(dupeCheckList); //pt har vi ingen combier så vi skal lave en eller tjekker efter null
+            DBLogic.WriteRelEventTable(dupeCheckList); //pt har vi ingen events så vi skal lave en eller tjekker efter null
 
         }
 
