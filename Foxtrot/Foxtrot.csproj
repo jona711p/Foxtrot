@@ -69,6 +69,7 @@
     <Compile Include="Classes\CombiProduct.cs" />
     <Compile Include="Classes\DB\DBConnectionLogic.cs" />
     <Compile Include="Classes\DB\DBReadLogic.cs" />
+    <Compile Include="Classes\DB\DBUpdateDeleteLogic.cs" />
     <Compile Include="Classes\File.cs" />
     <Compile Include="Classes\OpeningHour.cs" />
     <Compile Include="Classes\DB\DBWriteLogic.cs" />
