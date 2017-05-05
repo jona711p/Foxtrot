@@ -482,7 +482,7 @@ namespace Classes
             {
                 if (product.CombiProducts != null)
                 {
-                    foreach (CombiProducts combi in product.CombiProducts)
+                    foreach (CombiProduct combi in product.CombiProducts)
                     {
                         try
                         {

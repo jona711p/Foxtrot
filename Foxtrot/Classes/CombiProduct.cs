@@ -2,7 +2,7 @@
 
 namespace Classes
 {
-    public class CombiProducts
+    public class CombiProduct
     {
         public int? ID { get; set; }
         public DateTime CreationDate { get; set; }
