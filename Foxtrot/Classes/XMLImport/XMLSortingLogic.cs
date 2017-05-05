@@ -100,11 +100,11 @@ namespace Classes
             }
         }
 
-        public static string TryToConvertNodeValueToStringBuilder(List<ExtraDesription> ExtraDesriptions)
+        public static string TryToConvertNodeValueToStringBuilder(List<ExtraDescription> ExtraDesriptions)
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (ExtraDesription extraDesription in ExtraDesriptions)
+            foreach (ExtraDescription extraDesription in ExtraDesriptions)
             {
                 sb.AppendLine(extraDesription.Description);
             }

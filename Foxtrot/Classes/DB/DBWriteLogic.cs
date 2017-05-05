@@ -3,112 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace Classes
 {
-    public class DBLogic
+    public class DBWriteLogic
     {
-        static SqlConnection ConnectToDB(SqlConnection connection)
-        {
-            try
-            {
-                if (connection == null)
-                    connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Foxtrot"].ConnectionString);
-                connection.Open();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return connection;
-        }
-
-        static SqlConnection DisconnectFromDB(SqlConnection connection)
-        {
-            try
-            {
-                if (connection != null)
-                {
-                    if (connection.State == ConnectionState.Open)
-                        connection.Close();
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return connection;
-        }
-
-        public static int DupeCheckActorsInDB(Actor actor)
-        {
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
-
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    return int.Parse(reader[0].ToString());
-                }
-
-                return int.Parse(WriteActorToDB(actor).ToString());
-
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DisconnectFromDB(connection);
-        }
-
-        public static List<int> DupeCheckListFromDB(string tableName)
-        {
-            List<int> dupeCheckList = new List<int>();
-
-            SqlConnection connection = null;
-
-            connection = ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName, connection);
-
-                DataTable dt = new DataTable();
-                dt.Load(command.ExecuteReader());
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    dupeCheckList.Add(int.Parse(row[0].ToString()));
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DisconnectFromDB(connection);
-
-            return dupeCheckList;
-        }
-
         public static void WriteActorsToDB(List<Actor> actors)
         {
             foreach (Actor actor in actors)
@@ -121,7 +20,7 @@ namespace Classes
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
@@ -151,14 +50,14 @@ namespace Classes
                 throw ex;
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteCitiesToDB(List<City> cities)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (City city in cities)
             {
@@ -180,14 +79,14 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteCategoriesToDB(List<Category> categories)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Category category in categories)
             {
@@ -208,14 +107,14 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteFilesToDB(List<File> files)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (File file in files)
             {
@@ -236,14 +135,14 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (MainCategory maincategory in mainCategories)
             {
@@ -264,14 +163,14 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteOpeningHoursToDB(List<OpeningHour> openingHours)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (OpeningHour openingHour in openingHours)
             {
@@ -304,14 +203,14 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteProductsToDB(List<Product> products)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in products)
             {
@@ -348,7 +247,7 @@ namespace Classes
 
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
                     command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
-                        SortingLogic.TryToConvertNodeValueToStringBuilder(product.ExtraDesription);
+                        SortingLogic.TryToConvertNodeValueToStringBuilder(product.ExtraDescription);
                     command.Parameters.Add("@Availability", SqlDbType.Bit).Value = product.Availability;
 
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
@@ -374,13 +273,13 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelFileTable(List<Product> input_product)
         {
             SqlConnection connection = null;
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in input_product)
             {
@@ -403,14 +302,14 @@ namespace Classes
                     }
                 }
             }
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelOpeningHoursTable(List<Product> input_product)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in input_product)
             {
@@ -434,14 +333,14 @@ namespace Classes
                     }
                 }
             }
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelEventTable(List<Product> input_product)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in input_product)
             {
@@ -469,14 +368,14 @@ namespace Classes
                 else break;
 
             }
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelCombiTable(List<Product> input_product)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in input_product)
             {
@@ -504,14 +403,14 @@ namespace Classes
                 else break;
 
             }
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteAdministratorToDB(List<User> users)
         {
             SqlConnection connection = null;
 
-            connection = ConnectToDB(connection);
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (User user in users)
             {
@@ -539,7 +438,7 @@ namespace Classes
                 }
             }
 
-            connection = DisconnectFromDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }
 }

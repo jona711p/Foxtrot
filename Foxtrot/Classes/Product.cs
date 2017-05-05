@@ -21,7 +21,7 @@ namespace Classes
         public bool Availability { get; set; }
 
         public string Description { get; set; } //Text
-        public List<ExtraDesription> ExtraDesription { get; set; }
+        public List<ExtraDescription> ExtraDescription { get; set; }
 
         public string Website { get; set; }
         public string CanonicalUrl { get; set; }
@@ -44,7 +44,7 @@ namespace Classes
         }
     }
 
-    public class ExtraDesription
+    public class ExtraDescription
     {
         public string Description { get; set; }
     }
