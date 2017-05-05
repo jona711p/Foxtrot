@@ -33,8 +33,8 @@ namespace Classes
 
         public int? ActorID { get; set; }
 
+        public List<CombiProducts> CombiProducts { get; set; }
         public List<Event> Events { get; set; }
-        public List<CombiProducts>  CombiProducts { get; set; }
 
         public float? Price { get; set; }
 
