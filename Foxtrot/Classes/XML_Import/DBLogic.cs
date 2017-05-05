@@ -423,7 +423,7 @@ namespace Classes
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
                         command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = time.ID;
-                        command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = product.Event;
+                        command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = product.Events;
 
                         command.ExecuteNonQuery();
                     }
@@ -445,9 +445,9 @@ namespace Classes
 
             foreach (Product product in input_product)
             {
-                if (product.Event != null)
+                if (product.Events != null)
                 {
-                    foreach (Event events in product.Event)
+                    foreach (Event events in product.Events)
                     {
                         try
                         {
