@@ -25,9 +25,35 @@
         <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="23" Margin="24,453,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Product_SearchID" Content="Søg ID" HorizontalAlignment="Left" Margin="316,424,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="284,451,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="dataGrid_Product_Add" HorizontalAlignment="Left" Margin="3,512,0,-8" VerticalAlignment="Top" Height="264" Background="White" Width="1363"/>
+        <DataGrid x:Name="dataGrid_Product_Add" HorizontalAlignment="Left" Margin="13,492,-9.6,0" VerticalAlignment="Top" Height="264" Background="White" Width="1363"/>
         <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="113"/>
-        <Label x:Name="label_Product_Add_Name" Content="Navn" HorizontalAlignment="Left" Margin="78,596,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="1.314,1.234"/>
-        <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="39,625,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Name" Content="Navn" HorizontalAlignment="Left" Margin="76,575,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="1.314,1.234"/>
+        <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="42,604,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Adress" Content="Adresse" HorizontalAlignment="Left" Margin="75,655,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Adress" HorizontalAlignment="Left" Height="23" Margin="48,686,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Longtitude" Content="Longtitude" HorizontalAlignment="Left" Margin="266,578,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Longtitude" HorizontalAlignment="Left" Height="23" Margin="235,603,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Latitude" Content="Latitude" HorizontalAlignment="Left" Margin="286,661,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Latitude" HorizontalAlignment="Left" Height="23" Margin="249,686,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Product_Add_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="453,599,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_ContactPhone" Content="Telefon" HorizontalAlignment="Left" Margin="491,577,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Product_Add_ContactEmail" Content="Email" HorizontalAlignment="Left" Margin="498,659,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="460,685,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_ContactFax" Content="Fax" HorizontalAlignment="Left" Margin="701,578,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.551,0.109"/>
+        <TextBox x:Name="textBox_Product_Add_ContactFax" HorizontalAlignment="Left" Height="23" Margin="667,603,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_CreationDate" Content="Oprettelses dato" HorizontalAlignment="Left" Margin="678,654,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_CreationDate" HorizontalAlignment="Left" Height="23" Margin="662,685,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Price" Content="Pris" HorizontalAlignment="Left" Margin="892,578,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Príce" HorizontalAlignment="Left" Height="23" Margin="854,603,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Description" Content="Beskrivelse" HorizontalAlignment="Left" Margin="884,654,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Description" HorizontalAlignment="Left" Height="23" Margin="858,680,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_ExtraDescription" Content="Ekstra Beskrivelse" HorizontalAlignment="Left" Margin="1069,578,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="1056,601,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="1063,656,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Availability" HorizontalAlignment="Left" Height="23" Margin="1055,677,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_Website" Content="Hjemmeside" HorizontalAlignment="Left" Margin="1251,580,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="1237,600,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Product_Add_CanonicalUrl" Content="URL" HorizontalAlignment="Left" Margin="1255,657,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1226,677,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>
