@@ -19,7 +19,7 @@ namespace Foxtrot
                             Mandag – torsdag kl. 09.00 - 15.00
                             Fredag kl. 09.00 - 14.00
                             Turistinformation læs her";
-
+            
         }
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
@@ -43,7 +43,7 @@ namespace Foxtrot
 
         private void MenuItem_Product_Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MainFrame.Source = new Uri("GUI/Product/Product_Edit_Delete.xaml", UriKind.Relative); // initialize frame with the "test1" view        }
         }
     }
 }

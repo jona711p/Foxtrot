@@ -8,18 +8,18 @@
       d:DesignHeight="768" d:DesignWidth="1366"
       Title="User_Edit">
     <Grid>
-        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="765,537,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="870,537,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="label_" Content="Fornavn" HorizontalAlignment="Left" Margin="201,158,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Efternavn" HorizontalAlignment="Left" Margin="201,229,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="Telefon nr." HorizontalAlignment="Left" Margin="201,299,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,1.231"/>
-        <Label x:Name="label3" Content="E-Mail" HorizontalAlignment="Left" Margin="201,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.769"/>
-        <Label x:Name="label4" Content="Fax" HorizontalAlignment="Left" Margin="201,438,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="201,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="201,260,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="201,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="201,399,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="201,469,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="201,523,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="309,523,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label_User_Add_Firstname" Content="Fornavn" HorizontalAlignment="Left" Margin="201,158,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_User_Add_Lastname" Content="Efternavn" HorizontalAlignment="Left" Margin="201,229,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_User_Add_Phone" Content="Telefon nr." HorizontalAlignment="Left" Margin="201,299,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,1.231"/>
+        <Label x:Name="label_User_Add_Email" Content="E-Mail" HorizontalAlignment="Left" Margin="201,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.769"/>
+        <Label x:Name="label_User_Add_Fax" Content="Fax" HorizontalAlignment="Left" Margin="201,438,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_User_Add_Firstname" HorizontalAlignment="Left" Height="23" Margin="201,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_User_Add_Lastname" HorizontalAlignment="Left" Height="23" Margin="201,260,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_User_Add_Phone" HorizontalAlignment="Left" Height="23" Margin="201,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_User_Add_Email" HorizontalAlignment="Left" Height="23" Margin="201,399,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_User_Add_Fax" HorizontalAlignment="Left" Height="23" Margin="201,469,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

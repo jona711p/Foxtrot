@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot"
         mc:Ignorable="d"
-        Title="Foxtrot" Height="900" Width="1400">
+        Title="Foxtrot" Height="900" Width="1600">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
