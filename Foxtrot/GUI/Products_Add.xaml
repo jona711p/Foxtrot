@@ -1,4 +1,4 @@
-﻿<Page x:Class="Foxtrot.GUI.CreateProduct"
+﻿<Page x:Class="Foxtrot.GUI.Products_Add"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       Background="White"
       d:DesignHeight="768" d:DesignWidth="1366"
-      Title="CreateProduct">
+      Title="Products_Add">
 
     <Grid>
         <Label x:Name="label_OpretProdukt" Content="Opret Produkt" HorizontalAlignment="Left" Margin="2,7,0,0" VerticalAlignment="Top" Height="43" Width="94"/>
