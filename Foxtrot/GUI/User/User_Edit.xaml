@@ -1,0 +1,25 @@
+﻿<Page x:Class="Foxtrot.GUI.User.User_Edit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Foxtrot.GUI.User"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1366"
+      Title="User_Edit">
+    <Grid>
+        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="765,537,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="870,537,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label_" Content="Fornavn" HorizontalAlignment="Left" Margin="201,158,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Efternavn" HorizontalAlignment="Left" Margin="201,229,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Telefon nr." HorizontalAlignment="Left" Margin="201,299,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,1.231"/>
+        <Label x:Name="label3" Content="E-Mail" HorizontalAlignment="Left" Margin="201,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.769"/>
+        <Label x:Name="label4" Content="Fax" HorizontalAlignment="Left" Margin="201,438,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="201,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="201,260,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="201,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="201,399,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="201,469,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Page>
