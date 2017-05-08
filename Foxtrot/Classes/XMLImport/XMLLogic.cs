@@ -15,6 +15,8 @@ namespace Classes
 
         public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
+            if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
+
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
             watcher.Created += ReadFromNewXML;
             watcher.EnableRaisingEvents = true;
