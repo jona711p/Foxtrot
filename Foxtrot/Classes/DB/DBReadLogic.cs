@@ -75,18 +75,18 @@ namespace Classes
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-
+            inputUser.UserList = new List<string>();
             inputUser.UserList.Clear();
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT CompanyName FROM Actors", connection);
+                SqlCommand command = new SqlCommand("SELECT CompanyName, Permission FROM Actors", connection);
                 DataTable dt = new DataTable();
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add("{0}" + " " + "{1}"); //{0} er 'companyName' {1} er 'permission'
+                    inputUser.UserList.Add(row[0] + " " + row[1]); //{0} er 'companyName' {1} er 'permission'
                 }
             }
             catch (Exception)
@@ -102,17 +102,15 @@ namespace Classes
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            inputUser.UserList.Clear();
-
             try
             {
-                SqlCommand command = new SqlCommand("SELECT CompanyName FROM Actors", connection);
+                SqlCommand command = new SqlCommand("Select FirstName, LastName, Permission from Administrators inner join Users on FK_UserID = Users.ID", connection);
                 DataTable dt = new DataTable();
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add("{0}" + " " + "{1}" + " " + "{2}"); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
+                    inputUser.UserList.Add(row[0] + " " + row[1] + " " + row[2]); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
                 }
             }
             catch (Exception)
@@ -126,8 +124,7 @@ namespace Classes
             return inputUser.UserList;
 
 
-            //  Select FirstName, LastName, Permission from Administrators
-            // inner join Users on FK_UserID = Users.ID
+            //  Select FirstName, LastName, Permission from Administrators inner join Users on FK_UserID = Users.ID
         }
     }
 }

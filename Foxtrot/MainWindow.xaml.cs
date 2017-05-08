@@ -13,6 +13,17 @@ namespace Foxtrot
         {
             XMLLogic.WatchXMLDir();
             InitializeComponent();
+            
+
+
+            User tempUser = new User();
+
+
+           // Fills a list with actors and admins 
+            tempUser.UserList = DBReadLogic.FillActorList(tempUser);
+            tempUser.UserList = DBReadLogic.FillAdminList(tempUser);
+            comboBox_Main_Usertype.ItemsSource = tempUser.UserList; //skal kun opdateres hvis 'button_User_Add_CreateUser' bliver trykket
+
             textBox.Text = @"
                             Skiveegnens Erhvervs - og Turistcenter Østerbro 7, 7800 Skive
                             Tlf: +45 9614 7677 | info@skiveet.dk
@@ -20,15 +31,6 @@ namespace Foxtrot
                             Mandag – torsdag kl. 09.00 - 15.00
                             Fredag kl. 09.00 - 14.00
                             Turistinformation læs her";
-
-
-            User tempUser = new User();
-
-
-            //Fills a list with actor and admins 
-            tempUser.UserList = DBReadLogic.FillActorList(tempUser);
-            tempUser.UserList = DBReadLogic.FillAdminList(tempUser);
-            comboBox_Main_Usertype.ItemsSource = tempUser.UserList;
 
         }
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
