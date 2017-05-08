@@ -7,5 +7,33 @@
         mc:Ignorable="d"
         Title="Foxtrot" Height="768" Width="1366">
     <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Menu">
+                    <MenuItem Header="Forside"/>
+                </MenuItem>
+                <MenuItem Header="Bruger">
+                    <MenuItem Header="Opret" />
+                    <MenuItem Header="Rediger"/>
+                    <MenuItem Header="Slet"/>
+                </MenuItem>
+                <MenuItem Header="Produkter">
+                    <MenuItem Header="Opret"/>
+                    <MenuItem Header="Rediger"/>
+                    <MenuItem Header="Slet"/>
+                </MenuItem>
+                <MenuItem Header="Combiprodukter">
+                    <MenuItem Header="Opret"/>
+                    <MenuItem Header="Rediger"/>
+                    <MenuItem Header="Slet"/>
+                </MenuItem>
+                <MenuItem Header="Events">
+                    <MenuItem Header="Opret"/>
+                    <MenuItem Header="Rediger"/>
+                    <MenuItem Header="Slet"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
     </Grid>
 </Window>
