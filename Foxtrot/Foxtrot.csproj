@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="GUI\CreateProduct.xaml">
+    <Page Include="GUI\Products_Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,8 +87,8 @@
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XMLImport\XMLSortingLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLLogic.cs" />
-    <Compile Include="GUI\CreateProduct.xaml.cs">
-      <DependentUpon>CreateProduct.xaml</DependentUpon>
+    <Compile Include="GUI\Products_Add.xaml.cs">
+      <DependentUpon>Products_Add.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Users_Add.xaml.cs">
       <DependentUpon>Users_Add.xaml</DependentUpon>
