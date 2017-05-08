@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="GUI\User\User_Create.xaml">
+    <Page Include="GUI\Product\Product_Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,8 +83,8 @@
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\XMLImport\XMLSortingLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLLogic.cs" />
-    <Compile Include="GUI\User\User_Create.xaml.cs">
-      <DependentUpon>User_Create.xaml</DependentUpon>
+    <Compile Include="GUI\Product\Product_Add.xaml.cs">
+      <DependentUpon>Product_Add.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -121,7 +121,7 @@
   <ItemGroup>
     <Folder Include="GUI\CombiProduct\" />
     <Folder Include="GUI\Event\" />
-    <Folder Include="GUI\Product\" />
+    <Folder Include="GUI\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
