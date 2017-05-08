@@ -14,22 +14,20 @@
                     <MenuItem Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Bruger">
-                    <MenuItem Header="Opret" Click="MenuItem_User_Create_OnClick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_User_Edit_OnClick"/>
+                    <MenuItem Header="Opret" Click="MenuItem_User_Add_OnClick"/>
+                    <MenuItem Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Produkter">
-                    <MenuItem Header="Opret" Click="MenuItem_Product_Create_OnClick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_OnClick"/>
+                    <MenuItem Header="Opret" Click="MenuItem_Product_Add_OnClick"/>
+                    <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_Delete_OnClick"/>
                 </MenuItem>
-                <MenuItem Header="Combiprodukter">
+                <MenuItem Header="Combi Produkter">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
-                    <MenuItem Header="Slet"/>
                 </MenuItem>
                 <MenuItem Header="Events">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
-                    <MenuItem Header="Slet"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
