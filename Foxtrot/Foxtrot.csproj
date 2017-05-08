@@ -68,6 +68,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\User\User_Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,6 +103,9 @@
     </Compile>
     <Compile Include="GUI\User\User_Add.xaml.cs">
       <DependentUpon>User_Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\User_Edit.xaml.cs">
+      <DependentUpon>User_Edit.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

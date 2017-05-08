@@ -31,8 +31,8 @@
                     <MenuItem Header="Slet"/>
                 </MenuItem>
             </Menu>
-            <Frame x:Name="MainFrame" Content="{Binding}" Height="719" VerticalAlignment="Top"/>
-
+            <Frame x:Name="MainFrame" Content="{Binding}" Height="590" VerticalAlignment="Top" Margin="22,3,9,0"/>
+            <TextBox x:Name="textBox" Height="128" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="578" Margin="0,581,0,10" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center"/>
         </DockPanel>
     </Grid>
 </Window>
