@@ -218,7 +218,9 @@ namespace Classes
                     SqlCommand command = new SqlCommand("spWriteProducts", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
+                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+
+                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = product.XMLID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = product.Address;
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
@@ -250,7 +252,12 @@ namespace Classes
                     command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
                     command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
 
+                    command.Parameters.Add(outputID);
+                    outputID.Direction = ParameterDirection.Output;
+
                     command.ExecuteNonQuery();
+
+                    product.ID = int.Parse(outputID.Value.ToString());
                 }
 
                 catch (Exception ex)
@@ -262,17 +269,17 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelCombiTable(List<Product> input_product)
+        public static void WriteRelCombiTable(List<Product> products)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (Product product in input_product)
+            foreach (Product product in products)
             {
                 if (product.CombiProducts != null)
                 {
-                    foreach (CombiProduct combi in product.CombiProducts)
+                    foreach (CombiProduct combiProduct in product.CombiProducts)
                     {
                         try
                         {
@@ -280,7 +287,7 @@ namespace Classes
                             command.CommandType = CommandType.StoredProcedure;
 
                             command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                            command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
+                            command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combiProduct.ID;
 
                             command.ExecuteNonQuery();
                         }
@@ -297,13 +304,13 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelEventTable(List<Product> input_product)
+        public static void WriteRelEventTable(List<Product> products)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (Product product in input_product)
+            foreach (Product product in products)
             {
                 if (product.Events != null)
                 {
@@ -332,12 +339,12 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelFileTable(List<Product> input_product)
+        public static void WriteRelFileTable(List<Product> products)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (Product product in input_product)
+            foreach (Product product in products)
             {
                 foreach (File file in product.Files)
                 {
@@ -361,15 +368,15 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelOpeningHoursTable(List<Product> input_product)
+        public static void WriteRelOpeningHoursTable(List<Product> products)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (Product product in input_product)
+            foreach (Product product in products)
             {
-                foreach (OpeningHour time in product.OpeningHours)
+                foreach (OpeningHour openingHour in product.OpeningHours)
                 {
                     try
                     {
@@ -377,7 +384,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = time.ID;
+                        command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = openingHour.ID;
                         command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = product.Events;
 
                         command.ExecuteNonQuery();
