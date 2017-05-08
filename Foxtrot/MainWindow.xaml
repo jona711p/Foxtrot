@@ -10,17 +10,15 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">
-                    <MenuItem Header="Forside"/>
+                    <MenuItem Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Bruger">
-                    <MenuItem Header="Opret" />
-                    <MenuItem Header="Rediger"/>
-                    <MenuItem Header="Slet"/>
+                    <MenuItem Header="Opret" Click="MenuItem_User_Create_OnClick"/>
+                    <MenuItem Header="Rediger" Click="MenuItem_User_Edit_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Produkter">
-                    <MenuItem Header="Opret"/>
-                    <MenuItem Header="Rediger"/>
-                    <MenuItem Header="Slet"/>
+                    <MenuItem Header="Opret" Click="MenuItem_Product_Create_OnClick"/>
+                    <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Combiprodukter">
                     <MenuItem Header="Opret"/>
@@ -33,7 +31,8 @@
                     <MenuItem Header="Slet"/>
                 </MenuItem>
             </Menu>
-            <StackPanel></StackPanel>
+            <Frame x:Name="MainFrame" Content="{Binding}" Height="719" VerticalAlignment="Top"/>
+
         </DockPanel>
     </Grid>
 </Window>
