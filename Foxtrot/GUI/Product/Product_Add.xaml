@@ -12,7 +12,7 @@
     <Grid>
         <Label x:Name="label_Product_Add" Content="Opret Produkt" HorizontalAlignment="Left" Margin="2,7,0,0" VerticalAlignment="Top" Height="43" Width="94"/>
         <DataGrid x:Name="dataGrid_Product_List" HorizontalAlignment="Left" Margin="-2,83,-1.6,0" VerticalAlignment="Top" Height="300" Background="White" Width="1370"/>
-        <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="8,58,0,0" VerticalAlignment="Top" Height="31" Width="121"/>
+        <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="635,58,0,0" VerticalAlignment="Top" Height="31" Width="121"/>
         <DataGrid x:Name="dataGrid_Product_Search" HorizontalAlignment="Left" Margin="2,379,-2.6,0" VerticalAlignment="Top" Height="137" Background="White" Width="1367"/>
         <Label x:Name="label_Product_Search" Content="&#x9;Søg" HorizontalAlignment="Left" Margin="631,391,0,0" VerticalAlignment="Top" Width="126"/>
         <Label x:Name="label1_Product_SearchName" Content="Søg Navn:" HorizontalAlignment="Left" Margin="47,420,0,0" VerticalAlignment="Top" Width="66"/>
@@ -26,5 +26,8 @@
         <Label x:Name="label_Product_SearchID" Content="Søg ID" HorizontalAlignment="Left" Margin="316,424,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="284,451,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="dataGrid_Product_Add" HorizontalAlignment="Left" Margin="3,512,0,-8" VerticalAlignment="Top" Height="264" Background="White" Width="1363"/>
+        <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="113"/>
+        <Label x:Name="label_Product_Add_Name" Content="Navn" HorizontalAlignment="Left" Margin="78,596,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="1.314,1.234"/>
+        <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="39,625,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>
