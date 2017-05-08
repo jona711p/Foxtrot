@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot"
         mc:Ignorable="d"
-        Title="Foxtrot" Height="900" Width="1450">
-    <Grid>
+        Title="Foxtrot" Height="900" Width="1450" Icon="IMG/set icon.ico">
 
+    <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">
@@ -33,12 +33,19 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <TextBox x:Name="textBox" Text=""  Width="668" Margin="366,707,358,26" IsReadOnly="True" HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox x:Name="textBox" Text="" Margin="462,744,593,10" IsReadOnly="True" HorizontalContentAlignment="Center"/>
         <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1128,91,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Main_Usertype" Content="Vælg bruger" HorizontalAlignment="Left" Margin="1128,60,0,0" VerticalAlignment="Top" Width="100"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="709" Margin="10,134,10,0" VerticalAlignment="Top" Width="1422">
-            <Frame x:Name="MainFrame" Content="{Binding}" Width="1366"  Margin="9,9,3,337" HorizontalAlignment="Center"/>
-        </Border>
+
+
+        <!--Scrollbar skal deaktiveres på forsiden-->
+        <ScrollViewer Margin="0,137,10,217">
+            <Frame x:Name="MainFrame" Content="{Binding}" Width="1366" HorizontalAlignment="Center" 
+                       ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                       ScrollViewer.CanContentScroll="True" 
+                       NavigationUIVisibility="Hidden" Height="768"/>
+        </ScrollViewer>
+        <Image x:Name="image" HorizontalAlignment="Center"   Height="110" Margin="-3,27,350,732"  Width="1095" Source="IMG/SET Banner.png"/>
 
     </Grid>
 </Window>

@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IMG\set icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -142,6 +145,12 @@
   <ItemGroup>
     <Folder Include="GUI\CombiProduct\" />
     <Folder Include="GUI\Event\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\SET Banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\set icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
