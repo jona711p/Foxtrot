@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,18 +13,19 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
+        User tempUser = new User();
+        Boolean GlobalPermission = false;
+
         public MainWindow()
         {
-            ResizeMode = ResizeMode.NoResize;
-
+            ResizeMode = ResizeMode.NoResize;            
             XMLLogic.WatchXMLDir();
             InitializeComponent();
-            User tempUser = new User();
 
             // Fills a list with actors and admins 
-            tempUser.UserList = DBReadLogic.FillActorList(tempUser);
             tempUser.UserList = DBReadLogic.FillAdminList(tempUser);
-            comboBox_Main_Usertype.ItemsSource = tempUser.UserList; //skal kun opdateres hvis 'button_User_Add_CreateUser' bliver trykket
+            tempUser.UserList = DBReadLogic.FillActorList(tempUser);
+            comboBox_Main_Usertype.ItemsSource = tempUser.UserList.Keys; //skal kun opdateres hvis 'button_User_Add_CreateUser' bliver trykket
 
             //Smider tekst 'footer'
             textBox.Text = @"Skiveegnens Erhvervs - og Turistcenter Østerbro 7, 7800 Skive
@@ -57,6 +59,32 @@ Turistinformation læs her";
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Product_Edit_Delete();
+        }
+
+        private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Kan muligvis laves simplere..
+            ComboBox ComboBoxUserList = (ComboBox) sender;
+            string tempKey = ComboBoxUserList.SelectedItem.ToString();
+
+            foreach (var item in tempUser.UserList)
+            {
+                if (item.Key == tempKey)
+                {
+                    int tempValue = item.Value;
+                    if (tempValue == 1)
+                    {
+                        GlobalPermission = true;
+                        break;
+                    }
+                    if (tempValue == 2)
+                    {
+                        GlobalPermission = false;
+                        break;
+                    }
+                }
+            }
+            MessageBox.Show(GlobalPermission.ToString());
         }
     }
 }

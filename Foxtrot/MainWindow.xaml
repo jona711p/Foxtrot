@@ -8,7 +8,7 @@
         Title="Foxtrot" Height="900" Width="1450" Icon="IMG/set icon.ico">
 
     <Grid>
-        <DockPanel>
+        <DockPanel Margin="0,0,0,842">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">
                     <MenuItem Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
@@ -32,8 +32,8 @@
             </Menu>
         </DockPanel>
         <TextBox x:Name="textBox" Text="" Margin="462,744,593,10" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1128,91,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label_Main_Usertype" Content="Vælg bruger" HorizontalAlignment="Left" Margin="1128,60,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1266,48,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
+        <Label x:Name="label_Main_Usertype" Content="Vælg bruger:" HorizontalAlignment="Left" Margin="1182,44,0,0" VerticalAlignment="Top" Width="80"/>
 
 
         <!--Scrollbar skal deaktiveres på forsiden-->
@@ -41,9 +41,9 @@
             <Frame x:Name="MainFrame" Content="{Binding}" Width="1366" HorizontalAlignment="Center" 
                        ScrollViewer.VerticalScrollBarVisibility="Visible" 
                        ScrollViewer.CanContentScroll="True" 
-                       NavigationUIVisibility="Hidden" Height="768"/>
+                       NavigationUIVisibility="Hidden" Height="768" />
         </ScrollViewer>
-        <Image x:Name="image" HorizontalAlignment="Center"   Height="110" Margin="-3,27,350,732"  Width="1095" Source="IMG/SET Banner.png"/>
+        <Image x:Name="image" HorizontalAlignment="Center"   Height="110" Margin="639,27,593,732"  Width="210" Source="IMG/SET LOGO SMALL.png"/>
 
     </Grid>
 </Window>

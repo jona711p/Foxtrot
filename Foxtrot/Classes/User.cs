@@ -11,7 +11,7 @@ namespace Classes
         public int? WorkPhone { get; set; }
         public string WorkEmail { get; set; }
         public int? WorkFax { get; set; }
-        public  List<string> UserList {get; set; }
+        public  Dictionary<string,int> UserList {get; set; }
     }
 
     public class Administrator : User
