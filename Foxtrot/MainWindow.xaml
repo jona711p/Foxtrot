@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot"
         mc:Ignorable="d"
-        Title="Foxtrot" Height="768" Width="1366">
+        Title="Foxtrot" Height="900" Width="1400">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -31,7 +31,7 @@
                     <MenuItem Header="Slet"/>
                 </MenuItem>
             </Menu>
-            <Frame x:Name="MainFrame" Content="{Binding}" Height="590" VerticalAlignment="Top" Margin="22,3,9,0"/>
+            <Frame x:Name="MainFrame" Content="{Binding}" Height="768" Width="1366" VerticalAlignment="Top" Margin="22,3,9,0"/>
             <TextBox x:Name="textBox" Height="128" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="578" Margin="0,581,0,10" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center"/>
         </DockPanel>
     </Grid>
