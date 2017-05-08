@@ -1,0 +1,7 @@
+﻿
+namespace Classes
+{
+    class DBDeleteLogic
+    {
+    }
+}

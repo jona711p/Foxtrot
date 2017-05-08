@@ -23,7 +23,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand("spWriteActorsToDB", connection);
+                SqlCommand command = new SqlCommand("spWriteActors", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
@@ -52,22 +52,21 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteCitiesToDB(List<City> cities)
+        public static void WriteCategoriesToDB(List<Category> categories)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (City city in cities)
+            foreach (Category category in categories)
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteCitiesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = city.ID;
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = city.Name;
-                    command.Parameters.Add("@PostalCode", SqlDbType.Int).Value = city.PostalCode;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
 
                     command.ExecuteNonQuery();
                 }
@@ -81,21 +80,22 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteCategoriesToDB(List<Category> categories)
+        public static void WriteCitiesToDB(List<City> cities)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (Category category in categories)
+            foreach (City city in cities)
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteCategoriesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteCities", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = city.ID;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = city.Name;
+                    command.Parameters.Add("@PostalCode", SqlDbType.Int).Value = city.PostalCode;
 
                     command.ExecuteNonQuery();
                 }
@@ -119,7 +119,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteFilesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteFiles", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
@@ -147,7 +147,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteMainCategoriesToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteMainCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
@@ -175,7 +175,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteOpeningHoursToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
@@ -215,7 +215,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteProductsToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteProducts", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@ID", SqlDbType.Int).Value = product.ID;
@@ -232,36 +232,23 @@ namespace Classes
                     command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail == null
                         ? null
                         : product.ContactEmail[0];
-                    /*
-                     * ContactFax er defineret som et array. Men i har kun plads til 1 faxnummer på produktet? 
-                     * I skal have en tabel med faxnumre med felterne ID,Nummer og ProductID Hvor productID er en foreign key til product.
-                     * Her skal i ikke bruge en rel tabel, da hvert faxnummer formentligt kun bruges til et product.
-                     */
+
                     command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null
                         ? null
                         : (int?)product.ContactFax[0].Value;
 
                     command.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = product.CreationDate;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
-
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
                     command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
                         SortingLogic.TryToConvertNodeValueToStringBuilder(product.ExtraDescription);
                     command.Parameters.Add("@Availability", SqlDbType.Bit).Value = product.Availability;
-
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
-
-                    command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID; //Er en foreign Key 
-                    //Er en foreign Key , Skal referere aktørID hvilket vil sige aktøren skal oprettes først
+                    command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID;
                     command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;
-
                     command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
-                    //Er en foreign Key 
                     command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
-                    //Er en foreign Key 
-                    //command.Parameters.Add("@EventID", SqlDbType.Int).Value = product.Categories.ID;
-                    //Er en foreign Key 
 
                     command.ExecuteNonQuery();
                 }
@@ -272,6 +259,76 @@ namespace Classes
                 }
             }
 
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
+        public static void WriteRelCombiTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                if (product.CombiProducts != null)
+                {
+                    foreach (CombiProduct combi in product.CombiProducts)
+                    {
+                        try
+                        {
+                            SqlCommand command = new SqlCommand("spWriteRel_CombiProducts", connection);
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                            command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
+
+                            command.ExecuteNonQuery();
+                        }
+
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+                else break;
+
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
+        public static void WriteRelEventTable(List<Product> input_product)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            foreach (Product product in input_product)
+            {
+                if (product.Events != null)
+                {
+                    foreach (Event events in product.Events)
+                    {
+                        try
+                        {
+                            SqlCommand command = new SqlCommand("spWriteRel_EventsProducts", connection);
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                            command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
+
+                            command.ExecuteNonQuery();
+                        }
+
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+                else break;
+
+            }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
@@ -286,7 +343,7 @@ namespace Classes
                 {
                     try
                     {
-                        SqlCommand command = new SqlCommand("spWriteRel_FilesToDB", connection);
+                        SqlCommand command = new SqlCommand("spWriteRel_Files", connection);
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
@@ -335,76 +392,6 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelEventTable(List<Product> input_product)
-        {
-            SqlConnection connection = null;
-
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (Product product in input_product)
-            {
-                if (product.Events != null)
-                {
-                    foreach (Event events in product.Events)
-                    {
-                        try
-                        {
-                            SqlCommand command = new SqlCommand("spWriteRel_EventsProductsToDB", connection);
-                            command.CommandType = CommandType.StoredProcedure;
-
-                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                            command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
-
-                            command.ExecuteNonQuery();
-                        }
-
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                }
-                else break;
-
-            }
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteRelCombiTable(List<Product> input_product)
-        {
-            SqlConnection connection = null;
-
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (Product product in input_product)
-            {
-                if (product.CombiProducts != null)
-                {
-                    foreach (CombiProduct combi in product.CombiProducts)
-                    {
-                        try
-                        {
-                            SqlCommand command = new SqlCommand("spWrite_RelCombiProductsToDB", connection);
-                            command.CommandType = CommandType.StoredProcedure;
-
-                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                            command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combi.ID;
-
-                            command.ExecuteNonQuery();
-                        }
-
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                }
-                else break;
-
-            }
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
         public static void WriteAdministratorToDB(List<User> users)
         {
             SqlConnection connection = null;
@@ -415,7 +402,7 @@ namespace Classes
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteUsersToDB", connection);
+                    SqlCommand command = new SqlCommand("spWriteUsers", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
                     SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);

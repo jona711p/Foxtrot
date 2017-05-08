@@ -65,6 +65,21 @@ namespace Classes
             return DBReadLogic.DupeCheckActorsInDB(actor);
         }
 
+        static void ReadCategoriesFromXML(string path)
+        {
+            XDocument xmlDocument = XDocument.Load(path);
+
+            List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
+            {
+                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+            }).Distinct().OrderBy(x => x.ID).ToList();
+
+            List<Category> dupeCheckList = categories.Where(x => !DBReadLogic.DupeCheckListFromDB("Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            DBWriteLogic.WriteCategoriesToDB(dupeCheckList);
+        }
+
         static void ReadCitiesFromXML(string path)
         {
             xmlDocument = XDocument.Load(path);
@@ -79,21 +94,6 @@ namespace Classes
             List<City> dupeCheckList = cities.Where(x => !DBReadLogic.DupeCheckListFromDB("Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteCitiesToDB(dupeCheckList);
-        }
-
-        static void ReadCategoriesFromXML(string path)
-        {
-            XDocument xmlDocument = XDocument.Load(path);
-
-            List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
-            {
-                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
-            }).Distinct().OrderBy(x => x.ID).ToList();
-
-            List<Category> dupeCheckList = categories.Where(x => !DBReadLogic.DupeCheckListFromDB("Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
-
-            DBWriteLogic.WriteCategoriesToDB(dupeCheckList);
         }
 
         static void ReadFilesFromXML(string path)
@@ -215,11 +215,10 @@ namespace Classes
             List<Product> dupeCheckList = products.Where(x => !DBReadLogic.DupeCheckListFromDB("Products").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteProductsToDB(dupeCheckList);
+            DBWriteLogic.WriteRelCombiTable(dupeCheckList);
+            DBWriteLogic.WriteRelEventTable(dupeCheckList);
             DBWriteLogic.WriteRelFileTable(dupeCheckList);
-            DBWriteLogic.WriteRelOpeningHoursTable(dupeCheckList); //skal ændre parameter og eller sp
-            DBWriteLogic.WriteRelCombiTable(dupeCheckList); //pt har vi ingen combier så vi skal lave en eller tjekker efter null
-            DBWriteLogic.WriteRelEventTable(dupeCheckList); //pt har vi ingen events så vi skal lave en eller tjekker efter null
-
+            DBWriteLogic.WriteRelOpeningHoursTable(dupeCheckList);
         }
     }
 }
