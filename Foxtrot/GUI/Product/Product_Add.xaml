@@ -11,9 +11,9 @@
 
     <Grid>
         <Label x:Name="label_Product_Add" Content="Opret Produkt" HorizontalAlignment="Left" Margin="2,7,0,0" VerticalAlignment="Top" Height="43" Width="94"/>
-        <DataGrid x:Name="dataGrid_Product_List" HorizontalAlignment="Left" Margin="-2,83,-1.6,0" VerticalAlignment="Top" Height="300" Width="1370"/>
+        <DataGrid x:Name="dataGrid_Product_List" HorizontalAlignment="Left" Margin="-2,83,-1.6,0" VerticalAlignment="Top" Height="300" Background="White" Width="1370"/>
         <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="8,58,0,0" VerticalAlignment="Top" Height="31" Width="121"/>
-        <DataGrid x:Name="dataGrid_Product_Search" HorizontalAlignment="Left" Margin="2,379,-2.6,0" VerticalAlignment="Top" Height="137" Width="1367"/>
+        <DataGrid x:Name="dataGrid_Product_Search" HorizontalAlignment="Left" Margin="2,379,-2.6,0" VerticalAlignment="Top" Height="137" Background="White" Width="1367"/>
         <Label x:Name="label_Product_Search" Content="&#x9;Søg" HorizontalAlignment="Left" Margin="631,391,0,0" VerticalAlignment="Top" Width="126"/>
         <Label x:Name="label1_Product_SearchName" Content="Søg Navn:" HorizontalAlignment="Left" Margin="47,420,0,0" VerticalAlignment="Top" Width="66"/>
         <Label x:Name="label_Product_SearchArrangement" Content="Søg Arrangement" HorizontalAlignment="Left" Margin="556,427,0,0" VerticalAlignment="Top"/>
@@ -25,5 +25,6 @@
         <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="23" Margin="24,453,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Product_SearchID" Content="Søg ID" HorizontalAlignment="Left" Margin="316,424,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="284,451,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="dataGrid_Product_Add" HorizontalAlignment="Left" Margin="3,512,0,-8" VerticalAlignment="Top" Height="264" Background="White" Width="1363"/>
     </Grid>
 </Page>
