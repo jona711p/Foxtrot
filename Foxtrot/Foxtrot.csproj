@@ -60,6 +60,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Product\Product_Edit_Delete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\User\User_Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +93,9 @@
     <Compile Include="Classes\XMLImport\XMLLogic.cs" />
     <Compile Include="GUI\Product\Product_Add.xaml.cs">
       <DependentUpon>Product_Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Product\Product_Edit_Delete.xaml.cs">
+      <DependentUpon>Product_Edit_Delete.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\User\User_Add.xaml.cs">
       <DependentUpon>User_Add.xaml</DependentUpon>
