@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Foxtrot.GUI
+namespace Foxtrot.GUI.User
 {
     /// <summary>
-    /// Interaction logic for CreateProduct.xaml
+    /// Interaction logic for User_Add.xaml
     /// </summary>
-    public partial class CreateProduct : Page
+    public partial class User_Add : Page
     {
-        public CreateProduct()
+        public User_Add()
         {
             InitializeComponent();
         }
