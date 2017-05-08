@@ -9,16 +9,62 @@
       Background="White"
       Title="User_Add">
 
+    <Page.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
-        <Grid HorizontalAlignment="Left" Height="101" Margin="10,81,0,0" VerticalAlignment="Top" Width="225">
-            <Label x:Name="lbl_FirstName" Content="Fornavn: *" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtbox_FirstName" HorizontalAlignment="Left" Height="23" Margin="81,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <Label x:Name="lbl_LastName" Content="Efternavn: *" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Left" Height="23" Margin="81,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <Label x:Name="lbl_User_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top"/>
+
+        <Grid HorizontalAlignment="Left" Height="100" Margin="10,81,0,0" VerticalAlignment="Top" Width="300">
+            <TextBox x:Name="txtbox_FirstName" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="250" Style="{StaticResource MyWaterMarkStyle}" Tag="Fornavn *"/>
+            <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="250" Style="{StaticResource MyWaterMarkStyle}" Tag="Efternavn *"/>
+            <Label x:Name="lbl_Name_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+            <Border x:Name="border_Name" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="300"/>
         </Grid>
-        <Border x:Name="NameBorder" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="101" Margin="10,81,0,0" VerticalAlignment="Top" Width="225"/>
+
+        <Grid HorizontalAlignment="Left" Height="130" Margin="10,200,0,0" VerticalAlignment="Top" Width="300">
+            <TextBox x:Name="txtbox_WorkPhone" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding WorkPhone}" VerticalAlignment="Top" Width="250" Style="{StaticResource MyWaterMarkStyle}" Tag="Arbejds Telefon *"/>
+            <TextBox x:Name="txtbox_WorkEmail" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" Text="{Binding WorkEmail}" VerticalAlignment="Top" Width="250" Style="{StaticResource MyWaterMarkStyle}" Tag="Arbejds Email *"/>
+            <TextBox x:Name="txtbox_WorkFax" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" TextWrapping="Wrap" Text="{Binding WorkFax}" VerticalAlignment="Top" Width="250" Style="{StaticResource MyWaterMarkStyle}" Tag="Arbejds Fax"/>
+            <Label x:Name="lbl_Contact_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="10,100,0,-1" VerticalAlignment="Top"/>
+            <Border x:Name="border_Contact" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="129" VerticalAlignment="Top" Width="300" Margin="0,1,0,0"/>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Height="45" Margin="10,350,0,0" VerticalAlignment="Top" Width="300">
+            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="120" Style="{StaticResource MyWaterMarkStyle}" Tag="Firma Navn"/>
+            <Border x:Name="border_CompanyName" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="47" Margin="0,-2,0,0" VerticalAlignment="Top" Width="300"/>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Height="35" Margin="10,425,0,0" VerticalAlignment="Top" Width="300">
+            <RadioButton x:Name="rbtn_Administrator" Content="Administrator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="205,10,0,0" VerticalAlignment="Top"/>
+            <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="300"/>
+        </Grid>
 
     </Grid>
 </Page>
