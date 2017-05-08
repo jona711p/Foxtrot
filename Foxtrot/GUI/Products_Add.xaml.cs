@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Foxtrot.GUI
 {
     /// <summary>
-    /// Interaction logic for Users_Add.xaml
+    /// Interaction logic for CreateProduct.xaml
     /// </summary>
-    public partial class Users_Add : Page
+    public partial class CreateProduct : Page
     {
-        public Users_Add()
+        public CreateProduct()
         {
             InitializeComponent();
         }
