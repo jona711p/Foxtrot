@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot"
         mc:Ignorable="d"
-        Title="Foxtrot" Height="900" Width="1600">
+        Title="Foxtrot" Height="900" Width="1450">
     <Grid>
+
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">
@@ -31,8 +32,13 @@
                     <MenuItem Header="Slet"/>
                 </MenuItem>
             </Menu>
-            <Frame x:Name="MainFrame" Content="{Binding}" Height="768" Width="1366" VerticalAlignment="Top" Margin="22,3,9,0"/>
-            <TextBox x:Name="textBox" Height="128" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="578" Margin="0,581,0,10" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center"/>
         </DockPanel>
+        <TextBox x:Name="textBox" Text=""  Width="668" Margin="366,707,358,26" IsReadOnly="True" HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
+        <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1128,91,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_Main_Usertype" Content="Vælg bruger" HorizontalAlignment="Left" Margin="1128,60,0,0" VerticalAlignment="Top" Width="100"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="709" Margin="10,134,10,0" VerticalAlignment="Top" Width="1422">
+            <Frame x:Name="MainFrame" Content="{Binding}" Width="1366"  Margin="9,9,3,337" HorizontalAlignment="Center"/>
+        </Border>
+
     </Grid>
 </Window>

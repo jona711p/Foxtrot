@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Classes
 {
     public class User
@@ -9,6 +11,7 @@ namespace Classes
         public int? WorkPhone { get; set; }
         public string WorkEmail { get; set; }
         public int? WorkFax { get; set; }
+        public  List<string> UserList {get; set; }
     }
 
     public class Administrator : User
