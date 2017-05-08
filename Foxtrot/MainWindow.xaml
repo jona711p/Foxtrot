@@ -14,22 +14,20 @@
                     <MenuItem Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Bruger">
-                    <MenuItem Header="Opret" Click="MenuItem_User_Create_OnClick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_User_Edit_OnClick"/>
+                    <MenuItem Header="Opret" Click="MenuItem_User_Add_OnClick"/>
+                    <MenuItem Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Produkter">
-                    <MenuItem Header="Opret" Click="MenuItem_Product_Create_OnClick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_OnClick"/>
+                    <MenuItem Header="Opret" Click="MenuItem_Product_Add_OnClick"/>
+                    <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_Delete_OnClick"/>
                 </MenuItem>
-                <MenuItem Header="Combiprodukter">
+                <MenuItem Header="Combi Produkter">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
-                    <MenuItem Header="Slet"/>
                 </MenuItem>
                 <MenuItem Header="Events">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
-                    <MenuItem Header="Slet"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -37,7 +35,7 @@
         <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1128,91,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Main_Usertype" Content="Vælg bruger" HorizontalAlignment="Left" Margin="1128,60,0,0" VerticalAlignment="Top" Width="100"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="709" Margin="10,134,10,0" VerticalAlignment="Top" Width="1422">
-            <Frame x:Name="MainFrame" Content="{Binding}" Width="1366"  Margin="9,9,3,337" HorizontalAlignment="Center"/>
+            <Frame x:Name="MainFrame" Content="{Binding}" Width="1366"  Margin="9,9,3,337" HorizontalAlignment="Center" NavigationUIVisibility="Hidden"/>
         </Border>
 
     </Grid>

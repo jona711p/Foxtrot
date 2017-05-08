@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Classes;
 using Foxtrot.GUI;
+using Foxtrot.GUI.Product;
+using Foxtrot.GUI.User;
 
 namespace Foxtrot
 {
@@ -38,28 +40,24 @@ namespace Foxtrot
             MessageBox.Show("FORSIDE!");
         }
 
-        private void MenuItem_User_Create_OnClick(object sender, RoutedEventArgs e)
+        private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Source = new Uri("GUI/User/User_Add.xaml", UriKind.Relative); // initialize frame with the "test1" view  
-            MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+            MainFrame.Content = new User_Add();
         }
 
-        private void MenuItem_User_Edit_OnClick(object sender, RoutedEventArgs e)
+        private void MenuItem_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Source = new Uri("GUI/User/User_Edit.xaml", UriKind.Relative); // initialize frame with the "test1" view   
-            MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+            MainFrame.Content = new User_Edit_Delete();
         }
 
-        private void MenuItem_Product_Create_OnClick(object sender, RoutedEventArgs e)
+        private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Source = new Uri("GUI/Product/Product_Add.xaml", UriKind.Relative); // initialize frame with the "test1" view    
-            MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+            MainFrame.Content = new Product_Add();
         }
 
-        private void MenuItem_Product_Edit_OnClick(object sender, RoutedEventArgs e)
+        private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Source = new Uri("GUI/Product/Product_Edit_Delete.xaml", UriKind.Relative); // initialize frame with the "test1" view 
-            MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+            MainFrame.Content = new Product_Edit_Delete();
         }
     }
 }

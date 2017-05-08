@@ -18,9 +18,9 @@ namespace Foxtrot.GUI.User
     /// <summary>
     /// Interaction logic for User_Edit.xaml
     /// </summary>
-    public partial class User_Edit : Page
+    public partial class User_Edit_Delete : Page
     {
-        public User_Edit()
+        public User_Edit_Delete()
         {
             InitializeComponent();
         }
