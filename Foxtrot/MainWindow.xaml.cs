@@ -46,21 +46,18 @@ namespace Foxtrot
         {
             MainFrame.Source = new Uri("GUI/User/User_Edit.xaml", UriKind.Relative); // initialize frame with the "test1" view   
             MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
-
         }
 
         private void MenuItem_Product_Create_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Source = new Uri("GUI/Product/Product_Add.xaml", UriKind.Relative); // initialize frame with the "test1" view    
             MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
-
         }
 
         private void MenuItem_Product_Edit_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Source = new Uri("GUI/Product/Product_Edit_Delete.xaml", UriKind.Relative); // initialize frame with the "test1" view 
             MainFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
-
         }
     }
 }
