@@ -64,7 +64,7 @@ namespace Classes
             actor.WorkFax = null;
             actor.CompanyName = name;
 
-            return DBReadLogic.DupeCheckActorsInDB(actor);
+            return DBReadLogic.DupeCheckActorsFromDB(actor);
         }
 
         static void ReadCategoriesFromXML(string path)
@@ -77,7 +77,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<Category> dupeCheckList = categories.Where(x => !DBReadLogic.DupeCheckListFromDB("Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Category> dupeCheckList = categories.Where(x => !DBReadLogic.DupeCheckListFromDB("ID", "Categories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteCategoriesToDB(dupeCheckList);
         }
@@ -93,7 +93,7 @@ namespace Classes
                 PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
             
-            List<City> dupeCheckList = cities.Where(x => !DBReadLogic.DupeCheckListFromDB("Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<City> dupeCheckList = cities.Where(x => !DBReadLogic.DupeCheckListFromDB("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteCitiesToDB(dupeCheckList);
         }
@@ -109,7 +109,7 @@ namespace Classes
 
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<File> dupeCheckList = files.Where(x => !DBReadLogic.DupeCheckListFromDB("Files").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<File> dupeCheckList = files.Where(x => !DBReadLogic.DupeCheckListFromDB("ID", "Files").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteFilesToDB(dupeCheckList);
         }
@@ -124,7 +124,7 @@ namespace Classes
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<MainCategory> dupeCheckList = mainCategories.Where(x => !DBReadLogic.DupeCheckListFromDB("MainCategories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<MainCategory> dupeCheckList = mainCategories.Where(x => !DBReadLogic.DupeCheckListFromDB("ID", "MainCategories").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteMainCategoriesToDB(dupeCheckList);
         }
@@ -150,7 +150,7 @@ namespace Classes
 
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<OpeningHour> dupeCheckList = openingHours.Where(x => !DBReadLogic.DupeCheckListFromDB("OpeningHours").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<OpeningHour> dupeCheckList = openingHours.Where(x => !DBReadLogic.DupeCheckListFromDB("ID", "OpeningHours").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteOpeningHoursToDB(dupeCheckList);
         }
@@ -161,7 +161,7 @@ namespace Classes
 
             List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
             {
-                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                XMLID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
 
                 Address = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='AddressLine1']")),
@@ -212,9 +212,9 @@ namespace Classes
 
                 ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
 
-            }).OrderBy(x => x.ID).ToList();
+            }).OrderBy(x => x.XMLID).ToList();
 
-            List<Product> dupeCheckList = products.Where(x => !DBReadLogic.DupeCheckListFromDB("Products").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Product> dupeCheckList = products.Where(x => !DBReadLogic.DupeCheckListFromDB("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             DBWriteLogic.WriteProductsToDB(dupeCheckList);
             DBWriteLogic.WriteRelCombiTable(dupeCheckList);

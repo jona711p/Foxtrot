@@ -7,7 +7,7 @@ namespace Classes
 {
     class DBReadLogic
     {
-        public static int DupeCheckActorsInDB(Actor actor)
+        public static int DupeCheckActorsFromDB(Actor actor)
         {
             SqlConnection connection = null;
 
@@ -40,7 +40,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static List<int> DupeCheckListFromDB(string tableName)
+        public static List<int> DupeCheckListFromDB(string id, string tableName)
         {
             List<int> dupeCheckList = new List<int>();
 
@@ -50,7 +50,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName, connection);
+                SqlCommand command = new SqlCommand("SELECT " + id + " FROM " + tableName, connection);
 
                 DataTable dt = new DataTable();
                 dt.Load(command.ExecuteReader());
