@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot"
         mc:Ignorable="d"
-        Title="Foxtrot" Height="350" Width="525">
+        Title="Foxtrot" Height="768" Width="1366">
     <Grid>
     </Grid>
 </Window>
