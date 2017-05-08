@@ -25,7 +25,7 @@
         <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="23" Margin="24,453,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Product_SearchID" Content="Søg ID" HorizontalAlignment="Left" Margin="316,424,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="284,451,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="dataGrid_Product_Add" HorizontalAlignment="Left" Margin="13,492,-9.6,0" VerticalAlignment="Top" Height="264" Background="White" Width="1363"/>
+        <DataGrid x:Name="dataGrid_Product_Add" HorizontalAlignment="Left" Margin="0,516,-1.6,0" VerticalAlignment="Top" Height="246" Background="White" Width="1368"/>
         <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="113"/>
         <Label x:Name="label_Product_Add_Name" Content="Navn" HorizontalAlignment="Left" Margin="76,575,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="1.314,1.234"/>
         <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="42,604,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -52,8 +52,8 @@
         <Label x:Name="label_Product_Add_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="1063,656,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_Add_Availability" HorizontalAlignment="Left" Height="23" Margin="1055,677,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Product_Add_Website" Content="Hjemmeside" HorizontalAlignment="Left" Margin="1251,580,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="1237,600,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Product_Add_CanonicalUrl" Content="URL" HorizontalAlignment="Left" Margin="1255,657,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1226,677,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="1237,600,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>
