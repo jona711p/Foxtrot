@@ -11,7 +11,7 @@ namespace Classes
         public int? ActorID { get; set; }
         public float? PackagePrice { get; set; }
 
-        public CombiProducts()
+        public CombiProduct()
         {
             Availability = true;
         }
