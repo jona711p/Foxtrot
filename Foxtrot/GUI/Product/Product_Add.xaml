@@ -59,31 +59,26 @@
         <!-- Søg Produkt Slut -->
 
 
-        <!-- Opret Produkt Start -->
-
-
-       
-        <TextBox x:Name="textBox_Product_Add_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="-312,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="-258,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_ContactFax" HorizontalAlignment="Left" Height="23" Margin="-235,629,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_CreationDate" HorizontalAlignment="Left" Height="23" Margin="-410,488,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_Príce" HorizontalAlignment="Left" Height="23" Margin="-421,325,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_Description" HorizontalAlignment="Left" Height="23" Margin="-254,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="-408,634,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_Availability" HorizontalAlignment="Left" Height="23" Margin="-390,586,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="-403,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="-280,710,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-
+        <!-- Opret Produkt Start --> 
         <Grid HorizontalAlignment="Left" Height="318" Margin="54,424,0,0" VerticalAlignment="Top" Width="1282">
             <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="113"/>
             <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="22,50,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
             <TextBox x:Name="textBox_Product_Add_Adress" HorizontalAlignment="Left" Height="23" Margin="25,104,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
             <TextBox x:Name="textBox_Product_Add_Longtitude" HorizontalAlignment="Left" Height="23" Margin="20,159,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Longtitude"/>
             <TextBox x:Name="textBox_Product_Add_Latitude" HorizontalAlignment="Left" Height="23" Margin="24,215,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Latitude" />
+            <TextBox x:Name="textBox_Product_Add_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="204,47,0,0" TextWrapping="Wrap" Text="{Binding ContactPhone}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Telefon nummer" />
+            <TextBox x:Name="textBox_Product_Add_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="194,106,0,0" TextWrapping="Wrap" Text="{Binding ContactEmail}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Email" />
+            <TextBox x:Name="textBox_Product_Add_ContactFax" HorizontalAlignment="Left" Height="23" Margin="199,163,0,0" TextWrapping="Wrap" Text="{Binding ContactFax}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Fax" />
+            <TextBox x:Name="textBox_Product_Add_CreationDate" HorizontalAlignment="Left" Height="23" Margin="196,218,0,0" TextWrapping="Wrap" Text="{Binding CreationDate}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Oprettelses dato" />
+            <TextBox x:Name="textBox_Product_Add_Príce" HorizontalAlignment="Left" Height="23" Margin="411,49,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
+            <TextBox x:Name="textBox_Product_Add_Description" HorizontalAlignment="Left" Height="23" Margin="409,109,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
+            <TextBox x:Name="textBox_Product_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="401,172,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
+            <TextBox x:Name="textBox_Product_Add_Availability" HorizontalAlignment="Left" Height="23" Margin="392,226,0,0" TextWrapping="Wrap" Text="{Binding Availability}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Tilgængelighed" />
+            <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="607,56,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
+            <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="595,115,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
+
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="335" Margin="41,413,0,0" VerticalAlignment="Top" Width="1304"/>
-
-
         <!-- Opret Produkt Slut -->
 
     </Grid>
