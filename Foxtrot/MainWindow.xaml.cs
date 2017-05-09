@@ -33,6 +33,22 @@ Fredag kl. 09.00 - 14.00";
 
             DataContext = user;
         }
+
+        private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            globalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
+
+            if (globalPermission == 1)
+            {
+                User_MenuItem.Visibility = Visibility.Visible;
+            }
+
+            if (globalPermission == 2)
+            {
+                User_MenuItem.Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("FORSIDE!");
@@ -56,12 +72,6 @@ Fredag kl. 09.00 - 14.00";
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Product_Edit_Delete();
-        }
-       
-        private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            globalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
-            MessageBox.Show(globalPermission.ToString());
         }
     }
 }

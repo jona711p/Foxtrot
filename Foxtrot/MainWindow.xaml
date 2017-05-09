@@ -13,7 +13,7 @@
                 <MenuItem Header="Menu">
                     <MenuItem Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                 </MenuItem>
-                <MenuItem Header="Bruger">
+                <MenuItem x:Name="User_MenuItem" Header="Bruger" Visibility="Collapsed">
                     <MenuItem Header="Opret" Click="MenuItem_User_Add_OnClick"/>
                     <MenuItem Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
                 </MenuItem>
