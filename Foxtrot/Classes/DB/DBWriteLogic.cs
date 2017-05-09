@@ -7,36 +7,30 @@ namespace Classes
 {
     public class DBWriteLogic
     {
-        public static void WriteAdministrators(List<User> users)
+        public static void WriteAdministrators(Administrator administrator)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (User user in users)
+            try
             {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteUsers", connection);
-                    command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("spWriteAdministrators", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
-                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName;
-                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = user.LastName;
-                    command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = user.WorkPhone;
-                    command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = user.WorkEmail;
-                    command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = user.WorkFax;
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = administrator.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = administrator.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = administrator.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = administrator.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = administrator.WorkFax;
 
-                    command.Parameters.Add(outputID);
-                    outputID.Direction = ParameterDirection.Output;
+                command.Parameters.Add("@Permission", SqlDbType.Int).Value = administrator.Permission;
 
-                    command.ExecuteNonQuery();
-                }
+                command.ExecuteNonQuery();
+            }
 
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
