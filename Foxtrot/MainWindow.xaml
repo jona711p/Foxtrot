@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot"
         mc:Ignorable="d"
-        Title="Foxtrot" Height="750" Width="1350" Icon="IMG/set icon.ico">
+        Title="Foxtrot" Height="735" Width="1350" Icon="IMG/set icon.ico">
 
-    <Grid>
-        <DockPanel Margin="0,0,0,692">
+    <Grid Background="WhiteSmoke">
+        <DockPanel Margin="0,0,0,673">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">
                     <MenuItem Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
@@ -31,20 +31,23 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        
+
         <!--Scrollbar skal deaktiveres på forsiden-->
         <ScrollViewer Margin="10,137,0,83">
             <Frame x:Name="MainFrame" Content="{Binding}" Width="1310" HorizontalAlignment="Center" 
                        ScrollViewer.VerticalScrollBarVisibility="Visible" 
                        ScrollViewer.CanContentScroll="True" 
-                       NavigationUIVisibility="Hidden" Height="768" />
+                       NavigationUIVisibility="Hidden"/>
         </ScrollViewer>
 
-        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="10" Margin="0,127,0,0" VerticalAlignment="Top" Width="1432"/>
-        <GridSplitter x:Name="gridSplitter1" HorizontalAlignment="Left" Height="10" Margin="0,644,0,0" VerticalAlignment="Top" Width="1442"/>
+        <GridSplitter x:Name="GridSplitter_Top" HorizontalAlignment="Left" Height="10" Margin="0,127,0,0" VerticalAlignment="Top" Width="1432"/>
+        <GridSplitter x:Name="GridSplitter_Button" HorizontalAlignment="Left" Height="8" Margin="0,613,0,0" VerticalAlignment="Top" Width="1342"/>
+        <GridSplitter x:Name="GridSplitter_Left" HorizontalAlignment="Left" Height="476" Margin="0,137,0,0" VerticalAlignment="Top" Width="10"/>
 
-        <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="569,22,550,587"  Width="223" Source="IMG/SET LOGO SMALL.png"/>
-        <TextBox x:Name="textBox" Text="" Margin="275,659,397,0" IsReadOnly="True" HorizontalContentAlignment="Center"/>
+        <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="573,27,546,567"  Width="223" Source="IMG/SET Logo Front Trans.png"/>
+        <TextBox x:Name="textBox_LeftFooter" Text="" Margin="332,627,668,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Right" />
+        <TextBox x:Name="textBox_RightFooter" Text="" Margin="674,627,420,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Left"/>
+
         <Label x:Name="label_Main_Usertype" Content="Vælg bruger:" HorizontalAlignment="Left" Margin="1112,32,0,0" VerticalAlignment="Top" Width="80"/>
         <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
 

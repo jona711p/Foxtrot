@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Classes
 {
-    public class Product
+    public class Product 
     {
-        public int? ID { get; set; }
+        private DataTable productTable = new DataTable();
+
+        public DataTable ProductTable
+        {
+            get { return productTable; }
+            set { productTable = value; }
+        }
+        
+        public int? ID { get; set;  }
         public int? XMLID { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }

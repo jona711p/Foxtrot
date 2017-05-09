@@ -85,7 +85,7 @@ namespace Classes
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add((string)row[0] + " " + (string)row[1], (int)row[2]); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
+                    inputUser.UserList.Add("Admin - " + (string)row[0] + " " + (string)row[1], (int)row[2]); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
                 }
             }
 
@@ -110,7 +110,7 @@ namespace Classes
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add((string)row[0], (int)row[1]); //{0} er 'companyName' {1} er 'permission'
+                    inputUser.UserList.Add("Aktør - " + (string)row[0], (int)row[1]); //{0} er 'companyName' {1} er 'permission'
                 }
             }
 

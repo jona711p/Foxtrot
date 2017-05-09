@@ -37,15 +37,17 @@
     </Page.Resources>
 
     <Grid Background="WhiteSmoke">
-        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="884,422,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="994,422,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="textBox_User_Edit_Firstname" HorizontalAlignment="Left" Height="23" Margin="884,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
-        <TextBox x:Name="textBox_User_Edit_Lastname" HorizontalAlignment="Left" Height="23" Margin="884,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
-        <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="23" Margin="884,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Telefon nr. *"/>
-        <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Left" Height="23" Margin="884,256,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="E-Mail"/>
-        <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Left" Height="23" Margin="884,326,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fax"/>
-        <RadioButton x:Name="rdbtn_User_Edit_Admin" Content="Administrator" HorizontalAlignment="Left" Margin="884,380,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rdbtn_User_Edit_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="994,380,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="23,393,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="133,393,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="textBox_User_Edit_Firstname" HorizontalAlignment="Left" Height="23" Margin="23,19,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
+        <TextBox x:Name="textBox_User_Edit_Lastname" HorizontalAlignment="Left" Height="23" Margin="23,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
+        <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="23" Margin="23,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Telefon nr. *"/>
+        <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Left" Height="23" Margin="23,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="E-Mail"/>
+        <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Left" Height="23" Margin="23,299,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fax"/>
+        <Label x:Name="label_User_Edit_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="24,325,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdbtn_User_Edit_Admin" Content="Administrator" HorizontalAlignment="Left" Margin="23,351,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdbtn_User_Edit_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="133,351,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="251,19,0,0" VerticalAlignment="Top" Height="389" Width="977"/>
 
     </Grid>
 </Page>
