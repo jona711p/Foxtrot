@@ -51,14 +51,9 @@
             <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="29,122,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="ID" />
             <TextBox x:Name="textBox_Product_SearchArrangement" HorizontalAlignment="Left" Height="23" Margin="27,178,0,0" TextWrapping="Wrap" Text="{Binding Arrangement}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Arrangement"/>
             <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="23" Margin="24,230,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Kategori"/>
+            <TextBox x:Name="textBox_Product_SearchDate" HorizontalAlignment="Left" Height="23" Margin="30,285,0,0" TextWrapping="Wrap" Text="{Binding Date}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Dato"/>
         </Grid>
 
-       
-       
-        <Label x:Name="label_Product_SearchCategory" Content="Søg Kategori" HorizontalAlignment="Left" Margin="408,261,0,0" VerticalAlignment="Top"/>
-        
-        <Label x:Name="label_Product_SearchDate" Content="Søg Dato" HorizontalAlignment="Left" Margin="448,336,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.293,5.453"/>
-        <TextBox x:Name="textBox_Product_SearchDate" HorizontalAlignment="Left" Height="23" Margin="507,331,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <!-- Søg Produkt Slut -->
 
 
