@@ -9,6 +9,7 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
+        private User user;
         private int globalPermission;
         public MainWindow()
         {
@@ -16,20 +17,20 @@ namespace Foxtrot
 
             ResizeMode = ResizeMode.NoResize;
 
-            User user = new User();
+            user = new User();
 
             user.AdminActorDictionary = new Dictionary<string, int>();
-            
+
             DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
-            
+
             InitializeComponent();
 
-            textBox_LeftFooter.Text = @"Skiveegnens Erhvervs - og Turistcenter Østerbro 7, 7800 Skive
-Tlf: +45 9614 7677 | info@skiveet.dk
-Turistinformation læs her";
-            textBox_RightFooter.Text = @"Åbningstider:
-Mandag – torsdag kl. 09.00 - 15.00
-Fredag kl. 09.00 - 14.00";
+            textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
+                "\nØsterbro 7, 7800 Skive" +
+                "\nTlf: +45 9614 7677 | info@skiveet.dk";
+            textBox_RightFooter.Text = "Åbningstider:" +
+                "\nMandag – Torsdag kl. 09.00 - 15.00" +
+                "\nFredag kl. 09.00 - 14.00";
 
             DataContext = user;
         }
@@ -47,6 +48,10 @@ Fredag kl. 09.00 - 14.00";
             {
                 User_MenuItem.Visibility = Visibility.Collapsed;
             }
+
+            user.AdminActorDictionary.Clear();
+            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
+
         }
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
