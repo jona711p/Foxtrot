@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +19,11 @@ namespace Foxtrot
         User tempUser = new User();
         Product temProduct = new Product();
         private int GlobalPermission;
+        Product_Add hest = new Product_Add();
+
 
         public MainWindow()
         {
-            
             ResizeMode = ResizeMode.NoResize;            
             XMLLogic.WatchXMLDir();
             InitializeComponent();
@@ -59,7 +61,8 @@ Fredag kl. 09.00 - 14.00";
         {
             MainFrame.Content = new Product_Add();
             DBShowProducts.FillTable(temProduct);
-           //dataGrid_Product_List
+            hest.dataGrid_Product_List.ItemsSource = temProduct.ProductTable.AsDataView();
+            //dataGrid_Product_List
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
