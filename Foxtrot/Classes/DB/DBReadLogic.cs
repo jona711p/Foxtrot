@@ -141,7 +141,7 @@ namespace Classes
 
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductList", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
                 adapter.Fill(productTable);
             }
 
