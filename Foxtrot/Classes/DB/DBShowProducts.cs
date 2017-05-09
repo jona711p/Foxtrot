@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Foxtrot.Classes
 {
-    class DBShowProducts
+    public class DBShowProducts
     {
         private static SqlConnection connection = null;
 
