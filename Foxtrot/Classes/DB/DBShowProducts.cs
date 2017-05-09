@@ -6,27 +6,19 @@ namespace Foxtrot.Classes
 {
     class DBShowProducts
     {
-        private static SqlConnection connection = null;
+        public static SqlConnection connection = null;
 
         public static Product FillTable(Product product)
         {
-            product.ProductTable.Clear();
             connection = DBConnectionLogic.ConnectToDB(connection);
-            try
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter(
-                    @"SELECT * FROM Products", connection);
-                adapter.Fill(product.ProductTable);
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
+            SqlCommand command = new SqlCommand(
+                @"SELECT * FROM PRODUCTS", connection);
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return product;
         }
-
-
     }
 }

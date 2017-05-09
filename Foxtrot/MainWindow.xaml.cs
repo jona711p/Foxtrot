@@ -9,6 +9,7 @@ using Foxtrot.Classes;
 using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
+using System.Data;
 
 namespace Foxtrot
 {
@@ -18,6 +19,7 @@ namespace Foxtrot
         User tempUser = new User();
         Product temProduct = new Product();
         private int GlobalPermission;
+        Product_Add test = new Product_Add();
 
         public MainWindow()
         {
@@ -59,14 +61,14 @@ Fredag kl. 09.00 - 14.00";
         {
             MainFrame.Content = new Product_Add();
             DBShowProducts.FillTable(temProduct);
-           //dataGrid_Product_List
+            test.dataGrid_Product_List.ItemsSource = temProduct.ProductTable.AsDataView();
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Product_Edit_Delete();
         }
-
+       
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GlobalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
