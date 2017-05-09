@@ -6,7 +6,7 @@ namespace Foxtrot.Classes
 {
     class DBShowProducts
     {
-        public static SqlConnection connection = null;
+        private static SqlConnection connection = null;
 
         public static Product FillTable(Product product)
         {
@@ -15,8 +15,7 @@ namespace Foxtrot.Classes
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(
-                    @"SELECT * FROM Products",
-                    connection);
+                    "SELECT * FROM Products", connection);
                 adapter.Fill(product.ProductTable);
             }
             catch (Exception)
