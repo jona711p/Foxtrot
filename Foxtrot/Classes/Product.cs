@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 
 namespace Classes
 {
-    public class Product
+    public class Product : INotifyPropertyChanged
     {
+        private DataTable productTable = new DataTable();
+
+        public DataTable ProductTable
+        {
+            get { return productTable; }
+            set { productTable = value; }
+        }
         public int? ID { get; set; }
         public int? XMLID { get; set; }
         public string Name { get; set; }
@@ -43,6 +52,8 @@ namespace Classes
         {
             Availability = true;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class ExtraDescription
