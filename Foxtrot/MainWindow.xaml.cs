@@ -50,8 +50,8 @@ namespace Foxtrot
             }
 
             user.AdminActorDictionary.Clear();
-            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
 
+            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
         }
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
