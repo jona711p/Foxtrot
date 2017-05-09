@@ -9,29 +9,59 @@
       Background="White"
       Title="Product_Add">
 
+    <Page.Resources>
+        <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <!-- Liste over produkt start -->
-        <DataGrid x:Name="dataGrid_Product_List" HorizontalAlignment="Left" Margin="330,17,-1.6,0" VerticalAlignment="Top" Height="367" Background="White" Width="1038"/>
+        <DataGrid x:Name="dataGrid_Product_List" HorizontalAlignment="Left" Margin="824,17,-495.6,0" VerticalAlignment="Top" Height="367" Background="White" Width="1038"/>
         <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="764,-5,0,0" VerticalAlignment="Top" Height="31" Width="121"/>
         <!-- Liste over produkt slut -->
-       
+
 
         <!-- Søg Produkt Start -->
-        <Border x:Name="border_Name" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="377" VerticalAlignment="Top" Width="306" Margin="26,17,0,0"/>
-        <Label x:Name="label_Product_Search" Content="&#x9;Søg" HorizontalAlignment="Left" Margin="95,31,0,0" VerticalAlignment="Top" Width="126"/>
-        <Label x:Name="label1_Product_SearchName" Content="Søg Navn:" HorizontalAlignment="Left" Margin="55,71,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="36" Margin="165,68,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="127" Tag="Navn*"/>
-        <Label x:Name="label_Product_SearchID" Content="Søg ID" HorizontalAlignment="Left" Margin="64,127,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="163,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label_Product_SearchArrangement" Content="Søg Arrangement" HorizontalAlignment="Left" Margin="44,176,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Product_SearchArrangement" HorizontalAlignment="Left" Height="23" Margin="158,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label_Product_SearchCategory" Content="Søg Kategori" HorizontalAlignment="Left" Margin="56,226,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="23" Margin="161,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label_Product_SearchDate" Content="Søg Dato" HorizontalAlignment="Left" Margin="56,286,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.293,5.453"/>
-        <TextBox x:Name="textBox_Product_SearchDate" HorizontalAlignment="Left" Height="23" Margin="149,294,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Grid HorizontalAlignment="Left" Height="363" Margin="37,24,0,0" VerticalAlignment="Top" Width="322">
+            <Label x:Name="label_Product_Search" Content="Søg efter produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="92.8,3.8,0,0"/>
+            <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="36" Margin="24,53,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="127" Tag="Navn"/>
+            <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="23" Margin="29,122,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="ID" />
+            <TextBox x:Name="textBox_Product_SearchArrangement" HorizontalAlignment="Left" Height="23" Margin="27,178,0,0" TextWrapping="Wrap" Text="{Binding Arrangement}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Arrangement"/>
+            <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="23" Margin="24,230,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Kategori"/>
+        </Grid>
+
+       
+       
+        <Label x:Name="label_Product_SearchCategory" Content="Søg Kategori" HorizontalAlignment="Left" Margin="408,261,0,0" VerticalAlignment="Top"/>
+        
+        <Label x:Name="label_Product_SearchDate" Content="Søg Dato" HorizontalAlignment="Left" Margin="448,336,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.293,5.453"/>
+        <TextBox x:Name="textBox_Product_SearchDate" HorizontalAlignment="Left" Height="23" Margin="507,331,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <!-- Søg Produkt Slut -->
 
-        
+
         <!-- Opret Produkt Start -->
         <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="643,408,0,0" VerticalAlignment="Top" Width="113"/>
         <Label x:Name="label_Product_Add_Name" Content="Navn" HorizontalAlignment="Left" Margin="68,426,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="1.314,1.234"/>
@@ -62,6 +92,8 @@
         <Label x:Name="label_Product_Add_CanonicalUrl" Content="URL" HorizontalAlignment="Left" Margin="1162,545,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1126,598,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="1125,490,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Grid HorizontalAlignment="Left" Height="182" Margin="504,534,0,0" VerticalAlignment="Top" Width="260"/>
+
         <!-- Opret Produkt Slut -->
 
     </Grid>
