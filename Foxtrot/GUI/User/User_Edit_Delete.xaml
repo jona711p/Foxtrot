@@ -5,21 +5,47 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1366"
+      d:DesignHeight="768" d:DesignWidth="1310"
       Title="User_Edit_Delete">
-    <Grid>
-        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="201,523,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="309,523,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="label_User_Add_Firstname" Content="Fornavn" HorizontalAlignment="Left" Margin="201,158,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_User_Add_Lastname" Content="Efternavn" HorizontalAlignment="Left" Margin="201,229,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_User_Add_Phone" Content="Telefon nr." HorizontalAlignment="Left" Margin="201,299,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,1.231"/>
-        <Label x:Name="label_User_Add_Email" Content="E-Mail" HorizontalAlignment="Left" Margin="201,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.769"/>
-        <Label x:Name="label_User_Add_Fax" Content="Fax" HorizontalAlignment="Left" Margin="201,438,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_User_Add_Firstname" HorizontalAlignment="Left" Height="23" Margin="201,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_User_Add_Lastname" HorizontalAlignment="Left" Height="23" Margin="201,260,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_User_Add_Phone" HorizontalAlignment="Left" Height="23" Margin="201,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_User_Add_Email" HorizontalAlignment="Left" Height="23" Margin="201,399,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_User_Add_Fax" HorizontalAlignment="Left" Height="23" Margin="201,469,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+    <Page.Resources>
+        <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="WhiteSmoke">
+        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="884,422,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="994,422,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="textBox_User_Edit_Firstname" HorizontalAlignment="Left" Height="23" Margin="884,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
+        <TextBox x:Name="textBox_User_Edit_Lastname" HorizontalAlignment="Left" Height="23" Margin="884,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
+        <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="23" Margin="884,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Telefon nr. *"/>
+        <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Left" Height="23" Margin="884,256,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="E-Mail"/>
+        <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Left" Height="23" Margin="884,326,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fax"/>
+        <RadioButton x:Name="rdbtn_User_Edit_Admin" Content="Administrator" HorizontalAlignment="Left" Margin="884,380,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdbtn_User_Edit_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="994,380,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
