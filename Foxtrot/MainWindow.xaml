@@ -34,7 +34,7 @@
         
         <!--Scrollbar skal deaktiveres på forsiden-->
         <ScrollViewer Margin="10,137,0,83">
-            <Frame x:Name="MainFrame" Content="{Binding}" Width="1390" HorizontalAlignment="Center" 
+            <Frame x:Name="MainFrame" Content="{Binding}" Width="1310" HorizontalAlignment="Center" 
                        ScrollViewer.VerticalScrollBarVisibility="Visible" 
                        ScrollViewer.CanContentScroll="True" 
                        NavigationUIVisibility="Hidden" Height="768" />
@@ -45,8 +45,9 @@
 
         <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="569,22,550,587"  Width="223" Source="IMG/SET LOGO SMALL.png"/>
         <TextBox x:Name="textBox" Text="" Margin="275,659,397,0" IsReadOnly="True" HorizontalContentAlignment="Center"/>
-        <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
         <Label x:Name="label_Main_Usertype" Content="Vælg bruger:" HorizontalAlignment="Left" Margin="1112,32,0,0" VerticalAlignment="Top" Width="80"/>
+        <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
+
 
     </Grid>
 </Window>
