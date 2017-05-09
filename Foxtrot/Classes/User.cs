@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Classes
 {
@@ -11,7 +10,7 @@ namespace Classes
         public int? WorkPhone { get; set; }
         public string WorkEmail { get; set; }
         public int? WorkFax { get; set; }
-        public  Dictionary<string,int> UserList {get; set; }
+        public  Dictionary<string,int> UserList { get; set; }
     }
 
     public class Administrator : User

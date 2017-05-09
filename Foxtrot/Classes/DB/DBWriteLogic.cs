@@ -7,15 +7,42 @@ namespace Classes
 {
     public class DBWriteLogic
     {
-        public static void WriteActorsToDB(List<Actor> actors)
+        public static void WriteAdministrators(List<User> users)
         {
-            foreach (Actor actor in actors)
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            foreach (User user in users)
             {
-                int notCoingToBeUsedAtThisPoint = WriteActorToDB(actor);
+                try
+                {
+                    SqlCommand command = new SqlCommand("spWriteUsers", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName;
+                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = user.LastName;
+                    command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = user.WorkPhone;
+                    command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = user.WorkEmail;
+                    command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = user.WorkFax;
+
+                    command.Parameters.Add(outputID);
+                    outputID.Direction = ParameterDirection.Output;
+
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static int WriteActorToDB(Actor actor)
+        public static int WriteActors(Actor actor)
         {
             SqlConnection connection = null;
 
@@ -27,6 +54,7 @@ namespace Classes
                 command.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = actor.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = actor.LastName;
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = actor.WorkPhone;
@@ -52,7 +80,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteCategoriesToDB(List<Category> categories)
+        public static void WriteCategories(List<Category> categories)
         {
             SqlConnection connection = null;
 
@@ -80,7 +108,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteCitiesToDB(List<City> cities)
+        public static void WriteCities(List<City> cities)
         {
             SqlConnection connection = null;
 
@@ -109,7 +137,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteFilesToDB(List<File> files)
+        public static void WriteFiles(List<File> files)
         {
             SqlConnection connection = null;
 
@@ -137,21 +165,21 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteMainCategoriesToDB(List<MainCategory> mainCategories)
+        public static void WriteMainCategories(List<MainCategory> mainCategories)
         {
             SqlConnection connection = null;
 
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (MainCategory maincategory in mainCategories)
+            foreach (MainCategory mainCategory in mainCategories)
             {
                 try
                 {
                     SqlCommand command = new SqlCommand("spWriteMainCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = maincategory.XMLID;
-                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
+                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = mainCategory.XMLID;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = mainCategory.Name;
 
                     command.ExecuteNonQuery();
                 }
@@ -165,7 +193,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteOpeningHoursToDB(List<OpeningHour> openingHours)
+        public static void WriteOpeningHours(List<OpeningHour> openingHours)
         {
             SqlConnection connection = null;
 
@@ -205,7 +233,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteProductsToDB(List<Product> products)
+        public static void WriteProducts(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -267,7 +295,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelCategoriesToDB(List<Product> products)
+        public static void WriteRelCategories(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -281,7 +309,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
+                        command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = DBReadLogic.GetID("Categories", product.Categories.XMLID);
 
                         command.ExecuteNonQuery();
                     }
@@ -295,7 +323,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelCombiProductsToDB(List<Product> products)
+        public static void WriteRelCombiProducts(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -330,7 +358,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelEventsProductsToDB(List<Product> products)
+        public static void WriteRelEventsProducts(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -365,7 +393,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelFilesToDB(List<Product> products)
+        public static void WriteRelFiles(List<Product> products)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -380,7 +408,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_FileID", SqlDbType.Int).Value = file.ID;
+                        command.Parameters.Add("@FK_FileID", SqlDbType.Int).Value = DBReadLogic.GetID("Files", file.XMLID);
 
                         command.ExecuteNonQuery();
                     }
@@ -394,7 +422,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelMainCategoriesToDB(List<Product> products)
+        public static void WriteRelMainCategories(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -408,7 +436,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
+                        command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = DBReadLogic.GetID("MainCategories", product.MainCategories.XMLID);
 
                         command.ExecuteNonQuery();
                     }
@@ -422,7 +450,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelOpeningHoursToDB(List<Product> products)
+        public static void WriteRelOpeningHours(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -438,8 +466,8 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = openingHour.ID;
                         command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = product.Events;
+                        command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = DBReadLogic.GetID("OpeningHours", openingHour.XMLID);
 
                         command.ExecuteNonQuery();
                     }
@@ -450,41 +478,6 @@ namespace Classes
                     }
                 }
             }
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteAdministratorToDB(List<User> users)
-        {
-            SqlConnection connection = null;
-
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (User user in users)
-            {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteUsers", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
-                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName;
-                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = user.LastName;
-                    command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = user.WorkPhone;
-                    command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = user.WorkEmail;
-                    command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = user.WorkFax;
-
-                    command.Parameters.Add(outputID);
-                    outputID.Direction = ParameterDirection.Output;
-
-                    command.ExecuteNonQuery();
-                }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }
