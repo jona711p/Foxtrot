@@ -1,5 +1,6 @@
 ﻿using Classes;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Foxtrot.Classes
@@ -10,13 +11,19 @@ namespace Foxtrot.Classes
 
         public static Product FillTable(Product product)
         {
+            DataTable tempTable = new DataTable();
+
             connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM PRODUCTS", connection);
+                adapter.Fill(tempTable);
+            }
+            catch (Exception)
+            {
 
-            SqlCommand command = new SqlCommand(
-                @"SELECT * FROM PRODUCTS", connection);
-            SqlDataReader reader = command.ExecuteReader();
-            reader.Read();
-
+                throw;
+            }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return product;
         }
