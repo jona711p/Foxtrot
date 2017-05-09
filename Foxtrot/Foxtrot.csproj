@@ -153,7 +153,7 @@
     <Resource Include="IMG\set icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMG\SET LOGO SMALL.png" />
+    <Resource Include="IMG\SET Logo Front Trans.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -42,12 +42,12 @@
 
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="10" Margin="0,127,0,0" VerticalAlignment="Top" Width="1432"/>
         <GridSplitter x:Name="gridSplitter1" HorizontalAlignment="Left" Height="8" Margin="0,613,0,0" VerticalAlignment="Top" Width="1342"/>
+        <GridSplitter x:Name="gridSplitter2" HorizontalAlignment="Left" Height="476" Margin="0,137,0,0" VerticalAlignment="Top" Width="10"/>
 
-        <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="573,31,546,563"  Width="223" Source="IMG/SET LOGO SMALL.png"/>
+        <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="573,27,546,567"  Width="223" Source="IMG/SET Logo Front Trans.png"/>
         <TextBox x:Name="textBox" Text="" Margin="275,637,371,0" IsReadOnly="True" HorizontalContentAlignment="Center"/>
         <Label x:Name="label_Main_Usertype" Content="Vælg bruger:" HorizontalAlignment="Left" Margin="1112,32,0,0" VerticalAlignment="Top" Width="80"/>
         <ComboBox x:Name="comboBox_Main_Usertype" Text="Vælg bruger" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
-        <GridSplitter x:Name="gridSplitter2" HorizontalAlignment="Left" Height="476" Margin="0,137,0,0" VerticalAlignment="Top" Width="10"/>
 
 
     </Grid>

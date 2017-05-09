@@ -23,9 +23,9 @@ namespace Foxtrot
             InitializeComponent();
 
             // Fills a list with actors and admins 
-            tempUser.UserList = DBReadLogic.FillAdminList(tempUser);
-            tempUser.UserList = DBReadLogic.FillActorList(tempUser);
-            comboBox_Main_Usertype.ItemsSource = tempUser.UserList.Keys; //skal kun opdateres hvis 'button_User_Add_CreateUser' bliver trykket
+            //tempUser.UserList = DBReadLogic.FillAdminList(tempUser);
+            //tempUser.UserList = DBReadLogic.FillActorList(tempUser);
+            //comboBox_Main_Usertype.ItemsSource = tempUser.UserList.Keys; //skal kun opdateres hvis 'button_User_Add_CreateUser' bliver trykket
 
             //Smider tekst 'footer'
             textBox.Text = @"Skiveegnens Erhvervs - og Turistcenter Østerbro 7, 7800 Skive
