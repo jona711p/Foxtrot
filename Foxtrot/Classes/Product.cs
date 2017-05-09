@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Classes
 {
-    public class Product : INotifyPropertyChanged
+    class Product : INotifyPropertyChanged  
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -15,7 +15,6 @@ namespace Classes
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
 
         private DataTable productTable = new DataTable();
 
@@ -62,7 +61,6 @@ namespace Classes
         {
             Availability = true;
         }
-
     }
 
     public class ExtraDescription
