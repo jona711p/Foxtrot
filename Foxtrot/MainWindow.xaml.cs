@@ -9,31 +9,29 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
-        
-        User tempUser = new User();
-        Product temProduct = new Product();
-        private int GlobalPermission;
-        Product_Add test = new Product_Add();
-
+        private int globalPermission;
         public MainWindow()
         {
-            ResizeMode = ResizeMode.NoResize;            
             XMLLogic.WatchXMLDir();
+
+            ResizeMode = ResizeMode.NoResize;
+
+            User user = new User();
+
+            user.AdminActorDictionary = new Dictionary<string, int>();
+            
+            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
+            
             InitializeComponent();
 
-            //Fills a list with actors and admins
-            tempUser.UserList = DBReadLogic.FillAdminList(tempUser);
-            tempUser.UserList = DBReadLogic.FillActorList(tempUser);
-            comboBox_Main_Usertype.ItemsSource = tempUser.UserList; //skal kun opdateres hvis 'button_User_Add_CreateUser' bliver trykket
-
-            //Smider tekst 'footer'
             textBox_LeftFooter.Text = @"Skiveegnens Erhvervs - og Turistcenter Østerbro 7, 7800 Skive
 Tlf: +45 9614 7677 | info@skiveet.dk
 Turistinformation læs her";
             textBox_RightFooter.Text = @"Åbningstider:
 Mandag – torsdag kl. 09.00 - 15.00
 Fredag kl. 09.00 - 14.00";
-            
+
+            DataContext = user;
         }
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
@@ -62,8 +60,8 @@ Fredag kl. 09.00 - 14.00";
        
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GlobalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
-            MessageBox.Show(GlobalPermission.ToString());
+            globalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
+            MessageBox.Show(globalPermission.ToString());
         }
     }
 }
