@@ -63,7 +63,6 @@ namespace Classes
             Availability = true;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     public class ExtraDescription
