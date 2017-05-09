@@ -6,8 +6,16 @@ using System.Runtime.CompilerServices;
 
 namespace Classes
 {
-    public class Product
+    class Product : INotifyPropertyChanged  
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private DataTable productTable = new DataTable();
 
         public DataTable ProductTable
