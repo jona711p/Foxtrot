@@ -130,7 +130,28 @@ namespace Classes
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+
             return inputUser.UserList;
+        }
+
+        public static DataTable FillProductTable(DataTable productTable)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductList", connection);
+                adapter.Fill(productTable);
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return productTable;
         }
 
         public static int GetID(string tableName, int? id)

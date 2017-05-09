@@ -1,21 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Runtime.CompilerServices;
 
 namespace Classes
 {
     public class Product 
     {
-        private DataTable productTable = new DataTable();
-
-        public DataTable ProductTable
-        {
-            get { return productTable; }
-            set { productTable = value; }
-        }
-        
         public int? ID { get; set;  }
         public int? XMLID { get; set; }
         public string Name { get; set; }
@@ -49,6 +39,8 @@ namespace Classes
         public List<Event> Events { get; set; }
 
         public float? Price { get; set; }
+
+        public DataTable ProductTable { get; set; }
 
         public Product()
         {

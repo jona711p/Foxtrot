@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using Classes;
-using Foxtrot.Classes;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
 

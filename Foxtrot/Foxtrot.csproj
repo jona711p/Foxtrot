@@ -86,7 +86,6 @@
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\City.cs" />
     <Compile Include="Classes\CombiProduct.cs" />
-    <Compile Include="Classes\DB\DBShowProducts.cs" />
     <Compile Include="Classes\DB\DBConnectionLogic.cs" />
     <Compile Include="Classes\DB\DBReadLogic.cs" />
     <Compile Include="Classes\DB\DBDeleteLogic.cs" />
