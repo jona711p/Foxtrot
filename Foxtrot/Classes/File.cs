@@ -5,11 +5,12 @@ namespace Classes
     public class File : IEquatable<File>
     {
         public int? ID { get; set; }
+        public int? XMLID { get; set; }
         public string URI { get; set; }
 
-        public bool Equals(File other) // Checks if the same "ID" already exists in the list
+        public bool Equals(File other) // Checks if the same "XMLID" already exists in the list
         {
-            if (ID == other.ID)
+            if (XMLID == other.XMLID)
             {
                 return true;
             }
@@ -19,9 +20,9 @@ namespace Classes
         public override int GetHashCode()
             // Checks if the same "ID" with the equal HASHCODE already exists in the list
         {
-            int hashID = ID == null ? 0 : ID.GetHashCode();
+            int hashXMLID = XMLID == null ? 0 : XMLID.GetHashCode();
 
-            return hashID;
+            return hashXMLID;
         }
     }
 }
