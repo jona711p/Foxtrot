@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Foxtrot.Classes;
 
 namespace Foxtrot.GUI.Product
 {
@@ -23,6 +24,12 @@ namespace Foxtrot.GUI.Product
         public Product_Add()
         {
             InitializeComponent();
+
+            global::Classes.Product product = new global::Classes.Product();
+
+            DBShowProducts.FillTable(product);
+
+            DataContext = product;
         }
     }
 }
