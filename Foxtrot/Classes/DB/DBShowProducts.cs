@@ -7,6 +7,7 @@ namespace Foxtrot.Classes
 {
     class DBShowProducts
     {
+        // Mikael
         public static SqlConnection connection = null;
 
         public static Product FillTable(Product product)
