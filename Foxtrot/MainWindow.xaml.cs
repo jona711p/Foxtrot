@@ -38,7 +38,7 @@ Turistinformation læs her";
             textBox_RightFooter.Text = @"Åbningstider:
 Mandag – torsdag kl. 09.00 - 15.00
 Fredag kl. 09.00 - 14.00";
-            DBShowProducts.FillTable(temProduct);
+            
         }
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
@@ -58,6 +58,7 @@ Fredag kl. 09.00 - 14.00";
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Product_Add();
+            DBShowProducts.FillTable(temProduct);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
