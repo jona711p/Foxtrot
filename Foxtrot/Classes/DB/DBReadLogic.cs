@@ -42,6 +42,7 @@ namespace Classes
 
         public static List<int> DupeCheckList(string id, string tableName)
         {
+            DataTable dt = new DataTable();
             List<int> dupeCheckList = new List<int>();
 
             SqlConnection connection = null;
@@ -51,8 +52,7 @@ namespace Classes
             try
             {
                 SqlCommand command = new SqlCommand("SELECT " + id + " FROM " + tableName, connection);
-
-                DataTable dt = new DataTable();
+                
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
@@ -70,22 +70,27 @@ namespace Classes
 
             return dupeCheckList;
         }
+
         public static Dictionary<string, int> FillAdminList(User inputUser)
         {
+            DataTable dt = new DataTable();
+
             SqlConnection connection = null;
+
             connection = DBConnectionLogic.ConnectToDB(connection);
+
             inputUser.UserList = new Dictionary<string, int>();
-            inputUser.UserList.Clear();
 
             try
             {
-                SqlCommand command = new SqlCommand("Select FirstName, LastName, Permission from Administrators inner join Users on FK_UserID = Users.ID", connection);
-                DataTable dt = new DataTable();
+                SqlCommand command = new SqlCommand("spFillAdminDictionary", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add("Admin - " + (string)row[0] + " " + (string)row[1], (int)row[2]); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
+                    inputUser.UserList.Add("Admin:   " + (string)row[0] + " " + (string)row[1], (int)row[2]); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
                 }
             }
 
@@ -93,24 +98,29 @@ namespace Classes
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+
             return inputUser.UserList;
         }
 
         public static Dictionary<string, int> FillActorList(User inputUser)
         {
+            DataTable dt = new DataTable();
+
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT CompanyName, Permission FROM Actors", connection);
-                DataTable dt = new DataTable();
+                SqlCommand command = new SqlCommand("spFillActorDictionary", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add("Aktør - " + (string)row[0], (int)row[1]); //{0} er 'companyName' {1} er 'permission'
+                    inputUser.UserList.Add("Aktør:   " + (string)row[0], (int)row[1]); //{0} er 'companyName' {1} er 'permission'
                 }
             }
 
@@ -118,6 +128,7 @@ namespace Classes
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputUser.UserList;
         }
