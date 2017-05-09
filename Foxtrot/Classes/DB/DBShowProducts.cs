@@ -11,13 +11,11 @@ namespace Foxtrot.Classes
 
         public static Product FillTable(Product product)
         {
-            DataTable tempTable = new DataTable();
-
             connection = DBConnectionLogic.ConnectToDB(connection);
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM PRODUCTS", connection);
-                adapter.Fill(tempTable);
+                adapter.Fill(product.ProductTable);
             }
             catch (Exception)
             {

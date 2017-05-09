@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using Classes;
 using Foxtrot.Classes;
-using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
-using System.Data;
 
 namespace Foxtrot
 {
