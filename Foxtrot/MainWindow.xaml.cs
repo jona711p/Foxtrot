@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +24,6 @@ namespace Foxtrot
 
         public MainWindow()
         {
-            
             ResizeMode = ResizeMode.NoResize;            
             XMLLogic.WatchXMLDir();
             InitializeComponent();
