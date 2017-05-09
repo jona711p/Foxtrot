@@ -24,9 +24,10 @@ namespace Foxtrot.Classes
 
                 throw;
             }
-            connection = DBConnectionLogic.ConnectToDB(connection);
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
             return product;
         }
+
 
     }
 }

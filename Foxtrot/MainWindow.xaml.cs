@@ -38,6 +38,7 @@ Mandag – torsdag kl. 09.00 - 15.00
 Fredag kl. 09.00 - 14.00";
 
             Menu bar = new Menu();
+            
         }
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
