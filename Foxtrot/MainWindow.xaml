@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Foxtrot" Height="735" Width="1350" Icon="IMG/set icon.ico">
 
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <DockPanel Margin="0,0,0,673">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Classes;
+using Foxtrot.Classes;
 using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
@@ -15,6 +16,7 @@ namespace Foxtrot
     {
         
         User tempUser = new User();
+        Product temProduct = new Product();
         private int GlobalPermission;
 
         public MainWindow()
@@ -36,9 +38,7 @@ Turistinformation læs her";
             textBox_RightFooter.Text = @"Åbningstider:
 Mandag – torsdag kl. 09.00 - 15.00
 Fredag kl. 09.00 - 14.00";
-
-            Menu bar = new Menu();
-            
+            DBShowProducts.FillTable(temProduct);
         }
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
