@@ -65,7 +65,7 @@ namespace Classes
                     SqlCommand command = new SqlCommand("spWriteCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
+                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = category.XMLID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
 
                     command.ExecuteNonQuery();
@@ -122,7 +122,7 @@ namespace Classes
                     SqlCommand command = new SqlCommand("spWriteFiles", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = file.ID;
+                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = file.XMLID;
                     command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = file.URI;
 
                     command.ExecuteNonQuery();
@@ -150,7 +150,7 @@ namespace Classes
                     SqlCommand command = new SqlCommand("spWriteMainCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = maincategory.ID;
+                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = maincategory.XMLID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = maincategory.Name;
 
                     command.ExecuteNonQuery();
@@ -178,7 +178,7 @@ namespace Classes
                     SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@ID", SqlDbType.Int).Value = openingHour.ID;
+                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = openingHour.XMLID;
 
                     command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
                     command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
@@ -249,8 +249,6 @@ namespace Classes
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
                     command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID;
                     command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;
-                    command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
-                    command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
 
                     command.Parameters.Add(outputID);
                     outputID.Direction = ParameterDirection.Output;
@@ -269,7 +267,35 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelCombiTable(List<Product> products)
+        public static void WriteRelCategoriesToDB(List<Product> products)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            {
+                foreach (Product product in products)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRel_Categories", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
+        public static void WriteRelCombiProductsToDB(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -298,13 +324,13 @@ namespace Classes
                         }
                     }
                 }
-                else break;
 
+                else break;
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelEventTable(List<Product> products)
+        public static void WriteRelEventsProductsToDB(List<Product> products)
         {
             SqlConnection connection = null;
 
@@ -333,13 +359,13 @@ namespace Classes
                         }
                     }
                 }
-                else break;
 
+                else break;
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelFileTable(List<Product> products)
+        public static void WriteRelFilesToDB(List<Product> products)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -368,7 +394,35 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelOpeningHoursTable(List<Product> products)
+        public static void WriteRelMainCategoriesToDB(List<Product> products)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            {
+                foreach (Product product in products)
+                {
+                    try
+                    {
+                        SqlCommand command = new SqlCommand("spWriteRel_MainCategories", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
+                        command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
+        public static void WriteRelOpeningHoursToDB(List<Product> products)
         {
             SqlConnection connection = null;
 
