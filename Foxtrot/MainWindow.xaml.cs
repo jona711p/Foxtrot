@@ -13,7 +13,7 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
-       
+        
         User tempUser = new User();
         Boolean GlobalPermission = false;
 
