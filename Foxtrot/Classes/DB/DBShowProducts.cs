@@ -14,7 +14,7 @@ namespace Foxtrot.Classes
             connection = DBConnectionLogic.ConnectToDB(connection);
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM PRODUCTS", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductList", connection);
                 adapter.Fill(product.ProductTable);
             }
             catch (Exception)

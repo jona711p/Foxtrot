@@ -55,8 +55,6 @@ Fredag kl. 09.00 - 14.00";
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Product_Add();
-            //DBShowProducts.FillTable(temProduct);
-            //test.dataGrid_Product_List.ItemsSource = temProduct.ProductTable.AsDataView();
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
