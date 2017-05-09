@@ -1,15 +1,12 @@
 ﻿using Classes;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Windows;
 
 namespace Foxtrot.Classes
 {
     class DBShowProducts
     {
-        private static SqlConnection connection = null;
+        public static SqlConnection connection = null;
 
         public static Product FillTable(Product product)
         {

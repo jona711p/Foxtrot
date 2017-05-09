@@ -14,11 +14,13 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
+        
         User tempUser = new User();
         private int GlobalPermission;
 
         public MainWindow()
         {
+            
             ResizeMode = ResizeMode.NoResize;            
             XMLLogic.WatchXMLDir();
             InitializeComponent();
