@@ -68,29 +68,6 @@ Fredag kl. 09.00 - 14.00";
         {
             GlobalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
             MessageBox.Show(GlobalPermission.ToString());
-
-
-            //Kan muligvis laves simplere..
-            //ComboBox ComboBoxUserList = (ComboBox) sender;
-            //string tempKey = ComboBoxUserList.SelectedItem.ToString();
-
-            //foreach (var item in tempUser.UserList)
-            //{
-            //    if (item.Key == tempKey)
-            //    {
-            //        int tempValue = item.Value;
-            //        if (tempValue == 1)
-            //        {
-            //            GlobalPermission = 1;
-            //            break;
-            //        }
-            //        if (tempValue == 2)
-            //        {
-            //            GlobalPermission = 2;
-            //            break;
-            //        }
-            //    }
-            //}
         }
     }
 }
