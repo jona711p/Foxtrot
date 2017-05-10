@@ -16,11 +16,11 @@ namespace Foxtrot.GUI.Product
         {
             InitializeComponent();
 
+
             Classes.Product product = new Classes.Product();
+            comboBox_Product_Add_CityID.ItemsSource = product.Cities.Name;
 
             product.ProductTable = new DataTable();
-
-            
 
             DBReadLogic.FillProductTable(product.ProductTable);
 
@@ -31,7 +31,6 @@ namespace Foxtrot.GUI.Product
         {
             Classes.Product products = new Classes.Product();
             int tempint;
-            string tempstring;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
