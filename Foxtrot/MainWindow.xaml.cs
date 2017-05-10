@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Classes;
+using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
 
@@ -25,6 +26,8 @@ namespace Foxtrot
 
             InitializeComponent();
 
+            MainFrame.Content = new Frontpage();
+
             textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
                 "\nØsterbro 7, 7800 Skive" +
                 "\nTlf: +45 9614 7677 | info@skiveet.dk";
@@ -41,7 +44,7 @@ namespace Foxtrot
 
             if (globalPermission == 0)
             {
-                User_MenuItem.Visibility = Visibility.Collapsed;
+                User_MenuItem.Visibility = Visibility.Hidden;
             }
 
             if (globalPermission == 1)
@@ -51,7 +54,7 @@ namespace Foxtrot
 
             if (globalPermission == 2)
             {
-                User_MenuItem.Visibility = Visibility.Collapsed;
+                User_MenuItem.Visibility = Visibility.Hidden;
             }
 
             user.AdminActorDictionary.Clear();
@@ -61,7 +64,7 @@ namespace Foxtrot
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("FORSIDE!");
+            MainFrame.Content = new Frontpage();
         }
 
         private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)

@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace Classes
 {
+    /// <summary>
+    /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
+    /// </summary>
     public class DBWriteLogic
     {
         public static void WriteAdministrators(Administrator administrator)

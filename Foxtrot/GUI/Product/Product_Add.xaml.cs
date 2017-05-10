@@ -148,6 +148,11 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste URL på produktet");
                 return;
             }
+
+            if (rbtn_Product_Add_Availability_False.IsEnabled == true || rbtn_Product_Add_Availability_True.IsChecked == true)
+            {
+                products.Availability = Availibility;
+            }
         }
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
