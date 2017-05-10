@@ -303,7 +303,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = DBReadLogic.GetID("Categories", product.Categories.XMLID);
+                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = product.Categories.XMLID;
 
                         command.ExecuteNonQuery();
                     }
@@ -402,7 +402,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_FileID", SqlDbType.Int).Value = DBReadLogic.GetID("Files", file.XMLID);
+                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = file.XMLID;
 
                         command.ExecuteNonQuery();
                     }
@@ -430,7 +430,7 @@ namespace Classes
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = DBReadLogic.GetID("MainCategories", product.MainCategories.XMLID);
+                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = product.MainCategories.XMLID;
 
                         command.ExecuteNonQuery();
                     }
@@ -461,7 +461,7 @@ namespace Classes
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
                         command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = product.Events;
-                        command.Parameters.Add("@FK_OpeningHoursID", SqlDbType.Int).Value = DBReadLogic.GetID("OpeningHours", openingHour.XMLID);
+                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = openingHour.XMLID;
 
                         command.ExecuteNonQuery();
                     }

@@ -85,11 +85,13 @@ namespace Classes
 
                 dt.Load(command1.ExecuteReader());
 
+                adminActorDictionary.Add("=== ADMINISTRATOR ===", 0);
+
                 foreach (DataRow row in dt.Rows)
                 {
                     string tempString = row["FirstName"] + " " + row["LastName"];
                     int tempInt = int.Parse(row["Permission"].ToString());
-                    adminActorDictionary.Add("Administrator:   " + tempString, tempInt);
+                    adminActorDictionary.Add(tempString, tempInt);
                 }
 
                 SqlCommand command2 = new SqlCommand("spFillActorDictionary", connection);
@@ -98,11 +100,13 @@ namespace Classes
                 dt.Clear();
                 dt.Load(command2.ExecuteReader());
 
+                adminActorDictionary.Add("=== AKTØR ===", 0);
+
                 foreach (DataRow row in dt.Rows)
                 {
                     string tempString = Convert.ToString(row["CompanyName"]);
                     int tempInt = int.Parse(row["Permission"].ToString());
-                    adminActorDictionary.Add("Aktør:   " + tempString, tempInt);
+                    adminActorDictionary.Add(tempString, tempInt);
                 }
             }
 
@@ -133,29 +137,6 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return productTable;
-        }
-
-        public static int GetID(string tableName, int? id)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName + " WHERE XMLID = " + id, connection);
-
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                return int.Parse(reader[0].ToString());
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }
 }
