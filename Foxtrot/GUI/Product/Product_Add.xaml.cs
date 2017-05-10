@@ -116,7 +116,7 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
-                MessageBox.Show("Du skal skrive en gyldig pris - Skriv 0 hvis gratis");
+                MessageBox.Show("Du skal indtaste en gyldig pris - Skriv 0 hvis gratis");
                 return;
             }
 
@@ -126,7 +126,7 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
-                MessageBox.Show("Du skal skrive en beskrivelse af produktet");
+                MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
                 return;
             }
 
@@ -136,13 +136,28 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
-                MessageBox.Show("Du skal skrive en ekstra beskrivelse af produktet");
+                MessageBox.Show("Du skal indtaste en ekstra beskrivelse af produktet");
                 return;
             }
 
-            if (textBox_Product_Add_Availability.Text.Length != 0)
+            //if (textBox_Product_Add_Availability.Text.Length != 0)
+            //{
+            //    products.Availability = textBox_Product_Add_Availability.Text;
+            //}
+
+            if (textBox_Product_Add_CanonicalUrl.Text.Length != 0)
             {
-                products.Availability = textBox_Product_Add_Availability.Text;
+                products.CanonicalUrl = textBox_Product_Add_CanonicalUrl.Text;
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste URL på produktet");
+                return;
+            }
+
+            if (textBox_Product_Add_Website.Text.Length != 0)
+            {
+                products.Website = textBox_Product_Add_Website.Text;
             }
         }
     }
