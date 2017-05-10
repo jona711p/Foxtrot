@@ -11,7 +11,7 @@ namespace Foxtrot
     public partial class MainWindow : Window
     {
         private static User user = new User();
-        private int globalPermission;
+        private int permission;
         public MainWindow()
         {
             XMLLogic.WatchXMLDir();
@@ -37,21 +37,20 @@ namespace Foxtrot
         public static void FillComboBoxWithAdminsAndActors()
         {
             user.AdminActorDictionary.Clear();
-
             DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
         }
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var kvp = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem);
-           // globalPermission = kvp.Key;
+            user.ID = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key;
+            permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
-            if (globalPermission == 0)
+            if (permission == 0)
             {
                 HideAll();
             }
 
-            if (globalPermission == 1)
+            if (permission == 1)
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
@@ -60,7 +59,7 @@ namespace Foxtrot
                 Event_MenuItem.IsEnabled = true;
             }
 
-            if (globalPermission == 2)
+            if (permission == 2)
             {
                 HideAll();
                 Product_MenuItem.IsEnabled = false;
@@ -96,7 +95,7 @@ namespace Foxtrot
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Add();
+            MainFrame.Content = new Product_Add(user.ID.Value);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
