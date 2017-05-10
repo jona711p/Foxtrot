@@ -10,7 +10,7 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_Add : Page
     {
-
+        private bool Availibility;
         public Product_Add()
         {
             InitializeComponent();
@@ -140,10 +140,20 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (textBox_Product_Add_Availability.Text.Length != 0)
+            if (rbtn_Product_Add_Availability_False.IsChecked || rbtn_Product_Add_Availability_True.IsChecked)
             {
-                products.Availability = textBox_Product_Add_Availability.Text;
+                products.Availability = Availibility;
             }
+        }
+
+        private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
+        {
+            Availibility = true;
+        }
+
+        private void Rbtn_Product_Add_Availability_False_OnClick(object sender, RoutedEventArgs e)
+        {
+            Availibility = false;
         }
     }
 }
