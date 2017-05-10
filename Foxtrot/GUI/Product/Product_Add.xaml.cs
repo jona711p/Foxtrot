@@ -83,9 +83,9 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactEmail.Text, tempstring) && textBox_Product_Add_ContactEmail.Text.Contains("@"))
+            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
-                products.ContactEmail.Add(tempstring);
+                products.ContactEmail.Add(textBox_Product_Add_ContactEmail.Text);
             }
             else
             {
