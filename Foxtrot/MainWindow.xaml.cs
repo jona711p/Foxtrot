@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Classes;
+using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
 
@@ -24,6 +25,8 @@ namespace Foxtrot
             DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
 
             InitializeComponent();
+
+            MainFrame.Content = new Frontpage();
 
             textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
                 "\nØsterbro 7, 7800 Skive" +
@@ -61,7 +64,7 @@ namespace Foxtrot
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("FORSIDE!");
+            MainFrame.Content = new Frontpage();
         }
 
         private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)
