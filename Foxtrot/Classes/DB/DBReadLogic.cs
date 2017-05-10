@@ -137,6 +137,54 @@ namespace Classes
             return dupeCheckList;
         }
 
+        public static int GetUserPermission(int userID)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command1 = new SqlCommand("spGetAdministratorPermission", connection);
+                command1.CommandType = CommandType.StoredProcedure;
+
+                command1.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = userID;
+
+                SqlDataReader reader1 = command1.ExecuteReader();
+
+                if (reader1.HasRows)
+                {
+                    reader1.Read();
+
+                    return int.Parse(reader1[0].ToString());
+                }
+
+                else
+                {
+                    connection = DBConnectionLogic.DisconnectFromDB(connection);
+                    connection = DBConnectionLogic.ConnectToDB(connection);
+
+                    SqlCommand command2 = new SqlCommand("spGetActorPermission", connection);
+                    command2.CommandType = CommandType.StoredProcedure;
+
+                    command2.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = userID;
+
+                    SqlDataReader reader2 = command2.ExecuteReader();
+
+                    reader2.Read();
+
+                    return int.Parse(reader2[0].ToString());
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
         public static Dictionary<int, string> FillAdminActorDictionary(Dictionary<int, string> adminActorDictionary)
         {
             DataTable dt = new DataTable();

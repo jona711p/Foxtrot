@@ -43,7 +43,7 @@ namespace Foxtrot
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            globalPermission = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
+            globalPermission = DBReadLogic.GetUserPermission(((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key);
 
             if (globalPermission == 0)
             {
