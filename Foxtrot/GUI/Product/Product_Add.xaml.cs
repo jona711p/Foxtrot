@@ -155,7 +155,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (rbtn_Product_Add_Availability_False.IsChecked || rbtn_Product_Add_Availability_True.IsChecked)
+            if (rbtn_Product_Add_Availability_False.IsEnabled == true || rbtn_Product_Add_Availability_True.IsChecked == true)
             {
                 products.Availability = Availibility;
             }
