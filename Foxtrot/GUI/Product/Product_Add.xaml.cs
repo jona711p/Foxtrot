@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Controls;
 using Classes;
 using System.Windows;
@@ -102,6 +103,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
+  
             if (textBox_Product_Add_Príce.Text.Length != 0)
             {
                 products.Price = textBox_Product_Add_Príce.Text.Length;
@@ -124,7 +126,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
-                products.ExtraDescription.Add(textBox_Product_Add_ExtraDescription);
+                products.ExtraDescription[0].Description = textBox_Product_Add_ExtraDescription.Text;
             }
             else
             {
