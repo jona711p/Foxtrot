@@ -62,7 +62,7 @@ namespace Foxtrot.GUI.User
         {
             //if (dataGrid_User_Edit.SelectedItem != null)
             //{
-            //    if (dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem) = 1) //If the selected row is an administrator
+            //    if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
             //    {
             //        {
             //            tempAdministrator.ID =
@@ -74,7 +74,7 @@ namespace Foxtrot.GUI.User
             //            DBReadLogic.GetInfo(tempAdministrator);
             //        }
             //    }
-            //    else if (dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem) = 2) //If the selected row is an actor
+            //    else if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
             //    {
             //        {
             //            tempActor.ID =
@@ -85,9 +85,8 @@ namespace Foxtrot.GUI.User
             //                                    .Text);
             //            DBReadLogic.GetInfo(tempActor);
             //        }
-            //    }                
+            //    }
             //}
-            
         }
     }
 }
