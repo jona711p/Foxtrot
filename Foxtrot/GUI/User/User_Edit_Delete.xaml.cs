@@ -74,20 +74,37 @@ namespace Foxtrot.GUI.User
                         tempAdministrator =  DBReadLogic.GetAdminInfo(tempAdministrator);
 
                         textBox_User_Edit_Firstname.Text = tempAdministrator.FirstName;
+                        textBox_User_Edit_Lastname.Text = tempAdministrator.LastName;
+                        textBox_User_Edit_Phone.Text = tempAdministrator.WorkPhone.ToString();
+                        textBox_User_Edit_Email.Text = tempAdministrator.WorkEmail;
+                        textBox_User_Edit_Fax.Text = tempAdministrator.WorkFax.ToString();
+                        rdbtn_User_Edit_Admin.IsChecked = true;
+                        rdbtn_User_Edit_Actor.IsChecked = false;
+                        textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
                     }
                 }
-                //else if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
-                //{
-                //    {
-                //        tempActor.ID =
-                //            int.Parse(
-                //                ((TextBlock)
-                //                        dataGrid_User_Edit.Columns[0].GetCellContent(
-                //                            dataGrid_User_Edit.SelectedItem))
-                //                                .Text);
-                //        DBReadLogic.GetInfo(tempActor);
-                //    }
-                //}
+                if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
+                {
+                    {
+                        tempActor.ID =
+                            int.Parse(
+                                ((TextBlock)
+                                        dataGrid_User_Edit.Columns[0].GetCellContent(
+                                            dataGrid_User_Edit.SelectedItem))
+                                                .Text);
+                        tempActor = DBReadLogic.GetActorInfo(tempActor);
+
+                        textBox_User_Edit_CompanyName.Text = tempActor.CompanyName;
+                        textBox_User_Edit_Firstname.Text = tempActor.FirstName;
+                        textBox_User_Edit_Lastname.Text = tempActor.LastName;
+                        textBox_User_Edit_Phone.Text = tempActor.WorkPhone.ToString();
+                        textBox_User_Edit_Email.Text = tempActor.WorkEmail;
+                        textBox_User_Edit_Fax.Text = tempActor.WorkFax.ToString();
+                        rdbtn_User_Edit_Admin.IsChecked = false;
+                        rdbtn_User_Edit_Actor.IsChecked = true;
+                        textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
+                    }
+                }
             }
         }
     }

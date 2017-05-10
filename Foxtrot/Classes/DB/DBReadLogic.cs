@@ -306,16 +306,16 @@ namespace Classes
                     WorkFax
                     FROM Administrators
                     INNER JOIN Users ON FK_UserID = Users.ID
-where FK_UserID = @FK_UserID", connection);
+                    where FK_UserID = @FK_UserID", connection);
                 command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.ID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
                 inputAdmin.FirstName = reader["FirstName"].ToString();
                 inputAdmin.LastName = reader["LastName"].ToString();
-                inputAdmin.WorkPhone = int.Parse(reader["WorkPhone"].ToString());
+                inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkPhone"].ToString()));
                 inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
-                inputAdmin.WorkFax = (reader["WorkFax"] == null ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
+                inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
             }
             catch (Exception e)
             {
@@ -323,6 +323,42 @@ where FK_UserID = @FK_UserID", connection);
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputAdmin;
+        }
+        public static Actor GetActorInfo(Actor inputActor)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand(
+                                @"SELECT
+                    Users.ID,
+                    CompanyName,
+                    FirstName,
+                    LastName,
+                    WorkPhone,
+                    WorkEmail,
+                    WorkFax
+                    FROM Actors
+                    INNER JOIN Users ON FK_UserID = Users.ID
+                    where FK_UserID = @FK_UserID", connection);
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.ID;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                inputActor.CompanyName = reader["CompanyName"].ToString();
+                inputActor.FirstName = reader["FirstName"].ToString();
+                inputActor.LastName = reader["LastName"].ToString();
+                inputActor.WorkPhone = (reader["WorkPhone"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkPhone"].ToString()));
+                inputActor.WorkEmail = reader["WorkEmail"].ToString();
+                inputActor.WorkFax = (reader["WorkFax"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+            return inputActor;
         }
     }
 }
