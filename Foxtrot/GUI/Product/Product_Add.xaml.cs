@@ -15,7 +15,7 @@ namespace Foxtrot.GUI.Product
     {
         private bool Availibility;
         public  City tempCity = new City();
-        public Product_Add()
+        public Product_Add(int userID)
         {
             InitializeComponent();
             Classes.Product product = new Classes.Product();

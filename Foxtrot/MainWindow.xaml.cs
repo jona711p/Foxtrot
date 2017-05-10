@@ -11,7 +11,8 @@ namespace Foxtrot
     public partial class MainWindow : Window
     {
         private static User user = new User();
-        private int globalPermission;
+        private int userID;
+        private int permission;
         public MainWindow()
         {
             XMLLogic.WatchXMLDir();
@@ -43,14 +44,15 @@ namespace Foxtrot
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            globalPermission = DBReadLogic.GetUserPermission(((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key);
+            userID = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key;
+            permission = DBReadLogic.GetUserPermission(userID);
 
-            if (globalPermission == 0)
+            if (permission == 0)
             {
                 HideAll();
             }
 
-            if (globalPermission == 1)
+            if (permission == 1)
             {
                 HideAll();
                 User_MenuItem.Visibility = Visibility.Visible;
@@ -59,7 +61,7 @@ namespace Foxtrot
                 Event_MenuItem.Visibility = Visibility.Visible;
             }
 
-            if (globalPermission == 2)
+            if (permission == 2)
             {
                 HideAll();
                 Product_MenuItem.Visibility = Visibility.Visible;
@@ -95,7 +97,7 @@ namespace Foxtrot
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Add();
+            MainFrame.Content = new Product_Add(userID);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)

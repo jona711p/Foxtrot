@@ -155,7 +155,6 @@ namespace Classes
                 if (reader1.HasRows)
                 {
                     reader1.Read();
-
                     return int.Parse(reader1[0].ToString());
                 }
 
@@ -172,7 +171,6 @@ namespace Classes
                     SqlDataReader reader2 = command2.ExecuteReader();
 
                     reader2.Read();
-
                     return int.Parse(reader2[0].ToString());
                 }
             }
