@@ -296,17 +296,8 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand(
-                                @"SELECT
-                    Users.ID,
-                    FirstName,
-                    LastName,
-                    WorkPhone,
-                    WorkEmail,
-                    WorkFax
-                    FROM Administrators
-                    INNER JOIN Users ON FK_UserID = Users.ID
-                    where FK_UserID = @FK_UserID", connection);
+                SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.ID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -331,27 +322,18 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand(
-                                @"SELECT
-                    Users.ID,
-                    CompanyName,
-                    FirstName,
-                    LastName,
-                    WorkPhone,
-                    WorkEmail,
-                    WorkFax
-                    FROM Actors
-                    INNER JOIN Users ON FK_UserID = Users.ID
-                    where FK_UserID = @FK_UserID", connection);
+                SqlCommand command = new SqlCommand("spGetActorInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.ID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
-                inputActor.CompanyName = reader["CompanyName"].ToString();
-                inputActor.FirstName = reader["FirstName"].ToString();
-                inputActor.LastName = reader["LastName"].ToString();
-                inputActor.WorkPhone = (reader["WorkPhone"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkPhone"].ToString()));
-                inputActor.WorkEmail = reader["WorkEmail"].ToString();
-                inputActor.WorkFax = (reader["WorkFax"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
+
+                inputActor.CompanyName = reader["Firmanavn"].ToString();
+                inputActor.FirstName = reader["Fornavn"].ToString();
+                inputActor.LastName = reader["Efternavn"].ToString();
+                inputActor.WorkPhone = (reader["Telefon nr."].ToString().Equals("") ? null : (int?)int.Parse(reader["Telefon nr."].ToString()));
+                inputActor.WorkEmail = reader["E-Mail"].ToString();
+                inputActor.WorkFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
             }
             catch (Exception e)
             {
@@ -359,6 +341,60 @@ namespace Classes
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputActor;
+        }
+        //public static Product GetProductInfo(Product inputProduct)
+        //{
+        //    SqlConnection connection = null;
+        //    connection = DBConnectionLogic.ConnectToDB(connection);
+
+        //    try
+        //    {
+        //        SqlCommand command = new SqlCommand("spGetProductInfo", connection);
+        //        command.CommandType = CommandType.StoredProcedure;
+        //        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
+        //        SqlDataReader reader = command.ExecuteReader();
+        //        reader.Read();
+
+        //        object bla = reader[0];
+
+        //    inputProduct.ID = int.Parse(reader["ID"].ToString());
+        //        inputProduct.Name = reader["Name"].ToString();
+        //        inputProduct.Address = reader["Address"].ToString();
+        //        inputProduct.Longitude = float.Parse(reader["Longitude"].ToString());
+        //        inputProduct.Latitude = float.Parse(reader["Latitude"].ToString());
+        //        inputProduct.ContactPhone = new List<int?>()
+        //        {
+        //            ConvertToNullableInt(reader["ContactPhone"])
+        //        };
+        //        inputProduct.ContactEmail = reader["ContactEmail"].ToString();
+
+        //        inputProduct.ContactFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
+        //        inputProduct.Price = ConvertToNullableFloat(reader["Fax"]);
+        //        inputProduct.Description = reader["Description"].ToString();
+        //        inputProduct.ExtraDescription = new List<ExtraDescription>();
+        //        {
+        //            reader["ExtraDescription"].ToString();
+        //        };
+        //        inputProduct.Availability = Convert.ToBoolean(reader["Fax"].ToString());
+        //        inputProduct.Website = reader["Website"].ToString();
+        //        inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw;
+        //    }
+        //    connection = DBConnectionLogic.DisconnectFromDB(connection);
+        //    return inputProduct;
+        //}
+
+        public static int? ConvertToNullableInt(object objectFromReader)
+        {
+            return objectFromReader.ToString().Equals("") ? null : (int?) int.Parse(objectFromReader.ToString());
+        }
+
+        public static float? ConvertToNullableFloat(object objectFromReader)
+        {
+            return objectFromReader.ToString().Equals("") ? null : (float?)float.Parse(objectFromReader.ToString());
         }
     }
 }

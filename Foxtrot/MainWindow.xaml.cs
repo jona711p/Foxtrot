@@ -62,9 +62,9 @@ namespace Foxtrot
             if (permission == 2)
             {
                 HideAll();
-                Product_MenuItem.IsEnabled = false;
-                CombiProduct_MenuItem.IsEnabled = false;
-                Event_MenuItem.IsEnabled = false;
+                Product_MenuItem.IsEnabled = true;
+                CombiProduct_MenuItem.IsEnabled = true;
+                Event_MenuItem.IsEnabled = true;
             }
 
             MainFrame.Content = new Frontpage();
