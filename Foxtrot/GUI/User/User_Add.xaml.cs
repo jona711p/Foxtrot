@@ -32,7 +32,7 @@ namespace Foxtrot.GUI.User
                 Message("Vælg enten en Administrator eller en Aktør!");
             }
 
-           MainWindow.FillComboBoxWithAdminsAndActors();
+            MainWindow.FillComboBoxWithAdminsAndActors();
         }
 
         void Administrator()
@@ -87,10 +87,18 @@ namespace Foxtrot.GUI.User
                 administrator.WorkFax = null;
             }
 
-            DBWriteLogic.WriteAdministrators(administrator);
+            bool dupe = DBReadLogic.DupeCheckAdmin(administrator);
 
-            Message("En Administrator med navnet: '" + administrator.FirstName + " " +
-                            administrator.LastName + "' er blevet oprettet i systemet");
+            if (!dupe)
+            {
+                DBWriteLogic.WriteAdministrators(administrator);
+
+                Message("En Administrator med navnet: '" + administrator.FirstName + " " +
+                                administrator.LastName + "' er blevet oprettet i systemet!");
+            }
+
+            Message("Der findes allerede en Administrator med navnet: '" + administrator.FirstName + " " +
+                            administrator.LastName + "' i systemet!");
         }
 
         void Actor()
@@ -153,9 +161,16 @@ namespace Foxtrot.GUI.User
                 return;
             }
 
-            DBWriteLogic.WriteActors(actor);
+            bool dupe = DBReadLogic.DupeCheckActor(actor);
 
-            Message("En Aktør med firmanavnet: '" + actor.CompanyName + "' er blevet oprettet i systemet");
+            if (!dupe)
+            {
+                DBWriteLogic.WriteActors(actor);
+
+                Message("En Aktør med firmanavnet: '" + actor.CompanyName + "' er blevet oprettet i systemet");
+            }
+
+            Message("Der findes allerede en Aktør med firmanavnet: '" + actor.CompanyName + "' i systemet!");
         }
 
         static void Message(string message)

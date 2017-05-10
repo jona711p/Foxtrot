@@ -49,7 +49,7 @@
         <TextBox x:Name="textBox_RightFooter" Text="" Margin="674,627,420,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Left"/>
 
         <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Left" Margin="1112,32,0,0" VerticalAlignment="Top" Width="80"/>
-        <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AdminActorDictionary}" DisplayMemberPath="Key" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
+        <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource = "{Binding AdminActorDictionary}" DisplayMemberPath="Key" SelectionChanged="ComboBox_Main_Usertype_OnSelectionChanged"/>
 
 
     </Grid>
