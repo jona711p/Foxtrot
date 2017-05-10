@@ -231,7 +231,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT Name, PostalCode FROM Cities", connection);
+                SqlCommand command = new SqlCommand("spFillCityDictionary", connection);
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
