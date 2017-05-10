@@ -8,6 +8,9 @@ using System.Xml.XPath;
 
 namespace Classes
 {
+    /// <summary>
+    /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
+    /// </summary>
     class XMLLogic
     {
         static FileSystemWatcher watcher;

@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace Classes
 {
+    /// <summary>
+    /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
+    /// </summary>
     class DBReadLogic
     {
         public static int DupeCheckActors(Actor actor)

@@ -28,7 +28,6 @@ namespace Foxtrot.GUI.Product
         {
             Classes.Product products = new Classes.Product();
             int tempint;
-            string tempstring;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
