@@ -71,26 +71,42 @@ namespace Classes
             return dupeCheckList;
         }
 
-        public static Dictionary<string, int> FillAdminList(User inputUser)
+        public static Dictionary<string, int> FillAdminActorDictionary(Dictionary<string, int> adminActorDictionary)
         {
             DataTable dt = new DataTable();
 
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
-
-            inputUser.UserList = new Dictionary<string, int>();
 
             try
             {
-                SqlCommand command = new SqlCommand("spFillAdminDictionary", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command1 = new SqlCommand("spFillAdminDictionary", connection);
+                command1.CommandType = CommandType.StoredProcedure;
 
-                dt.Load(command.ExecuteReader());
+                dt.Load(command1.ExecuteReader());
+
+                adminActorDictionary.Add("=== ADMINISTRATOR ===", 0);
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    inputUser.UserList.Add("Admin:   " + (string)row[0] + " " + (string)row[1], (int)row[2]); //{0} er 'FirstName' {1} er 'LastName' {2} er 'permission'
+                    string tempString = row["FirstName"] + " " + row["LastName"];
+                    int tempInt = int.Parse(row["Permission"].ToString());
+                    adminActorDictionary.Add(tempString, tempInt);
+                }
+
+                SqlCommand command2 = new SqlCommand("spFillActorDictionary", connection);
+                command2.CommandType = CommandType.StoredProcedure;
+
+                dt.Clear();
+                dt.Load(command2.ExecuteReader());
+
+                adminActorDictionary.Add("=== AKTØR ===", 0);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tempString = Convert.ToString(row["CompanyName"]);
+                    int tempInt = int.Parse(row["Permission"].ToString());
+                    adminActorDictionary.Add(tempString, tempInt);
                 }
             }
 
@@ -100,60 +116,27 @@ namespace Classes
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return inputUser.UserList;
+            return adminActorDictionary;
         }
 
-        public static Dictionary<string, int> FillActorList(User inputUser)
-        {
-            DataTable dt = new DataTable();
-
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("spFillActorDictionary", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                dt.Load(command.ExecuteReader());
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    inputUser.UserList.Add("Aktør:   " + (string)row[0], (int)row[1]); //{0} er 'companyName' {1} er 'permission'
-                }
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-            return inputUser.UserList;
-        }
-
-        public static int GetID(string tableName, int? id)
+        public static DataTable FillProductTable(DataTable productTable)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName + " WHERE XMLID = " + id, connection);
-
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                return int.Parse(reader[0].ToString());
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
+                adapter.Fill(productTable);
             }
 
             catch (Exception)
             {
                 throw;
             }
-
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return productTable;
         }
     }
 }

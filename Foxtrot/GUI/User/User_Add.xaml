@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1310"
-      Background="White"
       Title="User_Add">
 
     <Page.Resources>
@@ -38,33 +37,36 @@
     </Page.Resources>
 
     <Grid>
-        <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Left" Margin="576,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
 
-        <Grid HorizontalAlignment="Left" Height="100" Margin="10,81,0,0" VerticalAlignment="Top" Width="300">
-            <TextBox x:Name="txtbox_FirstName" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
-            <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
+        <Grid HorizontalAlignment="Left" Height="35" Margin="521,52,0,0" VerticalAlignment="Top" Width="300">
+            <RadioButton x:Name="rbtn_Administrator" Content="Administrator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="205,10,0,0" VerticalAlignment="Top"/>
+            <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="300" Margin="0,0,0,-1"/>
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Height="100" Margin="521,110,0,0" VerticalAlignment="Top" Width="300">
+            <TextBox x:Name="txtbox_FirstName" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
+            <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
             <Label x:Name="lbl_Name_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
             <Border x:Name="border_Name" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="300"/>
         </Grid>
 
-        <Grid HorizontalAlignment="Left" Height="130" Margin="10,200,0,0" VerticalAlignment="Top" Width="300">
-            <TextBox x:Name="txtbox_WorkPhone" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding WorkPhone}" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *"/>
-            <TextBox x:Name="txtbox_WorkEmail" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" Text="{Binding WorkEmail}" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *"/>
-            <TextBox x:Name="txtbox_WorkFax" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" TextWrapping="Wrap" Text="{Binding WorkFax}" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax"/>
+        <Grid HorizontalAlignment="Left" Height="130" Margin="521,230,0,0" VerticalAlignment="Top" Width="300">
+            <TextBox x:Name="txtbox_WorkPhone" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *"/>
+            <TextBox x:Name="txtbox_WorkEmail" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *"/>
+            <TextBox x:Name="txtbox_WorkFax" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax"/>
             <Label x:Name="lbl_Contact_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="10,100,0,-1" VerticalAlignment="Top"/>
             <Border x:Name="border_Contact" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="129" VerticalAlignment="Top" Width="300" Margin="0,1,0,0"/>
         </Grid>
 
-        <Grid HorizontalAlignment="Left" Height="45" Margin="10,350,0,0" VerticalAlignment="Top" Width="300">
-            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn"/>
-            <Border x:Name="border_CompanyName" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="47" Margin="0,-2,0,0" VerticalAlignment="Top" Width="300"/>
+        <Grid HorizontalAlignment="Left" Height="70" Margin="521,380
+              ,0,0" VerticalAlignment="Top" Width="300">
+            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn **"/>
+            <Label x:Name="lbl_CompanyName" Content="** = Skal Udfyldes ved Aktør!" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+            <Border x:Name="border_CompanyName" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="72" Margin="0,-2,0,0" VerticalAlignment="Top" Width="300"/>
         </Grid>
-
-        <Grid HorizontalAlignment="Left" Height="35" Margin="10,425,0,0" VerticalAlignment="Top" Width="300">
-            <RadioButton x:Name="rbtn_Administrator" Content="Administrator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rbtn_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="205,10,0,0" VerticalAlignment="Top"/>
-            <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="300"/>
-        </Grid>
+        <Button x:Name="btnCreateUser" Content="Opret" HorizontalAlignment="Left" Margin="631,455,0,0" VerticalAlignment="Top" Width="75" Click="btnCreateUser_Click"/>
 
     </Grid>
 </Page>
