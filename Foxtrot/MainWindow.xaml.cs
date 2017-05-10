@@ -10,7 +10,7 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
-        private User user;
+        private static User user = new User();
         private int globalPermission;
         public MainWindow()
         {
@@ -18,13 +18,9 @@ namespace Foxtrot
 
             ResizeMode = ResizeMode.NoResize;
 
-            user = new User();
-
-            user.AdminActorDictionary = new Dictionary<string, int>();
-
-            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
-
             InitializeComponent();
+
+            FillComboBoxWithAdminsAndActors();
 
             MainFrame.Content = new Frontpage();
 
@@ -38,6 +34,13 @@ namespace Foxtrot
             DataContext = user;
         }
 
+        public static void FillComboBoxWithAdminsAndActors()
+        {
+            user.AdminActorDictionary.Clear();
+
+            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
+        }
+
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             globalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
@@ -49,6 +52,7 @@ namespace Foxtrot
 
             if (globalPermission == 1)
             {
+                HideAll();
                 User_MenuItem.Visibility = Visibility.Visible;
                 Product_MenuItem.Visibility = Visibility.Visible;
                 CombiProduct_MenuItem.Visibility = Visibility.Visible;
@@ -57,15 +61,14 @@ namespace Foxtrot
 
             if (globalPermission == 2)
             {
-                User_MenuItem.Visibility = Visibility.Hidden;
+                HideAll();
                 Product_MenuItem.Visibility = Visibility.Visible;
                 CombiProduct_MenuItem.Visibility = Visibility.Visible;
                 Event_MenuItem.Visibility = Visibility.Visible;
             }
 
-            user.AdminActorDictionary.Clear();
-
-            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
+            FillComboBoxWithAdminsAndActors();
+            MainFrame.Content = new Frontpage();
         }
 
         void HideAll()

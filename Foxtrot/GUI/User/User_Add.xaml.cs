@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 using Classes;
 
@@ -30,6 +31,8 @@ namespace Foxtrot.GUI.User
             {
                 Message("Vælg enten en Administrator eller en Aktør!");
             }
+
+           MainWindow.FillComboBoxWithAdminsAndActors();
         }
 
         void Administrator()
@@ -164,7 +167,7 @@ namespace Foxtrot.GUI.User
         {
             if (name.Text.Length != 0)
             {
-                return name.Text;
+                return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Text); // Rewrites the text with UPPER CASE first letter
             }
 
             return null;
@@ -186,7 +189,7 @@ namespace Foxtrot.GUI.User
         {
             if (email.Text.Length != 0 && email.Text.Contains("@"))
             {
-                return email.Text;
+                return email.Text.ToLower();
             }
 
             return null;
