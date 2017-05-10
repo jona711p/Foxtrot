@@ -10,7 +10,6 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_Add : Page
     {
-        private object product;
 
         public Product_Add()
         {
@@ -28,6 +27,8 @@ namespace Foxtrot.GUI.Product
         private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Classes.Product products = new Classes.Product();
+            int tempint;
+            string tempstring;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
@@ -66,18 +67,83 @@ namespace Foxtrot.GUI.Product
             else
             {
                 MessageBox.Show("Du skal indtaste breddegrad");
+                return;
             }
 
-            if (textBox_Product_Add_ContactPhone.Text.Length != 0 && textBox_Product_Add_ContactPhone.Text.Length == 8)
+            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) && textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
-                products.ContactPhone = textBox_Product_Add_ContactPhone.Text.Length;
+                products.ContactPhone.Add(tempint);
             }
             else
             {
                 MessageBox.Show("Du skal indtaste et gyldigt telefonnummer");
+                return;
             }
 
+            if (int.TryParse(textBox_Product_Add_ContactEmail.Text, out tempint) && textBox_Product_Add_ContactEmail.Text.Contains("@"))
+            {
+                products.ContactEmail = tempint;
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
+                return;
+            }
 
+            if (int.TryParse(textBox_Product_Add_ContactFax.Text,  out tempint) && textBox_Product_Add_ContactFax.Text.Length == 8)
+            {
+                products.ContactFax.Add(tempint);
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste et gyldigt fax nummer");
+                return;
+            }
+
+            if (textBox_Product_Add_CreationDate.Text.Length != 0)
+            {
+                products.CreationDate = textBox_Product_Add_CreationDate.Text;
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste et gyldigt oprettelses dato");
+                return;
+            }
+
+            if (textBox_Product_Add_Príce.Text.Length != 0)
+            {
+                products.Price = textBox_Product_Add_Príce.Text.Length;
+            }
+            else
+            {
+                MessageBox.Show("Du skal skrive en gyldig pris - Skriv 0 hvis gratis");
+                return;
+            }
+
+            if (textBox_Product_Add_Description.Text.Length != 0)
+            {
+                products.Description = textBox_Product_Add_Description.Text;
+            }
+            else
+            {
+                MessageBox.Show("Du skal skrive en beskrivelse af produktet");
+                return;
+            }
+
+            if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
+            {
+                products.ExtraDescription.Add(textBox_Product_Add_ExtraDescription);
+            }
+            else
+            {
+                MessageBox.Show("Du skal skrive en ekstra beskrivelse af produktet");
+                return;
+            }
+
+            if (textBox_Product_Add_Availability.Text.Length != 0)
+            {
+                products.Availability = textBox_Product_Add_Availability.Text;
+            }
         }
     }
 }
