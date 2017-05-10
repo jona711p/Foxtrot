@@ -164,6 +164,8 @@ namespace Foxtrot.GUI.User
         {
             if (name.Text.Length != 0)
             {
+                name.Text.ToLower();
+                name.Text.Substring(0, 1).ToUpper();
                 return name.Text;
             }
 

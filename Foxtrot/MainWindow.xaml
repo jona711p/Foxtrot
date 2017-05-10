@@ -17,15 +17,15 @@
                     <MenuItem Header="Opret" Click="MenuItem_User_Add_OnClick"/>
                     <MenuItem Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
                 </MenuItem>
-                <MenuItem x:Name="Product_MenuItem" Header="Produkter" Visibility="Hidden">>
+                <MenuItem x:Name="Product_MenuItem" Header="Produkter" Visibility="Hidden">
                     <MenuItem Header="Opret" Click="MenuItem_Product_Add_OnClick"/>
                     <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_Delete_OnClick"/>
                 </MenuItem>
-                <MenuItem x:Name="CombiProduct_MenuItem" Header="Combi Produkter" Visibility="Hidden">>
+                <MenuItem x:Name="CombiProduct_MenuItem" Header="Combi Produkter" Visibility="Hidden">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
                 </MenuItem>
-                <MenuItem x:Name="Event_MenuItem" Header="Events" Visibility="Hidden">>
+                <MenuItem x:Name="Event_MenuItem" Header="Events" Visibility="Hidden">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
                 </MenuItem>
