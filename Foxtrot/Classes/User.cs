@@ -16,9 +16,9 @@ namespace Classes
         public int? WorkFax { get; set; }
         public DataTable UserTable { get; set; }
 
-        private Dictionary<string, int> adminActorDictionary = new Dictionary<string, int>();
+        private static Dictionary<int, string> adminActorDictionary = new Dictionary<int, string>();
 
-        public Dictionary<string, int> AdminActorDictionary
+        public Dictionary<int, string> AdminActorDictionary
         {
             get { return adminActorDictionary ; }
             set { adminActorDictionary = value; NotifyPropertyChanged(); }

@@ -137,7 +137,7 @@ namespace Classes
             return dupeCheckList;
         }
 
-        public static Dictionary<string, int> FillAdminActorDictionary(Dictionary<string, int> adminActorDictionary)
+        public static Dictionary<int, string> FillAdminActorDictionary(Dictionary<int, string> adminActorDictionary)
         {
             DataTable dt = new DataTable();
 
@@ -151,13 +151,11 @@ namespace Classes
 
                 dt.Load(command1.ExecuteReader());
 
-                adminActorDictionary.Add("=== ADMINISTRATOR ===", 0);
-
                 foreach (DataRow row in dt.Rows)
                 {
+                    int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
-                    int tempInt = int.Parse(row["Permission"].ToString());
-                    adminActorDictionary.Add(tempString, tempInt);
+                    adminActorDictionary.Add(tempInt, tempString);
                 }
 
                 SqlCommand command2 = new SqlCommand("spFillActorDictionary", connection);
@@ -166,13 +164,11 @@ namespace Classes
                 dt.Clear();
                 dt.Load(command2.ExecuteReader());
 
-                adminActorDictionary.Add("=== AKTØR ===", 0);
-
                 foreach (DataRow row in dt.Rows)
                 {
+                    int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
-                    int tempInt = int.Parse(row["Permission"].ToString());
-                    adminActorDictionary.Add(tempString, tempInt);
+                    adminActorDictionary.Add(tempInt, tempString);
                 }
             }
 
