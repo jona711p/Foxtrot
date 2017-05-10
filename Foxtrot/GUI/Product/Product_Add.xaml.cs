@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Windows.Controls;
 using Classes;
 using System.Windows;
@@ -19,6 +20,8 @@ namespace Foxtrot.GUI.Product
 
             product.ProductTable = new DataTable();
 
+            
+
             DBReadLogic.FillProductTable(product.ProductTable);
 
             DataContext = product;
@@ -28,6 +31,7 @@ namespace Foxtrot.GUI.Product
         {
             Classes.Product products = new Classes.Product();
             int tempint;
+            string tempstring;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
@@ -79,9 +83,9 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactEmail.Text, out tempint) && textBox_Product_Add_ContactEmail.Text.Contains("@"))
+            if (int.TryParse(textBox_Product_Add_ContactEmail.Text, tempstring) && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
-                products.ContactEmail = tempint;
+                products.ContactEmail.Add(tempstring);
             }
             else
             {
@@ -96,16 +100,6 @@ namespace Foxtrot.GUI.Product
             else
             {
                 MessageBox.Show("Du skal indtaste et gyldigt fax nummer");
-                return;
-            }
-
-            if (textBox_Product_Add_CreationDate.Text.Length != 0)
-            {
-                products.CreationDate = textBox_Product_Add_CreationDate.Text;
-            }
-            else
-            {
-                MessageBox.Show("Du skal indtaste et gyldigt oprettelses dato");
                 return;
             }
 
