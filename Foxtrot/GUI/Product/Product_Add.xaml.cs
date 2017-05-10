@@ -21,6 +21,8 @@ namespace Foxtrot.GUI.Product
 
             product.ProductTable = new DataTable();
 
+            
+
             DBReadLogic.FillProductTable(product.ProductTable);
 
             DataContext = product;
@@ -30,6 +32,7 @@ namespace Foxtrot.GUI.Product
         {
             Classes.Product products = new Classes.Product();
             int tempint;
+            string tempstring;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
@@ -81,9 +84,9 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactEmail.Text, out tempint) && textBox_Product_Add_ContactEmail.Text.Contains("@"))
+            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
-                products.ContactEmail = tempint;
+                products.ContactEmail.Add(textBox_Product_Add_ContactEmail.Text);
             }
             else
             {
@@ -132,11 +135,6 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en ekstra beskrivelse af produktet");
                 return;
             }
-
-            //if (textBox_Product_Add_Availability.Text.Length != 0)
-            //{
-            //    products.Availability = textBox_Product_Add_Availability.Text;
-            //}
 
             if (textBox_Product_Add_CanonicalUrl.Text.Length != 0)
             {
