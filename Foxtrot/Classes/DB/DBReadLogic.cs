@@ -10,6 +10,36 @@ namespace Classes
     /// </summary>
     class DBReadLogic
     {
+        public static bool DupeCheckActor(Actor actor)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Actors WHERE CompanyName = @CompanyName", connection);
+
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+                return false;
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
         public static int DupeCheckActors(Actor actor)
         {
             SqlConnection connection = null;
@@ -32,6 +62,38 @@ namespace Classes
                 }
 
                 return int.Parse(DBWriteLogic.WriteActors(actor).ToString());
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
+        public static bool DupeCheckAdmin(Administrator administrator)
+        {
+            SqlConnection connection = null;
+
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE FirstName = @FirstName AND LastName = @LastName", connection);
+
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = administrator.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = administrator.LastName;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+                return false;
 
             }
 
@@ -160,7 +222,7 @@ namespace Classes
 
             return userTable;
         }
-        public static Dictionary<string,int> FillCityDictionary(Dictionary<string,int> cityDictionary)
+        public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> cityDictionary)
         {
             DataTable dt = new DataTable();
 
@@ -176,7 +238,7 @@ namespace Classes
                 {
                     string tempString = Convert.ToString(row["Name"]);
                     int tempInt = int.Parse(row["PostalCode"].ToString());
-                    cityDictionary.Add(tempString,tempInt);
+                    cityDictionary.Add(tempString, tempInt);
                 }
             }
 

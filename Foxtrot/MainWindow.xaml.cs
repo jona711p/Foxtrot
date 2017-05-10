@@ -67,7 +67,6 @@ namespace Foxtrot
                 Event_MenuItem.Visibility = Visibility.Visible;
             }
 
-            FillComboBoxWithAdminsAndActors();
             MainFrame.Content = new Frontpage();
         }
 
