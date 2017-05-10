@@ -37,8 +37,8 @@
     </Page.Resources>
 
     <Grid Background="WhiteSmoke">
-        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="54,431,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="164,431,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="54,431,0,0" VerticalAlignment="Top" Width="76" Click="Button_User_Edit_Edit_OnClick"/>
+        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="164,431,0,0" VerticalAlignment="Top" Width="75" Click="Button_User_Edit_Delete_OnClick"/>
         <TextBox x:Name="textBox_User_Edit_Firstname"  HorizontalAlignment="Left" Height="23" Margin="54,29,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
         <TextBox x:Name="textBox_User_Edit_Lastname" HorizontalAlignment="Left" Height="23" Margin="54,100,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
         <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="23" Margin="54,170,0,0" TextWrapping="Wrap" Text="{Binding WorkPhone}" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Telefon nr. *"/>
