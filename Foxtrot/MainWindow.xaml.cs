@@ -41,7 +41,7 @@ namespace Foxtrot
 
             if (globalPermission == 0)
             {
-                User_MenuItem.Visibility = Visibility.Collapsed;
+                User_MenuItem.Visibility = Visibility.Hidden;
             }
 
             if (globalPermission == 1)
@@ -51,7 +51,7 @@ namespace Foxtrot
 
             if (globalPermission == 2)
             {
-                User_MenuItem.Visibility = Visibility.Collapsed;
+                User_MenuItem.Visibility = Visibility.Hidden;
             }
 
             user.AdminActorDictionary.Clear();
