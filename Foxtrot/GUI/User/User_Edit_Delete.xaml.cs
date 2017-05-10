@@ -44,5 +44,15 @@ namespace Foxtrot.GUI.User
         {
             textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
         }
+
+        private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
