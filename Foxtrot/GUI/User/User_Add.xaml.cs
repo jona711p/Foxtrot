@@ -5,7 +5,7 @@ using Classes;
 namespace Foxtrot.GUI.User
 {
     /// <summary>
-    /// Interaction logic for User_Add.xaml
+    /// Jonas Lykke
     /// </summary>
     public partial class User_Add : Page
     {
@@ -64,7 +64,7 @@ namespace Foxtrot.GUI.User
 
             if (administrator.WorkEmail == null)
             {
-                Message("Du SKAL indtast en gyldig EMAIL ADRESSE");
+                Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
                 return;
             }
 
@@ -122,7 +122,7 @@ namespace Foxtrot.GUI.User
 
             if (actor.WorkEmail == null)
             {
-                Message("Du SKAL indtast en gyldig EMAIL ADRESSE");
+                Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
                 return;
             }
 

@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace Classes
 {
+    /// <summary>
+    /// Jonas Lykke
+    /// </summary>
     class DBConnectionLogic
     {
         public static SqlConnection ConnectToDB(SqlConnection connection)
