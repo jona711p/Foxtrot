@@ -138,5 +138,24 @@ namespace Classes
 
             return productTable;
         }
+        public static DataTable FillUserTable(DataTable userTable)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillUserTable", connection);
+                adapter.Fill(userTable);
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return userTable;
+        }
     }
 }
