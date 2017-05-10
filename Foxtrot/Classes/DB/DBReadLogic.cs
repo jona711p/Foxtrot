@@ -40,6 +40,7 @@ namespace Classes
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+
         public static int DupeCheckActors(Actor actor)
         {
             SqlConnection connection = null;
