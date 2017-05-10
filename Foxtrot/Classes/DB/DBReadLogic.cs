@@ -160,5 +160,33 @@ namespace Classes
 
             return userTable;
         }
+        public static Dictionary<string,int> FillCityDictionary(Dictionary<string,int> cityDictionary)
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT Name, PostalCode FROM Cities", connection);
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tempString = Convert.ToString(row["Name"]);
+                    int tempInt = int.Parse(row["PostalCode"].ToString());
+                    cityDictionary.Add(tempString,tempInt);
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return cityDictionary;
+        }
     }
 }

@@ -13,11 +13,15 @@ namespace Foxtrot.GUI.Product
     public partial class Product_Add : Page
     {
         private bool Availibility;
+        private  City tempCity = new City();
         public Product_Add()
         {
             InitializeComponent();
             Classes.Product product = new Classes.Product();
             product.ProductTable = new DataTable();
+            //tempCity.CityDictionary = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
+            comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
+
             DBReadLogic.FillProductTable(product.ProductTable);
             DataContext = product;
         }

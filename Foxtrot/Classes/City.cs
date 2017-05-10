@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Classes
 {
@@ -23,5 +24,6 @@ namespace Classes
 
             return hashID;
         }
+        public  Dictionary<string,int> CityDictionary { get; set; }
     }
 }
