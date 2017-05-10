@@ -44,22 +44,36 @@ namespace Foxtrot
 
             if (globalPermission == 0)
             {
-                User_MenuItem.Visibility = Visibility.Hidden;
+                HideAll();
             }
 
             if (globalPermission == 1)
             {
                 User_MenuItem.Visibility = Visibility.Visible;
+                Product_MenuItem.Visibility = Visibility.Visible;
+                CombiProduct_MenuItem.Visibility = Visibility.Visible;
+                Event_MenuItem.Visibility = Visibility.Visible;
             }
 
             if (globalPermission == 2)
             {
                 User_MenuItem.Visibility = Visibility.Hidden;
+                Product_MenuItem.Visibility = Visibility.Visible;
+                CombiProduct_MenuItem.Visibility = Visibility.Visible;
+                Event_MenuItem.Visibility = Visibility.Visible;
             }
 
             user.AdminActorDictionary.Clear();
 
             DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
+        }
+
+        void HideAll()
+        {
+            User_MenuItem.Visibility = Visibility.Hidden;
+            Product_MenuItem.Visibility = Visibility.Hidden;
+            CombiProduct_MenuItem.Visibility = Visibility.Hidden;
+            Event_MenuItem.Visibility = Visibility.Hidden;
         }
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)

@@ -62,7 +62,7 @@
 
         <Grid HorizontalAlignment="Left" Height="70" Margin="521,380
               ,0,0" VerticalAlignment="Top" Width="300">
-            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn **"/>
+            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn **"/>
             <Label x:Name="lbl_CompanyName" Content="** = Skal Udfyldes ved Aktør!" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
             <Border x:Name="border_CompanyName" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="72" Margin="0,-2,0,0" VerticalAlignment="Top" Width="300"/>
         </Grid>
