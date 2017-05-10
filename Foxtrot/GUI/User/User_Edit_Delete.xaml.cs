@@ -23,6 +23,9 @@ namespace Foxtrot.GUI.User
     public partial class User_Edit_Delete : Page
     {
         private Classes.User tempUser = new Classes.User();
+        private Classes.Actor tempActor = new Classes.Actor();
+        private Classes.Administrator tempAdministrator = new Classes.Administrator();
+
         public User_Edit_Delete()
         {
             InitializeComponent();
@@ -53,6 +56,37 @@ namespace Foxtrot.GUI.User
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (dataGrid_User_Edit.SelectedItem != null)
+            //{
+            //    if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
+            //    {
+            //        {
+            //            tempAdministrator.ID =
+            //                int.Parse(
+            //                    ((TextBlock)
+            //                            dataGrid_User_Edit.Columns[0].GetCellContent(
+            //                                dataGrid_User_Edit.SelectedItem))
+            //                                    .Text);
+            //            DBReadLogic.GetInfo(tempAdministrator);
+            //        }
+            //    }
+            //    else if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
+            //    {
+            //        {
+            //            tempActor.ID =
+            //                int.Parse(
+            //                    ((TextBlock)
+            //                            dataGrid_User_Edit.Columns[0].GetCellContent(
+            //                                dataGrid_User_Edit.SelectedItem))
+            //                                    .Text);
+            //            DBReadLogic.GetInfo(tempActor);
+            //        }
+            //    }
+            //}
         }
     }
 }
