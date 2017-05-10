@@ -139,11 +139,6 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            //if (textBox_Product_Add_Availability.Text.Length != 0)
-            //{
-            //    products.Availability = textBox_Product_Add_Availability.Text;
-            //}
-
             if (textBox_Product_Add_CanonicalUrl.Text.Length != 0)
             {
                 products.CanonicalUrl = textBox_Product_Add_CanonicalUrl.Text;
@@ -152,11 +147,6 @@ namespace Foxtrot.GUI.Product
             {
                 MessageBox.Show("Du skal indtaste URL på produktet");
                 return;
-            }
-
-            if (rbtn_Product_Add_Availability_False.IsChecked || rbtn_Product_Add_Availability_True.IsChecked)
-            {
-                products.Availability = Availibility;
             }
         }
 
