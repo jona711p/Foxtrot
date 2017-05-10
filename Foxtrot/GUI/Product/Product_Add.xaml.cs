@@ -16,15 +16,9 @@ namespace Foxtrot.GUI.Product
         public Product_Add()
         {
             InitializeComponent();
-
-
             Classes.Product product = new Classes.Product();
-            comboBox_Product_Add_CityID.ItemsSource = product.Cities.Name;
-
             product.ProductTable = new DataTable();
-
             DBReadLogic.FillProductTable(product.ProductTable);
-
             DataContext = product;
         }
 
