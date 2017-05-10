@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Classes;
 
 namespace Foxtrot.GUI.User
 {
@@ -20,9 +22,37 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Edit_Delete : Page
     {
+        private Classes.User tempUser = new Classes.User();
         public User_Edit_Delete()
         {
             InitializeComponent();
+            DataContext = tempUser;
+
+            tempUser.UserTable = new DataTable();
+
+            DBReadLogic.FillUserTable(tempUser.UserTable);
+
+            DataContext = tempUser;
+        }
+
+        private void Rdbtn_User_Edit_Admin_OnClick(object sender, RoutedEventArgs e)
+        {
+            textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
+        }
+
+        private void Rdbtn_User_Edit_Actor_OnClick(object sender, RoutedEventArgs e)
+        {
+            textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
+        }
+
+        private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
