@@ -13,19 +13,19 @@
                 <MenuItem Header="Menu">
                     <MenuItem x:Name="Frontpage_MenuItem" Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                 </MenuItem>
-                <MenuItem x:Name="User_MenuItem" Header="Bruger" Visibility="Hidden">
+                <MenuItem x:Name="User_MenuItem" Header="Bruger">
                     <MenuItem Header="Opret" Click="MenuItem_User_Add_OnClick"/>
                     <MenuItem Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
                 </MenuItem>
-                <MenuItem x:Name="Product_MenuItem" Header="Produkter" Visibility="Hidden">
+                <MenuItem x:Name="Product_MenuItem" Header="Produkter" >
                     <MenuItem Header="Opret" Click="MenuItem_Product_Add_OnClick"/>
                     <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_Delete_OnClick"/>
                 </MenuItem>
-                <MenuItem x:Name="CombiProduct_MenuItem" Header="Combi Produkter" Visibility="Hidden">
+                <MenuItem x:Name="CombiProduct_MenuItem" Header="Combi Produkter">
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
                 </MenuItem>
-                <MenuItem x:Name="Event_MenuItem" Header="Events" Visibility="Hidden">
+                <MenuItem x:Name="Event_MenuItem" Header="Events" >
                     <MenuItem Header="Opret"/>
                     <MenuItem Header="Rediger"/>
                 </MenuItem>

@@ -60,33 +60,35 @@ namespace Foxtrot.GUI.User
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (dataGrid_User_Edit.SelectedItem != null)
-            //{
-            //    if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
-            //    {
-            //        {
-            //            tempAdministrator.ID =
-            //                int.Parse(
-            //                    ((TextBlock)
-            //                            dataGrid_User_Edit.Columns[0].GetCellContent(
-            //                                dataGrid_User_Edit.SelectedItem))
-            //                                    .Text);
-            //            DBReadLogic.GetInfo(tempAdministrator);
-            //        }
-            //    }
-            //    else if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
-            //    {
-            //        {
-            //            tempActor.ID =
-            //                int.Parse(
-            //                    ((TextBlock)
-            //                            dataGrid_User_Edit.Columns[0].GetCellContent(
-            //                                dataGrid_User_Edit.SelectedItem))
-            //                                    .Text);
-            //            DBReadLogic.GetInfo(tempActor);
-            //        }
-            //    }
-            //}
+            if (dataGrid_User_Edit.SelectedItem != null)
+            {
+                if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
+                {
+                    {
+                        tempAdministrator.ID =
+                            int.Parse(
+                                ((TextBlock)
+                                        dataGrid_User_Edit.Columns[0].GetCellContent(
+                                            dataGrid_User_Edit.SelectedItem))
+                                                .Text);
+                        tempAdministrator =  DBReadLogic.GetAdminInfo(tempAdministrator);
+
+                        textBox_User_Edit_Firstname.Text = tempAdministrator.FirstName;
+                    }
+                }
+                //else if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
+                //{
+                //    {
+                //        tempActor.ID =
+                //            int.Parse(
+                //                ((TextBlock)
+                //                        dataGrid_User_Edit.Columns[0].GetCellContent(
+                //                            dataGrid_User_Edit.SelectedItem))
+                //                                .Text);
+                //        DBReadLogic.GetInfo(tempActor);
+                //    }
+                //}
+            }
         }
     }
 }
