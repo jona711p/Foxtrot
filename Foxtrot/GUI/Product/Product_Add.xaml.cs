@@ -16,15 +16,9 @@ namespace Foxtrot.GUI.Product
         public Product_Add()
         {
             InitializeComponent();
-
             Classes.Product product = new Classes.Product();
-
             product.ProductTable = new DataTable();
-
-            
-
             DBReadLogic.FillProductTable(product.ProductTable);
-
             DataContext = product;
         }
 
@@ -32,7 +26,6 @@ namespace Foxtrot.GUI.Product
         {
             Classes.Product products = new Classes.Product();
             int tempint;
-            string tempstring;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
