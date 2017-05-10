@@ -11,7 +11,6 @@ namespace Foxtrot
     public partial class MainWindow : Window
     {
         private static User user = new User();
-        private int userID;
         private int permission;
         public MainWindow()
         {
@@ -38,14 +37,13 @@ namespace Foxtrot
         public static void FillComboBoxWithAdminsAndActors()
         {
             user.AdminActorDictionary.Clear();
-
             DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
         }
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            userID = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key;
-            permission = DBReadLogic.GetUserPermission(userID);
+            user.ID = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key;
+            permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
             if (permission == 0)
             {
@@ -97,7 +95,7 @@ namespace Foxtrot
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Add(userID);
+            MainFrame.Content = new Product_Add(user.ID.Value);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)

@@ -13,7 +13,6 @@ namespace Classes
         public static bool DupeCheckActor(Actor actor)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
@@ -30,7 +29,6 @@ namespace Classes
                 }
 
                 return false;
-
             }
 
             catch (Exception ex)
@@ -44,7 +42,6 @@ namespace Classes
         public static int DupeCheckActors(Actor actor)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
@@ -58,12 +55,10 @@ namespace Classes
                 if (reader.HasRows)
                 {
                     reader.Read();
-
                     return int.Parse(reader[0].ToString());
                 }
 
                 return int.Parse(DBWriteLogic.WriteActors(actor).ToString());
-
             }
 
             catch (Exception ex)
@@ -77,7 +72,6 @@ namespace Classes
         public static bool DupeCheckAdmin(Administrator administrator)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
@@ -95,7 +89,6 @@ namespace Classes
                 }
 
                 return false;
-
             }
 
             catch (Exception ex)
@@ -112,7 +105,6 @@ namespace Classes
             List<int> dupeCheckList = new List<int>();
 
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
@@ -140,7 +132,6 @@ namespace Classes
         public static int GetUserPermission(int userID)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
@@ -224,6 +215,7 @@ namespace Classes
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+
             return adminActorDictionary;
         }
 
@@ -235,6 +227,7 @@ namespace Classes
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
+
                 adapter.Fill(productTable);
             }
 
@@ -254,6 +247,7 @@ namespace Classes
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("spFillUserTable", connection);
+
                 adapter.Fill(userTable);
             }
 
@@ -275,6 +269,7 @@ namespace Classes
             try
             {
                 SqlCommand command = new SqlCommand("spFillCityDictionary", connection);
+
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
@@ -289,6 +284,7 @@ namespace Classes
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return cityDictionary;

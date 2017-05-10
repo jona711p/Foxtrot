@@ -13,7 +13,6 @@ namespace Classes
         public static void WriteAdministrators(Administrator administrator)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
             try
             {
@@ -25,7 +24,6 @@ namespace Classes
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = administrator.WorkPhone;
                 command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = administrator.WorkEmail;
                 command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = administrator.WorkFax;
-
                 command.Parameters.Add("@Permission", SqlDbType.Int).Value = administrator.Permission;
 
                 command.ExecuteNonQuery();
@@ -42,7 +40,6 @@ namespace Classes
         public static int WriteActors(Actor actor)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
@@ -57,7 +54,6 @@ namespace Classes
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = actor.WorkPhone;
                 command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = actor.WorkEmail;
                 command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = actor.WorkFax;
-
                 command.Parameters.Add("@Permission", SqlDbType.Int).Value = actor.Permission;
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
 
@@ -80,7 +76,6 @@ namespace Classes
         public static void WriteCategories(List<Category> categories)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Category category in categories)
@@ -108,7 +103,6 @@ namespace Classes
         public static void WriteCities(List<City> cities)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (City city in cities)
@@ -137,7 +131,6 @@ namespace Classes
         public static void WriteFiles(List<File> files)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (File file in files)
@@ -165,7 +158,6 @@ namespace Classes
         public static void WriteMainCategories(List<MainCategory> mainCategories)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (MainCategory mainCategory in mainCategories)
@@ -193,7 +185,6 @@ namespace Classes
         public static void WriteOpeningHours(List<OpeningHour> openingHours)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (OpeningHour openingHour in openingHours)
@@ -204,12 +195,10 @@ namespace Classes
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add("@XMLID", SqlDbType.Int).Value = openingHour.XMLID;
-
                     command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
                     command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
                     command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
                     command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = openingHour.EndTime;
-
                     command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
                     command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
                     command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
@@ -233,7 +222,6 @@ namespace Classes
         public static void WriteProducts(List<Product> products)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in products)
@@ -250,7 +238,6 @@ namespace Classes
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = product.Address;
                     command.Parameters.Add("@Latitude", SqlDbType.Float).Value = product.Latitude;
                     command.Parameters.Add("@Longitude", SqlDbType.Float).Value = product.Longitude;
-
                     command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value =
                         product.ContactPhone == null
                         || product.ContactPhone.Count == 0
@@ -259,11 +246,9 @@ namespace Classes
                     command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail == null
                         ? null
                         : product.ContactEmail[0];
-
                     command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null
                         ? null
                         : (int?)product.ContactFax[0].Value;
-
                     command.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = product.CreationDate;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
@@ -295,7 +280,6 @@ namespace Classes
         public static void WriteRelCategories(List<Product> products)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
             {
                 foreach (Product product in products)
@@ -323,7 +307,6 @@ namespace Classes
         public static void WriteRelCombiProducts(List<Product> products)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in products)
@@ -358,7 +341,6 @@ namespace Classes
         public static void WriteRelEventsProducts(List<Product> products)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in products)
@@ -416,13 +398,13 @@ namespace Classes
                     }
                 }
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelMainCategories(List<Product> products)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
             {
                 foreach (Product product in products)
@@ -444,13 +426,13 @@ namespace Classes
                     }
                 }
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelOpeningHours(List<Product> products)
         {
             SqlConnection connection = null;
-
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             foreach (Product product in products)
@@ -475,6 +457,7 @@ namespace Classes
                     }
                 }
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }
