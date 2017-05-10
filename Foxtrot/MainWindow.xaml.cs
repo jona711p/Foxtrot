@@ -39,6 +39,11 @@ namespace Foxtrot
         {
             globalPermission = ((KeyValuePair<string, int>)comboBox_Main_Usertype.SelectedItem).Value;
 
+            if (globalPermission == 0)
+            {
+                User_MenuItem.Visibility = Visibility.Collapsed;
+            }
+
             if (globalPermission == 1)
             {
                 User_MenuItem.Visibility = Visibility.Visible;
