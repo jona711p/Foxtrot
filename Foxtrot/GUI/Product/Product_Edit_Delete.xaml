@@ -9,7 +9,84 @@
       Background="White"
       Title="Product_Edit_Delete">
 
+    <Page.Resources>
+        <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
     <Grid>
+        <!-- Liste over produkt start -->
+        <Grid HorizontalAlignment="Left" Height="334" Margin="347,48,0,0" VerticalAlignment="Top" Width="942">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable}" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+            <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="121" Grid.Column="1"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="356" Margin="337,34,0,0" VerticalAlignment="Top" Width="966"/>
+        <!-- Liste over produkt slut -->
+
+        <!-- Søg Produkt Start -->
+        <Grid HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
+            <Label x:Name="label_Product_Search" Content="Søg efter produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="92.8,3.8,0,0"/>
+            <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="24,50,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
+            <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="35" Margin="24,110,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="ID" />
+            <TextBox x:Name="textBox_Product_SearchArrangement" HorizontalAlignment="Left" Height="35" Margin="24,170,0,0" TextWrapping="Wrap" Text="{Binding Arrangement}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Arrangement"/>
+            <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="24,230,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
+            <TextBox x:Name="textBox_Product_SearchDate" HorizontalAlignment="Left" Height="35" Margin="24,290,0,0" TextWrapping="Wrap" Text="{Binding Date}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Dato"/>
+            <Border BorderBrush="Black" BorderThickness="1" Height="357" Margin="-4,6,15,0" VerticalAlignment="Top"/>
+        </Grid>
+        <!-- Søg Produkt Slut -->
+
+        <!-- Rediger Produkt Start -->
+        <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
+            <Label x:Name="label_Product_EditNew" Content="Rediger produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="113"/>
+            <TextBox x:Name="textBox_Product_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="30,65,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
+            <TextBox x:Name="textBox_Product_Edit_Adress" HorizontalAlignment="Left" Height="23" Margin="30,142,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
+            <TextBox x:Name="textBox_Product_Edit_Longtitude" HorizontalAlignment="Left" Height="23" Margin="257,66,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
+            <TextBox x:Name="textBox_Product_Edit_Latitude" HorizontalAlignment="Left" Height="23" Margin="255,142,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Breddegrad" />
+            <TextBox x:Name="textBox_Product_Edit_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="471,64,0,0" TextWrapping="Wrap" Text="{Binding ContactPhone}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Telefon nummer" />
+            <TextBox x:Name="textBox_Product_Edit_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="469,140,0,0" TextWrapping="Wrap" Text="{Binding ContactEmail}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Email" />
+            <TextBox x:Name="textBox_Product_Edit_ContactFax" HorizontalAlignment="Left" Height="23" Margin="677,64,0,0" TextWrapping="Wrap" Text="{Binding ContactFax}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Fax" />
+            <TextBox x:Name="textBox_Product_Edit_Príce" HorizontalAlignment="Left" Height="23" Margin="679,142,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
+            <TextBox x:Name="textBox_Product_Edit_Description" HorizontalAlignment="Left" Height="23" Margin="867,66,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
+            <TextBox x:Name="textBox_Product_Edit_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="873,140,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
+            <TextBox x:Name="textBox_Product_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1070,64,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
+            <TextBox x:Name="textBox_Product_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="1070,135,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
+            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113"/>
+            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="963,215,0,0" VerticalAlignment="Top" Width="113" ItemsSource = "{Binding CityDictionary}" Height="16" DisplayMemberPath="Key"/>
+            <Label x:Name="label_Product_Edit_CityID" Content="By" HorizontalAlignment="Left" Margin="1001,181,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="830,185,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="803,218,0,0" VerticalAlignment="Top" />
+            <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="876,216,0,0" VerticalAlignment="Top" />
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="19,414,0,0" VerticalAlignment="Top" Width="1280"/>
+        
+        <!-- Rediger Produkt Slut -->
         
     </Grid>
 </Page>

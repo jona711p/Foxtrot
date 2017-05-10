@@ -8,9 +8,7 @@ using System.Windows;
 
 namespace Foxtrot.GUI.Product
 {
-    /// <summary>
-    /// Interaction logic for Product_Add.xaml
-    /// </summary>
+    /// // Mikael
     public partial class Product_Add : Page
     {
         private bool Availibility;
