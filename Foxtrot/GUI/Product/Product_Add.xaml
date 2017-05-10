@@ -77,13 +77,11 @@
             <TextBox x:Name="textBox_Product_Add_Príce" HorizontalAlignment="Left" Height="23" Margin="808,63,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
             <TextBox x:Name="textBox_Product_Add_Description" HorizontalAlignment="Left" Height="23" Margin="808,138,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
             <TextBox x:Name="textBox_Product_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="964,63,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
-            <!--<TextBox x:Name="textBox_Product_Add_Availability" HorizontalAlignment="Left" Height="23" Margin="959,139,0,0" TextWrapping="Wrap" Text="{Binding Availability}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Tilgængelighed" />-->
-            
             <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1123,64,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
             <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="1118,138,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
             <Button x:Name="button_Product_Add_Create" Content="Opret Produkt" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113" Click="button_Product_Add_Create_Click"/>
-            <ComboBox x:Name="comboBox_Product_Add_CityID" HorizontalAlignment="Left" Margin="963,215,0,0" VerticalAlignment="Top" Width="113" Height="16"/>
-            <Label x:Name="label_Product_Add_CityID" Content="By ID" HorizontalAlignment="Left" Margin="1001,181,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboBox_Product_Add_CityID" HorizontalAlignment="Left" Margin="963,215,0,0" VerticalAlignment="Top" Width="113" ItemsSource = "{Binding CityID}" Height="16"/>
+            <Label x:Name="label_Product_Add_CityID" Content="By" HorizontalAlignment="Left" Margin="1001,181,0,0" VerticalAlignment="Top"/>
             <RadioButton x:Name="rbtn_Product_Add_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="989,138,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_True_OnClick"/>
             <RadioButton x:Name="rbtn_Product_Add_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="1001,112,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_False_OnClick"/>
         </Grid>
