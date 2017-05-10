@@ -247,5 +247,40 @@ namespace Classes
 
             return cityDictionary;
         }
+        public static Administrator GetAdminInfo(Administrator inputAdmin)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand(
+                                @"SELECT
+                    Users.ID,
+                    FirstName,
+                    LastName,
+                    WorkPhone,
+                    WorkEmail,
+                    WorkFax
+                    FROM Administrators
+                    INNER JOIN Users ON FK_UserID = Users.ID
+where FK_UserID = @FK_UserID", connection);
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.ID;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                inputAdmin.FirstName = reader["FirstName"].ToString();
+                inputAdmin.LastName = reader["LastName"].ToString();
+                inputAdmin.WorkPhone = int.Parse(reader["WorkPhone"].ToString());
+                inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
+                inputAdmin.WorkFax = (reader["WorkFax"] == null ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+            return inputAdmin;
+        }
     }
 }

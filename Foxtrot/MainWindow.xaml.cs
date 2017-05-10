@@ -43,7 +43,8 @@ namespace Foxtrot
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            globalPermission = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
+            var kvp = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem);
+           // globalPermission = kvp.Key;
 
             if (globalPermission == 0)
             {
@@ -53,18 +54,18 @@ namespace Foxtrot
             if (globalPermission == 1)
             {
                 HideAll();
-                User_MenuItem.Visibility = Visibility.Visible;
-                Product_MenuItem.Visibility = Visibility.Visible;
-                CombiProduct_MenuItem.Visibility = Visibility.Visible;
-                Event_MenuItem.Visibility = Visibility.Visible;
+                User_MenuItem.IsEnabled = true;
+                Product_MenuItem.IsEnabled = true;
+                CombiProduct_MenuItem.IsEnabled = true;
+                Event_MenuItem.IsEnabled = true;
             }
 
             if (globalPermission == 2)
             {
                 HideAll();
-                Product_MenuItem.Visibility = Visibility.Visible;
-                CombiProduct_MenuItem.Visibility = Visibility.Visible;
-                Event_MenuItem.Visibility = Visibility.Visible;
+                Product_MenuItem.IsEnabled = false;
+                CombiProduct_MenuItem.IsEnabled = false;
+                Event_MenuItem.IsEnabled = false;
             }
 
             MainFrame.Content = new Frontpage();
@@ -72,10 +73,10 @@ namespace Foxtrot
 
         void HideAll()
         {
-            User_MenuItem.Visibility = Visibility.Hidden;
-            Product_MenuItem.Visibility = Visibility.Hidden;
-            CombiProduct_MenuItem.Visibility = Visibility.Hidden;
-            Event_MenuItem.Visibility = Visibility.Hidden;
+            User_MenuItem.IsEnabled = false;
+            Product_MenuItem.IsEnabled = false;
+            CombiProduct_MenuItem.IsEnabled = false;
+            Event_MenuItem.IsEnabled = false;
         }
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
