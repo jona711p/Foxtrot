@@ -25,8 +25,7 @@ namespace Foxtrot.GUI.Product
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
-
-            
+    
         }
 
         private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
