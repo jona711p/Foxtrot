@@ -50,9 +50,9 @@
         </Label>
 
         <Grid HorizontalAlignment="Center" Height="165" Margin="504,97,506,506" VerticalAlignment="Center" Width="300">
-            <TextBox x:Name="txtbox_Modify_CompanyName" HorizontalAlignment="Center" Height="24" Margin="10,17,40,124" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn *" FontFamily="Arial"/>
-            <TextBox x:Name="txtbox_Modify_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,46,40,95" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *" FontFamily="Arial"/>
-            <TextBox x:Name="txtbox_Modify_LastName" HorizontalAlignment="Center" Height="24" Margin="10,75,40,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *" FontFamily="Arial"/>
+            <TextBox x:Name="txtbox_Modify_CompanyName" HorizontalAlignment="Center" Height="24" Margin="10,17,40,124" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn *" FontFamily="Arial" Text="{Binding CompanyName}"/>
+            <TextBox x:Name="txtbox_Modify_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,46,40,95" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *" FontFamily="Arial" Text="{Binding FirstName}"/>
+            <TextBox x:Name="txtbox_Modify_LastName" HorizontalAlignment="Center" Height="24" Margin="10,75,40,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *" FontFamily="Arial" Text="{Binding LastName}"/>
             <Label x:Name="lbl_Modify_Name_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,70,185,6" VerticalAlignment="Center" FontFamily="Arial"/>
             <Border x:Name="border_Modify_Name" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="134" VerticalAlignment="Center" Width="300" Margin="0,1,0,30">
                 <Border.Effect>
@@ -62,9 +62,9 @@
         </Grid>
 
         <Grid HorizontalAlignment="Center" Height="130" Margin="504,267,506,371" VerticalAlignment="Center" Width="300">
-            <TextBox x:Name="txtbox_Modify_WorkPhone" HorizontalAlignment="Center" Height="26" Margin="10,10,40,94" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *" FontFamily="Arial"/>
-            <TextBox x:Name="txtbox_Modify_WorkEmail" HorizontalAlignment="Center" Height="26" Margin="10,41,40,63" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *" FontFamily="Arial"/>
-            <TextBox x:Name="txtbox_Modify_WorkFax" HorizontalAlignment="Center" Height="24" Margin="10,72,40,34" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax" FontFamily="Arial"/>
+            <TextBox x:Name="txtbox_Modify_WorkPhone" HorizontalAlignment="Center" Height="26" Margin="10,10,40,94" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *" FontFamily="Arial" Text="{Binding WorkPhone}"/>
+            <TextBox x:Name="txtbox_Modify_WorkEmail" HorizontalAlignment="Center" Height="26" Margin="10,41,40,63" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *" FontFamily="Arial" Text="{Binding WorkEmail}"/>
+            <TextBox x:Name="txtbox_Modify_WorkFax" HorizontalAlignment="Center" Height="24" Margin="10,72,40,34" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax" FontFamily="Arial" Text="{Binding WorkFax}"/>
             <Label x:Name="lbl_Modify_Contact_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,101,185,5" VerticalAlignment="Center" FontFamily="Arial"/>
             <Border x:Name="border_Modify_Contact" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="129" VerticalAlignment="Center" Width="300" Margin="0,1,0,0">
                 <Border.Effect>
