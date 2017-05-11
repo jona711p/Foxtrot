@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Windows.Controls;
 using Classes;
 using System.Windows;
@@ -138,12 +136,14 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
-                tempProduct.ExtraDescription = new List<ExtraDescription>()
+                products.ExtraDescription = new List<ExtraDescription>()
+            {
+                new ExtraDescription()
                 {
-                    textBox_Product_Add_ExtraDescription.Text.ToString()
-                };
-
-                // Fejl
+                    Description = textBox_Product_Add_ExtraDescription.Text
+                }
+            };
+                
             }
             else
             {
