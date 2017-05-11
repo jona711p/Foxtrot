@@ -89,7 +89,7 @@ namespace Foxtrot
 
         private void MenuItem_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new User_Edit_Delete();
+            MainFrame.Content = new User_Edit_Delete(user.ID.Value);
         }
 
         private void MenuItem_User_Modify_OnClick(object sender, RoutedEventArgs e)
