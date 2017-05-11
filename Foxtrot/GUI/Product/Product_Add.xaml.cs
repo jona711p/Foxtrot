@@ -172,9 +172,11 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Availability = Availibility;
             }
 
-            List<Classes.Product> hest = new List<Classes.Product>();
-            hest.Add(tempProduct);
-            DBWriteLogic.WriteNewProducts(hest);
+            tempProduct.Cities = new City();
+            tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Add_CityID.SelectedItem).Value;
+            List<Classes.Product> tempList = new List<Classes.Product>();
+       tempList.Add(tempProduct);
+            DBWriteLogic.WriteProducts(tempList);
             MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + " " + "er blevet oprettet i systemet!");
         }
 
