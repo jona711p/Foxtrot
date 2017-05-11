@@ -471,10 +471,8 @@ namespace Classes
 
                 try
                 {
-                    SqlCommand command = new SqlCommand("spWriteProducts", connection);
+                    SqlCommand command = new SqlCommand("spWriteNewProducts", connection);
                     command.CommandType = CommandType.StoredProcedure;
-
-                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
 
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputProducts.Name;
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = inputProducts.Address;
@@ -502,12 +500,7 @@ namespace Classes
                     command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProducts.Cities.ID;
                     command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = inputProducts.ActorID;
 
-                    command.Parameters.Add(outputID);
-                    outputID.Direction = ParameterDirection.Output;
-
                     command.ExecuteNonQuery();
-
-                inputProducts.ID = int.Parse(outputID.Value.ToString());
                 }
 
                 catch (Exception ex)
