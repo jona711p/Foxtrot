@@ -77,7 +77,9 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE FirstName = @FirstName AND LastName = @LastName", connection);
+                SqlCommand command =
+                    new SqlCommand("SELECT * FROM Users WHERE FirstName = @FirstName AND LastName = @LastName",
+                        connection);
 
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = administrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = administrator.LastName;
@@ -161,7 +163,8 @@ namespace Classes
             }
         }
 
-        public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection)
+        public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(
+            ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection)
         {
             if (adminActorObservableCollection != null)
             {
@@ -232,6 +235,7 @@ namespace Classes
 
             return productTable;
         }
+
         public static DataTable FillUserTable(DataTable userTable)
         {
             SqlConnection connection = null;
@@ -253,6 +257,7 @@ namespace Classes
 
             return userTable;
         }
+
         public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> cityDictionary)
         {
             DataTable dt = new DataTable();
@@ -283,6 +288,7 @@ namespace Classes
 
             return cityDictionary;
         }
+
         public static Administrator GetAdminInfo(Administrator inputAdmin)
         {
             SqlConnection connection = null;
@@ -298,9 +304,13 @@ namespace Classes
 
                 inputAdmin.FirstName = reader["FirstName"].ToString();
                 inputAdmin.LastName = reader["LastName"].ToString();
-                inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkPhone"].ToString()));
+                inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("")
+                    ? null
+                    : (int?) int.Parse(reader["WorkPhone"].ToString()));
                 inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
-                inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
+                inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("")
+                    ? null
+                    : (int?) int.Parse(reader["WorkFax"].ToString()));
             }
 
             catch (Exception e)
@@ -312,6 +322,7 @@ namespace Classes
 
             return inputAdmin;
         }
+
         public static Actor GetActorInfo(Actor inputActor)
         {
             SqlConnection connection = null;
@@ -330,9 +341,13 @@ namespace Classes
                 inputActor.CompanyName = reader["Firmanavn"].ToString();
                 inputActor.FirstName = reader["Fornavn"].ToString();
                 inputActor.LastName = reader["Efternavn"].ToString();
-                inputActor.WorkPhone = (reader["Telefon nr."].ToString().Equals("") ? null : (int?)int.Parse(reader["Telefon nr."].ToString()));
+                inputActor.WorkPhone = (reader["Telefon nr."].ToString().Equals("")
+                    ? null
+                    : (int?) int.Parse(reader["Telefon nr."].ToString()));
                 inputActor.WorkEmail = reader["E-Mail"].ToString();
-                inputActor.WorkFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
+                inputActor.WorkFax = (reader["Fax"].ToString().Equals("")
+                    ? null
+                    : (int?) int.Parse(reader["Fax"].ToString()));
             }
 
             catch (Exception e)
@@ -344,6 +359,7 @@ namespace Classes
 
             return inputActor;
         }
+
         public static Product GetProductInfo(Product inputProduct)
         {
             SqlConnection connection = null;
@@ -362,11 +378,13 @@ namespace Classes
                 inputProduct.Address = reader["Address"].ToString();
                 inputProduct.Longitude = ConvertToNullableFloat(reader["Longitude"]);
                 inputProduct.Latitude = ConvertToNullableFloat(reader["Latitude"]);
-                inputProduct.ContactPhone = new List<int?>();
 
+                inputProduct.ContactPhone = new List<int?>();
                 {
                     ConvertToNullableInt(reader["ContactPhone"]);
-                };
+                }
+                ;
+
                 inputProduct.ContactEmail = new List<string>()
                 {
                     reader["ContactEmail"].ToString()
@@ -376,13 +394,18 @@ namespace Classes
                 {
                     ConvertToNullableInt(reader["ContactFax"])
                 };
+
                 inputProduct.Price = ConvertToNullableFloat(reader["Price"]);
                 inputProduct.Description = reader["Description"].ToString();
+
                 inputProduct.ExtraDescription = new List<ExtraDescription>();
-                {
-                    reader["ExtraDescription"].ToString();
-                };
-                inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                
+                ExtraDescription tempExtraDescription = new ExtraDescription();
+                tempExtraDescription.Description = reader["ExtraDescription"].ToString();
+            
+
+
+            inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
             }
@@ -396,7 +419,10 @@ namespace Classes
             return inputProduct;
         }
 
-        public static int? ConvertToNullableInt(object objectFromReader)
+    
+
+
+    public static int? ConvertToNullableInt(object objectFromReader)
         {
             return objectFromReader.ToString().Equals("") ? null : (int?)int.Parse(objectFromReader.ToString());
         }

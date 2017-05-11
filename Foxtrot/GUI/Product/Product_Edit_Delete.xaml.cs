@@ -62,7 +62,7 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();   // fejl
                 textBox_Product_Edit_Príce.Text = tempProduct.Price.ToString();
                 textBox_Product_Edit_Description.Text = tempProduct.Description;
-                if (tempProduct.ExtraDescription.Count != 0)
+                if (tempProduct.ExtraDescription.Count != 0) //Ikke lavet ordenligt
                 {
                     textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;   
                 }
