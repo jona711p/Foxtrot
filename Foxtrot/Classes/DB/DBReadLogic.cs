@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -160,8 +161,13 @@ namespace Classes
             }
         }
 
-        public static Dictionary<int, string> FillAdminActorDictionary(Dictionary<int, string> adminActorDictionary)
+        public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection)
         {
+            if (adminActorObservableCollection != null)
+            {
+                adminActorObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
+            }
+
             DataTable dt = new DataTable();
 
             SqlConnection connection = null;
@@ -169,7 +175,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command1 = new SqlCommand("spFillAdminDictionary", connection);
+                SqlCommand command1 = new SqlCommand("spFillAdminObservableCollection", connection);
                 command1.CommandType = CommandType.StoredProcedure;
 
                 dt.Load(command1.ExecuteReader());
@@ -178,10 +184,10 @@ namespace Classes
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
-                    adminActorDictionary.Add(tempInt, tempString);
+                    adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
 
-                SqlCommand command2 = new SqlCommand("spFillActorDictionary", connection);
+                SqlCommand command2 = new SqlCommand("spFillActorObservableCollection", connection);
                 command2.CommandType = CommandType.StoredProcedure;
 
                 dt.Clear();
@@ -191,7 +197,7 @@ namespace Classes
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
-                    adminActorDictionary.Add(tempInt, tempString);
+                    adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
             }
 
@@ -202,7 +208,7 @@ namespace Classes
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return adminActorDictionary;
+            return adminActorObservableCollection;
         }
 
         public static DataTable FillProductTable(DataTable productTable)
@@ -297,7 +303,7 @@ namespace Classes
                 inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -327,7 +333,7 @@ namespace Classes
                 inputActor.WorkFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -336,6 +342,7 @@ namespace Classes
 
             return inputActor;
         }
+
         //public static Product GetProductInfo(Product inputProduct)
         //{
         //    SqlConnection connection = null;
@@ -345,25 +352,27 @@ namespace Classes
         //    {
         //        SqlCommand command = new SqlCommand("spGetProductInfo", connection);
         //        command.CommandType = CommandType.StoredProcedure;
+
         //        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
+
         //        SqlDataReader reader = command.ExecuteReader();
         //        reader.Read();
 
         //        object bla = reader[0];
 
-        //    inputProduct.ID = int.Parse(reader["ID"].ToString());
+        //        inputProduct.ID = int.Parse(reader["ID"].ToString());
         //        inputProduct.Name = reader["Name"].ToString();
         //        inputProduct.Address = reader["Address"].ToString();
         //        inputProduct.Longitude = float.Parse(reader["Longitude"].ToString());
         //        inputProduct.Latitude = float.Parse(reader["Latitude"].ToString());
         //        inputProduct.ContactPhone = new List<int?>()
         //        {
-        //            ConvertToNullableInt(reader["ContactPhone"])
+        //            DBSortingLogic.ConvertToNullableInt(reader["ContactPhone"])
         //        };
         //        inputProduct.ContactEmail = reader["ContactEmail"].ToString();
 
         //        inputProduct.ContactFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
-        //        inputProduct.Price = ConvertToNullableFloat(reader["Fax"]);
+        //        inputProduct.Price = DBSortingLogic.ConvertToNullableFloat(reader["Fax"]);
         //        inputProduct.Description = reader["Description"].ToString();
         //        inputProduct.ExtraDescription = new List<ExtraDescription>();
         //        {
@@ -383,15 +392,5 @@ namespace Classes
 
         //    return inputProduct;
         //}
-
-        public static int? ConvertToNullableInt(object objectFromReader)
-        {
-            return objectFromReader.ToString().Equals("") ? null : (int?)int.Parse(objectFromReader.ToString());
-        }
-
-        public static float? ConvertToNullableFloat(object objectFromReader)
-        {
-            return objectFromReader.ToString().Equals("") ? null : (float?)float.Parse(objectFromReader.ToString());
-        }
     }
 }

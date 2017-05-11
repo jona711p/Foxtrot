@@ -33,19 +33,14 @@ namespace Foxtrot
 
         public static void FillComboBoxWithAdminsAndActors()
         {
-            user.AdminActorDictionary.Clear();
-            DBReadLogic.FillAdminActorDictionary(user.AdminActorDictionary);
+            user.AdminActorObservableCollection = DBReadLogic.FillAdminActorObservableCollection(user.AdminActorObservableCollection);
         }
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             user.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
-            permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
-            if (permission == 0)
-            {
-                HideAll();
-            }
+            permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
             if (permission == 1)
             {

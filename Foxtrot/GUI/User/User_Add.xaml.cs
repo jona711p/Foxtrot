@@ -17,19 +17,20 @@ namespace Foxtrot.GUI.User
 
         private void btnCreateUser_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (rbtn_Administrator.IsChecked == false && rbtn_Actor.IsChecked == false)
+            {
+                Message("Vælg enten en Administrator eller en Aktør!");
+                return;
+            }
+            
             if (rbtn_Administrator.IsChecked == true)
             {
                 Administrator();
             }
 
-            else if (rbtn_Actor.IsChecked == true)
+            if (rbtn_Actor.IsChecked == true)
             {
                 Actor();
-            }
-
-            else
-            {
-                Message("Vælg enten en Administrator eller en Aktør!");
             }
 
             MainWindow.FillComboBoxWithAdminsAndActors();
@@ -94,11 +95,14 @@ namespace Foxtrot.GUI.User
                 DBWriteLogic.WriteAdministrators(administrator);
 
                 Message("En Administrator med navnet: '" + administrator.FirstName + " " +
-                                administrator.LastName + "' er blevet oprettet i systemet!");
+                        administrator.LastName + "' er blevet oprettet i systemet!");
             }
 
-            Message("Der findes allerede en Administrator med navnet: '" + administrator.FirstName + " " +
+            else
+            {
+                Message("Der findes allerede en Administrator med navnet: '" + administrator.FirstName + " " +
                             administrator.LastName + "' i systemet!");
+            }
         }
 
         void Actor()
@@ -170,7 +174,10 @@ namespace Foxtrot.GUI.User
                 Message("En Aktør med firmanavnet: '" + actor.CompanyName + "' er blevet oprettet i systemet");
             }
 
-            Message("Der findes allerede en Aktør med firmanavnet: '" + actor.CompanyName + "' i systemet!");
+            else
+            {
+                Message("Der findes allerede en Aktør med firmanavnet: '" + actor.CompanyName + "' i systemet!");
+            }
         }
 
         static void Message(string message)
