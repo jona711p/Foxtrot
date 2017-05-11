@@ -9,6 +9,7 @@ namespace Classes
     public class User : INotifyPropertyChanged
     {
         public int? ID { get; set; }
+        public int Permission { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? WorkPhone { get; set; }
@@ -37,7 +38,6 @@ namespace Classes
     public class Administrator : User
     {
         public int? User_ID { get; set; }
-        public int Permission { get; set; }
         public Administrator()
         {
             Permission = 1;
@@ -47,7 +47,6 @@ namespace Classes
     public class Actor : User
     {
         public int? User_ID { get; set; }
-        public int Permission { get; set; }
         public string CompanyName { get; set; }
         public Actor()
         {

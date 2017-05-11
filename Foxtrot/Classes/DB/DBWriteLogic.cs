@@ -19,12 +19,12 @@ namespace Classes
                 SqlCommand command = new SqlCommand("spWriteAdministrators", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add("@Permission", SqlDbType.Int).Value = administrator.Permission;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = administrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = administrator.LastName;
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = administrator.WorkPhone;
                 command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = administrator.WorkEmail;
                 command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = administrator.WorkFax;
-                command.Parameters.Add("@Permission", SqlDbType.Int).Value = administrator.Permission;
 
                 command.ExecuteNonQuery();
             }
@@ -49,18 +49,20 @@ namespace Classes
 
                 SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
 
+                command.Parameters.Add("@Permission", SqlDbType.Int).Value = actor.Permission;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = actor.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = actor.LastName;
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = actor.WorkPhone;
                 command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = actor.WorkEmail;
                 command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = actor.WorkFax;
-                command.Parameters.Add("@Permission", SqlDbType.Int).Value = actor.Permission;
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
 
                 command.Parameters.Add(outputID);
                 outputID.Direction = ParameterDirection.Output;
 
                 command.ExecuteNonQuery();
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
 
                 return int.Parse(outputID.Value.ToString());
             }
@@ -69,8 +71,6 @@ namespace Classes
             {
                 throw ex;
             }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteCategories(List<Category> categories)
@@ -301,6 +301,7 @@ namespace Classes
                     }
                 }
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
@@ -335,6 +336,7 @@ namespace Classes
 
                 else break;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
@@ -369,6 +371,7 @@ namespace Classes
 
                 else break;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
