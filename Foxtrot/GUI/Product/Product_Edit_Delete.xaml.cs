@@ -50,14 +50,14 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
                 textBox_Product_Edit_Longtitude.Text = tempProduct.Longitude.ToString();
                 textBox_Product_Edit_Latitude.Text = tempProduct.Latitude.ToString();
-                textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone.ToString();
+                textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone.ToString(); // fejl
                 textBox_Product_Edit_ContactEmail.Text = tempProduct.ContactEmail[0];
-                textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax.ToString();
+                textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax.ToString();   // fejl
                 textBox_Product_Edit_Príce.Text = tempProduct.Price.ToString();
                 textBox_Product_Edit_Description.Text = tempProduct.Description;
                 if (tempProduct.ExtraDescription.Count != 0)
                 {
-                    textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
+                    textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;   // fejl
                 }
                 rbtn_Product_Edit_Availability_True.IsChecked = tempProduct.Availability;
                 rbtn_Product_Edit_Availability_False.IsChecked = !tempProduct.Availability;
