@@ -269,7 +269,7 @@ namespace Classes
                 foreach (DataRow row in dt.Rows)
                 {
                     string tempString = Convert.ToString(row["Name"]);
-                    int tempInt = int.Parse(row["PostalCode"].ToString());
+                    int tempInt = int.Parse(row["ID"].ToString());
                     cityDictionary.Add(tempString, tempInt);
                 }
             }

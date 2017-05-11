@@ -19,7 +19,8 @@ namespace Foxtrot.GUI.Product
             InitializeComponent();
             tempProduct.ProductTable = new DataTable();
             tempCity.CityDictionary = new Dictionary<string, int>();
-
+            DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
+            comboBox_Product_Add_CityID.ItemsSource = tempCity.CityDictionary;
             
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
@@ -116,7 +117,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_Príce.Text.Length != 0)
             {
-                tempProduct.Price = textBox_Product_Add_Príce.Text.Length;
+                tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
             }
             else
             {
@@ -171,9 +172,11 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Availability = Availibility;
             }
 
-            List<Classes.Product> hest = new List<Classes.Product>();
-            hest.Add(tempProduct);
-            DBWriteLogic.WriteProducts(hest);
+            tempProduct.Cities = new City();
+            tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Add_CityID.SelectedItem).Value;
+            List<Classes.Product> tempList = new List<Classes.Product>();
+       tempList.Add(tempProduct);
+            DBWriteLogic.WriteProducts(tempList);
             MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + " " + "er blevet oprettet i systemet!");
         }
 
