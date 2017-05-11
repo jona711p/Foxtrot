@@ -16,6 +16,7 @@ namespace Foxtrot.GUI.Product
 
         public Product_Add(int userID)
         {
+            tempProduct.ActorID = userID;
             InitializeComponent();
             tempProduct.ProductTable = new DataTable();
             tempCity.CityDictionary = new Dictionary<string, int>();
@@ -171,13 +172,11 @@ namespace Foxtrot.GUI.Product
             {
                 tempProduct.Availability = Availibility;
             }
-
             tempProduct.Cities = new City();
             tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Add_CityID.SelectedItem).Value;
-            List<Classes.Product> tempList = new List<Classes.Product>();
-       tempList.Add(tempProduct);
-            DBWriteLogic.WriteProducts(tempList);
-            MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + " " + "er blevet oprettet i systemet!");
+
+            DBWriteLogic.WriteNewProduct(tempProduct);
+            MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet oprettet i systemet!");
         }
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
