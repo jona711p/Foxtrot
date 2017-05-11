@@ -26,6 +26,8 @@ namespace Foxtrot.GUI.Product
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
+
+            
         }
 
         private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -73,7 +75,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
+            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) && // Fejl
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
                 products.ContactPhone.Add(tempint);
@@ -84,7 +86,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
+            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@")) // Fejl
             {
                 products.ContactEmail.Add(textBox_Product_Add_ContactEmail.Text);
             }
@@ -94,7 +96,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) &&
+            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) && // Fejl
                 textBox_Product_Add_ContactFax.Text.Length == 8)
             {
                 products.ContactFax.Add(tempint);
@@ -128,7 +130,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
-                products.ExtraDescription[0].Description = textBox_Product_Add_ExtraDescription.Text;
+                products.ExtraDescription[0].Description = textBox_Product_Add_ExtraDescription.Text; // Fejl
             }
             else
             {
@@ -151,6 +153,10 @@ namespace Foxtrot.GUI.Product
             {
                 products.Availability = Availibility;
             }
+
+            Classes.Product tempProduct1 = new Classes.Product();
+            DBWriteLogic.WriteProducts();
+            MessageBox.Show("Et produkt med navnet: '" + tempProduct1.Name + " " + "er blevet oprettet i systemet!");
         }
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
@@ -163,7 +169,11 @@ namespace Foxtrot.GUI.Product
             Availibility = false;
         }
 
-        private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+        
+    
+
+    private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if (dataGrid_Product_List.SelectedItem != null)
             //{
@@ -191,5 +201,6 @@ namespace Foxtrot.GUI.Product
             //    textBox_Product_Add_CanonicalUrl.Text = tempProduct.CanonicalUrl;
             //}
         }
+       
     }
 }

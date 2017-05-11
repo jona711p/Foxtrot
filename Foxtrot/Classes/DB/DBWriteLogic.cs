@@ -37,6 +37,7 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
+
         public static int WriteActors(Actor actor)
         {
             SqlConnection connection = null;

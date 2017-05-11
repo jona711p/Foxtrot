@@ -91,6 +91,7 @@ namespace Foxtrot.GUI.User
 
             if (!dupe)
             {
+                
                 DBWriteLogic.WriteAdministrators(administrator);
 
                 Message("En Administrator med navnet: '" + administrator.FirstName + " " +
