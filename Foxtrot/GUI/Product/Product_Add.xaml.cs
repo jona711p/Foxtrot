@@ -14,23 +14,31 @@ namespace Foxtrot.GUI.Product
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Add(int userID)
+        public Product_Add(int userID, int permission)
         {
-            tempProduct.ActorID = userID;
+            if (permission == 1)
+            {
+                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Administrators", userID);
+            }
+
+            if (permission == 2)
+            {
+                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", userID);
+            }
+            
             InitializeComponent();
             tempProduct.ProductTable = new DataTable();
             tempCity.CityDictionary = new Dictionary<string, int>();
             DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             comboBox_Product_Add_CityID.ItemsSource = tempCity.CityDictionary;
-            
+
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
-    
         }
 
         private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+
             int tempint;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
@@ -73,7 +81,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) && 
+            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
                 tempProduct.ContactPhone = new List<int?>()
@@ -87,13 +95,13 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@")) 
+            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
                 tempProduct.ContactEmail = new List<string>()
                     {
                         textBox_Product_Add_ContactEmail.Text
                     };
-                
+
             }
             else
             {
@@ -101,7 +109,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) && 
+            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) &&
                 textBox_Product_Add_ContactFax.Text.Length == 8)
             {
                 tempProduct.ContactFax = new List<int?>()
@@ -145,7 +153,7 @@ namespace Foxtrot.GUI.Product
                     Description = textBox_Product_Add_ExtraDescription.Text
                 }
             };
-                
+
             }
             else
             {

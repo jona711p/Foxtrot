@@ -42,8 +42,6 @@ namespace Foxtrot
 
             permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
-            MessageBox.Show(user.ID.Value.ToString() + " " + permission.ToString());
-
             if (permission == 1)
             {
                 HideAll();
@@ -101,7 +99,7 @@ namespace Foxtrot
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Add(user.ID.Value);
+            MainFrame.Content = new Product_Add(user.ID.Value, permission);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
