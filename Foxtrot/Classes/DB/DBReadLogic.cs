@@ -354,15 +354,14 @@ namespace Classes
                 inputProduct.Address = reader["Address"].ToString();
                 inputProduct.Longitude = float.Parse(reader["Longitude"].ToString());
                 inputProduct.Latitude = float.Parse(reader["Latitude"].ToString());
-                inputProduct.ContactPhone = new List<int?>()
                 {
-                    ConvertToNullableInt(reader["ContactPhone"])
+                    ConvertToNullableInt(reader["ContactPhone"]);
                 };
                 inputProduct.ContactEmail = new List<string>()
                 {
                     reader["ContactEmail"].ToString()
-                }; 
-
+                };
+                inputProduct.ContactEmail[0] = ("hest");
                 inputProduct.ContactFax = new List<int?>()
                 {
                     ConvertToNullableInt(reader["ContactFax"])
