@@ -11,18 +11,17 @@ namespace Foxtrot
     public partial class MainWindow : Window
     {
         private static User user = new User();
-        private int permission;
+        private int permission = 0;
         public MainWindow()
         {
             XMLLogic.WatchXMLDir();
 
-            ResizeMode = ResizeMode.NoResize;
-
             InitializeComponent();
-
+            ResizeMode = ResizeMode.NoResize;
+            HideAll();
             FillComboBoxWithAdminsAndActors();
-
             MainFrame.Content = new Frontpage();
+            DataContext = user;
 
             textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
                 "\nØsterbro 7, 7800 Skive" +
@@ -30,8 +29,6 @@ namespace Foxtrot
             textBox_RightFooter.Text = "Åbningstider:" +
                 "\nMandag – Torsdag kl. 09.00 - 15.00" +
                 "\nFredag kl. 09.00 - 14.00";
-
-            DataContext = user;
         }
 
         public static void FillComboBoxWithAdminsAndActors()
@@ -42,7 +39,7 @@ namespace Foxtrot
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            user.ID = ((KeyValuePair<int, string>) comboBox_Main_Usertype.SelectedItem).Key;
+            user.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
             permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
             if (permission == 0)

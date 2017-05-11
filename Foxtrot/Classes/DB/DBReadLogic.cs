@@ -28,6 +28,8 @@ namespace Classes
                     return true;
                 }
 
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
                 return false;
             }
 
@@ -35,8 +37,6 @@ namespace Classes
             {
                 throw ex;
             }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static int DupeCheckActors(Actor actor)
@@ -58,6 +58,8 @@ namespace Classes
                     return int.Parse(reader[0].ToString());
                 }
 
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
                 return int.Parse(DBWriteLogic.WriteActors(actor).ToString());
             }
 
@@ -65,8 +67,6 @@ namespace Classes
             {
                 throw ex;
             }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static bool DupeCheckAdmin(Administrator administrator)
@@ -88,6 +88,8 @@ namespace Classes
                     return true;
                 }
 
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
                 return false;
             }
 
@@ -95,8 +97,6 @@ namespace Classes
             {
                 throw ex;
             }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static List<int> DupeCheckList(string id, string tableName)
@@ -110,7 +110,7 @@ namespace Classes
             try
             {
                 SqlCommand command = new SqlCommand("SELECT " + id + " FROM " + tableName, connection);
-                
+
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
@@ -136,42 +136,28 @@ namespace Classes
 
             try
             {
-                SqlCommand command1 = new SqlCommand("spGetAdministratorPermission", connection);
-                command1.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("spGetUserPermission", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
-                command1.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = userID;
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = userID;
 
-                SqlDataReader reader1 = command1.ExecuteReader();
+                SqlDataReader reader = command.ExecuteReader();
 
-                if (reader1.HasRows)
+                if (reader.HasRows)
                 {
-                    reader1.Read();
-                    return int.Parse(reader1[0].ToString());
+                    reader.Read();
+                    return int.Parse(reader[0].ToString());
                 }
 
-                else
-                {
-                    connection = DBConnectionLogic.DisconnectFromDB(connection);
-                    connection = DBConnectionLogic.ConnectToDB(connection);
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-                    SqlCommand command2 = new SqlCommand("spGetActorPermission", connection);
-                    command2.CommandType = CommandType.StoredProcedure;
-
-                    command2.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = userID;
-
-                    SqlDataReader reader2 = command2.ExecuteReader();
-
-                    reader2.Read();
-                    return int.Parse(reader2[0].ToString());
-                }
+                return 0;
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static Dictionary<int, string> FillAdminActorDictionary(Dictionary<int, string> adminActorDictionary)
@@ -235,6 +221,7 @@ namespace Classes
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return productTable;
@@ -255,6 +242,7 @@ namespace Classes
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return userTable;
@@ -308,11 +296,14 @@ namespace Classes
                 inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
                 inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("") ? null : (int?)int.Parse(reader["WorkFax"].ToString()));
             }
+
             catch (Exception e)
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+
             return inputAdmin;
         }
         public static Actor GetActorInfo(Actor inputActor)
@@ -335,11 +326,14 @@ namespace Classes
                 inputActor.WorkEmail = reader["E-Mail"].ToString();
                 inputActor.WorkFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
             }
+
             catch (Exception e)
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+
             return inputActor;
         }
         //public static Product GetProductInfo(Product inputProduct)
@@ -379,17 +373,20 @@ namespace Classes
         //        inputProduct.Website = reader["Website"].ToString();
         //        inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
         //    }
+
         //    catch (Exception e)
         //    {
         //        throw;
         //    }
+
         //    connection = DBConnectionLogic.DisconnectFromDB(connection);
+
         //    return inputProduct;
         //}
 
         public static int? ConvertToNullableInt(object objectFromReader)
         {
-            return objectFromReader.ToString().Equals("") ? null : (int?) int.Parse(objectFromReader.ToString());
+            return objectFromReader.ToString().Equals("") ? null : (int?)int.Parse(objectFromReader.ToString());
         }
 
         public static float? ConvertToNullableFloat(object objectFromReader)
