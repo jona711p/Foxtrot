@@ -22,10 +22,16 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_Edit_Delete : Page
     {
+        private bool Availibility;
+        public City tempCity = new City();
+        Classes.Product tempProduct = new Classes.Product();
+
         public Product_Edit_Delete()
         {
             InitializeComponent();
-
+            tempProduct.ProductTable = new DataTable();
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
+            DataContext = tempProduct;
 
         }
     }
