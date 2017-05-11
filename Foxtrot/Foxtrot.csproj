@@ -93,6 +93,7 @@
     <Compile Include="Classes\DB\DBConnectionLogic.cs" />
     <Compile Include="Classes\DB\DBReadLogic.cs" />
     <Compile Include="Classes\DB\DBDeleteLogic.cs" />
+    <Compile Include="Classes\DB\DBSortingLogic.cs" />
     <Compile Include="Classes\DB\DBUpdateLogic.cs" />
     <Compile Include="Classes\File.cs" />
     <Compile Include="Classes\OpeningHour.cs" />
@@ -123,6 +124,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

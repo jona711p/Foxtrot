@@ -57,7 +57,7 @@
 
         <Grid HorizontalAlignment="Center" Height="100" Margin="521,92,489,576" VerticalAlignment="Center" Width="300">
             <TextBox x:Name="txtbox_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,10,40,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *" FontFamily="Arial"/>
-            <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Center" Height="24" Margin="10,40,40,36" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial"/>
+            <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Center" Height="24" Margin="10,40,40,36" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *" FontFamily="Arial"/>
             <Label x:Name="lbl_Name_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,70,185,6" VerticalAlignment="Center" FontFamily="Arial"/>
             <Border x:Name="border_Name" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="300">
                 <Border.Effect>
