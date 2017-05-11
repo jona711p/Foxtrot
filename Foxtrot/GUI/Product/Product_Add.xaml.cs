@@ -162,36 +162,6 @@ namespace Foxtrot.GUI.Product
             Availibility = false;
         }
 
-        private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dataGrid_Product_List.SelectedItem != null)
-            {
-                tempProduct.ID =
-                    int.Parse(
-                        ((TextBlock)
-                            dataGrid_Product_List.Columns[0].GetCellContent(
-                                dataGrid_Product_List.SelectedItem))
-                        .Text);
-                tempProduct = DBReadLogic.GetProductInfo(tempProduct);
 
-                textBox_Product_Add_Name.Text = tempProduct.Name;
-                textBox_Product_Add_Adress.Text = tempProduct.Address;
-                textBox_Product_Add_Longtitude.Text = tempProduct.Longitude.ToString();
-                textBox_Product_Add_Latitude.Text = tempProduct.Latitude.ToString();
-                textBox_Product_Add_ContactPhone.Text = tempProduct.ContactPhone.ToString();
-                textBox_Product_Add_ContactEmail.Text = tempProduct.ContactEmail[0];
-                textBox_Product_Add_ContactFax.Text = tempProduct.ContactFax.ToString();
-                textBox_Product_Add_Príce.Text = tempProduct.Price.ToString();
-                textBox_Product_Add_Description.Text = tempProduct.Description;
-                if (tempProduct.ExtraDescription.Count != 0)
-                {
-                    textBox_Product_Add_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
-                }
-                rbtn_Product_Add_Availability_True.IsChecked = tempProduct.Availability;
-                rbtn_Product_Add_Availability_False.IsChecked = !tempProduct.Availability;
-                textBox_Product_Add_Website.Text = tempProduct.Website;
-                textBox_Product_Add_CanonicalUrl.Text = tempProduct.CanonicalUrl;
-            }
-        }
     }
 }
