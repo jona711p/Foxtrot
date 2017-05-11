@@ -48,7 +48,6 @@ namespace Foxtrot
                 User_MenuItem.IsEnabled = true;
                 User_MenuItem_Add.IsEnabled = true;
                 User_MenuItem_Edit_Delete.IsEnabled = true;
-                User_MenuItem_Modify.IsEnabled = false;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
                 Event_MenuItem.IsEnabled = true;
@@ -58,8 +57,6 @@ namespace Foxtrot
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
-                User_MenuItem_Add.IsEnabled = false;
-                User_MenuItem_Edit_Delete.IsEnabled = false;
                 User_MenuItem_Modify.IsEnabled = true;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
@@ -72,6 +69,9 @@ namespace Foxtrot
         void HideAll()
         {
             User_MenuItem.IsEnabled = false;
+            User_MenuItem_Add.IsEnabled = false;
+            User_MenuItem_Edit_Delete.IsEnabled = false;
+            User_MenuItem_Modify.IsEnabled = false;
             Product_MenuItem.IsEnabled = false;
             CombiProduct_MenuItem.IsEnabled = false;
             Event_MenuItem.IsEnabled = false;
