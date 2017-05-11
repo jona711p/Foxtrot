@@ -42,6 +42,8 @@ namespace Foxtrot
 
             permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
+            MessageBox.Show(user.ID.Value.ToString() + " " + permission.ToString());
+
             if (permission == 1)
             {
                 HideAll();

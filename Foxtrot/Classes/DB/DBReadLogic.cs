@@ -182,7 +182,7 @@ namespace Classes
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    int tempInt = int.Parse(row["ID"].ToString());
+                    int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
                     adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
@@ -195,7 +195,7 @@ namespace Classes
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    int tempInt = int.Parse(row["ID"].ToString());
+                    int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
                     adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
