@@ -360,8 +360,8 @@ namespace Classes
                 inputProduct.ID = int.Parse(reader["ID"].ToString());
                 inputProduct.Name = reader["Name"].ToString();
                 inputProduct.Address = reader["Address"].ToString();
-                inputProduct.Longitude = float.Parse(reader["Longitude"].ToString());
-                inputProduct.Latitude = float.Parse(reader["Latitude"].ToString());
+                inputProduct.Longitude = ConvertToNullableFloat(reader["Longitude"]);
+                inputProduct.Latitude = ConvertToNullableFloat(reader["Latitude"]);
                 inputProduct.ContactPhone = new List<int?>();
 
                 {
