@@ -153,9 +153,13 @@ namespace Foxtrot.GUI.Product
                 products.Availability = Availibility;
             }
 
-            Classes.Product tempProduct1 = new Classes.Product();
-            DBWriteLogic.WriteProducts();
-            MessageBox.Show("Et produkt med navnet: '" + tempProduct1.Name + " " + "er blevet oprettet i systemet!");
+            //Classes.Product tempProduct1 = new Classes.Product();
+
+
+            List<Classes.Product> hest = new List<Classes.Product>();
+            hest.Add(tempProduct);
+            DBWriteLogic.WriteProducts(hest);
+            MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + " " + "er blevet oprettet i systemet!");
         }
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
