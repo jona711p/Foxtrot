@@ -100,7 +100,7 @@ namespace Classes
             }
         }
 
-        public static List<int> DupeCheckList(string id, string tableName)
+        public static List<int> DupeCheckList(string idName, string tableName)
         {
             DataTable dt = new DataTable();
             List<int> dupeCheckList = new List<int>();
@@ -110,7 +110,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT " + id + " FROM " + tableName, connection);
+                SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName, connection);
 
                 dt.Load(command.ExecuteReader());
 
