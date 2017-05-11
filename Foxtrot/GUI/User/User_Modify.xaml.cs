@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Classes;
 
 namespace Foxtrot.GUI.User
 {
@@ -28,7 +29,7 @@ namespace Foxtrot.GUI.User
         }
         private void Btn_Modify_CreateUser_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            DBReadLogic.GetActorInfo(tempActor);
         }
     }
 }
