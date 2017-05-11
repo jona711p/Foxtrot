@@ -336,53 +336,58 @@ namespace Classes
 
             return inputActor;
         }
-        //public static Product GetProductInfo(Product inputProduct)
-        //{
-        //    SqlConnection connection = null;
-        //    connection = DBConnectionLogic.ConnectToDB(connection);
+        public static Product GetProductInfo(Product inputProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
 
-        //    try
-        //    {
-        //        SqlCommand command = new SqlCommand("spGetProductInfo", connection);
-        //        command.CommandType = CommandType.StoredProcedure;
-        //        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
-        //        SqlDataReader reader = command.ExecuteReader();
-        //        reader.Read();
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetProductInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
 
-        //        object bla = reader[0];
+                object bla = reader[0];
 
-        //    inputProduct.ID = int.Parse(reader["ID"].ToString());
-        //        inputProduct.Name = reader["Name"].ToString();
-        //        inputProduct.Address = reader["Address"].ToString();
-        //        inputProduct.Longitude = float.Parse(reader["Longitude"].ToString());
-        //        inputProduct.Latitude = float.Parse(reader["Latitude"].ToString());
-        //        inputProduct.ContactPhone = new List<int?>()
-        //        {
-        //            ConvertToNullableInt(reader["ContactPhone"])
-        //        };
-        //        inputProduct.ContactEmail = reader["ContactEmail"].ToString();
+                inputProduct.ID = int.Parse(reader["ID"].ToString());
+                inputProduct.Name = reader["Name"].ToString();
+                inputProduct.Address = reader["Address"].ToString();
+                inputProduct.Longitude = float.Parse(reader["Longitude"].ToString());
+                inputProduct.Latitude = float.Parse(reader["Latitude"].ToString());
+                inputProduct.ContactPhone = new List<int?>()
+                {
+                    ConvertToNullableInt(reader["ContactPhone"])
+                };
+                inputProduct.ContactEmail = new List<string>()
+                {
+                    reader["ContactEmail"].ToString()
+                }; 
 
-        //        inputProduct.ContactFax = (reader["Fax"].ToString().Equals("") ? null : (int?)int.Parse(reader["Fax"].ToString()));
-        //        inputProduct.Price = ConvertToNullableFloat(reader["Fax"]);
-        //        inputProduct.Description = reader["Description"].ToString();
-        //        inputProduct.ExtraDescription = new List<ExtraDescription>();
-        //        {
-        //            reader["ExtraDescription"].ToString();
-        //        };
-        //        inputProduct.Availability = Convert.ToBoolean(reader["Fax"].ToString());
-        //        inputProduct.Website = reader["Website"].ToString();
-        //        inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
-        //    }
+                inputProduct.ContactFax = new List<int?>()
+                {
+                    ConvertToNullableInt(reader["ContactFax"])
+                };
+                inputProduct.Price = ConvertToNullableFloat(reader["Price"]);
+                inputProduct.Description = reader["Description"].ToString();
+                inputProduct.ExtraDescription = new List<ExtraDescription>();
+                {
+                    reader["ExtraDescription"].ToString();
+                };
+                inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                inputProduct.Website = reader["Website"].ToString();
+                inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
 
-        //    catch (Exception e)
-        //    {
-        //        throw;
-        //    }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-        //    connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-        //    return inputProduct;
-        //}
+            return inputProduct;
+        }
 
         public static int? ConvertToNullableInt(object objectFromReader)
         {
