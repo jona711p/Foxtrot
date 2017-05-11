@@ -64,7 +64,7 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_Description.Text = tempProduct.Description;
                 if (tempProduct.ExtraDescription.Count != 0)
                 {
-                    textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;   // fejl
+                    textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;   
                 }
                 rbtn_Product_Edit_Availability_True.IsChecked = tempProduct.Availability;
                 rbtn_Product_Edit_Availability_False.IsChecked = !tempProduct.Availability;
