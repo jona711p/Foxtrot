@@ -14,8 +14,9 @@
                     <MenuItem x:Name="Frontpage_MenuItem" Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                 </MenuItem>
                 <MenuItem x:Name="User_MenuItem" Header="Bruger">
-                    <MenuItem Header="Opret" Click="MenuItem_User_Add_OnClick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
+                    <MenuItem x:Name="User_MenuItem_Add" Header="Opret" Click="MenuItem_User_Add_OnClick"/>
+                    <MenuItem x:Name="User_MenuItem_Edit_Delete" Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
+                    <MenuItem x:Name="User_MenuItem_Modify" Header="Rediger din Bruger" Click="MenuItem_User_Modify_OnClick"/>
                 </MenuItem>
                 <MenuItem x:Name="Product_MenuItem" Header="Produkter" >
                     <MenuItem Header="Opret" Click="MenuItem_Product_Add_OnClick"/>

@@ -46,6 +46,9 @@ namespace Foxtrot
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
+                User_MenuItem_Add.IsEnabled = true;
+                User_MenuItem_Edit_Delete.IsEnabled = true;
+                User_MenuItem_Modify.IsEnabled = false;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
                 Event_MenuItem.IsEnabled = true;
@@ -54,6 +57,10 @@ namespace Foxtrot
             if (permission == 2)
             {
                 HideAll();
+                User_MenuItem.IsEnabled = true;
+                User_MenuItem_Add.IsEnabled = false;
+                User_MenuItem_Edit_Delete.IsEnabled = false;
+                User_MenuItem_Modify.IsEnabled = true;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
                 Event_MenuItem.IsEnabled = true;
@@ -83,6 +90,11 @@ namespace Foxtrot
         private void MenuItem_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new User_Edit_Delete();
+        }
+
+        private void MenuItem_User_Modify_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new User_Modify(user.ID.Value);
         }
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)

@@ -321,7 +321,9 @@ namespace Classes
             {
                 SqlCommand command = new SqlCommand("spGetActorInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.ID;
+
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.User_ID;
+
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 

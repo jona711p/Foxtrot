@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Classes;
 
 namespace Foxtrot.GUI.User
@@ -21,15 +9,19 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Modify : Page
     {
-        private Classes.User tempUser = new Classes.User();
-        private Classes.Actor tempActor = new Classes.Actor();
-        public User_Modify()
+        private static Classes.Actor actor = new Actor();
+        public User_Modify(int userID)
         {
+            actor.User_ID = userID;
+
+            DBReadLogic.GetActorInfo(actor);
+
             InitializeComponent();
+            DataContext = actor;
         }
         private void Btn_Modify_CreateUser_OnClick(object sender, RoutedEventArgs e)
         {
-            DBReadLogic.GetActorInfo(tempActor);
+            
         }
     }
 }
