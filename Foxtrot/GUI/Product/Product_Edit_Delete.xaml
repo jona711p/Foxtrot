@@ -44,7 +44,7 @@
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable}" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged"/>
+            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged"/>
             <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="121" Grid.Column="1"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="356" Margin="337,34,0,0" VerticalAlignment="Top" Width="966"/>
