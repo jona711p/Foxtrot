@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -160,8 +161,13 @@ namespace Classes
             }
         }
 
-        public static Dictionary<int, string> FillAdminActorDictionary(Dictionary<int, string> adminActorDictionary)
+        public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection)
         {
+            if (adminActorObservableCollection != null)
+            {
+                adminActorObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
+            }
+
             DataTable dt = new DataTable();
 
             SqlConnection connection = null;
@@ -169,7 +175,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command1 = new SqlCommand("spFillAdminDictionary", connection);
+                SqlCommand command1 = new SqlCommand("spFillAdminObservableCollection", connection);
                 command1.CommandType = CommandType.StoredProcedure;
 
                 dt.Load(command1.ExecuteReader());
@@ -178,10 +184,10 @@ namespace Classes
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
-                    adminActorDictionary.Add(tempInt, tempString);
+                    adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
 
-                SqlCommand command2 = new SqlCommand("spFillActorDictionary", connection);
+                SqlCommand command2 = new SqlCommand("spFillActorObservableCollection", connection);
                 command2.CommandType = CommandType.StoredProcedure;
 
                 dt.Clear();
@@ -191,7 +197,7 @@ namespace Classes
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
-                    adminActorDictionary.Add(tempInt, tempString);
+                    adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
             }
 
@@ -202,7 +208,7 @@ namespace Classes
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return adminActorDictionary;
+            return adminActorObservableCollection;
         }
 
         public static DataTable FillProductTable(DataTable productTable)
@@ -361,7 +367,7 @@ namespace Classes
                 inputProduct.ContactEmail = new List<string>()
                 {
                     reader["ContactEmail"].ToString()
-                }; 
+                };
 
                 inputProduct.ContactFax = new List<int?>()
                 {

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
+using Foxtrot.Annotations;
 
 namespace Classes
 {
@@ -17,15 +21,16 @@ namespace Classes
         public int? WorkFax { get; set; }
         public DataTable UserTable { get; set; }
 
-        private static Dictionary<int, string> adminActorDictionary = new Dictionary<int, string>();
+        private static ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
 
-        public Dictionary<int, string> AdminActorDictionary
+        public ObservableCollection<KeyValuePair<int, string>> AdminActorObservableCollection
         {
-            get { return adminActorDictionary ; }
-            set { adminActorDictionary = value; NotifyPropertyChanged(); }
+            get { return adminActorObservableCollection; }
+            set { adminActorObservableCollection = value; NotifyPropertyChanged(); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             if (PropertyChanged != null)
