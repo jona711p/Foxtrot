@@ -50,7 +50,7 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
                 textBox_Product_Edit_Longtitude.Text = tempProduct.Longitude.ToString();
                 textBox_Product_Edit_Latitude.Text = tempProduct.Latitude.ToString();
-                //textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone.ToString();
+                textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone.ToString();
                 textBox_Product_Edit_ContactEmail.Text = tempProduct.ContactEmail[0];
                 textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax.ToString();   // fejl
                 textBox_Product_Edit_Príce.Text = tempProduct.Price.ToString();
