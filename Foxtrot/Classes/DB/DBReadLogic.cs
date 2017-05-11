@@ -102,7 +102,7 @@ namespace Classes
             }
         }
 
-        public static List<int> DupeCheckList(string id, string tableName)
+        public static List<int> DupeCheckList(string idName, string tableName)
         {
             DataTable dt = new DataTable();
             List<int> dupeCheckList = new List<int>();
@@ -112,7 +112,7 @@ namespace Classes
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT " + id + " FROM " + tableName, connection);
+                SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName, connection);
 
                 dt.Load(command.ExecuteReader());
 
@@ -130,6 +130,34 @@ namespace Classes
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return dupeCheckList;
+        }
+
+        public static int GetIDFromUser(string tableName, int userID)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName + " WHERE FK_UserID = " + userID, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    return int.Parse(reader[0].ToString());
+                }
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+                return 0;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static int GetUserPermission(int userID)
