@@ -117,7 +117,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_Príce.Text.Length != 0)
             {
-                tempProduct.Price = textBox_Product_Add_Príce.Text.Length;
+                tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
             }
             else
             {
@@ -174,7 +174,7 @@ namespace Foxtrot.GUI.Product
 
             List<Classes.Product> hest = new List<Classes.Product>();
             hest.Add(tempProduct);
-            DBWriteLogic.WriteProducts(hest);
+            DBWriteLogic.WriteNewProducts(hest);
             MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + " " + "er blevet oprettet i systemet!");
         }
 
