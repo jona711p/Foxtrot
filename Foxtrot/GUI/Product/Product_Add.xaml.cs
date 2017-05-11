@@ -74,10 +74,13 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) && // Fejl
+            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) && 
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
-                products.ContactPhone.Add(tempint);
+                products.ContactPhone = new List<int?>()
+                {
+                   tempint
+                };
             }
             else
             {
@@ -85,9 +88,13 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@")) // Fejl
+            if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@")) 
             {
-                products.ContactEmail.Add(textBox_Product_Add_ContactEmail.Text);
+                    products.ContactEmail = new List<string>()
+                    {
+                        textBox_Product_Add_ContactEmail.Text
+                    };
+                
             }
             else
             {
@@ -95,10 +102,13 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) && // Fejl
+            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) && 
                 textBox_Product_Add_ContactFax.Text.Length == 8)
             {
-                products.ContactFax.Add(tempint);
+                products.ContactFax = new List<int?>()
+                {
+                    tempint
+                };
             }
             else
             {
@@ -129,7 +139,10 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
-                products.ExtraDescription[0].Description = textBox_Product_Add_ExtraDescription.Text; // Fejl
+                products.ExtraDescription = new List<ExtraDescription>()
+                {
+                                        
+                };
             }
             else
             {
@@ -153,9 +166,6 @@ namespace Foxtrot.GUI.Product
                 products.Availability = Availibility;
             }
 
-            //Classes.Product tempProduct1 = new Classes.Product();
-
-
             List<Classes.Product> hest = new List<Classes.Product>();
             hest.Add(tempProduct);
             DBWriteLogic.WriteProducts(hest);
@@ -171,7 +181,7 @@ namespace Foxtrot.GUI.Product
         {
             Availibility = false;
         }
-
+        
 
     }
 }
