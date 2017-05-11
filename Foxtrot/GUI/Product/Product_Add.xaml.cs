@@ -140,8 +140,10 @@ namespace Foxtrot.GUI.Product
             {
                 products.ExtraDescription = new List<ExtraDescription>()
                 {
-                                        
+                    textBox_Product_Add_ExtraDescription.Text.ToString()
                 };
+
+                // Fejl
             }
             else
             {
