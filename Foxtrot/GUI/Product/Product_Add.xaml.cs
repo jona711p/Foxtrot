@@ -136,7 +136,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
-                products.ExtraDescription = new List<ExtraDescription>()
+                tempProduct.ExtraDescription = new List<ExtraDescription>()
             {
                 new ExtraDescription()
                 {
