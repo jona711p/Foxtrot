@@ -349,8 +349,6 @@ namespace Classes
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
-                object bla = reader[0];
-
                 inputProduct.ID = int.Parse(reader["ID"].ToString());
                 inputProduct.Name = reader["Name"].ToString();
                 inputProduct.Address = reader["Address"].ToString();
