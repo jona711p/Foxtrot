@@ -112,6 +112,7 @@
     <Compile Include="GUI\Frontpage.xaml.cs">
       <DependentUpon>Frontpage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\GUISortingLogic.cs" />
     <Compile Include="GUI\Product\Product_Add.xaml.cs">
       <DependentUpon>Product_Add.xaml</DependentUpon>
     </Compile>

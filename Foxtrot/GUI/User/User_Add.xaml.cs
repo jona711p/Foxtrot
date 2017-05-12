@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Classes;
 
@@ -15,11 +14,11 @@ namespace Foxtrot.GUI.User
             InitializeComponent();
         }
 
-        private void btnAddUser_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             if (rbtn_Administrator.IsChecked == false && rbtn_Actor.IsChecked == false)
             {
-                Message("Vælg enten en Administrator eller en Aktør!");
+                GUISortingLogic.Message("Vælg enten en Administrator eller en Aktør!");
                 return;
             }
             
@@ -38,184 +37,147 @@ namespace Foxtrot.GUI.User
 
         void Administrator()
         {
-            Administrator administrator = new Administrator();
+            Administrator tempAdministrator = new Administrator();
 
-            administrator.FirstName = Name(txtbox_FirstName);
+            tempAdministrator.FirstName = GUISortingLogic.Name(txtbox_FirstName);
 
-            if (administrator.FirstName == null)
+            if (tempAdministrator.FirstName == null)
             {
-                Message("Du SKAL indtast et FORNAVN!");
+                GUISortingLogic.Message("Du SKAL indtast et FORNAVN!");
                 return;
             }
 
-            administrator.LastName = Name(txtbox_LastName);
+            tempAdministrator.LastName = GUISortingLogic.Name(txtbox_LastName);
 
-            if (administrator.LastName == null)
+            if (tempAdministrator.LastName == null)
             {
-                Message("Du SKAL indtast et EFTERNAVN!");
+                GUISortingLogic.Message("Du SKAL indtast et EFTERNAVN!");
                 return;
             }
 
-            administrator.WorkPhone = Number(txtbox_WorkPhone);
+            tempAdministrator.WorkPhone = GUISortingLogic.Number(txtbox_WorkPhone);
 
-            if (administrator.WorkPhone == null)
+            if (tempAdministrator.WorkPhone == null)
             {
-                Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
                 return;
             }
 
-            administrator.WorkEmail = Email(txtbox_WorkEmail);
+            tempAdministrator.WorkEmail = GUISortingLogic.Email(txtbox_WorkEmail);
 
-            if (administrator.WorkEmail == null)
+            if (tempAdministrator.WorkEmail == null)
             {
-                Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
+                GUISortingLogic.Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
                 return;
             }
 
             if (txtbox_WorkFax.Text.Length != 0)
             {
-                administrator.WorkFax = Number(txtbox_WorkFax);
+                tempAdministrator.WorkFax = GUISortingLogic.Number(txtbox_WorkFax);
 
-                if (administrator.WorkEmail == null)
+                if (tempAdministrator.WorkEmail == null)
                 {
-                    Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                    GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
                     return;
                 }
             }
 
             else
             {
-                administrator.WorkFax = null;
+                tempAdministrator.WorkFax = null;
             }
 
-            bool dupe = DBReadLogic.DupeCheckAdmin(administrator);
+            bool dupe = DBReadLogic.DupeCheckAdmin(tempAdministrator);
 
             if (!dupe)
             {
                 
-                XMLDBWriteLogic.WriteAdministrators(administrator);
+                XMLDBWriteLogic.WriteAdministrators(tempAdministrator);
 
-                Message("En Administrator med navnet: '" + administrator.FirstName + " " +
-                        administrator.LastName + "' er blevet oprettet i systemet!");
+                GUISortingLogic.Message("En Administrator med navnet: '" + tempAdministrator.FirstName + " " +
+                        tempAdministrator.LastName + "' er blevet oprettet i systemet!");
             }
 
             else
             {
-                Message("Der findes allerede en Administrator med navnet: '" + administrator.FirstName + " " +
-                            administrator.LastName + "' i systemet!");
+                GUISortingLogic.Message("Der findes allerede en Administrator med navnet: '" + tempAdministrator.FirstName + " " +
+                            tempAdministrator.LastName + "' i systemet!");
             }
         }
 
         void Actor()
         {
-            Actor actor = new Actor();
+            Actor tempActor = new Actor();
 
-            actor.FirstName = Name(txtbox_FirstName);
+            tempActor.FirstName = GUISortingLogic.Name(txtbox_FirstName);
 
-            if (actor.FirstName == null)
+            if (tempActor.FirstName == null)
             {
-                Message("Du SKAL indtast et FORNAVN!");
+                GUISortingLogic.Message("Du SKAL indtast et FORNAVN!");
                 return;
             }
 
-            actor.LastName = Name(txtbox_LastName);
+            tempActor.LastName = GUISortingLogic.Name(txtbox_LastName);
 
-            if (actor.LastName == null)
+            if (tempActor.LastName == null)
             {
-                Message("Du SKAL indtast et EFTERNAVN!");
+                GUISortingLogic.Message("Du SKAL indtast et EFTERNAVN!");
                 return;
             }
 
-            actor.WorkPhone = Number(txtbox_WorkPhone);
+            tempActor.WorkPhone = GUISortingLogic.Number(txtbox_WorkPhone);
 
-            if (actor.WorkPhone == null)
+            if (tempActor.WorkPhone == null)
             {
-                Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
                 return;
             }
 
-            actor.WorkEmail = Email(txtbox_WorkEmail);
+            tempActor.WorkEmail = GUISortingLogic.Email(txtbox_WorkEmail);
 
-            if (actor.WorkEmail == null)
+            if (tempActor.WorkEmail == null)
             {
-                Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
+                GUISortingLogic.Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
                 return;
             }
 
             if (txtbox_WorkFax.Text.Length != 0)
             {
-                actor.WorkFax = Number(txtbox_WorkFax);
+                tempActor.WorkFax = GUISortingLogic.Number(txtbox_WorkFax);
 
-                if (actor.WorkEmail == null)
+                if (tempActor.WorkEmail == null)
                 {
-                    Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                    GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
                     return;
                 }
             }
 
             else
             {
-                actor.WorkFax = null;
+                tempActor.WorkFax = null;
             }
 
-            actor.CompanyName = Name(txtbox_CompanyName);
+            tempActor.CompanyName = GUISortingLogic.Name(txtbox_CompanyName);
 
-            if (actor.CompanyName == null)
+            if (tempActor.CompanyName == null)
             {
-                Message("Du SKAL indtast et FIRMANAVN!");
+                GUISortingLogic.Message("Du SKAL indtast et FIRMANAVN!");
                 return;
             }
 
-            bool dupe = DBReadLogic.DupeCheckActor(actor);
+            bool dupe = DBReadLogic.DupeCheckActor(tempActor);
 
             if (!dupe)
             {
-                XMLDBWriteLogic.WriteActors(actor);
+                XMLDBWriteLogic.WriteActors(tempActor);
 
-                Message("En Aktør med firmanavnet: '" + actor.CompanyName + "' er blevet oprettet i systemet");
+                GUISortingLogic.Message("En Aktør med firmanavnet: '" + tempActor.CompanyName + "' er blevet oprettet i systemet");
             }
 
             else
             {
-                Message("Der findes allerede en Aktør med firmanavnet: '" + actor.CompanyName + "' i systemet!");
+                GUISortingLogic.Message("Der findes allerede en Aktør med firmanavnet: '" + tempActor.CompanyName + "' i systemet!");
             }
-        }
-
-        static void Message(string message)
-        {
-            MessageBox.Show(message);
-        }
-
-        static string Name(TextBox name)
-        {
-            if (name.Text.Length != 0)
-            {
-                return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Text); // Rewrites the text with UPPER CASE first letter
-            }
-
-            return null;
-        }
-
-        static int? Number(TextBox number)
-        {
-            int tempInt;
-
-            if (int.TryParse(number.Text, out tempInt) && number.Text.Length == 8)
-            {
-                return tempInt;
-            }
-
-            return null;
-        }
-
-        static string Email(TextBox email)
-        {
-            if (email.Text.Length != 0 && email.Text.Contains("@"))
-            {
-                return email.Text.ToLower();
-            }
-
-            return null;
         }
     }
 }
