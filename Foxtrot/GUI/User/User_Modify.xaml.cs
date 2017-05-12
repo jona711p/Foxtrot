@@ -5,21 +5,21 @@ using Classes;
 namespace Foxtrot.GUI.User
 {
     /// <summary>
-    /// Interaction logic for User_Modify.xaml
+    /// Jonas Lykke
     /// </summary>
     public partial class User_Modify : Page
     {
-        private static Classes.Actor actor = new Actor();
-        public User_Modify(Classes.User user)
+        private static Classes.Actor tempActor = new Actor();
+        public User_Modify(Classes.User inputUser)
         {
-            actor.User_ID = user.ID;
+            tempActor.User_ID = inputUser.ID;
 
-            DBReadLogic.GetActorInfo(actor);
+            DBReadLogic.GetActorInfo(tempActor);
 
             InitializeComponent();
-            DataContext = actor;
+            DataContext = tempActor;
         }
-        private void Btn_Modify_CreateUser_OnClick(object sender, RoutedEventArgs e)
+        private void Btn_ModifyUser_OnClick(object sender, RoutedEventArgs e)
         {
             
         }

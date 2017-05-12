@@ -74,7 +74,7 @@
         </Grid>
 
 
-        <Button x:Name="btn_Modify_CreateUser" Content="Rediger" HorizontalAlignment="Center" Margin="605,402,605,346" VerticalAlignment="Center" Width="100" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="Btn_Modify_CreateUser_OnClick">
+        <Button x:Name="btn_Modify_CreateUser" Content="Rediger" HorizontalAlignment="Center" Margin="605,402,605,346" VerticalAlignment="Center" Width="100" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="Btn_ModifyUser_OnClick">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>

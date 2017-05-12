@@ -22,7 +22,7 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_Edit_Delete : Page
     {
-        private bool Availibility;
+        private bool availibility;
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 

@@ -7,7 +7,6 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1310"
-      Background="White"
       Title="User_Add">
 
     <Page.Resources>
@@ -88,7 +87,7 @@
             </Border>
         </Grid>
         
-        <Button x:Name="btnCreateUser" Content="Opret" HorizontalAlignment="Center" Margin="616,407,594,341" VerticalAlignment="Center" Width="100" Click="btnCreateUser_Click" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center">
+        <Button x:Name="btnCreateUser" Content="Opret" HorizontalAlignment="Center" Margin="616,407,594,341" VerticalAlignment="Center" Width="100" Click="btnAddUser_Click" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>

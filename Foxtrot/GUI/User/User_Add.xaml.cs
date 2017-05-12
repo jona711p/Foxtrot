@@ -15,7 +15,7 @@ namespace Foxtrot.GUI.User
             InitializeComponent();
         }
 
-        private void btnCreateUser_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnAddUser_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (rbtn_Administrator.IsChecked == false && rbtn_Actor.IsChecked == false)
             {

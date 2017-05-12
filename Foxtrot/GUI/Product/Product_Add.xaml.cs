@@ -10,20 +10,20 @@ namespace Foxtrot.GUI.Product
     ///             
     public partial class Product_Add : Page
     {
-        private bool Availibility;
+        private bool availibility;
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Add(Classes.User user)
+        public Product_Add(Classes.User inputUser)
         {
-            if (user.Permission == 1)
+            if (inputUser.Permission == 1)
             {
-                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Administrators", user.ID.Value);
+                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Administrators", inputUser.ID.Value);
             }
 
-            if (user.Permission == 2)
+            if (inputUser.Permission == 2)
             {
-                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", user.ID.Value);
+                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);
             }
             
             InitializeComponent();
@@ -178,7 +178,7 @@ namespace Foxtrot.GUI.Product
             if (rbtn_Product_Add_Availability_False.IsEnabled == true ||
                 rbtn_Product_Add_Availability_True.IsChecked == true)
             {
-                tempProduct.Availability = Availibility;
+                tempProduct.Availability = availibility;
             }
 
             tempProduct.Cities = new City();
@@ -190,12 +190,12 @@ namespace Foxtrot.GUI.Product
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
         {
-            Availibility = true;
+            availibility = true;
         }
 
         private void Rbtn_Product_Add_Availability_False_OnClick(object sender, RoutedEventArgs e)
         {
-            Availibility = false;
+            availibility = false;
         }
 
         private void comboBox_Product_Add_CityID_SelectionChanged(object sender, SelectionChangedEventArgs e)
