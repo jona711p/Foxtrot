@@ -10,7 +10,7 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
-        private static User user = new User();
+        private static User tempUser = new User();
         public MainWindow()
         {
             XMLLogic.WatchXMLDir();
@@ -20,7 +20,7 @@ namespace Foxtrot
             HideAll();
             FillComboBoxWithAdminsAndActors();
             MainFrame.Content = new Frontpage();
-            DataContext = user;
+            DataContext = tempUser;
 
             textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
                 "\nØsterbro 7, 7800 Skive" +
@@ -32,16 +32,16 @@ namespace Foxtrot
 
         public static void FillComboBoxWithAdminsAndActors()
         {
-            user.AdminActorObservableCollection = DBReadLogic.FillAdminActorObservableCollection(user.AdminActorObservableCollection);
+            tempUser.AdminActorObservableCollection = DBReadLogic.FillAdminActorObservableCollection(tempUser.AdminActorObservableCollection);
         }
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            user.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
+            tempUser.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
 
-            user.Permission = DBReadLogic.GetUserPermission(user.ID.Value);
+            tempUser = DBReadLogic.GetUserInfo(tempUser);
 
-            if (user.Permission == 1)
+            if (tempUser.Permission == 1)
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
@@ -52,7 +52,7 @@ namespace Foxtrot
                 Event_MenuItem.IsEnabled = true;
             }
 
-            if (user.Permission == 2)
+            if (tempUser.Permission == 2)
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
@@ -88,17 +88,17 @@ namespace Foxtrot
 
         private void MenuItem_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new User_Edit_Delete(user);
+            MainFrame.Content = new User_Edit_Delete(tempUser);
         }
 
         private void MenuItem_User_Modify_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new User_Modify(user);
+            MainFrame.Content = new User_Modify(tempUser);
         }
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Add(user);
+            MainFrame.Content = new Product_Add(tempUser);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)

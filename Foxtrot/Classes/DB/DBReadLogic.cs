@@ -100,35 +100,42 @@ namespace Classes
             }
         }
 
-        public static int GetUserPermission(int userID)
+        public static User GetUserInfo(User inputUser)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("spGetUserPermission", connection);
+                SqlCommand command = new SqlCommand("spGetUserInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@ID", SqlDbType.Int).Value = userID;
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputUser.ID;
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
+                if (!reader.HasRows)
                 {
-                    reader.Read();
-                    return int.Parse(reader[0].ToString());
+                    return null;
                 }
 
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
+                reader.Read();
+                inputUser.Permission = int.Parse(reader["Permission"].ToString());
+                inputUser.FirstName = reader["FirstName"].ToString();
+                inputUser.LastName = reader["LastName"].ToString();
+                inputUser.WorkPhone = int.Parse(reader["Permission"].ToString());
+                inputUser.WorkEmail = reader["Permission"].ToString();
+                inputUser.WorkFax = int.Parse(reader["Permission"].ToString());
 
-                return 0;
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
+
+            return inputUser;
         }
 
         public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(
