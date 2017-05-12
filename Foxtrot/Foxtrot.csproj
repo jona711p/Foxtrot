@@ -105,6 +105,8 @@
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\XMLImport\XMLDB\XMLDBReadLogic.cs" />
+    <Compile Include="Classes\XMLImport\XMLDB\XMLDBWriteLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLSortingLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLLogic.cs" />
     <Compile Include="GUI\Frontpage.xaml.cs">

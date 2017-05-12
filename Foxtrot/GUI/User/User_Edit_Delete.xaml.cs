@@ -26,7 +26,7 @@ namespace Foxtrot.GUI.User
         private Classes.Actor tempActor = new Classes.Actor();
         private Classes.Administrator tempAdministrator = new Classes.Administrator();
 
-        public User_Edit_Delete(int userID)
+        public User_Edit_Delete(Classes.User user)
         {
             InitializeComponent();
             DataContext = tempUser;

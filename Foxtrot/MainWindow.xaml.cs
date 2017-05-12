@@ -11,7 +11,6 @@ namespace Foxtrot
     public partial class MainWindow : Window
     {
         private static User user = new User();
-        private int permission = 0;
         public MainWindow()
         {
             XMLLogic.WatchXMLDir();
@@ -40,9 +39,9 @@ namespace Foxtrot
         {
             user.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
 
-            permission = DBReadLogic.GetUserPermission(user.ID.Value);
+            user.Permission = DBReadLogic.GetUserPermission(user.ID.Value);
 
-            if (permission == 1)
+            if (user.Permission == 1)
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
@@ -53,7 +52,7 @@ namespace Foxtrot
                 Event_MenuItem.IsEnabled = true;
             }
 
-            if (permission == 2)
+            if (user.Permission == 2)
             {
                 HideAll();
                 User_MenuItem.IsEnabled = true;
@@ -89,17 +88,17 @@ namespace Foxtrot
 
         private void MenuItem_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new User_Edit_Delete(user.ID.Value);
+            MainFrame.Content = new User_Edit_Delete(user);
         }
 
         private void MenuItem_User_Modify_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new User_Modify(user.ID.Value);
+            MainFrame.Content = new User_Modify(user);
         }
 
         private void MenuItem_Product_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Add(user.ID.Value, permission);
+            MainFrame.Content = new Product_Add(user);
         }
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)

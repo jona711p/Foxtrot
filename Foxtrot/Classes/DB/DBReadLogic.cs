@@ -11,7 +11,7 @@ namespace Classes
     /// </summary>
     class DBReadLogic
     {
-        public static bool DupeCheckActor(Actor actor)
+        public static bool DupeCheckActor(Actor inputActor)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -20,7 +20,7 @@ namespace Classes
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM Actors WHERE CompanyName = @CompanyName", connection);
 
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -40,37 +40,7 @@ namespace Classes
             }
         }
 
-        public static int DupeCheckActors(Actor actor)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
-
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = actor.CompanyName;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    return int.Parse(reader[0].ToString());
-                }
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-                return int.Parse(DBWriteLogic.WriteActors(actor).ToString());
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public static bool DupeCheckAdmin(Administrator administrator)
+        public static bool DupeCheckAdmin(Administrator inputAdministrator)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -81,8 +51,8 @@ namespace Classes
                     new SqlCommand("SELECT * FROM Users WHERE FirstName = @FirstName AND LastName = @LastName",
                         connection);
 
-                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = administrator.FirstName;
-                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = administrator.LastName;
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdministrator.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdministrator.LastName;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -100,36 +70,6 @@ namespace Classes
             {
                 throw ex;
             }
-        }
-
-        public static List<int> DupeCheckList(string idName, string tableName)
-        {
-            DataTable dt = new DataTable();
-            List<int> dupeCheckList = new List<int>();
-
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName, connection);
-
-                dt.Load(command.ExecuteReader());
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    dupeCheckList.Add(int.Parse(row[0].ToString()));
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return dupeCheckList;
         }
 
         public static int GetIDFromUser(string tableName, int userID)
@@ -192,11 +132,11 @@ namespace Classes
         }
 
         public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(
-            ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection)
+            ObservableCollection<KeyValuePair<int, string>> inputObservableCollection)
         {
-            if (adminActorObservableCollection != null)
+            if (inputObservableCollection != null)
             {
-                adminActorObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
+                inputObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
             }
 
             DataTable dt = new DataTable();
@@ -215,7 +155,7 @@ namespace Classes
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
-                    adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
+                    inputObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
 
                 SqlCommand command2 = new SqlCommand("spFillActorObservableCollection", connection);
@@ -228,18 +168,49 @@ namespace Classes
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
-                    adminActorObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
+                    inputObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return adminActorObservableCollection;
+            return inputObservableCollection;
+        }
+
+        public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> inputDictionary)
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spFillCityDictionary", connection);
+
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tempString = Convert.ToString(row["Name"]);
+                    int tempInt = int.Parse(row["ID"].ToString());
+                    inputDictionary.Add(tempString, tempInt);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputDictionary;
         }
 
         public static DataTable FillProductTable(DataTable productTable)
@@ -254,9 +225,9 @@ namespace Classes
                 adapter.Fill(productTable);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
@@ -276,79 +247,14 @@ namespace Classes
                 adapter.Fill(userTable);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return userTable;
-        }
-
-        public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> cityDictionary)
-        {
-            DataTable dt = new DataTable();
-
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("spFillCityDictionary", connection);
-
-                dt.Load(command.ExecuteReader());
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    string tempString = Convert.ToString(row["Name"]);
-                    int tempInt = int.Parse(row["ID"].ToString());
-                    cityDictionary.Add(tempString, tempInt);
-                }
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return cityDictionary;
-        }
-
-        public static Administrator GetAdminInfo(Administrator inputAdmin)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.ID;
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                inputAdmin.FirstName = reader["FirstName"].ToString();
-                inputAdmin.LastName = reader["LastName"].ToString();
-                inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("")
-                    ? null
-                    : (int?) int.Parse(reader["WorkPhone"].ToString()));
-                inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
-                inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("")
-                    ? null
-                    : (int?) int.Parse(reader["WorkFax"].ToString()));
-            }
-
-            catch (Exception e)
-            {
-                throw;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return inputAdmin;
         }
 
         public static Actor GetActorInfo(Actor inputActor)
@@ -371,21 +277,55 @@ namespace Classes
                 inputActor.LastName = reader["Efternavn"].ToString();
                 inputActor.WorkPhone = (reader["Telefon nr."].ToString().Equals("")
                     ? null
-                    : (int?) int.Parse(reader["Telefon nr."].ToString()));
+                    : (int?)int.Parse(reader["Telefon nr."].ToString()));
                 inputActor.WorkEmail = reader["E-Mail"].ToString();
                 inputActor.WorkFax = (reader["Fax"].ToString().Equals("")
                     ? null
-                    : (int?) int.Parse(reader["Fax"].ToString()));
+                    : (int?)int.Parse(reader["Fax"].ToString()));
             }
 
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputActor;
+        }
+
+        public static Administrator GetAdminInfo(Administrator inputAdmin)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.ID;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                inputAdmin.FirstName = reader["FirstName"].ToString();
+                inputAdmin.LastName = reader["LastName"].ToString();
+                inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("")
+                    ? null
+                    : (int?)int.Parse(reader["WorkPhone"].ToString()));
+                inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
+                inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("")
+                    ? null
+                    : (int?)int.Parse(reader["WorkFax"].ToString()));
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputAdmin;
         }
 
         public static Product GetProductInfo(Product inputProduct)
@@ -404,14 +344,13 @@ namespace Classes
                 inputProduct.ID = int.Parse(reader["ID"].ToString());
                 inputProduct.Name = reader["Name"].ToString();
                 inputProduct.Address = reader["Address"].ToString();
-                inputProduct.Longitude = ConvertToNullableFloat(reader["Longitude"]);
-                inputProduct.Latitude = ConvertToNullableFloat(reader["Latitude"]);
+                inputProduct.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
+                inputProduct.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
 
                 inputProduct.ContactPhone = new List<int?>();
                 {
-                    ConvertToNullableInt(reader["ContactPhone"]);
+                    DBSortingLogic.ConvertToNullableInt(reader["ContactPhone"]);
                 }
-                ;
 
                 inputProduct.ContactEmail = new List<string>()
                 {
@@ -420,44 +359,30 @@ namespace Classes
 
                 inputProduct.ContactFax = new List<int?>()
                 {
-                    ConvertToNullableInt(reader["ContactFax"])
+                    DBSortingLogic.ConvertToNullableInt(reader["ContactFax"])
                 };
 
-                inputProduct.Price = ConvertToNullableFloat(reader["Price"]);
+                inputProduct.Price = DBSortingLogic.ConvertToNullableFloat(reader["Price"]);
                 inputProduct.Description = reader["Description"].ToString();
 
                 inputProduct.ExtraDescription = new List<ExtraDescription>();
-                
+
                 ExtraDescription tempExtraDescription = new ExtraDescription();
                 tempExtraDescription.Description = reader["ExtraDescription"].ToString();
-            
-
-
-            inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                
+                inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
             }
-            catch (Exception e)
+
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputProduct;
-        }
-
-    
-
-
-    public static int? ConvertToNullableInt(object objectFromReader)
-        {
-            return objectFromReader.ToString().Equals("") ? null : (int?)int.Parse(objectFromReader.ToString());
-        }
-
-        public static float? ConvertToNullableFloat(object objectFromReader)
-        {
-            return objectFromReader.ToString().Equals("") ? null : (float?)float.Parse(objectFromReader.ToString());
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Foxtrot.GUI.User
             if (!dupe)
             {
                 
-                DBWriteLogic.WriteAdministrators(administrator);
+                XMLDBWriteLogic.WriteAdministrators(administrator);
 
                 Message("En Administrator med navnet: '" + administrator.FirstName + " " +
                         administrator.LastName + "' er blevet oprettet i systemet!");
@@ -170,7 +170,7 @@ namespace Foxtrot.GUI.User
 
             if (!dupe)
             {
-                DBWriteLogic.WriteActors(actor);
+                XMLDBWriteLogic.WriteActors(actor);
 
                 Message("En Aktør med firmanavnet: '" + actor.CompanyName + "' er blevet oprettet i systemet");
             }

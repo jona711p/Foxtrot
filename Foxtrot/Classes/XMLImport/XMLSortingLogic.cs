@@ -8,7 +8,7 @@ namespace Classes
     /// <summary>
     /// Jonas Lykke
     /// </summary>
-    public class SortingLogic
+    public class XMLSortingLogic
     {
         public static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {

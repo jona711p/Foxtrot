@@ -67,7 +67,7 @@ namespace Classes
             actor.WorkFax = null;
             actor.CompanyName = name;
 
-            return DBReadLogic.DupeCheckActors(actor);
+            return XMLDBReadLogic.DupeCheckActors(actor);
         }
 
         static void ReadCategoriesFromXML(string path)
@@ -76,13 +76,13 @@ namespace Classes
 
             List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
             {
-                XMLID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+                XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.XMLID).ToList();
 
-            List<Category> dupeCheckList = categories.Where(x => !DBReadLogic.DupeCheckList("XMLID", "Categories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Category> dupeCheckList = categories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Categories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            DBWriteLogic.WriteCategories(dupeCheckList);
+            XMLDBWriteLogic.WriteCategories(dupeCheckList);
         }
 
         static void ReadCitiesFromXML(string path)
@@ -91,14 +91,14 @@ namespace Classes
 
             List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(x => new City()
             {
-                ID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
-                PostalCode = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
+                ID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                PostalCode = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("../*[name()='PostalCode']"))
             }).Distinct().OrderBy(x => x.ID).ToList();
 
-            List<City> dupeCheckList = cities.Where(x => !DBReadLogic.DupeCheckList("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<City> dupeCheckList = cities.Where(x => !XMLDBReadLogic.DupeCheckList("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            DBWriteLogic.WriteCities(dupeCheckList);
+            XMLDBWriteLogic.WriteCities(dupeCheckList);
         }
 
         static void ReadFilesFromXML(string path)
@@ -107,13 +107,13 @@ namespace Classes
 
             List<File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new File()
             {
-                XMLID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                URI = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
+                XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                URI = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
             }).Distinct().OrderBy(x => x.XMLID).ToList();
 
-            List<File> dupeCheckList = files.Where(x => !DBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            DBWriteLogic.WriteFiles(dupeCheckList);
+            XMLDBWriteLogic.WriteFiles(dupeCheckList);
         }
 
         static void ReadMainCategoriesFromXML(string path)
@@ -122,13 +122,13 @@ namespace Classes
 
             List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
             {
-                XMLID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
+                XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']"))
             }).Distinct().OrderBy(x => x.XMLID).ToList();
 
-            List<MainCategory> dupeCheckList = mainCategories.Where(x => !DBReadLogic.DupeCheckList("XMLID", "MainCategories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<MainCategory> dupeCheckList = mainCategories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "MainCategories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            DBWriteLogic.WriteMainCategories(dupeCheckList);
+            XMLDBWriteLogic.WriteMainCategories(dupeCheckList);
         }
 
         static void ReadOpeningHoursFromXML(string path)
@@ -137,11 +137,11 @@ namespace Classes
 
             List<OpeningHour> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHour()
             {
-                XMLID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                StartDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
-                EndDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
-                StartTime = SortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
-                EndTime = SortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
+                XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                StartDate = XMLSortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
+                EndDate = XMLSortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
+                StartTime = XMLSortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
+                EndTime = XMLSortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
                 Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
                 Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
                 Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
@@ -151,9 +151,9 @@ namespace Classes
                 Sunday = bool.Parse(x.XPathSelectElement("./*[name()='Sunday']").Value)
             }).Distinct().OrderBy(x => x.XMLID).ToList();
 
-            List<OpeningHour> dupeCheckList = openingHours.Where(x => !DBReadLogic.DupeCheckList("XMLID", "OpeningHours").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<OpeningHour> dupeCheckList = openingHours.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "OpeningHours").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            DBWriteLogic.WriteOpeningHours(dupeCheckList);
+            XMLDBWriteLogic.WriteOpeningHours(dupeCheckList);
         }
 
         static void ReadProductsFromXML(string path)
@@ -162,55 +162,55 @@ namespace Classes
 
             List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
             {
-                XMLID = SortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
-                Name = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
-                Address = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='AddressLine1']")),
-                Latitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
-                Longitude = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
-                ContactPhone = SortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
-                ContactEmail = SortingLogic.TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
-                ContactFax = SortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
-                CreationDate = SortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
-                Price = SortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='PriceFrom']")),
-                Description = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
-                Website = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
-                CanonicalUrl = SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
+                XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+                Name = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
+                Address = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='AddressLine1']")),
+                Latitude = XMLSortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Latitude']")),
+                Longitude = XMLSortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='Longitude']")),
+                ContactPhone = XMLSortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Phone']")),
+                ContactEmail = XMLSortingLogic.TryToConvertNodeValueToStringList(x.XPathSelectElement(".//*[name()='Email']")),
+                ContactFax = XMLSortingLogic.TryToConvertNodeValueToIntList(x.XPathSelectElement(".//*[name()='Fax']")),
+                CreationDate = XMLSortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement(".//*[name()='Created']")),
+                Price = XMLSortingLogic.TryToConvertNodeValueToFloat(x.XPathSelectElement(".//*[name()='PriceFrom']")),
+                Description = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
+                Website = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
+                CanonicalUrl = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
                 Categories = x.XPathSelectElements(".//*[name()='Category']").Select(y => new Category()
                 {
-                    XMLID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
                 Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
                 {
-                    ID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    ID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
                 ExtraDescription = x.XPathSelectElements(".//*[name()='ProductMetaTag']").Select(y => new ExtraDescription()
                 {
-                    Description = SortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
+                    Description = XMLSortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
                 }).ToList(),
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
                 {
-                    XMLID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.XMLID).ToList(),
                 MainCategories = x.XPathSelectElements(".//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
-                    XMLID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHour()
                 {
-                    XMLID = SortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
+                    XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.XMLID).ToList(),
-                ActorID = ReadActorFromXML(SortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
+                ActorID = ReadActorFromXML(XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
             }).OrderBy(x => x.XMLID).ToList();
 
-            List<Product> dupeCheckList = products.Where(x => !DBReadLogic.DupeCheckList("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Product> dupeCheckList = products.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
-            DBWriteLogic.WriteProducts(dupeCheckList);
-            DBWriteLogic.WriteRelCategories(dupeCheckList);
-            DBWriteLogic.WriteRelCombiProducts(dupeCheckList);
-            DBWriteLogic.WriteRelEventsProducts(dupeCheckList);
-            DBWriteLogic.WriteRelFiles(dupeCheckList);
-            DBWriteLogic.WriteRelMainCategories(dupeCheckList);
-            DBWriteLogic.WriteRelOpeningHours(dupeCheckList);
+            XMLDBWriteLogic.WriteProducts(dupeCheckList);
+            XMLDBWriteLogic.WriteRelCategories(dupeCheckList);
+            XMLDBWriteLogic.WriteRelCombiProducts(dupeCheckList);
+            XMLDBWriteLogic.WriteRelEventsProducts(dupeCheckList);
+            XMLDBWriteLogic.WriteRelFiles(dupeCheckList);
+            XMLDBWriteLogic.WriteRelMainCategories(dupeCheckList);
+            XMLDBWriteLogic.WriteRelOpeningHours(dupeCheckList);
         }
     }
 }

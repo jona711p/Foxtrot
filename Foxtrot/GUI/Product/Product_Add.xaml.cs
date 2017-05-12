@@ -14,16 +14,16 @@ namespace Foxtrot.GUI.Product
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Add(int userID, int permission)
+        public Product_Add(Classes.User user)
         {
-            if (permission == 1)
+            if (user.Permission == 1)
             {
-                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Administrators", userID);
+                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Administrators", user.ID.Value);
             }
 
-            if (permission == 2)
+            if (user.Permission == 2)
             {
-                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", userID);
+                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", user.ID.Value);
             }
             
             InitializeComponent();
@@ -180,6 +180,7 @@ namespace Foxtrot.GUI.Product
             {
                 tempProduct.Availability = Availibility;
             }
+
             tempProduct.Cities = new City();
             tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Add_CityID.SelectedItem).Value;
 
