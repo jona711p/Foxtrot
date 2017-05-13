@@ -16,13 +16,13 @@ namespace Foxtrot
             XMLLogic.WatchXMLDir();
 
             InitializeComponent();
-            ResizeMode = ResizeMode.NoResize;
+            ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (1350x735) and disables the ability to minimize
             HideAll();
-            FillComboBoxWithAdminsAndActors();
+            FillComboBoxWithAdminsAndActors(); 
             MainFrame.Content = new Frontpage();
             DataContext = tempUser;
 
-            textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
+            textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" + // skal opdateres med relevant information og hyperlink og sæættes ind i xamlkoden 
                 "\nØsterbro 7, 7800 Skive" +
                 "\nTlf: +45 9614 7677 | info@skiveet.dk";
             textBox_RightFooter.Text = "Åbningstider:" +

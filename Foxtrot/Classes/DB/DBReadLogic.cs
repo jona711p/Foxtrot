@@ -282,10 +282,12 @@ namespace Classes
                 inputActor.CompanyName = reader["Firmanavn"].ToString();
                 inputActor.FirstName = reader["Fornavn"].ToString();
                 inputActor.LastName = reader["Efternavn"].ToString();
+                //implenter me convertnullable metoder
                 inputActor.WorkPhone = (reader["Telefon nr."].ToString().Equals("")
                     ? null
                     : (int?)int.Parse(reader["Telefon nr."].ToString()));
                 inputActor.WorkEmail = reader["E-Mail"].ToString();
+                //implenter me convertnullable metoder
                 inputActor.WorkFax = (reader["Fax"].ToString().Equals("")
                     ? null
                     : (int?)int.Parse(reader["Fax"].ToString()));
@@ -316,10 +318,12 @@ namespace Classes
 
                 inputAdmin.FirstName = reader["FirstName"].ToString();
                 inputAdmin.LastName = reader["LastName"].ToString();
+                //implenter me convertnullable metoder
                 inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("")
                     ? null
                     : (int?)int.Parse(reader["WorkPhone"].ToString()));
                 inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
+                //implenter me convertnullable metoder
                 inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("")
                     ? null
                     : (int?)int.Parse(reader["WorkFax"].ToString()));

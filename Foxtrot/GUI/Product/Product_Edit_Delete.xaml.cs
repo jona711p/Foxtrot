@@ -34,8 +34,11 @@ namespace Foxtrot.GUI.Product
             DataContext = tempProduct;
 
         }
-        private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e) 
         {
+            //Runs when the user selects any item on the datagrid
+            //finds the selected products ID and retrieves all information about it from the database
+            //the new information is stored in the object 'tempProduct' and displayed in the relavant inputfields in the GUI 
             if (dataGrid_Product_List.SelectedItem != null)
             {
                 tempProduct.ID =

@@ -60,6 +60,9 @@ namespace Foxtrot.GUI.User
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Runs when the user selects any item on the datagrid
+            //Checks the selected users permission/usertype and and ID then runs the corresponding method to retrieves all information about it from the database
+            //the new information is stored in the object 'tempAdministrator' or 'tempAdctor' depending on the usertype and displayed in the relavant inputfields in the GUI 
             if (dataGrid_User_Edit.SelectedItem != null)
             {
                 if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
