@@ -59,6 +59,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Classes\XMLImport\GUI\XML_Import.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Frontpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +109,9 @@
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\XMLImport\GUI\XML_Import.xaml.cs">
+      <DependentUpon>XML_Import.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\XMLImport\XMLDB\XMLDBReadLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLDB\XMLDBWriteLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLSortingLogic.cs" />

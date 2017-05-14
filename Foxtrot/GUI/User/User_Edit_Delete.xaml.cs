@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Classes;
 
 namespace Foxtrot.GUI.User
@@ -22,11 +11,11 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Edit_Delete : Page
     {
-        private Classes.User tempUser = new Classes.User();
-        private Classes.Actor tempActor = new Classes.Actor();
-        private Classes.Administrator tempAdministrator = new Classes.Administrator();
+        private global::Classes.User tempUser = new global::Classes.User();
+        private Actor tempActor = new Actor();
+        private Administrator tempAdministrator = new Administrator();
 
-        public User_Edit_Delete(Classes.User inputUser)
+        public User_Edit_Delete(global::Classes.User inputUser)
         {
             InitializeComponent();
             DataContext = tempUser;

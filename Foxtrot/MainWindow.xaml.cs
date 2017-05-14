@@ -81,6 +81,11 @@ namespace Foxtrot
             MainFrame.Content = new Frontpage();
         }
 
+        private void MenuItem_Menu_XML_Import_OnClick(object sender, RoutedEventArgs e)
+        {
+            //MainFrame.Content = new XML_Import();
+        }
+
         private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new User_Add();

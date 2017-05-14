@@ -9,8 +9,8 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Modify : Page
     {
-        private static Classes.Actor tempActor = new Actor();
-        public User_Modify(Classes.User inputUser)
+        private static Actor tempActor = new Actor();
+        public User_Modify(global::Classes.User inputUser)
         {
             tempActor.User_ID = inputUser.ID;
             tempActor.ID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);

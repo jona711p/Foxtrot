@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1310"
-      Title="User_Modify">
+      Title="Rediger din Bruger">
 
     <Page.Resources>
         <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">

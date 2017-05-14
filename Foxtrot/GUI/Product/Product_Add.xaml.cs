@@ -12,9 +12,9 @@ namespace Foxtrot.GUI.Product
     {
         private bool availibility;
         public City tempCity = new City();
-        Classes.Product tempProduct = new Classes.Product();
+        global::Classes.Product tempProduct = new global::Classes.Product();
 
-        public Product_Add(Classes.User inputUser)
+        public Product_Add(global::Classes.User inputUser)
         {
             if (inputUser.Permission == 1)
             {
