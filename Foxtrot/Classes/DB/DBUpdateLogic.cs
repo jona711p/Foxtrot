@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Classes
+namespace Foxtrot.Classes.DB
 {
     class DBUpdateLogic
     {

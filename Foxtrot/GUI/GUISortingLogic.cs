@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Classes
+namespace Foxtrot.GUI
 {
     /// <summary>
     /// Jonas Lykke

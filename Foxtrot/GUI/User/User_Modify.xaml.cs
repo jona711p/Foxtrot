@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Classes;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.User
 {
@@ -10,7 +11,7 @@ namespace Foxtrot.GUI.User
     public partial class User_Modify : Page
     {
         private static Actor tempActor = new Actor();
-        public User_Modify(global::Classes.User inputUser)
+        public User_Modify(Classes.User inputUser)
         {
             tempActor.User_ID = inputUser.ID;
             tempActor.ID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);

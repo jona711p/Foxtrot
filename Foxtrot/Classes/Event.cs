@@ -1,5 +1,5 @@
 ﻿
-namespace Classes
+namespace Foxtrot.Classes
 {
     public class Event : Product
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Classes
+namespace Foxtrot.Classes.XMLImport
 {
     /// <summary>
     /// Jonas Lykke

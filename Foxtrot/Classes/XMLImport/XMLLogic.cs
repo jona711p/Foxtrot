@@ -5,8 +5,9 @@ using System.Threading;
 using System.Windows;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using Foxtrot.Classes.XMLImport.XMLDB;
 
-namespace Classes
+namespace Foxtrot.Classes.XMLImport
 {
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen

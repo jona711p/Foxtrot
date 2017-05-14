@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Classes
+namespace Foxtrot.Classes
 {
     public class File : IEquatable<File>
     {

@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Foxtrot.Classes.XMLImport;
 
-namespace Classes
+namespace Foxtrot.Classes.DB
 {
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen

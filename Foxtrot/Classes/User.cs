@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
 
-namespace Classes
+namespace Foxtrot.Classes
 {
     public class User : INotifyPropertyChanged
     {

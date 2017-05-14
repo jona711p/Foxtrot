@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Classes;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
+using Foxtrot.Classes.XMLImport.XMLDB;
 
 namespace Foxtrot.GUI.User
 {

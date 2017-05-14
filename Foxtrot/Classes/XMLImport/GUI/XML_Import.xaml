@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:Foxtrot.Classes.XMLImport.GUI"
         mc:Ignorable="d"
         Title="XML Import" Height="300" Width="600">
+
     <Grid>
-        
+
+        <Label x:Name="lbl_XML_Import_Header" Content="Importere en ny XML Fil til DataBasen:" HorizontalAlignment="Center" Margin="10,10,10,208" VerticalAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Height="50" Width="572" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Label.Effect>
+        </Label>
+        <Button x:Name="btn_Open_XML_File" Content="Vælg en XML Fil" Margin="198,66,194,163" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Background="White" BorderBrush="Black" Height="40" Width="200" Click="btn_Open_XML_File_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3"/>
+            </Button.Effect>
+        </Button>
+        <Label x:Name="lbl_Loaded_File" Content="Følgende Fil blev Valgt:" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="64,158,396,85"/>
+        <Label x:Name="lbl_Loaded_FileName" Content="Filnavn" HorizontalAlignment="Left" Margin="219,158,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

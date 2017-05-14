@@ -2,7 +2,8 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using Classes;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.User
 {
@@ -11,11 +12,11 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Edit_Delete : Page
     {
-        private global::Classes.User tempUser = new global::Classes.User();
+        private Classes.User tempUser = new Classes.User();
         private Actor tempActor = new Actor();
         private Administrator tempAdministrator = new Administrator();
 
-        public User_Edit_Delete(global::Classes.User inputUser)
+        public User_Edit_Delete(Classes.User inputUser)
         {
             InitializeComponent();
             DataContext = tempUser;

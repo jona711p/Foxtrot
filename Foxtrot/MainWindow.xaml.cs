@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Classes;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
+using Foxtrot.Classes.XMLImport;
+using Foxtrot.Classes.XMLImport.GUI;
 using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
@@ -44,6 +47,7 @@ namespace Foxtrot
             if (tempUser.Permission == 1)
             {
                 HideAll();
+                XML_Import_MenuItem.IsEnabled = true;
                 User_MenuItem.IsEnabled = true;
                 User_MenuItem_Add.IsEnabled = true;
                 User_MenuItem_Edit_Delete.IsEnabled = true;
@@ -67,6 +71,7 @@ namespace Foxtrot
 
         void HideAll()
         {
+            XML_Import_MenuItem.IsEnabled = false;
             User_MenuItem.IsEnabled = false;
             User_MenuItem_Add.IsEnabled = false;
             User_MenuItem_Edit_Delete.IsEnabled = false;
@@ -83,7 +88,8 @@ namespace Foxtrot
 
         private void MenuItem_Menu_XML_Import_OnClick(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new XML_Import();
+            XML_Import xmlImport = new XML_Import();
+            xmlImport.Show();
         }
 
         private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)

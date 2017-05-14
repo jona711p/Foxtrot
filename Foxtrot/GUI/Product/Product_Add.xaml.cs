@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Windows.Controls;
-using Classes;
 using System.Windows;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.Product
 {
@@ -12,9 +13,9 @@ namespace Foxtrot.GUI.Product
     {
         private bool availibility;
         public City tempCity = new City();
-        global::Classes.Product tempProduct = new global::Classes.Product();
+        Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Add(global::Classes.User inputUser)
+        public Product_Add(Classes.User inputUser)
         {
             if (inputUser.Permission == 1)
             {

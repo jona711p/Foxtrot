@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Classes
+namespace Foxtrot.Classes.DB
 {
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen

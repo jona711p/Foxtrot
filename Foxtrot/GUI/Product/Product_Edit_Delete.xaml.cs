@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Windows.Controls;
-using Classes;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.Product
 {
@@ -11,7 +12,7 @@ namespace Foxtrot.GUI.Product
     {
         private bool availibility;
         public City tempCity = new City();
-        global::Classes.Product tempProduct = new global::Classes.Product();
+        Classes.Product tempProduct = new Classes.Product();
 
         public Product_Edit_Delete()
         {
