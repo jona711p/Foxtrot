@@ -30,18 +30,6 @@ namespace Foxtrot.GUI.User
             DataContext = tempUser;
         }
 
-        //private void Rdbtn_User_Edit_Admin_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
-        //}
-
-        //private void Rdbtn_User_Edit_Actor_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
-        //}
-
-       
-
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
@@ -54,15 +42,18 @@ namespace Foxtrot.GUI.User
             //the new information is stored in the object 'tempAdministrator' or 'tempAdctor' depending on the usertype and displayed in the relavant inputfields in the GUI 
             if (dataGrid_User_Edit.SelectedItem != null)
             {
-                if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
+                if (
+                    int.Parse(
+                        ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                    1) //If the selected row is an administrator
                 {
                     {
                         tempAdministrator.User_ID =
                             int.Parse(
                                 ((TextBlock)
-                                        dataGrid_User_Edit.Columns[0].GetCellContent(
-                                            dataGrid_User_Edit.SelectedItem))
-                                                .Text);
+                                    dataGrid_User_Edit.Columns[0].GetCellContent(
+                                        dataGrid_User_Edit.SelectedItem))
+                                .Text);
                         tempAdministrator = DBReadLogic.GetAdminInfo(tempAdministrator);
 
                         textBox_User_Edit_Firstname.Text = tempAdministrator.FirstName;
@@ -76,15 +67,18 @@ namespace Foxtrot.GUI.User
                         //tempAdministrator.User_ID = 
                     }
                 }
-                if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
+                if (
+                    int.Parse(
+                        ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                    2) //If the selected row is an actor
                 {
                     {
                         tempActor.User_ID =
                             int.Parse(
                                 ((TextBlock)
-                                        dataGrid_User_Edit.Columns[0].GetCellContent(
-                                            dataGrid_User_Edit.SelectedItem))
-                                                .Text);
+                                    dataGrid_User_Edit.Columns[0].GetCellContent(
+                                        dataGrid_User_Edit.SelectedItem))
+                                .Text);
                         tempActor = DBReadLogic.GetActorInfo(tempActor);
 
                         textBox_User_Edit_CompanyName.Text = tempActor.CompanyName;
@@ -101,57 +95,47 @@ namespace Foxtrot.GUI.User
 
             }
         }
+
         private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
         {
             int tempint;
 
-            if (tempActor.Permission == 2)
+            if (rdbtn_User_Edit_Actor.IsChecked == true)
             {
                 tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
                 tempActor.FirstName = textBox_User_Edit_Firstname.Text;
                 tempActor.LastName = textBox_User_Edit_Lastname.Text;
 
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) &&
-                textBox_User_Edit_Phone.Text.Length == 8)
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) && textBox_User_Edit_Phone.Text.Length == 8)
                 {
-                    tempActor.WorkPhone = tempint; 
-                };
+                    tempActor.WorkPhone = tempint;
+                }
+                ;
                 tempActor.WorkEmail = textBox_User_Edit_Email.Text;
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && 
-                textBox_User_Edit_Fax.Text.Length == 8)
-            {
-                tempActor.WorkFax = tempint;
-            }
-            if (rdbtn_User_Edit_Actor.IsEnabled == true)
-            {
-                tempActor.Permission = availibility;
-            }
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && textBox_User_Edit_Fax.Text.Length == 8)
+                {
+                    tempActor.WorkFax = tempint;
+                }
 
-            if (tempActor.Permission == 1)
+                DBUpdateLogic.UpdateActor(tempActor);
+            }
+            if (rdbtn_User_Edit_Admin.IsChecked == true)
             {
                 tempAdministrator.FirstName = textBox_User_Edit_Firstname.Text;
                 tempAdministrator.LastName = textBox_User_Edit_Lastname.Text;
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) &&
-                textBox_User_Edit_Phone.Text.Length == 8)
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) && textBox_User_Edit_Phone.Text.Length == 8)
                 {
                     tempAdministrator.WorkPhone = tempint;
-                };
-                tempAdministrator.WorkEmail = textBox_User_Edit_Email.Text;
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) &&
-                        textBox_User_Edit_Fax.Text.Length == 8)
-                    {
-                        tempAdministrator.WorkFax = tempint;
-                    }
-                    if (rdbtn_User_Edit_Actor.IsChecked == true)
-                    {
-                        tempAdministrator.Permission = availibility;
-                    }
-                    
-
                 }
+                ;
+                tempAdministrator.WorkEmail = textBox_User_Edit_Email.Text;
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && textBox_User_Edit_Fax.Text.Length == 8)
+                {
+                    tempAdministrator.WorkFax = tempint;
 
-        }
-            
+                    DBUpdateLogic.UpdateAdmin(tempAdministrator);
+                }
+            }
         }
     }
 }

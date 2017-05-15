@@ -16,7 +16,7 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spUpdateActor", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputActor.ID;
+                //command.Parameters.Add("@ID", SqlDbType.Int).Value = inputActor.ID;
                 command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.User_ID;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
@@ -24,6 +24,33 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputActor.WorkEmail;
                 command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputActor.WorkFax;
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
+
+                command.ExecuteNonQuery();
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void UpdateAdmin(Administrator inputAdmin)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateAdmin", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.User_ID;
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdmin.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdmin.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdmin.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputAdmin.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdmin.WorkFax;
 
                 command.ExecuteNonQuery();
 
