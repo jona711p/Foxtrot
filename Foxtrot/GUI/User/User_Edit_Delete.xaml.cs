@@ -57,7 +57,7 @@ namespace Foxtrot.GUI.User
                 if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
                 {
                     {
-                        tempAdministrator.ID =
+                        tempAdministrator.User_ID =
                             int.Parse(
                                 ((TextBlock)
                                         dataGrid_User_Edit.Columns[0].GetCellContent(
@@ -73,12 +73,13 @@ namespace Foxtrot.GUI.User
                         rdbtn_User_Edit_Admin.IsChecked = true;
                         rdbtn_User_Edit_Actor.IsChecked = false;
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
+                        //tempAdministrator.User_ID = 
                     }
                 }
                 if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
                 {
                     {
-                        tempActor.ID =
+                        tempActor.User_ID =
                             int.Parse(
                                 ((TextBlock)
                                         dataGrid_User_Edit.Columns[0].GetCellContent(

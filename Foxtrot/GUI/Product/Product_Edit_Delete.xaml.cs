@@ -64,7 +64,7 @@ namespace Foxtrot.GUI.Product
                 rbtn_Product_Edit_Availability_False.IsChecked = !tempProduct.Availability;
                 textBox_Product_Edit_Website.Text = tempProduct.Website;
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
-
+                //comboBox_Product_Edit_CityID. //Item = Bynavn/ID
                 
                 
             }
