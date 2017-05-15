@@ -126,6 +126,7 @@ namespace Foxtrot.GUI.User
             {
                 tempActor.Permission = availibility;
             }
+                DBUpdateLogic.UpdateActor(tempActor);
 
             if (tempActor.Permission == 1)
             {
@@ -146,7 +147,7 @@ namespace Foxtrot.GUI.User
                     {
                         tempAdministrator.Permission = availibility;
                     }
-                    
+                    DBUpdateLogic.UpdateAdmin(tempAdministrator);
 
                 }
 
