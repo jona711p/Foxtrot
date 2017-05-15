@@ -21,7 +21,16 @@
             </Button>
             <Label x:Name="lbl_Loaded_File" Content="Følgende Fil blev Valgt:" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="185,50,247,10" FontFamily="Arial" Height="40" Width="140"/>
             <Label x:Name="lbl_Loaded_FileName" Content="{Binding FileName}" HorizontalAlignment="Center" Margin="325,50,10,10" VerticalAlignment="Center" FontFamily="Arial" Width="237" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="572"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="144" Margin="10,115,0,0" VerticalAlignment="Top" Width="572">
+            <Button x:Name="btn_Start_Reading_From_XML" Content="Start Import af XML!" HorizontalAlignment="Center" Margin="10,10,362,94" VerticalAlignment="Center" Width="200" FontFamily="Arial" FontSize="20" Background="White" BorderBrush="Black" Height="40" FontWeight="Bold">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="3"/>
+                </Button.Effect>
+            </Button>
+            <Label x:Name="lbl_Status" HorizontalAlignment="Center" Margin="215,10,10,94" VerticalAlignment="Center" Height="40" Width="347" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20"/>
+            <ProgressBar HorizontalAlignment="Center" Height="30" Margin="10,104,10,10" VerticalAlignment="Center" Width="552" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial"/>
+
         </Grid>
 
     </Grid>

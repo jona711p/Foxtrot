@@ -11,8 +11,6 @@ namespace Foxtrot.Classes.XMLImport.GUI
     /// </summary>
     public partial class XML_Import : Window, INotifyPropertyChanged
     {
-        private string FullPathAndFileName;
-
         private string fileName;
 
         public string FileName
@@ -20,6 +18,8 @@ namespace Foxtrot.Classes.XMLImport.GUI
             get { return fileName; }
             set { fileName = value; NotifyPropertyChanged(); }
         }
+
+        public string FullPathAndFileName { get; private set; }
 
         public XML_Import()
         {
@@ -40,15 +40,15 @@ namespace Foxtrot.Classes.XMLImport.GUI
             FileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML Dokument (.xml)|*.xml";
 
-            bool? resault = openFileDialog.ShowDialog();
+            bool? result = openFileDialog.ShowDialog();
             openFileDialog.InitialDirectory = ".";
 
-            if (resault == true)
+            if (result == true)
             {
                 FullPathAndFileName = openFileDialog.FileName;
                 char[] param = { '\\' };
-                string[] tempArray = fileName.Split(param);
-                fileName = tempArray[tempArray.Length - 1];
+                string[] tmpArray = FullPathAndFileName.Split(param);
+                FileName = tmpArray[tmpArray.Length - 1];
             }
         }
 
