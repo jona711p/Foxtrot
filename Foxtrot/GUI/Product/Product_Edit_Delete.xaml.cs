@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace Foxtrot.GUI.Product
 {
@@ -51,10 +53,10 @@ namespace Foxtrot.GUI.Product
                 {
                     textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();
                 }
-                textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();   // fejl
+                textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();   
                 textBox_Product_Edit_Príce.Text = tempProduct.Price.ToString();
                 textBox_Product_Edit_Description.Text = tempProduct.Description;
-                if (tempProduct.ExtraDescription.Count != 0) //Ikke lavet ordenligt
+                if (tempProduct.ExtraDescription.Count != 0)
                 {
                     textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;   
                 }
@@ -63,6 +65,96 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_Website.Text = tempProduct.Website;
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
             }
+        }
+
+        private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            int tempint;
+
+            tempProduct.Name = textBox_Product_Edit_Name.Text;
+            tempProduct.Address = textBox_Product_Edit_Adress.Text;
+            tempProduct.Longitude = textBox_Product_Edit_Longtitude.Text.Length;
+            tempProduct.Latitude = textBox_Product_Edit_Latitude.Text.Length;
+
+            if (int.TryParse(textBox_Product_Edit_ContactPhone.Text, out tempint) &&
+                textBox_Product_Edit_ContactPhone.Text.Length == 8)
+            {
+                tempProduct.ContactPhone = new List<int?>()
+                {
+                   tempint
+                };
+            }
+            if (textBox_Product_Edit_ContactEmail.Text.Length != 0 && textBox_Product_Edit_ContactEmail.Text.Contains("@"))
+            {
+                tempProduct.ContactEmail = new List<string>()
+                    {
+                        textBox_Product_Edit_ContactEmail.Text
+                    };
+
+            }
+            if (int.TryParse(textBox_Product_Edit_ContactFax.Text, out tempint) &&
+                textBox_Product_Edit_ContactFax.Text.Length == 8)
+            {
+                tempProduct.ContactFax = new List<int?>()
+                {
+                    tempint
+                };
+            }
+            if (textBox_Product_Edit_Príce.Text.Length != 0)
+            {
+                tempProduct.Price = float.Parse(textBox_Product_Edit_Príce.Text);
+            }
+            if (textBox_Product_Edit_Description.Text.Length != 0)
+            {
+                tempProduct.Description = textBox_Product_Edit_Description.Text;
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
+                return;
+            }
+
+            if (textBox_Product_Edit_ExtraDescription.Text.Length != 0)
+            {
+                tempProduct.ExtraDescription = new List<ExtraDescription>()
+            {
+                new ExtraDescription()
+                {
+                    Description = textBox_Product_Edit_ExtraDescription.Text
+                }
+            };
+
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste en ekstra beskrivelse af produktet");
+                return;
+            }
+
+            if (textBox_Product_Edit_CanonicalUrl.Text.Length != 0)
+            {
+                tempProduct.CanonicalUrl = textBox_Product_Edit_CanonicalUrl.Text;
+            }
+            else
+            {
+                MessageBox.Show("Du skal indtaste URL på produktet");
+                return;
+            }
+            if (textBox_Product_Edit_Website.Text.Length != 0)
+            {
+                tempProduct.Website = textBox_Product_Edit_Website.Text;
+            }
+
+            if (rbtn_Product_Edit_Availability_False.IsEnabled == true ||
+                rbtn_Product_Edit_Availability_True.IsChecked == true)
+            {
+                tempProduct.Availability = availibility;
+            }
+            tempProduct.Cities = new City();
+            tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
+
+            DBWriteLogic.WriteNewProduct(tempProduct);
+            MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
     }
 }
