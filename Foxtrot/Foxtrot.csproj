@@ -59,18 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Classes\XMLImport\GUI\XML_Import.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUI\CombiProduct\CombiProduct_Add.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUI\Event\Event.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GUI\Frontpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +83,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\XMLImport\XMLImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,25 +103,14 @@
     <Compile Include="Classes\DB\DBDeleteLogic.cs" />
     <Compile Include="Classes\DB\DBSortingLogic.cs" />
     <Compile Include="Classes\DB\DBUpdateLogic.cs" />
+    <Compile Include="Classes\DB\XMLDBReadLogic.cs" />
+    <Compile Include="Classes\DB\XMLDBWriteLogic.cs" />
     <Compile Include="Classes\File.cs" />
     <Compile Include="Classes\OpeningHour.cs" />
     <Compile Include="Classes\DB\DBWriteLogic.cs" />
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
-    <Compile Include="Classes\XMLImport\GUI\XML_Import.xaml.cs">
-      <DependentUpon>XML_Import.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\XMLImport\XMLDB\XMLDBReadLogic.cs" />
-    <Compile Include="Classes\XMLImport\XMLDB\XMLDBWriteLogic.cs" />
-    <Compile Include="Classes\XMLImport\XMLSortingLogic.cs" />
-    <Compile Include="Classes\XMLImport\XMLLogic.cs" />
-    <Compile Include="GUI\CombiProduct\CombiProduct_Add.xaml.cs">
-      <DependentUpon>CombiProduct_Add.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Event\Event.xaml.cs">
-      <DependentUpon>Event.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Frontpage.xaml.cs">
       <DependentUpon>Frontpage.xaml</DependentUpon>
     </Compile>
@@ -149,6 +130,10 @@
     <Compile Include="GUI\User\User_Modify.xaml.cs">
       <DependentUpon>User_Modify.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\XMLImport\XMLImport.xaml.cs">
+      <DependentUpon>XMLImport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\XMLImport\XMLSortingLogic.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

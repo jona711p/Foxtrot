@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using Foxtrot.Classes;
 
-namespace Foxtrot.Classes.XMLImport
+namespace Foxtrot.GUI.XMLImport
 {
     /// <summary>
     /// Jonas Lykke

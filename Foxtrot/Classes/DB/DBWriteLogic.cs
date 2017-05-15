@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using Foxtrot.Classes.XMLImport;
+using Foxtrot.GUI.XMLImport;
 
 namespace Foxtrot.Classes.DB
 {
