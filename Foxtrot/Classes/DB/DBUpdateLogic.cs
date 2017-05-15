@@ -71,4 +71,5 @@ namespace Foxtrot.Classes.DB
                 throw ex;
             }
         }
+    }
 }

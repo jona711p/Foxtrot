@@ -156,7 +156,7 @@ namespace Foxtrot.GUI.Product
             tempProduct.Cities = new City();
             tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
 
-            //DBWriteLogic.WriteNewProduct(tempProduct);
+            DBUpdateLogic.UpdateProduct(tempProduct);
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
     }
