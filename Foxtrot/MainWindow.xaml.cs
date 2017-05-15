@@ -114,5 +114,6 @@ namespace Foxtrot
         {
             MainFrame.Content = new Product_Edit_Delete();
         }
+        
     }
 }
