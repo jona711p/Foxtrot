@@ -1,21 +1,87 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using Foxtrot.Classes.XMLImport.XMLDB;
+using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
+using Microsoft.Win32;
 
-namespace Foxtrot.Classes.XMLImport
+namespace Foxtrot.GUI.XMLImport
 {
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
     /// </summary>
-    class XMLLogic
+    public partial class XMLImport : Window
     {
         static FileSystemWatcher watcher;
         static XDocument xmlDocument;
+
+        private string fileName;
+
+        public string FileName
+        {
+            get { return fileName; }
+            set { fileName = value; NotifyPropertyChanged(); }
+        }
+
+        public string FullPathAndFileName { get; private set; }
+
+        public XMLImport()
+        {
+            ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (600x300) and disables the ability to minimize
+
+            InitializeComponent();
+
+            DataContext = this;
+
+            WatchXMLDir();
+        }
+
+        private void btn_Open_XML_File_Click(object sender, RoutedEventArgs e)
+        {
+            OpenXMLFile();
+        }
+
+        private void btn_Start_Reading_From_XML_Click(object sender, RoutedEventArgs e)
+        {
+            if (FullPathAndFileName != null)
+            {
+                btn_Open_XML_File.IsEnabled = false;
+                btn_Start_Reading_From_XML.IsEnabled = false;
+                ReadFromNewXML(FullPathAndFileName);
+            }
+
+            else
+            {
+                MessageBox.Show("Du skal vælge en XML Fil først!");
+            }
+
+            btn_Open_XML_File.IsEnabled = true;
+            btn_Start_Reading_From_XML.IsEnabled = true;
+        }
+
+        private void OpenXMLFile()
+        {
+            FileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML Dokument (.xml)|*.xml";
+
+            bool? result = openFileDialog.ShowDialog();
+            openFileDialog.InitialDirectory = ".";
+
+            if (result == true)
+            {
+                FullPathAndFileName = openFileDialog.FileName;
+                char[] param = { '\\' };
+                string[] tempArray = FullPathAndFileName.Split(param);
+                FileName = tempArray[tempArray.Length - 1];
+            }
+        }
 
         public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
@@ -29,6 +95,8 @@ namespace Foxtrot.Classes.XMLImport
         static void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
         {
             ReadFromNewXML(args.FullPath);
+
+            System.IO.File.Delete(args.FullPath);
         }
 
         static void ReadFromNewXML(string path)
@@ -36,7 +104,6 @@ namespace Foxtrot.Classes.XMLImport
             ReadFromXMLInThreads(path);
             ReadProductsFromXML(path);
 
-            System.IO.File.Delete(path);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
@@ -111,13 +178,13 @@ namespace Foxtrot.Classes.XMLImport
         {
             XDocument xmlDocument = XDocument.Load(path);
 
-            List<File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new File()
+            List<Classes.File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new Classes.File()
             {
                 XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 URI = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Uri']"))
             }).Distinct().OrderBy(x => x.XMLID).ToList();
 
-            List<File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Classes.File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteFiles(dupeCheckList);
         }
@@ -166,7 +233,7 @@ namespace Foxtrot.Classes.XMLImport
         {
             XDocument xmlDocument = XDocument.Load(path);
 
-            List<Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Product()
+            List<Classes.Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Classes.Product()
             {
                 XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
                 Name = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")),
@@ -193,7 +260,7 @@ namespace Foxtrot.Classes.XMLImport
                 {
                     Description = XMLSortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
                 }).ToList(),
-                Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new File()
+                Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new Classes.File()
                 {
                     XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.XMLID).ToList(),
@@ -208,7 +275,7 @@ namespace Foxtrot.Classes.XMLImport
                 ActorID = ReadActorFromXML(XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
             }).OrderBy(x => x.XMLID).ToList();
 
-            List<Product> dupeCheckList = products.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+            List<Classes.Product> dupeCheckList = products.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteProducts(dupeCheckList);
             XMLDBWriteLogic.WriteRelCategories(dupeCheckList);
@@ -217,6 +284,16 @@ namespace Foxtrot.Classes.XMLImport
             XMLDBWriteLogic.WriteRelFiles(dupeCheckList);
             XMLDBWriteLogic.WriteRelMainCategories(dupeCheckList);
             XMLDBWriteLogic.WriteRelOpeningHours(dupeCheckList);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
