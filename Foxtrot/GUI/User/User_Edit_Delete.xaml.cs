@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
+using System.Collections.Generic;
 
 namespace Foxtrot.GUI.User
 {
@@ -15,6 +16,7 @@ namespace Foxtrot.GUI.User
         private Classes.User tempUser = new Classes.User();
         private Actor tempActor = new Actor();
         private Administrator tempAdministrator = new Administrator();
+        private int availibility;
 
         public User_Edit_Delete(Classes.User inputUser)
         {
@@ -38,10 +40,7 @@ namespace Foxtrot.GUI.User
             textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
         }
 
-        private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
@@ -64,7 +63,7 @@ namespace Foxtrot.GUI.User
                                         dataGrid_User_Edit.Columns[0].GetCellContent(
                                             dataGrid_User_Edit.SelectedItem))
                                                 .Text);
-                        tempAdministrator =  DBReadLogic.GetAdminInfo(tempAdministrator);
+                        tempAdministrator = DBReadLogic.GetAdminInfo(tempAdministrator);
 
                         textBox_User_Edit_Firstname.Text = tempAdministrator.FirstName;
                         textBox_User_Edit_Lastname.Text = tempAdministrator.LastName;
@@ -98,7 +97,62 @@ namespace Foxtrot.GUI.User
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
                     }
                 }
+
             }
+        }
+        private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            int tempint;
+
+            if (tempActor.Permission == 2)
+            {
+                tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
+                tempActor.FirstName = textBox_User_Edit_Firstname.Text;
+                tempActor.LastName = textBox_User_Edit_Lastname.Text;
+
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) &&
+                textBox_User_Edit_Phone.Text.Length == 8)
+                {
+                    tempActor.WorkPhone = tempint; 
+                };
+                tempActor.WorkEmail = textBox_User_Edit_Email.Text;
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && 
+                textBox_User_Edit_Fax.Text.Length == 8)
+            {
+                tempActor.WorkFax = tempint;
+            }
+            if (rdbtn_User_Edit_Actor.IsEnabled == true ||
+                rdbtn_User_Edit_Actor.IsChecked == true)
+            {
+                tempActor.Permission = availibility;
+            }
+
+            if (tempActor.Permission == 1)
+            {
+                tempAdministrator.FirstName = textBox_User_Edit_Firstname.Text;
+                tempAdministrator.LastName = textBox_User_Edit_Lastname.Text;
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) &&
+                textBox_User_Edit_Phone.Text.Length == 8)
+                {
+                    tempAdministrator.WorkPhone = tempint;
+                };
+                tempAdministrator.WorkEmail = textBox_User_Edit_Email.Text;
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) &&
+                        textBox_User_Edit_Fax.Text.Length == 8)
+                    {
+                        tempAdministrator.WorkFax = tempint;
+                    }
+                    if (rdbtn_User_Edit_Actor.IsEnabled == true ||
+                 rdbtn_User_Edit_Actor.IsChecked == true)
+                    {
+                        tempAdministrator.Permission = availibility;
+                    }
+                    
+
+                }
+
+        }
+            
         }
     }
 }
