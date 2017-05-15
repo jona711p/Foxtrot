@@ -28,15 +28,15 @@ namespace Foxtrot.GUI.User
             DataContext = tempUser;
         }
 
-        private void Rdbtn_User_Edit_Admin_OnClick(object sender, RoutedEventArgs e)
-        {
-            textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
-        }
+        //private void Rdbtn_User_Edit_Admin_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
+        //}
 
-        private void Rdbtn_User_Edit_Actor_OnClick(object sender, RoutedEventArgs e)
-        {
-            textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
-        }
+        //private void Rdbtn_User_Edit_Actor_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
+        //}
 
         private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
         {
