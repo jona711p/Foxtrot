@@ -17,11 +17,8 @@ namespace Foxtrot.GUI.XMLImport
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
     /// </summary>
-    public partial class XMLImport : Window
+    public partial class XMLImport : Window, INotifyPropertyChanged
     {
-        static FileSystemWatcher watcher;
-        static XDocument xmlDocument;
-
         private string fileName;
 
         public string FileName
@@ -30,17 +27,20 @@ namespace Foxtrot.GUI.XMLImport
             set { fileName = value; NotifyPropertyChanged(); }
         }
 
+        static FileSystemWatcher watcher;
         public string FullPathAndFileName { get; private set; }
+
+        private XDocument xmlDocument;
 
         public XMLImport()
         {
+            WatchXMLDir();
+
             ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (600x300) and disables the ability to minimize
 
             InitializeComponent();
 
             DataContext = this;
-
-            WatchXMLDir();
         }
 
         private void btn_Open_XML_File_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,7 @@ namespace Foxtrot.GUI.XMLImport
             if (FullPathAndFileName != null)
             {
                 DisableButtoms();
-                ReadFromNewXML(FullPathAndFileName);
+                ReadFromNewXML();
             }
 
             else
@@ -76,15 +76,7 @@ namespace Foxtrot.GUI.XMLImport
             btn_Start_Reading_From_XML.IsEnabled = false;
         }
 
-        private void ProgressBar(int percentage)
-        {
-            for (int i = 0; i < percentage; i++)
-            {
-                pb_Status.Value++;
-            }
-        }
-
-        public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
+        private void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
         {
             if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
 
@@ -110,30 +102,31 @@ namespace Foxtrot.GUI.XMLImport
             }
         }
 
-        static void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
+        private void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
         {
-            ReadFromNewXML(args.FullPath);
+            FullPathAndFileName = args.FullPath;
+            ReadFromNewXML();
 
-            System.IO.File.Delete(args.FullPath);
+            System.IO.File.Delete(FullPathAndFileName);
         }
 
-        static void ReadFromNewXML(string path)
+        private void ReadFromNewXML()
         {
-            ReadFromXMLInThreads(path);
-            ReadProductsFromXML(path);
+            ReadFromXMLInThreads();
+            ReadProductsFromXML();
 
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
-        static void ReadFromXMLInThreads(string path)
+        private void ReadFromXMLInThreads()
         {
             Thread[] readFromXML = new Thread[]
             {
-                new Thread(() => { ReadCitiesFromXML(path); }),
-                new Thread(() => { ReadCategoriesFromXML(path); }),
-                new Thread(() => { ReadFilesFromXML(path); }),
-                new Thread(() => { ReadMainCategoriesFromXML(path); }),
-                new Thread(() => { ReadOpeningHoursFromXML(path); })
+                new Thread(() => { ReadCategoriesFromXML(); }),
+                new Thread(() => { ReadCitiesFromXML(); }),
+                new Thread(() => { ReadFilesFromXML(); }),
+                new Thread(() => { ReadMainCategoriesFromXML(); }),
+                new Thread(() => { ReadOpeningHoursFromXML(); })
             };
 
             foreach (Thread thread in readFromXML)
@@ -147,7 +140,15 @@ namespace Foxtrot.GUI.XMLImport
             }
         }
 
-        static int ReadActorFromXML(string name)
+        private void ProgressBarPercentage(int percentage)
+        {
+            for (int i = 0; i < percentage; i++)
+            {
+                pb_Status.Value++;
+            }
+        }
+
+        private int ReadActorFromXML(string name)
         {
             Actor actor = new Actor();
 
@@ -161,9 +162,9 @@ namespace Foxtrot.GUI.XMLImport
             return XMLDBReadLogic.DupeCheckActors(actor);
         }
 
-        static void ReadCategoriesFromXML(string path)
+        private void ReadCategoriesFromXML()
         {
-            XDocument xmlDocument = XDocument.Load(path);
+            XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
             {
@@ -176,9 +177,9 @@ namespace Foxtrot.GUI.XMLImport
             XMLDBWriteLogic.WriteCategories(dupeCheckList);
         }
 
-        static void ReadCitiesFromXML(string path)
+        private void ReadCitiesFromXML()
         {
-            xmlDocument = XDocument.Load(path);
+            xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(x => new City()
             {
@@ -192,9 +193,9 @@ namespace Foxtrot.GUI.XMLImport
             XMLDBWriteLogic.WriteCities(dupeCheckList);
         }
 
-        static void ReadFilesFromXML(string path)
+        private void ReadFilesFromXML()
         {
-            XDocument xmlDocument = XDocument.Load(path);
+            XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<Classes.File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new Classes.File()
             {
@@ -207,9 +208,9 @@ namespace Foxtrot.GUI.XMLImport
             XMLDBWriteLogic.WriteFiles(dupeCheckList);
         }
 
-        static void ReadMainCategoriesFromXML(string path)
+        private void ReadMainCategoriesFromXML()
         {
-            XDocument xmlDocument = XDocument.Load(path);
+            XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
             {
@@ -222,17 +223,19 @@ namespace Foxtrot.GUI.XMLImport
             XMLDBWriteLogic.WriteMainCategories(dupeCheckList);
         }
 
-        static void ReadOpeningHoursFromXML(string path)
+        private void ReadOpeningHoursFromXML()
         {
-            XDocument xmlDocument = XDocument.Load(path);
+            XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<OpeningHour> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHour()
             {
                 XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(x.XPathSelectElement("./*[name()='Id']")),
+
                 StartDate = XMLSortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='StartDate']")),
                 EndDate = XMLSortingLogic.TryToConvertNodeValueToDateTime(x.XPathSelectElement("./*[name()='EndDate']")),
                 StartTime = XMLSortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='StartTime']")),
                 EndTime = XMLSortingLogic.TryToConvertNodeValueToTime(x.XPathSelectElement("./*[name()='EndTime']")),
+
                 Monday = bool.Parse(x.XPathSelectElement("./*[name()='Monday']").Value),
                 Tuesday = bool.Parse(x.XPathSelectElement("./*[name()='Tuesday']").Value),
                 Wednesday = bool.Parse(x.XPathSelectElement("./*[name()='Wednesday']").Value),
@@ -247,9 +250,9 @@ namespace Foxtrot.GUI.XMLImport
             XMLDBWriteLogic.WriteOpeningHours(dupeCheckList);
         }
 
-        static void ReadProductsFromXML(string path)
+        private void ReadProductsFromXML()
         {
-            XDocument xmlDocument = XDocument.Load(path);
+            XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<Classes.Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Classes.Product()
             {
@@ -266,30 +269,37 @@ namespace Foxtrot.GUI.XMLImport
                 Description = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Text']")),
                 Website = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='Url']")),
                 CanonicalUrl = XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement(".//*[name()='CanonicalUrl']")),
+
                 Categories = x.XPathSelectElements(".//*[name()='Category']").Select(y => new Category()
                 {
                     XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
+
                 Cities = x.XPathSelectElements(".//*[name()='Municipality']").Select(y => new City()
                 {
                     ID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
+
                 ExtraDescription = x.XPathSelectElements(".//*[name()='ProductMetaTag']").Select(y => new ExtraDescription()
                 {
                     Description = XMLSortingLogic.TryToConvertNodeValueToString(y.XPathSelectElement("./*[name()='Name']"))
                 }).ToList(),
+
                 Files = x.XPathSelectElements(".//*[name()='File']").Select(y => new Classes.File()
                 {
                     XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.XMLID).ToList(),
+
                 MainCategories = x.XPathSelectElements(".//*[name()='MainCategory']").Select(y => new MainCategory()
                 {
                     XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).FirstOrDefault(),
+
                 OpeningHours = x.XPathSelectElements(".//*[name()='Period']").Select(y => new OpeningHour()
                 {
                     XMLID = XMLSortingLogic.TryToConvertNodeValueToInt(y.XPathSelectElement("./*[name()='Id']"))
                 }).OrderBy(y => y.XMLID).ToList(),
+
                 ActorID = ReadActorFromXML(XMLSortingLogic.TryToConvertNodeValueToString(x.XPathSelectElement("./*[name()='Name']")))
             }).OrderBy(x => x.XMLID).ToList();
 

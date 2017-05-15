@@ -12,12 +12,13 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
-        private static XMLImport xmlImport = new XMLImport();
+        XMLImport xmlImport = new XMLImport();
         private static User tempUser = new User();
         public MainWindow()
         {
-            InitializeComponent();
             ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (1350x735) and disables the ability to minimize
+            InitializeComponent();
+
             HideAll();
             FillComboBoxWithAdminsAndActors(); 
             MainFrame.Content = new Frontpage();
