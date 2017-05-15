@@ -192,6 +192,7 @@ namespace Foxtrot.Classes.DB
         public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> inputDictionary)
         {
             DataTable dt = new DataTable();
+            inputDictionary = new Dictionary<string, int>();
 
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -358,10 +359,10 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
                 inputProduct.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
 
-                inputProduct.ContactPhone = new List<int?>();
+                inputProduct.ContactPhone = new List<int?>()
                 {
-                    DBSortingLogic.ConvertToNullableInt(reader["ContactPhone"]);
-                }
+                    DBSortingLogic.ConvertToNullableInt(reader["ContactPhone"])
+                };
 
                 inputProduct.ContactEmail = new List<string>()
                 {
@@ -377,10 +378,11 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Description = reader["Description"].ToString();
 
                 inputProduct.ExtraDescription = new List<ExtraDescription>();
-
                 ExtraDescription tempExtraDescription = new ExtraDescription();
+                inputProduct.ExtraDescription.Add(tempExtraDescription);
                 tempExtraDescription.Description = reader["ExtraDescription"].ToString();
-                
+
+
                 inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
