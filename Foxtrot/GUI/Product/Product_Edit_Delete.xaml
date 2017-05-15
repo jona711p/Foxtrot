@@ -77,8 +77,8 @@
             <TextBox x:Name="textBox_Product_Edit_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="873,140,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
             <TextBox x:Name="textBox_Product_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1070,64,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
             <TextBox x:Name="textBox_Product_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="1070,135,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
-            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113"/>
-            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="963,215,0,0" VerticalAlignment="Top" Width="113" ItemsSource = "{Binding CityDictionary}" Height="16" DisplayMemberPath="Key"/>
+            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113" Click="button_Product_Edit_Edit_Click"/>
+            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="963,215,0,0" VerticalAlignment="Top" Width="113" ItemsSource = "{Binding CityDictionary}" Height="16"  DisplayMemberPath="Key" />
             <Label x:Name="label_Product_Edit_CityID" Content="By" HorizontalAlignment="Left" Margin="1001,181,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="830,185,0,0" VerticalAlignment="Top"/>
             <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="803,218,0,0" VerticalAlignment="Top" />

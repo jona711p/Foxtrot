@@ -79,7 +79,7 @@ namespace Foxtrot.GUI.User
                 tempActor.WorkFax = null;
             }
 
-            DBUpdateLogic.UpdateActors(tempActor);
+            DBUpdateLogic.UpdateActor(tempActor);
 
             GUISortingLogic.Message("Informationerne er blevet ændret til:" +
                                     "\nFirmanavn: '" + tempActor.CompanyName + "'" +
