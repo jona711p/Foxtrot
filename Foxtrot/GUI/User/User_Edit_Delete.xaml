@@ -47,8 +47,8 @@
         <TextBox x:Name="textBox_User_Edit_CompanyName" HorizontalAlignment="Left" Height="23" Margin="54,395,0,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Firmanavn *" Visibility="Collapsed"/>
 
         <Label x:Name="label_User_Edit_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="55,335,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rdbtn_User_Edit_Admin" Content="Administrator" HorizontalAlignment="Left" Margin="54,361,0,0" VerticalAlignment="Top" Click="Rdbtn_User_Edit_Admin_OnClick"/>
-        <RadioButton x:Name="rdbtn_User_Edit_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="164,361,0,0" VerticalAlignment="Top" Click="Rdbtn_User_Edit_Actor_OnClick" />
+        <RadioButton x:Name="rdbtn_User_Edit_Admin" Content="Administrator" HorizontalAlignment="Left" Margin="54,361,0,0" VerticalAlignment="Top" Click="Rdbtn_User_Edit_Admin_OnClick" Focusable="False" IsHitTestVisible="False"/>
+        <RadioButton x:Name="rdbtn_User_Edit_Actor" Content="Aktør" HorizontalAlignment="Left" Margin="164,361,0,0" VerticalAlignment="Top" Click="Rdbtn_User_Edit_Actor_OnClick" Focusable="False" IsHitTestVisible="False"/>
         <DataGrid x:Name="dataGrid_User_Edit" ItemsSource="{Binding UserTable, Mode=TwoWay}"  SelectionMode="Single"  IsReadOnly="True"    Background="White" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" HorizontalAlignment="Left" Margin="282,29,0,0" VerticalAlignment="Top" Height="389" Width="977" SelectionChanged="DataGrid_User_Edit_OnSelectionChanged"/>
  
     </Grid>

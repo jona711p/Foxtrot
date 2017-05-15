@@ -180,5 +180,15 @@ namespace Foxtrot.GUI.User
                 GUISortingLogic.Message("Der findes allerede en Aktør med firmanavnet: '" + tempActor.CompanyName + "' i systemet!");
             }
         }
+
+        private void Rbtn_Administrator_OnClick(object sender, RoutedEventArgs e)
+        {
+            Grid_CompanyName.Visibility = Visibility.Collapsed;
+        }
+
+        private void Rbtn_Actor_OnClick(object sender, RoutedEventArgs e)
+        {
+            Grid_CompanyName.Visibility = Visibility.Visible;
+        }
     }
 }

@@ -58,7 +58,7 @@ namespace Foxtrot.GUI.User
                 if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 1) //If the selected row is an administrator
                 {
                     {
-                        tempAdministrator.ID =
+                        tempAdministrator.User_ID =
                             int.Parse(
                                 ((TextBlock)
                                         dataGrid_User_Edit.Columns[0].GetCellContent(
@@ -80,7 +80,7 @@ namespace Foxtrot.GUI.User
                 if (int.Parse(((TextBlock)dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) == 2) //If the selected row is an actor
                 {
                     {
-                        tempActor.ID =
+                        tempActor.User_ID =
                             int.Parse(
                                 ((TextBlock)
                                         dataGrid_User_Edit.Columns[0].GetCellContent(
