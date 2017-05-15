@@ -138,12 +138,12 @@ namespace Foxtrot.Classes.DB
             return inputUser;
         }
 
-        public static ObservableCollection<KeyValuePair<int, string>> FillAdminActorObservableCollection(
-            ObservableCollection<KeyValuePair<int, string>> inputObservableCollection)
+        public static List<KeyValuePair<int, string>> FillAdminActorList(
+            List<KeyValuePair<int, string>> inputList)
         {
-            if (inputObservableCollection != null)
+            if (inputList != null)
             {
-                inputObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
+                inputList = new List<KeyValuePair<int, string>>();
             }
 
             DataTable dt = new DataTable();
@@ -153,7 +153,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command1 = new SqlCommand("spFillAdminObservableCollection", connection);
+                SqlCommand command1 = new SqlCommand("spFillAdminList", connection);
                 command1.CommandType = CommandType.StoredProcedure;
 
                 dt.Load(command1.ExecuteReader());
@@ -162,10 +162,10 @@ namespace Foxtrot.Classes.DB
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
-                    inputObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
+                    inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
 
-                SqlCommand command2 = new SqlCommand("spFillActorObservableCollection", connection);
+                SqlCommand command2 = new SqlCommand("spFillActorList", connection);
                 command2.CommandType = CommandType.StoredProcedure;
 
                 dt.Clear();
@@ -175,7 +175,7 @@ namespace Foxtrot.Classes.DB
                 {
                     int tempInt = int.Parse(row["FK_UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
-                    inputObservableCollection.Add(new KeyValuePair<int, string>(tempInt, tempString));
+                    inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
             }
 
@@ -186,7 +186,7 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return inputObservableCollection;
+            return inputList;
         }
 
         public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> inputDictionary)

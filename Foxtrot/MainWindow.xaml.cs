@@ -33,7 +33,7 @@ namespace Foxtrot
 
         public static void FillComboBoxWithAdminsAndActors()
         {
-            tempUser.AdminActorObservableCollection = DBReadLogic.FillAdminActorObservableCollection(tempUser.AdminActorObservableCollection);
+            tempUser.AdminActorList = DBReadLogic.FillAdminActorList(tempUser.AdminActorList);
         }
 
         private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,7 +67,7 @@ namespace Foxtrot
             MainFrame.Content = new Frontpage();
         }
 
-        void HideAll()
+        private void HideAll()
         {
             XML_Import_MenuItem.IsEnabled = false;
             User_MenuItem.IsEnabled = false;

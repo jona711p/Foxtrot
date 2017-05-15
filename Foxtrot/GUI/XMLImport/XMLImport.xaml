@@ -29,8 +29,8 @@
                 </Button.Effect>
             </Button>
             <Label x:Name="lbl_Status" HorizontalAlignment="Center" Margin="215,10,10,94" VerticalAlignment="Center" Height="40" Width="347" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20"/>
-            <ProgressBar HorizontalAlignment="Center" Height="30" Margin="10,104,10,10" VerticalAlignment="Center" Width="552" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial"/>
-
+            <ProgressBar x:Name="pb_Status" HorizontalAlignment="Center" Height="30" Margin="10,104,10,10" VerticalAlignment="Center" Width="552" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial"/>
+            <Label x:Name="lbl_pb_Status" Content="{Binding ElementName=pb_Status, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" Margin="10,104,10,10" VerticalAlignment="Center" Height="30" Width="552" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="16"/>
         </Grid>
 
     </Grid>

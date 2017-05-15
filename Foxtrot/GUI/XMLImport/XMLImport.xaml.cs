@@ -52,8 +52,7 @@ namespace Foxtrot.GUI.XMLImport
         {
             if (FullPathAndFileName != null)
             {
-                btn_Open_XML_File.IsEnabled = false;
-                btn_Start_Reading_From_XML.IsEnabled = false;
+                DisableButtoms();
                 ReadFromNewXML(FullPathAndFileName);
             }
 
@@ -62,8 +61,36 @@ namespace Foxtrot.GUI.XMLImport
                 MessageBox.Show("Du skal vælge en XML Fil først!");
             }
 
+            EnableButtoms();
+        }
+
+        private void EnableButtoms()
+        {
             btn_Open_XML_File.IsEnabled = true;
             btn_Start_Reading_From_XML.IsEnabled = true;
+        }
+
+        private void DisableButtoms()
+        {
+            btn_Open_XML_File.IsEnabled = false;
+            btn_Start_Reading_From_XML.IsEnabled = false;
+        }
+
+        private void ProgressBar(int percentage)
+        {
+            for (int i = 0; i < percentage; i++)
+            {
+                pb_Status.Value++;
+            }
+        }
+
+        public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
+        {
+            if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
+
+            watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
+            watcher.Created += ReadLoadedXMLFile;
+            watcher.EnableRaisingEvents = true;
         }
 
         private void OpenXMLFile()
@@ -81,15 +108,6 @@ namespace Foxtrot.GUI.XMLImport
                 string[] tempArray = FullPathAndFileName.Split(param);
                 FileName = tempArray[tempArray.Length - 1];
             }
-        }
-
-        public static void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
-        {
-            if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
-
-            watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadLoadedXMLFile;
-            watcher.EnableRaisingEvents = true;
         }
 
         static void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
