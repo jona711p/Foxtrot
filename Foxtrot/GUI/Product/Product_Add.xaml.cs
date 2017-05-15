@@ -66,7 +66,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_Longtitude.Text.Length != 0)
             {
-                tempProduct.Longitude = textBox_Product_Add_Longtitude.Text.Length;
+                tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text);
             }
             else
             {
@@ -76,7 +76,7 @@ namespace Foxtrot.GUI.Product
 
             if (textBox_Product_Add_Latitude.Text.Length != 0)
             {
-                tempProduct.Latitude = textBox_Product_Add_Latitude.Text.Length;
+                tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text);
             }
             else
             {

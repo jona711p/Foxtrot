@@ -3,21 +3,19 @@ using System.Windows;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
-using Foxtrot.Classes.XMLImport;
-using Foxtrot.Classes.XMLImport.GUI;
 using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
+using Foxtrot.GUI.XMLImport;
 
 namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
+        private static XMLImport xmlImport = new XMLImport();
         private static User tempUser = new User();
         public MainWindow()
         {
-            XMLLogic.WatchXMLDir();
-
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (1350x735) and disables the ability to minimize
             HideAll();
@@ -88,7 +86,6 @@ namespace Foxtrot
 
         private void MenuItem_Menu_XML_Import_OnClick(object sender, RoutedEventArgs e)
         {
-            XML_Import xmlImport = new XML_Import();
             xmlImport.Show();
         }
 
