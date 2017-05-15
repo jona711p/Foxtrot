@@ -23,7 +23,7 @@ namespace Foxtrot.Classes
         public ObservableCollection<KeyValuePair<int, string>> AdminActorObservableCollection
         {
             get { return adminActorObservableCollection; }
-            set { adminActorObservableCollection = value; NotifyPropertyChanged(); }
+            set { adminActorObservableCollection = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

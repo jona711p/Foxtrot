@@ -22,16 +22,21 @@ namespace Foxtrot.Classes.XMLImport
             if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
 
             watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadFromNewXML;
+            watcher.Created += ReadLoadedXMLFile;
             watcher.EnableRaisingEvents = true;
         }
 
-        static void ReadFromNewXML(object sender, FileSystemEventArgs args)
+        static void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
         {
-            ReadFromXMLInThreads(args.FullPath);
-            ReadProductsFromXML(args.FullPath);
+            ReadFromNewXML(args.FullPath);
+        }
 
-            System.IO.File.Delete(args.FullPath);
+        static void ReadFromNewXML(string path)
+        {
+            ReadFromXMLInThreads(path);
+            ReadProductsFromXML(path);
+
+            System.IO.File.Delete(path);
             MessageBox.Show("Ny XML fil indlæst til Databasen!");
         }
 
