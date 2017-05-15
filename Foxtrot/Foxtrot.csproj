@@ -63,6 +63,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\CombiProduct\CombiProduct_Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Event\Event.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Frontpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +124,12 @@
     <Compile Include="Classes\XMLImport\XMLDB\XMLDBWriteLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLSortingLogic.cs" />
     <Compile Include="Classes\XMLImport\XMLLogic.cs" />
+    <Compile Include="GUI\CombiProduct\CombiProduct_Add.xaml.cs">
+      <DependentUpon>CombiProduct_Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Event\Event.xaml.cs">
+      <DependentUpon>Event.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Frontpage.xaml.cs">
       <DependentUpon>Frontpage.xaml</DependentUpon>
     </Compile>
@@ -168,10 +182,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\CombiProduct\" />
-    <Folder Include="GUI\Event\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="IMG\SET Banner.png" />
   </ItemGroup>
