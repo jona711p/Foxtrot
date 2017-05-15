@@ -47,8 +47,8 @@ namespace Foxtrot.Classes.XMLImport.GUI
             {
                 FullPathAndFileName = openFileDialog.FileName;
                 char[] param = { '\\' };
-                string[] tmpArray = FullPathAndFileName.Split(param);
-                FileName = tmpArray[tmpArray.Length - 1];
+                string[] tempArray = FullPathAndFileName.Split(param);
+                FileName = tempArray[tempArray.Length - 1];
             }
         }
 

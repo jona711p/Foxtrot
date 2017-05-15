@@ -51,7 +51,7 @@ namespace Foxtrot.Classes.XMLImport.XMLDB
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName, connection);
+                SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName + " WHERE " + idName + " IS NOT NULL", connection);
 
                 dt.Load(command.ExecuteReader());
 
