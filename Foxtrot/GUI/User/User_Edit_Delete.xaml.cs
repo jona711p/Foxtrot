@@ -121,8 +121,7 @@ namespace Foxtrot.GUI.User
             {
                 tempActor.WorkFax = tempint;
             }
-            if (rdbtn_User_Edit_Actor.IsEnabled == true ||
-                rdbtn_User_Edit_Actor.IsChecked == true)
+            if (rdbtn_User_Edit_Actor.IsEnabled == true)
             {
                 tempActor.Permission = availibility;
             }
@@ -142,8 +141,7 @@ namespace Foxtrot.GUI.User
                     {
                         tempAdministrator.WorkFax = tempint;
                     }
-                    if (rdbtn_User_Edit_Actor.IsEnabled == true ||
-                 rdbtn_User_Edit_Actor.IsChecked == true)
+                    if (rdbtn_User_Edit_Actor.IsChecked == true)
                     {
                         tempAdministrator.Permission = availibility;
                     }
