@@ -386,7 +386,7 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
-                //inputProduct.Cities.Name = reader["CityName"].ToString();
+                inputProduct.Cities.Name = reader["CityName"].ToString();
             }
 
             catch (Exception ex)
