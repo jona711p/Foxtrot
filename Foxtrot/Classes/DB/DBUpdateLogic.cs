@@ -6,14 +6,14 @@ namespace Foxtrot.Classes.DB
 {
     class DBUpdateLogic
     {
-        public static void UpdateActors(Actor inputActor)
+        public static void UpdateActor(Actor inputActor)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("spUpdateActors", connection);
+                SqlCommand command = new SqlCommand("spUpdateActor", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ID", SqlDbType.Int).Value = inputActor.ID;
