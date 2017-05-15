@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
@@ -18,12 +17,12 @@ namespace Foxtrot.Classes
         public int? WorkFax { get; set; }
         public DataTable UserTable { get; set; }
 
-        private static ObservableCollection<KeyValuePair<int, string>> adminActorObservableCollection = new ObservableCollection<KeyValuePair<int, string>>();
+        private static List<KeyValuePair<int, string>> adminActorList = new List<KeyValuePair<int, string>>();
 
-        public ObservableCollection<KeyValuePair<int, string>> AdminActorObservableCollection
+        public List<KeyValuePair<int, string>> AdminActorList
         {
-            get { return adminActorObservableCollection; }
-            set { adminActorObservableCollection = value; }
+            get { return adminActorList; }
+            set { adminActorList = value; NotifyPropertyChanged(); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
