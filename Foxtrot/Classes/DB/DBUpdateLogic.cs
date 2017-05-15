@@ -50,12 +50,12 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = inputProduct.Address;
                 command.Parameters.Add("@Longitude", SqlDbType.Float).Value = inputProduct.Longitude;
                 command.Parameters.Add("@Latitude", SqlDbType.Float).Value = inputProduct.Latitude;
-                command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value = inputProduct.ContactPhone;
-                command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = inputProduct.ContactEmail;
-                command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = inputProduct.ContactFax;
+                command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value = inputProduct.ContactPhone[0];
+                command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = inputProduct.ContactEmail[0];
+                command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = inputProduct.ContactFax[0];
                 command.Parameters.Add("@Price", SqlDbType.Float).Value = inputProduct.Price;
                 command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = inputProduct.Description;
-                command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = inputProduct.ExtraDescription;
+                command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = inputProduct.ExtraDescription[0].Description;
                 command.Parameters.Add("@Availability", SqlDbType.Bit).Value = inputProduct.Availability;
                 command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProduct.Website;
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProduct.CanonicalUrl;
