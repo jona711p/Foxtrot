@@ -147,7 +147,7 @@ namespace Foxtrot.GUI.User
                     {
                         tempAdministrator.Permission = availibility;
                     }
-                    DBUpdateLogic.UpdateAdmin(tempAdministrator);
+                   // DBUpdateLogic.UpdateAdmin(tempAdministrator);
 
                 }
 
