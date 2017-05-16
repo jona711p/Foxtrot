@@ -43,8 +43,12 @@ namespace Foxtrot.GUI.Product
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
-
+                tempProduct = DBReadLogic.GetFileInfo(tempProduct);
                 MakeFieldsEditable(false);
+                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1)
+                {
+                    MakeFieldsEditable(true);
+                }
 
                 textBox_Product_Edit_Name.Text = tempProduct.Name;
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
@@ -72,14 +76,6 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
 
                 //tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
-
-              
-
-                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1)
-                {
-                    MakeFieldsEditable(true);
-                }
-               
             }
         }
 

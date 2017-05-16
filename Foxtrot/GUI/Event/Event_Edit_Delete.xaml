@@ -39,7 +39,7 @@
 
     <Grid>
         <Grid HorizontalAlignment="Left" Height="385" Margin="22,33,0,0" VerticalAlignment="Top" Width="1252">
-            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="12,29,0,0" VerticalAlignment="Top" Height="350" Background="White" Width="1222" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_SelectionChanged" />
+            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="12,29,0,0" VerticalAlignment="Top" Height="350" Background="White" Width="1222" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_OnSelectionChanged" />
             <Label x:Name="label" Content="Liste af arrangementer" HorizontalAlignment="Left" Margin="577,5,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="13,14,0,0" VerticalAlignment="Top" Width="1275"/>
