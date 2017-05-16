@@ -36,7 +36,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <!-- Liste over produkt start -->
         <Grid HorizontalAlignment="Left" Height="334" Margin="347,48,0,0" VerticalAlignment="Top" Width="942">
@@ -53,11 +53,11 @@
         <!-- Søg Produkt Start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
             <Label x:Name="label_Product_Search" Content="Søg efter produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="92.8,3.8,0,0"/>
-            <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="24,50,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
-            <TextBox x:Name="textBox_Product_SearchID" HorizontalAlignment="Left" Height="35" Margin="24,110,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="ID" />
-            <TextBox x:Name="textBox_Product_SearchArrangement" HorizontalAlignment="Left" Height="35" Margin="24,170,0,0" TextWrapping="Wrap" Text="{Binding Arrangement}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Arrangement"/>
-            <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="24,230,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
-            <TextBox x:Name="textBox_Product_SearchDate" HorizontalAlignment="Left" Height="35" Margin="24,290,0,0" TextWrapping="Wrap" Text="{Binding Date}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Dato"/>
+            <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="24,71,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
+            <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="19,167,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
+            <DatePicker x:Name="Product_Search_Date_From" HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
+            <DatePicker x:Name="Product_Search_Date_To" HorizontalAlignment="Left" Margin="174,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
+
             <Border BorderBrush="Black" BorderThickness="1" Height="357" Margin="-4,6,15,0" VerticalAlignment="Top"/>
         </Grid>
         <!-- Søg Produkt Slut -->
@@ -85,8 +85,9 @@
             <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="876,216,0,0" VerticalAlignment="Top" />
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="19,414,0,0" VerticalAlignment="Top" Width="1280"/>
-        
+
+
         <!-- Rediger Produkt Slut -->
-        
+
     </Grid>
 </Page>
