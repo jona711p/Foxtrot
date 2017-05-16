@@ -19,6 +19,13 @@ namespace Foxtrot.GUI.XMLImport
     /// </summary>
     public partial class XMLImport : Window, INotifyPropertyChanged
     {
+        private FileSystemWatcher fileSystemWatcher;
+        private List<Classes.Product> productList;
+        private ReaderWriterLockSlim readerWriterLockSlim = new ReaderWriterLockSlim();
+        private XDocument xmlDocument;
+
+        public string FullPathAndFileName { get; private set; }
+
         private string fileName;
 
         public string FileName
@@ -27,10 +34,21 @@ namespace Foxtrot.GUI.XMLImport
             set { fileName = value; NotifyPropertyChanged(); }
         }
 
-        static FileSystemWatcher watcher;
-        public string FullPathAndFileName { get; private set; }
+        private double progressPercentage;
 
-        private XDocument xmlDocument;
+        public double ProgressPercentage
+        {
+            get { return progressPercentage; }
+            set { progressPercentage = value; NotifyPropertyChanged(); }
+        }
+
+        private string progressPoint;
+
+        public string ProgressPoint
+        {
+            get { return progressPoint; }
+            set { progressPoint = value; NotifyPropertyChanged(); }
+        }
 
         public XMLImport()
         {
@@ -47,17 +65,15 @@ namespace Foxtrot.GUI.XMLImport
         {
             if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
 
-            watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadLoadedXMLFile;
-            watcher.EnableRaisingEvents = true;
+            fileSystemWatcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
+            fileSystemWatcher.EnableRaisingEvents = true;
+            fileSystemWatcher.Created += ReadLoadedXMLFile;
         }
 
         private void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
         {
             FullPathAndFileName = args.FullPath;
-            ReadFromNewXML();
-
-            System.IO.File.Delete(FullPathAndFileName);
+            ReadFromXML();
         }
 
         private void btn_Open_XML_File_Click(object sender, RoutedEventArgs e)
@@ -67,15 +83,16 @@ namespace Foxtrot.GUI.XMLImport
 
         private void OpenXMLFile()
         {
-            FileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML Dokument (.xml)|*.xml";
+            FileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Reset();
+            fileDialog.Filter = "XML Dokument (.xml)|*.xml";
 
-            bool? result = openFileDialog.ShowDialog();
-            openFileDialog.InitialDirectory = ".";
+            bool? result = fileDialog.ShowDialog();
+            fileDialog.InitialDirectory = ".";
 
             if (result == true)
             {
-                FullPathAndFileName = openFileDialog.FileName;
+                FullPathAndFileName = fileDialog.FileName;
                 char[] param = { '\\' };
                 string[] tempArray = FullPathAndFileName.Split(param);
                 FileName = tempArray[tempArray.Length - 1];
@@ -87,7 +104,7 @@ namespace Foxtrot.GUI.XMLImport
             if (FullPathAndFileName != null)
             {
                 DisableButtoms();
-                ReadFromNewXML();
+                ReadFromXML();
             }
 
             else
@@ -110,42 +127,149 @@ namespace Foxtrot.GUI.XMLImport
             btn_Start_Reading_From_XML.IsEnabled = false;
         }
 
-        private void ReadFromNewXML()
+        private void ReadFromXML()
         {
-            ReadFromXMLInThreads();
-            ReadProductsFromXML();
+            BackgroundWorker readFromXMLInThreads = new BackgroundWorker();
 
-            MessageBox.Show("Ny XML fil indlæst til Databasen!");
+            readFromXMLInThreads.WorkerReportsProgress = true;
+            readFromXMLInThreads.ProgressChanged += ProgressBarPercentage;
+
+            readFromXMLInThreads.DoWork += ReadFromXMLInThreads;
+
+            readFromXMLInThreads.RunWorkerCompleted += ReadFromXMLDone;
+
+            readFromXMLInThreads.RunWorkerAsync();
         }
 
-        private void ReadFromXMLInThreads()
+        private void ReadFromXMLInThreads(object sender, DoWorkEventArgs e)
         {
-            Thread[] readFromXML = new Thread[]
-            {
-                new Thread(() => { ReadCategoriesFromXML(); }),
-                new Thread(() => { ReadCitiesFromXML(); }),
-                new Thread(() => { ReadFilesFromXML(); }),
-                new Thread(() => { ReadMainCategoriesFromXML(); }),
-                new Thread(() => { ReadOpeningHoursFromXML(); })
-            };
+            BackgroundWorker[] readFromXMLInThreadsArray = new BackgroundWorker[12];
 
-            foreach (Thread thread in readFromXML)
+            for (int i = 0; i < readFromXMLInThreadsArray.Length; i++)
             {
-                thread.Start();
+                readFromXMLInThreadsArray[i] = new BackgroundWorker();
+                readFromXMLInThreadsArray[i].WorkerReportsProgress = true;
+                readFromXMLInThreadsArray[i].ProgressChanged += ProgressBarPercentage;
             }
 
-            foreach (Thread thread in readFromXML)
+            readFromXMLInThreadsArray[0].DoWork += ReadCategoriesFromXML;
+            readFromXMLInThreadsArray[1].DoWork += ReadCitiesFromXML;
+            readFromXMLInThreadsArray[2].DoWork += ReadFilesFromXML;
+            readFromXMLInThreadsArray[3].DoWork += ReadMainCategoriesFromXML;
+            readFromXMLInThreadsArray[4].DoWork += ReadOpeningHoursFromXML;
+
+            for (int i = 0; i < 5; i++)
             {
-                thread.Join();
+                readFromXMLInThreadsArray[i].RunWorkerAsync();
+            }
+
+            while (ProgressPercentage < 40)
+            {
+                Thread.Sleep(1000);
+            }
+
+            readFromXMLInThreadsArray[5].DoWork += ReadProductsFromXML;
+
+            readFromXMLInThreadsArray[5].RunWorkerAsync();
+
+            while (ProgressPercentage < 52)
+            {
+                Thread.Sleep(1000);
+            }
+
+            readFromXMLInThreadsArray[6].DoWork += ReadRelCategoriesFromXML;
+            readFromXMLInThreadsArray[7].DoWork += ReadRelCombiProductsFromXML;
+            readFromXMLInThreadsArray[8].DoWork += ReadRelEventsProductsFromXML;
+            readFromXMLInThreadsArray[9].DoWork += ReadRelFilesFromXML;
+            readFromXMLInThreadsArray[10].DoWork += ReadRelMainCategoriesFromXML;
+            readFromXMLInThreadsArray[11].DoWork += ReadRelOpeningHoursFromXML;
+
+            for (int i = 6; i < 12; i++)
+            {
+                readFromXMLInThreadsArray[i].RunWorkerAsync();
+            }
+
+            while (ProgressPercentage < 100)
+            {
+                Thread.Sleep(1000);
             }
         }
 
-        private void ProgressBarPercentage(int percentage)
+        private void ReadRelCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
-            for (int i = 0; i < percentage; i++)
+            ProgressPoint = "Skriver nu Produktrelationer til Kategorier i Databasen";
+
+            XMLDBWriteLogic.WriteRelCategories(productList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
+        }
+
+        private void ReadRelCombiProductsFromXML(object sender, DoWorkEventArgs e)
+        {
+            ProgressPoint = "Skriver nu Produktrelationer til CombiProdukter i Databasen";
+
+            XMLDBWriteLogic.WriteRelCombiProducts(productList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
+        }
+
+        private void ReadRelEventsProductsFromXML(object sender, DoWorkEventArgs e)
+        {
+            ProgressPoint = "Skriver nu Produktrelationer til Arrangementer i Databasen";
+
+            XMLDBWriteLogic.WriteRelEventsProducts(productList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
+        }
+
+        private void ReadRelFilesFromXML(object sender, DoWorkEventArgs e)
+        {
+            ProgressPoint = "Skriver nu Produktrelationer til Billeder i Databasen";
+
+            XMLDBWriteLogic.WriteRelFiles(productList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
+        }
+
+        private void ReadRelMainCategoriesFromXML(object sender, DoWorkEventArgs e)
+        {
+            ProgressPoint = "Skriver nu Produktrelationer til Hovedkategorier i Databasen";
+
+            XMLDBWriteLogic.WriteRelMainCategories(productList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
+        }
+
+        private void ReadRelOpeningHoursFromXML(object sender, DoWorkEventArgs e)
+        {
+            ProgressPoint = "Skriver nu Produktrelationer til Åbningstider i Databasen";
+
+            XMLDBWriteLogic.WriteRelOpeningHours(productList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
+        }
+
+        private void ProgressBarPercentage(object sender, ProgressChangedEventArgs e)
+        {
+            readerWriterLockSlim.EnterWriteLock();
+
+            for (int i = 0; i < e.ProgressPercentage; i++)
             {
-                pb_Status.Value++;
+                this.Dispatcher.Invoke(() => { ProgressPercentage++; });
             }
+
+            readerWriterLockSlim.ExitWriteLock();
+        }
+
+        private void ReadFromXMLDone(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (FullPathAndFileName.Contains("INSERT_XML_HERE"))
+            {
+                System.IO.File.Delete(FullPathAndFileName);
+            }
+
+            MessageBox.Show("En ny XML Fil Indlæst!" +
+                            "\nDer blev Skrevet: " + productList.Count + " nye Produktet til DataBasen!");
         }
 
         private int ReadActorFromXML(string name)
@@ -162,8 +286,10 @@ namespace Foxtrot.GUI.XMLImport
             return XMLDBReadLogic.DupeCheckActors(actor);
         }
 
-        private void ReadCategoriesFromXML()
+        private void ReadCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
+            ProgressPoint = "Skriver nu Kategoriger til Databasen";
+
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<Category> categories = xmlDocument.XPathSelectElements("//*[name()='Category']").Select(x => new Category()
@@ -175,10 +301,14 @@ namespace Foxtrot.GUI.XMLImport
             List<Category> dupeCheckList = categories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Categories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteCategories(dupeCheckList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
         }
 
-        private void ReadCitiesFromXML()
+        private void ReadCitiesFromXML(object sender, DoWorkEventArgs e)
         {
+            ProgressPoint = "Skriver nu Byer til Databasen";
+
             xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<City> cities = xmlDocument.XPathSelectElements("//*[name()='Municipality']").Select(x => new City()
@@ -191,10 +321,14 @@ namespace Foxtrot.GUI.XMLImport
             List<City> dupeCheckList = cities.Where(x => !XMLDBReadLogic.DupeCheckList("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteCities(dupeCheckList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
         }
 
-        private void ReadFilesFromXML()
+        private void ReadFilesFromXML(object sender, DoWorkEventArgs e)
         {
+            ProgressPoint = "Skriver nu Billeder til Databasen";
+
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<Classes.File> files = xmlDocument.XPathSelectElements("//*[name()='File']").Select(x => new Classes.File()
@@ -206,10 +340,14 @@ namespace Foxtrot.GUI.XMLImport
             List<Classes.File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteFiles(dupeCheckList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
         }
 
-        private void ReadMainCategoriesFromXML()
+        private void ReadMainCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
+            ProgressPoint = "Skriver nu Hovedkategorier til Databasen";
+
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<MainCategory> mainCategories = xmlDocument.XPathSelectElements("//*[name()='MainCategory']").Select(x => new MainCategory()
@@ -221,10 +359,14 @@ namespace Foxtrot.GUI.XMLImport
             List<MainCategory> dupeCheckList = mainCategories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "MainCategories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteMainCategories(dupeCheckList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
         }
 
-        private void ReadOpeningHoursFromXML()
+        private void ReadOpeningHoursFromXML(object sender, DoWorkEventArgs e)
         {
+            ProgressPoint = "Skriver nu Åbningstider til Databasen";
+
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<OpeningHour> openingHours = xmlDocument.XPathSelectElements("//*[name()='Period']").Select(x => new OpeningHour()
@@ -248,10 +390,14 @@ namespace Foxtrot.GUI.XMLImport
             List<OpeningHour> dupeCheckList = openingHours.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "OpeningHours").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteOpeningHours(dupeCheckList);
+
+            (sender as BackgroundWorker).ReportProgress(8);
         }
 
-        private void ReadProductsFromXML()
+        private void ReadProductsFromXML(object sender, DoWorkEventArgs e)
         {
+            ProgressPoint = "Skriver nu Produkter til Databasen";
+
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
             List<Classes.Product> products = xmlDocument.XPathSelectElements("//*[name()='Product']").Select(x => new Classes.Product()
@@ -306,12 +452,10 @@ namespace Foxtrot.GUI.XMLImport
             List<Classes.Product> dupeCheckList = products.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteProducts(dupeCheckList);
-            XMLDBWriteLogic.WriteRelCategories(dupeCheckList);
-            XMLDBWriteLogic.WriteRelCombiProducts(dupeCheckList);
-            XMLDBWriteLogic.WriteRelEventsProducts(dupeCheckList);
-            XMLDBWriteLogic.WriteRelFiles(dupeCheckList);
-            XMLDBWriteLogic.WriteRelMainCategories(dupeCheckList);
-            XMLDBWriteLogic.WriteRelOpeningHours(dupeCheckList);
+
+            productList = dupeCheckList.ToList();
+
+            (sender as BackgroundWorker).ReportProgress(12);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
