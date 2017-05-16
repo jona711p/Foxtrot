@@ -426,9 +426,10 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            // try
             {
                 SqlCommand command = new SqlCommand("spGetProductFiles", connection);
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
                 dt.Load(command.ExecuteReader());
 
@@ -437,13 +438,14 @@ namespace Foxtrot.Classes.DB
                     File tempFile = new File();
                     tempFile.ID = int.Parse(row["ID"].ToString());
                     tempFile.URI = Convert.ToString(row["URI"]);
+                    inputProduct.Files.Add(tempFile);
                 }
             }
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 

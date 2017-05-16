@@ -6,6 +6,7 @@ using Foxtrot.Classes.DB;
 using System.Collections.Generic;
 using System.Windows;
 using System.Data.SqlClient;
+using System.Windows.Media.Imaging;
 
 namespace Foxtrot.GUI.Product
 {
@@ -19,7 +20,7 @@ namespace Foxtrot.GUI.Product
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Edit_Delete(Classes.User inputUser) // Mangler billeder, sætter combobox med by til det valgte, 
+        public Product_Edit_Delete(Classes.User inputUser) // MANGLER!    -  Slet produkter, upload, slet og rediger billeder  -
         {
             tempUser = inputUser;
             InitializeComponent();
@@ -45,7 +46,8 @@ namespace Foxtrot.GUI.Product
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
                 tempProduct = DBReadLogic.GetFileInfo(tempProduct);
                 MakeFieldsEditable(false);
-                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1)
+
+                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
                 {
                     MakeFieldsEditable(true);
                 }
@@ -74,6 +76,19 @@ namespace Foxtrot.GUI.Product
                 rbtn_Product_Edit_Availability_False.IsChecked = !tempProduct.Availability;
                 textBox_Product_Edit_Website.Text = tempProduct.Website;
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
+
+                for (int i = 0; i <  5; i++) //Resets all images
+                {
+                    ((System.Windows.Controls.Image)imageGrid.Children[i]).Source = null;
+                }
+                for (int i = 0; i < tempProduct.Files.Count && i < 5; i++) //Sets the UI images to display images related to the product
+                {
+                    ((System.Windows.Controls.Image)imageGrid.Children[i]).Source = new BitmapImage(new Uri(tempProduct.Files[i].URI));
+                }
+                
+                comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
+
+
 
                 //tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
             }
