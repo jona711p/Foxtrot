@@ -44,6 +44,7 @@ namespace Foxtrot.GUI.Product
 
             int tempint;
 
+            tempProduct.Name = GUISortingLogic.Name(textBox_Product_Add_Name);
             if (textBox_Product_Add_Name.Text.Length != 0)
             {
                 tempProduct.Name = textBox_Product_Add_Name.Text;
@@ -53,7 +54,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du SKAL indtaste et navn!");
                 return;
             }
-
+            tempProduct.Address = GUISortingLogic.Name(textBox_Product_Add_Adress);
             if (textBox_Product_Add_Adress.Text.Length != 0)
             {
                 tempProduct.Address = textBox_Product_Add_Adress.Text;
@@ -63,7 +64,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en adresse!");
                 return;
             }
-
+            tempProduct.Longitude = GUISortingLogic.Number(textBox_Product_Add_Longtitude);
             if (textBox_Product_Add_Longtitude.Text.Length != 0)
             {
                 tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text);
@@ -73,7 +74,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste længdegrad");
                 return;
             }
-
+            tempProduct.Latitude = GUISortingLogic.Number(textBox_Product_Add_Latitude);
             if (textBox_Product_Add_Latitude.Text.Length != 0)
             {
                 tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text);
@@ -83,7 +84,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste breddegrad");
                 return;
             }
-
+            tempProduct.ContactPhone = GUISortingLogic.Number(textBox_Product_Add_ContactPhone);
             if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
@@ -97,7 +98,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste et gyldigt telefonnummer");
                 return;
             }
-
+            //tempProduct.ContactEmail = GUISortingLogic.Email(textBox_Product_Add_ContactEmail);
             if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
                 tempProduct.ContactEmail = new List<string>()
@@ -111,7 +112,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
                 return;
             }
-
+            //tempProduct.ContactFax = GUISortingLogic.Number(textBox_Product_Add_ContactFax);
             if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) &&
                 textBox_Product_Add_ContactFax.Text.Length == 8)
             {
@@ -126,7 +127,7 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-
+            tempProduct.Price = GUISortingLogic.Number(textBox_Product_Add_Príce);
             if (textBox_Product_Add_Príce.Text.Length != 0)
             {
                 tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
@@ -136,7 +137,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en gyldig pris - Skriv 0 hvis gratis");
                 return;
             }
-
+            tempProduct.Description = GUISortingLogic.Name(textBox_Product_Add_Description);
             if (textBox_Product_Add_Description.Text.Length != 0)
             {
                 tempProduct.Description = textBox_Product_Add_Description.Text;
@@ -146,7 +147,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
                 return;
             }
-
+            //tempProduct.ExtraDescription = GUISortingLogic.Name(textBox_Product_Add_ExtraDescription);
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
                 tempProduct.ExtraDescription = new List<ExtraDescription>()
@@ -163,7 +164,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en ekstra beskrivelse af produktet");
                 return;
             }
-
+            tempProduct.CanonicalUrl = GUISortingLogic.Name(textBox_Product_Add_CanonicalUrl);
             if (textBox_Product_Add_CanonicalUrl.Text.Length != 0)
             {
                 tempProduct.CanonicalUrl = textBox_Product_Add_CanonicalUrl.Text;
@@ -173,6 +174,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste URL på produktet");
                 return;
             }
+            tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);
             if (textBox_Product_Add_Website.Text.Length != 0)
             {
                 tempProduct.Website = textBox_Product_Add_Website.Text;
