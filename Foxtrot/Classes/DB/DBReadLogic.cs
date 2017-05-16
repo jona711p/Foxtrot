@@ -242,23 +242,26 @@ namespace Foxtrot.Classes.DB
 
             return productTable;
         }
-        //public static DataTable FillEventTable(DataTable eventtable)
-        //{
-        //    SqlConnection connection = null;
-        //    connection = DBConnectionLogic.ConnectToDB(connection);
-        //    //Producttable clear
-        //    try
-        //    {
-        //        SqlDataAdapter adapter = new SqlDataAdapter("", connection); // Skal laves stored procedure
-        //        adapter.Fill();
-                
-        //    }
-        //    catch (Exception)
-        //    {
+        public static DataTable FillEventTable(DataTable eventtable)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            eventtable.Clear();
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection); // Skal laves stored procedure
+                adapter.Fill(eventtable);
 
-        //        throw;
-        //    }
-        //}
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return eventtable;
+        }
 
         public static DataTable FillUserTable(DataTable userTable)
         {
@@ -415,6 +418,32 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputProduct;
+        }
+        public static Event GetEventInfo(Event EventInfo)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetEventInfo", connection); 
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                EventInfo.ID = int.Parse(reader["ID"].ToString());
+                
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return EventInfo;
         }
     }
 }
