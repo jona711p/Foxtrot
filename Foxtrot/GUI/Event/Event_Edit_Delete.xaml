@@ -1,0 +1,49 @@
+﻿<Page x:Class="Foxtrot.GUI.Event.Event_Edit_Delete"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Foxtrot.GUI.Event"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1310"
+      Background="White"
+      Title="Event_Edit_Delete">
+
+    <Page.Resources>
+        <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="385" Margin="22,33,0,0" VerticalAlignment="Top" Width="1252">
+            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="12,29,0,0" VerticalAlignment="Top" Height="350" Background="White" Width="1222" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_SelectionChanged" />
+            <Label x:Name="label" Content="Liste af arrangementer" HorizontalAlignment="Left" Margin="577,5,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="13,14,0,0" VerticalAlignment="Top" Width="1275"/>
+
+
+    </Grid>
+</Page>

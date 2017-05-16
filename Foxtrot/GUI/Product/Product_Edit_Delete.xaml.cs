@@ -1,9 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using System.Collections.Generic;
 using System.Windows;
+using System.Data.SqlClient;
 
 namespace Foxtrot.GUI.Product
 {
@@ -12,12 +14,14 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_Edit_Delete : Page
     {
+        public  Classes.User tempUser = new Classes.User();
         private bool availibility;
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Edit_Delete()
+        public Product_Edit_Delete(Classes.User inputUser) // Mangler billeder, sætter combobox med by til det valgte, 
         {
+            tempUser = inputUser;
             InitializeComponent();
             tempProduct.ProductTable = new DataTable();
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
@@ -39,6 +43,8 @@ namespace Foxtrot.GUI.Product
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
+
+                MakeFieldsEditable(false);
 
                 textBox_Product_Edit_Name.Text = tempProduct.Name;
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
@@ -66,7 +72,34 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
 
                 //tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
+
+              
+
+                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1)
+                {
+                    MakeFieldsEditable(true);
+                }
+               
             }
+        }
+
+        public void MakeFieldsEditable(bool input)
+        {
+            textBox_Product_Edit_Name.IsEnabled = input;
+            textBox_Product_Edit_Adress.IsEnabled = input;
+            textBox_Product_Edit_Longtitude.IsEnabled = input;
+            textBox_Product_Edit_Latitude.IsEnabled = input;
+            textBox_Product_Edit_ContactPhone.IsEnabled = input;
+            textBox_Product_Edit_ContactEmail.IsEnabled = input;
+            textBox_Product_Edit_ContactFax.IsEnabled = input;
+            textBox_Product_Edit_ContactFax.IsEnabled = input;
+            textBox_Product_Edit_Príce.IsEnabled = input;
+            textBox_Product_Edit_Description.IsEnabled = input;
+            textBox_Product_Edit_ExtraDescription.IsEnabled = input;
+            rbtn_Product_Edit_Availability_True.IsEnabled = input;
+            rbtn_Product_Edit_Availability_False.IsEnabled = input;
+            textBox_Product_Edit_Website.IsEnabled = input;
+            textBox_Product_Edit_CanonicalUrl.IsEnabled = input;
         }
         private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -160,7 +193,46 @@ namespace Foxtrot.GUI.Product
 
         private void btb_Product_Search_Click(object sender, RoutedEventArgs e)
         {
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
+            if (textBox_Product_SearchName.Text != "")
+            {
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (!row["Navn"].ToString().Contains(textBox_Product_SearchName.Text))
+                            row.Delete();
+                    }
 
+                }
+            }
+            if (textBox_Product_SearchCategory.Text != "")
+            {
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                        if (!row["Kategori"].ToString().Contains(textBox_Product_SearchCategory.Text))
+                            row.Delete();
+                }
+            }
+
+            if (datePicker__Product_Search_Date_From.SelectedDate != null && datePicker_Product_Search_Date_To != null)
+            {
+                if (datePicker__Product_Search_Date_From.SelectedDate > datePicker_Product_Search_Date_To.SelectedDate)
+                {
+                    GUISortingLogic.Message("Du kan ikke vælge en start dato der er efter slut datoen.");
+                    datePicker_Product_Search_Date_To.SelectedDate = null;
+                    datePicker__Product_Search_Date_From.SelectedDate = null;
+                }
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                        if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
+                            row.Delete();
+                }
+            }
+
+            
         }
     }
 }

@@ -7,6 +7,8 @@ using Foxtrot.GUI;
 using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
 using Foxtrot.GUI.XMLImport;
+using Foxtrot.GUI.CombiProduct;
+using Foxtrot.GUI.Event;
 
 namespace Foxtrot
 {
@@ -20,7 +22,7 @@ namespace Foxtrot
             InitializeComponent();
 
             HideAll();
-            FillComboBoxWithAdminsAndActors(); 
+            FillComboBoxWithAdminsAndActors();
             MainFrame.Content = new Frontpage();
             DataContext = tempUser;
 
@@ -112,8 +114,25 @@ namespace Foxtrot
 
         private void MenuItem_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Product_Edit_Delete();
+            MainFrame.Content = new Product_Edit_Delete(tempUser);
         }
-        
+
+        private void MenuItem_CombiProduct_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new CombiProduct_Add();
+        }
+       
+        private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new CombiProduct_Edit_Delete();
+        }
+        private void MenuItem_Event_Add_Onclick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Event_Add();
+        }
+        private void MenuItem_Event_Edit_Delete_Onclick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Event_Edit_Delete();
+        }
     }
 }

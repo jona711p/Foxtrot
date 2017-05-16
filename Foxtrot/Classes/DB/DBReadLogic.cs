@@ -225,7 +225,7 @@ namespace Foxtrot.Classes.DB
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-
+            productTable.Clear();
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
@@ -242,6 +242,23 @@ namespace Foxtrot.Classes.DB
 
             return productTable;
         }
+        //public static DataTable FillEventTable(DataTable eventtable)
+        //{
+        //    SqlConnection connection = null;
+        //    connection = DBConnectionLogic.ConnectToDB(connection);
+        //    //Producttable clear
+        //    try
+        //    {
+        //        SqlDataAdapter adapter = new SqlDataAdapter("", connection); // Skal laves stored procedure
+        //        adapter.Fill();
+                
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
 
         public static DataTable FillUserTable(DataTable userTable)
         {
@@ -386,6 +403,8 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
+                inputProduct.ActorID = DBSortingLogic.ConvertToNullableInt(reader["userID"]);
+
                 inputProduct.Cities = new City();
                 inputProduct.Cities.Name = reader["CityName"].ToString();
             }
