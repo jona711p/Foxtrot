@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foxtrot.Classes.DB;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,11 +27,16 @@ namespace Foxtrot.GUI.Event
         {
             InitializeComponent();
             tempEvent.ProductTable = new DataTable();
+            //DBReadLogic.FillProductTable(tempProduct.ProductTable); // Skal laves om til event
+           
         }
 
         private void datagrid_Event_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            // Runs when the user selects any item on the datagrid
+            //finds the selected products ID and retrieves all information about it from the database
+            //the new information is stored in the object 'tempProduct' and displayed in the relavant inputfields in the GUI 
+            
         }
     }
 }
