@@ -59,6 +59,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\CombiProduct\CombiProduct_Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Event\Event_Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Frontpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +119,12 @@
     <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="GUI\CombiProduct\CombiProduct_Add.xaml.cs">
+      <DependentUpon>CombiProduct_Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Event\Event_Add.xaml.cs">
+      <DependentUpon>Event_Add.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Frontpage.xaml.cs">
       <DependentUpon>Frontpage.xaml</DependentUpon>
     </Compile>
