@@ -169,7 +169,7 @@ namespace Foxtrot.GUI.Product
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (row["Navn"].ToString() != textBox_Product_SearchName.Text)
+                        if (!row["Navn"].ToString().Contains(textBox_Product_SearchName.Text))
                             row.Delete();
                     }
 
@@ -180,7 +180,7 @@ namespace Foxtrot.GUI.Product
                 foreach (DataRow row in tempProduct.ProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
-                        if (row["Kategori"].ToString() != textBox_Product_SearchCategory.Text)
+                        if (!row["Kategori"].ToString().Contains(textBox_Product_SearchCategory.Text))
                             row.Delete();
                 }
             }
