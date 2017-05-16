@@ -157,5 +157,10 @@ namespace Foxtrot.GUI.Product
             DBUpdateLogic.UpdateProduct(tempProduct);
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
+
+        private void btb_Product_Search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
