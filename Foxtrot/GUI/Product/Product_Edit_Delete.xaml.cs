@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
@@ -161,7 +162,40 @@ namespace Foxtrot.GUI.Product
 
         private void btb_Product_Search_Click(object sender, RoutedEventArgs e)
         {
-  
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
+            if (textBox_Product_SearchName.Text != "")
+            {
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (row["Navn"].ToString() != textBox_Product_SearchName.Text)
+                            row.Delete();
+                    }
+
+                }
+            }
+            if (textBox_Product_SearchCategory.Text != "")
+            {
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                        if (row["Kategori"].ToString() != textBox_Product_SearchCategory.Text)
+                            row.Delete();
+                }
+            }
+
+            if (datePicker__Product_Search_Date_From.SelectedDate != null && datePicker_Product_Search_Date_To != null)
+            {
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                        if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
+                            row.Delete();
+                }
+            }
+
+            
         }
     }
 }
