@@ -84,7 +84,7 @@
             <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="803,218,0,0" VerticalAlignment="Top" />
             <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="876,216,0,0" VerticalAlignment="Top" />
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="-133,426,0,0" VerticalAlignment="Top" Width="1280"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
         <!-- Rediger Produkt Slut -->
 
     </Grid>

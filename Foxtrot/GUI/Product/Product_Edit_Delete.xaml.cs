@@ -4,6 +4,7 @@ using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using System.Collections.Generic;
 using System.Windows;
+using System.Data.SqlClient;
 
 namespace Foxtrot.GUI.Product
 {
@@ -160,7 +161,7 @@ namespace Foxtrot.GUI.Product
 
         private void btb_Product_Search_Click(object sender, RoutedEventArgs e)
         {
-
+  
         }
     }
 }
