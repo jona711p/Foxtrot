@@ -225,7 +225,7 @@ namespace Foxtrot.Classes.DB
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-
+            productTable.Clear();
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
