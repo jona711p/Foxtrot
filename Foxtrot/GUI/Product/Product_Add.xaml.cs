@@ -84,7 +84,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste breddegrad");
                 return;
             }
-            tempProduct.ContactPhone = GUISortingLogic.Number(textBox_Product_Add_ContactPhone);
+            //tempProduct.ContactPhone = GUISortingLogic.Number(textBox_Product_Add_ContactPhone);
             if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {

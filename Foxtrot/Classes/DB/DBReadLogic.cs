@@ -242,6 +242,23 @@ namespace Foxtrot.Classes.DB
 
             return productTable;
         }
+        //public static DataTable FillEventTable(DataTable eventtable)
+        //{
+        //    SqlConnection connection = null;
+        //    connection = DBConnectionLogic.ConnectToDB(connection);
+        //    //Producttable clear
+        //    try
+        //    {
+        //        SqlDataAdapter adapter = new SqlDataAdapter("", connection); // Skal laves stored procedure
+        //        adapter.Fill();
+                
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
 
         public static DataTable FillUserTable(DataTable userTable)
         {
