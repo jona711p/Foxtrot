@@ -421,6 +421,32 @@ namespace Foxtrot.Classes.DB
 
             return inputProduct;
         }
+        public static Event GetEventInfo(Event EventInfo)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetEventInfo", connection); 
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                EventInfo.ID = int.Parse(reader["ID"].ToString());
+                
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return EventInfo;
+        }
         public static Product GetFileInfo(Product inputProduct)
         {
             DataTable dt = new DataTable();
@@ -451,32 +477,6 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputProduct;
-        }
-        public static Event GetEventInfo(Event EventInfo)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-            try
-            {
-                SqlCommand command = new SqlCommand("spGetEventInfo", connection); 
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                EventInfo.ID = int.Parse(reader["ID"].ToString());
-                
-                
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return EventInfo;
         }
     }
 }
