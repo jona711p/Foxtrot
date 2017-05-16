@@ -1,4 +1,4 @@
-﻿<Page x:Class="Foxtrot.GUI.CombiProduct.CombiProduct_Add"
+﻿<Page x:Class="Foxtrot.GUI.CombiProduct.CombiProduct_Edit_Delete"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1310"
       Background="White"
-      Title="CombiProduct_Add">
+      Title="CombiProduct_Edit_Delete">
 
     <Page.Resources>
         <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">
@@ -38,7 +38,7 @@
     </Page.Resources>
 
     <Grid>
-        <TextBox x:Name="textBox"  HorizontalAlignment="Left" Height="42" Margin="496,252,0,0" TextWrapping="Wrap" Text="CombiProduct ADD" VerticalAlignment="Top" Width="159"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="37" Margin="553,222,0,0" TextWrapping="Wrap" Text="CombiProduct EDIT DELETE" VerticalAlignment="Top" Width="146"/>
 
     </Grid>
 </Page>
