@@ -38,8 +38,9 @@
         </Grid>
 
         <Grid HorizontalAlignment="Left" Height="60" Margin="10,248,0,0" VerticalAlignment="Top" Width="572">
-            <ProgressBar x:Name="pb_Status" Minimum="0" Maximum="100"/>
-            <TextBlock Text="{Binding Value, ElementName=pb_Status, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="271,18,251,20" FontFamily="Arial" FontSize="20" Width="50" Height="22" />
+            <ProgressBar x:Name="pbStatus" Minimum="0" Maximum="100" Value="{Binding ProgressPercentage}"/>
+            <TextBlock Text="{Binding Value, ElementName=pbStatus, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,19,522,15" FontFamily="Arial" FontSize="20" Width="40" Height="26"/>
+            <Label x:Name="lbl_ProgressPoint" Content="{Binding ProgressPoint}" HorizontalAlignment="Center" Margin="55,10,10,10" VerticalAlignment="Center" Height="40" Width="507" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
     </Grid>
 

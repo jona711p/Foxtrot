@@ -26,17 +26,18 @@ namespace Foxtrot.GUI.Event
         public Event_Edit_Delete()
         {
             InitializeComponent();
-            tempEvent.ProductTable = new DataTable();
-            //DBReadLogic.FillProductTable(tempProduct.ProductTable); // Skal laves om til event
-           
+            tempEvent.EventTable = new DataTable();
+            DBReadLogic.FillEventTable(tempEvent.EventTable);
+            DataContext = tempEvent;  
         }
 
-        private void datagrid_Event_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void datagrid_Event_list_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Runs when the user selects any item on the datagrid
             //finds the selected products ID and retrieves all information about it from the database
-            //the new information is stored in the object 'tempProduct' and displayed in the relavant inputfields in the GUI 
-            
+            //the new information is stored in the object 'tempEvent' and displayed in the relavant inputfields in the GUI 
+
+            tempEvent = DBReadLogic.GetEventInfo(tempEvent); 
         }
     }
 }

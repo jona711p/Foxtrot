@@ -242,23 +242,26 @@ namespace Foxtrot.Classes.DB
 
             return productTable;
         }
-        //public static DataTable FillEventTable(DataTable eventtable)
-        //{
-        //    SqlConnection connection = null;
-        //    connection = DBConnectionLogic.ConnectToDB(connection);
-        //    //Producttable clear
-        //    try
-        //    {
-        //        SqlDataAdapter adapter = new SqlDataAdapter("", connection); // Skal laves stored procedure
-        //        adapter.Fill();
-                
-        //    }
-        //    catch (Exception)
-        //    {
+        public static DataTable FillEventTable(DataTable eventtable)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            eventtable.Clear();
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection); // Skal laves stored procedure
+                adapter.Fill(eventtable);
 
-        //        throw;
-        //    }
-        //}
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return eventtable;
+        }
 
         public static DataTable FillUserTable(DataTable userTable)
         {
@@ -450,6 +453,44 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputProduct;
+        }
+        public static Event GetEventInfo(Event EventInfo)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetEventInfo", connection);
+                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows) 
+                {
+                    Event tempevent = new Event();
+                    tempevent.ID = int.Parse(row["ID"].ToString());
+                    tempevent.Name = Convert.ToString(row["Name"]);
+                    tempevent.Address = Convert.ToString(row["Adress"]);
+                    tempevent.Longitude = int.Parse(row["Longtitude"].ToString());
+                    tempevent.Longitude = int.Parse(row["Latitude"].ToString());
+                    tempevent.Longitude = int.Parse(row["CreationDate"].ToString());
+                    tempevent.Description = Convert.ToString(row["Description"].ToString());
+                    //tempevent.ExtraDescription = Convert.ToString(row["ExtraDescription"].ToString());
+                    tempevent.Availability = bool.Parse(row["Availability"].ToString());
+                    tempevent.Website = Convert.ToString(row["Website"]);
+                    tempevent.CanonicalUrl = Convert.ToString(row["CanocicalUrl"]);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return EventInfo;
         }
     }
 }
