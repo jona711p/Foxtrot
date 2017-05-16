@@ -31,7 +31,7 @@ namespace Foxtrot.GUI.Event
             DataContext = tempEvent;  
         }
 
-        private void datagrid_Event_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void datagrid_Event_list_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Runs when the user selects any item on the datagrid
             //finds the selected products ID and retrieves all information about it from the database
