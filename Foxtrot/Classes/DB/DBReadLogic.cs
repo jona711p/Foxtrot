@@ -406,8 +406,41 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
+                inputProduct.ActorID = DBSortingLogic.ConvertToNullableInt(reader["userID"]);
+
                 inputProduct.Cities = new City();
                 inputProduct.Cities.Name = reader["CityName"].ToString();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputProduct;
+        }
+        public static Product GetFileInfo(Product inputProduct)
+        {
+            DataTable dt = new DataTable();
+            inputProduct.Files = new List<File>();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetProductFiles", connection);
+                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows) // skipper altid
+                {
+                    File tempFile = new File();
+                    tempFile.ID = int.Parse(row["ID"].ToString());
+                    tempFile.URI = Convert.ToString(row["URI"]);
+                }
             }
 
             catch (Exception ex)

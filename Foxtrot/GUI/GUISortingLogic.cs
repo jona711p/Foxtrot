@@ -17,8 +17,8 @@ namespace Foxtrot.GUI
         public static string Name(TextBox inputName)
         {
             if (inputName.Text.Length != 0)
-            {   
-                return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(inputName.Text); // Rewrites the text with UPPER CASE first letter
+            {
+                return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(inputName.Text.ToLower()); // Rewrites the text with UPPER CASE first letter
             }
 
             return null;
