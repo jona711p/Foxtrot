@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
-using System.Windows.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Foxtrot.Classes;
@@ -176,7 +175,6 @@ namespace Foxtrot.GUI.XMLImport
             List<Category> dupeCheckList = categories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Categories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteCategories(dupeCheckList);
-            ProgressBarPercentage(7);
         }
 
         private void ReadCitiesFromXML()
@@ -193,7 +191,6 @@ namespace Foxtrot.GUI.XMLImport
             List<City> dupeCheckList = cities.Where(x => !XMLDBReadLogic.DupeCheckList("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteCities(dupeCheckList);
-            ProgressBarPercentage(7);
         }
 
         private void ReadFilesFromXML()
@@ -209,7 +206,6 @@ namespace Foxtrot.GUI.XMLImport
             List<Classes.File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteFiles(dupeCheckList);
-            ProgressBarPercentage(7);
         }
 
         private void ReadMainCategoriesFromXML()
@@ -225,7 +221,6 @@ namespace Foxtrot.GUI.XMLImport
             List<MainCategory> dupeCheckList = mainCategories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "MainCategories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteMainCategories(dupeCheckList);
-            ProgressBarPercentage(7);
         }
 
         private void ReadOpeningHoursFromXML()
@@ -253,7 +248,6 @@ namespace Foxtrot.GUI.XMLImport
             List<OpeningHour> dupeCheckList = openingHours.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "OpeningHours").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteOpeningHours(dupeCheckList);
-            ProgressBarPercentage(7);
         }
 
         private void ReadProductsFromXML()
