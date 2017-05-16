@@ -386,6 +386,8 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
+                inputProduct.ActorID = DBSortingLogic.ConvertToNullableInt(reader["userID"]);
+
                 inputProduct.Cities = new City();
                 inputProduct.Cities.Name = reader["CityName"].ToString();
             }
