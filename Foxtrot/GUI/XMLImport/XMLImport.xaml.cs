@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Foxtrot.Classes;
@@ -43,9 +44,43 @@ namespace Foxtrot.GUI.XMLImport
             DataContext = this;
         }
 
+        private void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
+        {
+            if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
+
+            watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
+            watcher.Created += ReadLoadedXMLFile;
+            watcher.EnableRaisingEvents = true;
+        }
+
+        private void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
+        {
+            FullPathAndFileName = args.FullPath;
+            ReadFromNewXML();
+
+            System.IO.File.Delete(FullPathAndFileName);
+        }
+
         private void btn_Open_XML_File_Click(object sender, RoutedEventArgs e)
         {
             OpenXMLFile();
+        }
+
+        private void OpenXMLFile()
+        {
+            FileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML Dokument (.xml)|*.xml";
+
+            bool? result = openFileDialog.ShowDialog();
+            openFileDialog.InitialDirectory = ".";
+
+            if (result == true)
+            {
+                FullPathAndFileName = openFileDialog.FileName;
+                char[] param = { '\\' };
+                string[] tempArray = FullPathAndFileName.Split(param);
+                FileName = tempArray[tempArray.Length - 1];
+            }
         }
 
         private void btn_Start_Reading_From_XML_Click(object sender, RoutedEventArgs e)
@@ -74,40 +109,6 @@ namespace Foxtrot.GUI.XMLImport
         {
             btn_Open_XML_File.IsEnabled = false;
             btn_Start_Reading_From_XML.IsEnabled = false;
-        }
-
-        private void WatchXMLDir() // Watches the "INSERT_XML_HERE" dir for XML files, if it finds one, it runs the entire program, and returns here and will keep watching for a new one
-        {
-            if (!Directory.Exists(@"INSERT_XML_HERE")) { Directory.CreateDirectory(@"INSERT_XML_HERE"); }
-
-            watcher = new FileSystemWatcher { Path = @"INSERT_XML_HERE\", Filter = "*.xml" };
-            watcher.Created += ReadLoadedXMLFile;
-            watcher.EnableRaisingEvents = true;
-        }
-
-        private void OpenXMLFile()
-        {
-            FileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML Dokument (.xml)|*.xml";
-
-            bool? result = openFileDialog.ShowDialog();
-            openFileDialog.InitialDirectory = ".";
-
-            if (result == true)
-            {
-                FullPathAndFileName = openFileDialog.FileName;
-                char[] param = { '\\' };
-                string[] tempArray = FullPathAndFileName.Split(param);
-                FileName = tempArray[tempArray.Length - 1];
-            }
-        }
-
-        private void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
-        {
-            FullPathAndFileName = args.FullPath;
-            ReadFromNewXML();
-
-            System.IO.File.Delete(FullPathAndFileName);
         }
 
         private void ReadFromNewXML()
@@ -175,6 +176,7 @@ namespace Foxtrot.GUI.XMLImport
             List<Category> dupeCheckList = categories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Categories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteCategories(dupeCheckList);
+            ProgressBarPercentage(7);
         }
 
         private void ReadCitiesFromXML()
@@ -191,6 +193,7 @@ namespace Foxtrot.GUI.XMLImport
             List<City> dupeCheckList = cities.Where(x => !XMLDBReadLogic.DupeCheckList("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteCities(dupeCheckList);
+            ProgressBarPercentage(7);
         }
 
         private void ReadFilesFromXML()
@@ -206,6 +209,7 @@ namespace Foxtrot.GUI.XMLImport
             List<Classes.File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteFiles(dupeCheckList);
+            ProgressBarPercentage(7);
         }
 
         private void ReadMainCategoriesFromXML()
@@ -221,6 +225,7 @@ namespace Foxtrot.GUI.XMLImport
             List<MainCategory> dupeCheckList = mainCategories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "MainCategories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteMainCategories(dupeCheckList);
+            ProgressBarPercentage(7);
         }
 
         private void ReadOpeningHoursFromXML()
@@ -248,6 +253,7 @@ namespace Foxtrot.GUI.XMLImport
             List<OpeningHour> dupeCheckList = openingHours.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "OpeningHours").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
             XMLDBWriteLogic.WriteOpeningHours(dupeCheckList);
+            ProgressBarPercentage(7);
         }
 
         private void ReadProductsFromXML()
