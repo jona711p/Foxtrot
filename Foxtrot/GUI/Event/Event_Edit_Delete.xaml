@@ -52,7 +52,7 @@
             <TextBox x:Name="textBox_Event_Search_Name" HorizontalAlignment="Left" Height="35" Margin="22,54,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="224" Tag="Navn"/>
             <TextBox x:Name="textBox_Event_Search_Adress" HorizontalAlignment="Left" Height="35" Margin="22,125,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="224" Tag="Adresse"/>
             <DatePicker x:Name="datePicker__Event_Search_CreationDate" HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
-            <Button x:Name="btb_Event_Search" Content="Søg" HorizontalAlignment="Left" Margin="183,274,0,0" VerticalAlignment="Top" Width="76" />
+            <Button x:Name="btb_Event_Search" Content="Søg" HorizontalAlignment="Left" Margin="183,274,0,0" VerticalAlignment="Top" Width="76" Click="btb_Event_Search_Click" />
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="441" Margin="20,13,0,0" VerticalAlignment="Top" Width="360"/>
         <!-- Søg efter event slut -->

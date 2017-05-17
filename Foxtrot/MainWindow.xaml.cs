@@ -141,7 +141,7 @@ namespace Foxtrot
 
         private void MenuItem_Event_Add_Onclick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Event_Add();
+            MainFrame.Content = new Event_Add(tempUser);
         }
 
         private void MenuItem_Event_Edit_Delete_Onclick(object sender, RoutedEventArgs e)
