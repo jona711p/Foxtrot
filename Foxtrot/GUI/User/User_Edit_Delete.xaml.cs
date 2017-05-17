@@ -26,14 +26,9 @@ namespace Foxtrot.GUI.User
             tempUser.UserTable = new DataTable();
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
-
             DataContext = tempUser;
         }
 
-        private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -110,8 +105,9 @@ namespace Foxtrot.GUI.User
                 {
                     tempActor.WorkPhone = tempint;
                 }
-                ;
+
                 tempActor.WorkEmail = textBox_User_Edit_Email.Text;
+
                 if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && textBox_User_Edit_Fax.Text.Length == 8)
                 {
                     tempActor.WorkFax = tempint;
@@ -132,10 +128,37 @@ namespace Foxtrot.GUI.User
                 if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && textBox_User_Edit_Fax.Text.Length == 8)
                 {
                     tempAdministrator.WorkFax = tempint;
-
-                    DBUpdateLogic.UpdateAdmin(tempAdministrator);
                 }
+                DBUpdateLogic.UpdateAdmin(tempAdministrator);
+
             }
+            DBReadLogic.FillUserTable(tempUser.UserTable);
+            MainWindow.FillComboBoxWithAdminsAndActors();
+
+
         }
+        private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            if (
+                int.Parse(
+                    ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                1)
+            {
+                DBDeleteLogic.DeleteAdmin(tempAdministrator);
+            } //If the selected row is an administrator
+
+            if (
+                int.Parse(
+                    ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                2)
+            {
+                DBDeleteLogic.DeleteActor(tempActor);
+            } //If the selected row is an actor
+            DBReadLogic.FillUserTable(tempUser.UserTable);
+            MainWindow.FillComboBoxWithAdminsAndActors();
+
+        }
+
     }
 }
