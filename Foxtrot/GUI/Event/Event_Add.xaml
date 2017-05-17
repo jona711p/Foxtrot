@@ -39,7 +39,20 @@
     </Page.Resources>
 
     <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="49" Margin="518,323,0,0" TextWrapping="Wrap" Text="Event ADD" VerticalAlignment="Top" Width="157"/>
+        <Grid HorizontalAlignment="Left" Height="455" Margin="324,70,0,0" VerticalAlignment="Top" Width="250">
+            <TextBox x:Name="textBox_Event_Add_Name" HorizontalAlignment="Left" Height="23" Margin="51,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Navn"/>
+            <TextBox x:Name="textBox_Event_Add_Address" HorizontalAlignment="Left" Height="23" Margin="51,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}"  Tag="Adresse"/>
+            <TextBox x:Name="textBox_Event_Add_Longitude" HorizontalAlignment="Left" Height="23" Margin="51,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Længdegrad"/>
+            <TextBox x:Name="textBox_Event_Add_Latitude" HorizontalAlignment="Left" Height="23" Margin="51,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}"  Tag="Breddegrad"/>
+            <TextBox x:Name="textBox_Event_Add_Description" HorizontalAlignment="Left" Height="23" Margin="51,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Beskrivelse"/>
+            <TextBox x:Name="textBox_Event_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="51,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Ekstra beskrivelse"/>
+            <TextBox x:Name="textBox_Event_Add_Website" HorizontalAlignment="Left" Height="23" Margin="51,218,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Hjemmeside"/>
+            <TextBox x:Name="textBox_Event_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="51,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}"  Tag="Byportal"/>
+            <ComboBox x:Name="comboBox_Event_Add_CityID" HorizontalAlignment="Left" Margin="51,315,0,0" VerticalAlignment="Top" Width="113" ItemsSource = "{Binding CityDictionary}" Height="20"  DisplayMemberPath="Key" />
+            <RadioButton x:Name="rbtn_Event_Add_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="84,377,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Event_Add_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="140,377,0,0" VerticalAlignment="Top" RenderTransformOrigin="-16.133,2.756"/>
+        </Grid>
+        <Button x:Name="button_Event_Add_Create" Content="Button" HorizontalAlignment="Left" Margin="385,571,0,0" VerticalAlignment="Top" Width="75" Click="Button_Event_Add_Create_OnClick"/>
 
     </Grid>
 </Page>
