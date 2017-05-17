@@ -288,7 +288,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Kategoriger til Databasen";
+            ProgressPoint = "Læser nu Kategoriger fra XML Filen";
 
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
@@ -300,6 +300,8 @@ namespace Foxtrot.GUI.XMLImport
 
             List<Category> dupeCheckList = categories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Categories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
+            ProgressPoint = "Skriver nu Kategoriger til DataBasen";
+
             XMLDBWriteLogic.WriteCategories(dupeCheckList);
 
             (sender as BackgroundWorker).ReportProgress(8);
@@ -307,7 +309,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadCitiesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Byer til Databasen";
+            ProgressPoint = "Læser nu Byer fra XML Filen";
 
             xmlDocument = XDocument.Load(FullPathAndFileName);
 
@@ -320,6 +322,8 @@ namespace Foxtrot.GUI.XMLImport
 
             List<City> dupeCheckList = cities.Where(x => !XMLDBReadLogic.DupeCheckList("ID", "Cities").Contains(x.ID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
+            ProgressPoint = "Skriver nu Byer til DataBasen";
+
             XMLDBWriteLogic.WriteCities(dupeCheckList);
 
             (sender as BackgroundWorker).ReportProgress(8);
@@ -327,7 +331,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadFilesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Billeder til Databasen";
+            ProgressPoint = "Læser nu Billeder fra XML Filen";
 
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
@@ -339,6 +343,8 @@ namespace Foxtrot.GUI.XMLImport
 
             List<Classes.File> dupeCheckList = files.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Files").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
+            ProgressPoint = "Skriver nu Billeder til DataBasen";
+
             XMLDBWriteLogic.WriteFiles(dupeCheckList);
 
             (sender as BackgroundWorker).ReportProgress(8);
@@ -346,7 +352,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadMainCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Hovedkategorier til Databasen";
+            ProgressPoint = "Læser nu Hovedkategorier fra XML Filen";
 
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
@@ -358,6 +364,8 @@ namespace Foxtrot.GUI.XMLImport
 
             List<MainCategory> dupeCheckList = mainCategories.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "MainCategories").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
+            ProgressPoint = "Skriver nu Hovedkategorier til DataBasen";
+
             XMLDBWriteLogic.WriteMainCategories(dupeCheckList);
 
             (sender as BackgroundWorker).ReportProgress(8);
@@ -365,7 +373,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadOpeningHoursFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Åbningstider til Databasen";
+            ProgressPoint = "Læser nu Åbningstider fra XML Filen";
 
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
@@ -389,6 +397,8 @@ namespace Foxtrot.GUI.XMLImport
 
             List<OpeningHour> dupeCheckList = openingHours.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "OpeningHours").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
 
+            ProgressPoint = "Skriver nu Åbningstider til DataBasen";
+
             XMLDBWriteLogic.WriteOpeningHours(dupeCheckList);
 
             (sender as BackgroundWorker).ReportProgress(8);
@@ -396,7 +406,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadProductsFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produkter til Databasen";
+            ProgressPoint = "Læser nu Produkter fra XML Filen";
 
             XDocument xmlDocument = XDocument.Load(FullPathAndFileName);
 
@@ -450,6 +460,8 @@ namespace Foxtrot.GUI.XMLImport
             }).OrderBy(x => x.XMLID).ToList();
 
             List<Classes.Product> dupeCheckList = products.Where(x => !XMLDBReadLogic.DupeCheckList("XMLID", "Products").Contains(x.XMLID.Value)).ToList(); // Removes any dupes found already in the DataBase
+
+            ProgressPoint = "Skriver nu Produkter til DataBasen";
 
             XMLDBWriteLogic.WriteProducts(dupeCheckList);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Linq;
 using Foxtrot.Classes;
@@ -53,7 +54,17 @@ namespace Foxtrot.GUI.XMLImport
 
         public static string TryToConvertNodeValueToString(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
-            return node == null || node.Value.Equals("") ? null : node.Value;
+            if (node == null || node.Value.Equals(""))
+            {
+                return null;
+            }
+
+            if (node.Value.Contains("http://") || node.Value.Contains("www."))
+            {
+                return node.Value.ToLower();
+            }
+
+            return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(node.Value.ToLower());
         }
 
         public static List<string> TryToConvertNodeValueToStringList(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And if there is more than one string seperated by "/".
