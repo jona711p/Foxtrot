@@ -89,10 +89,7 @@ namespace Foxtrot.GUI.User
                                     "\nArbejds Email: '" + tempActor.WorkEmail + "'" +
                                     "\nArbejds Fax: '" + tempActor.WorkFax + "'");
 
-            //MainWindow window = new MainWindow();
-            //window.comboBox_Main_Usertype.SelectedItem = null;
-            //MainWindow.FillComboBoxWithAdminsAndActors();
-
+            MainWindow.FillComboBoxWithAdminsAndActors();
         }
     }
 }

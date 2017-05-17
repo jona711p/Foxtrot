@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Foxtrot.Classes;
@@ -39,7 +40,7 @@ namespace Foxtrot
             tempUser.AdminActorList = DBReadLogic.FillAdminActorList(tempUser.AdminActorList);
         }
 
-        private void ComboBox_Main_Usertype_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btn_Login_User_Click(object sender, RoutedEventArgs e)
         {
             tempUser.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
 
@@ -132,15 +133,17 @@ namespace Foxtrot
         {
             MainFrame.Content = new CombiProduct_Add();
         }
-       
+
         private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new CombiProduct_Edit_Delete();
         }
+
         private void MenuItem_Event_Add_Onclick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Event_Add();
         }
+
         private void MenuItem_Event_Edit_Delete_Onclick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Event_Edit_Delete();
