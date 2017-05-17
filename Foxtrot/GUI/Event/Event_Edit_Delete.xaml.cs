@@ -1,4 +1,5 @@
-﻿using Foxtrot.Classes.DB;
+﻿using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,13 +24,13 @@ namespace Foxtrot.GUI.Event
     public partial class Event_Edit_Delete : Page
     {
         Classes.Event tempEvent = new Classes.Event();
-        // Private bool = availabilty
+        private bool availability;
         public Event_Edit_Delete()
         {
             InitializeComponent();
             tempEvent.EventTable = new DataTable();
             DBReadLogic.FillEventTable(tempEvent.EventTable);
-            DataContext = tempEvent;  
+            DataContext = tempEvent;
         }
 
         private void datagrid_Event_list_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -37,7 +38,13 @@ namespace Foxtrot.GUI.Event
             // Runs when the user selects any item on the datagrid
             //finds the selected products ID and retrieves all information about it from the database
             //the new information is stored in the object 'tempEvent' and displayed in the relavant inputfields in the GUI 
-
+            if (datagrid_Event_list.SelectedItem != null)
+                tempEvent.ID =
+                int.Parse(
+                    ((TextBlock)
+                    datagrid_Event_list.Columns[0].GetCellContent(
+                        datagrid_Event_list.SelectedItem))
+                        .Text);
             tempEvent = DBReadLogic.GetEventInfo(tempEvent);
             MakeFieldsEditable(true);
 
@@ -55,8 +62,8 @@ namespace Foxtrot.GUI.Event
             rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
             rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
             datepicker_Event_Edit_CreationDate.Text = tempEvent.CreationDate.ToString();
-
         }
+
         public void MakeFieldsEditable(bool input)
         {
             textBox_Event_Edit_Name.IsEnabled = input;
@@ -70,6 +77,44 @@ namespace Foxtrot.GUI.Event
             rbtn_Event_Edit_Availability_False.IsEnabled = input;
             rbtn_Event_Edit_Availability_True.IsEnabled = input;
             datepicker_Event_Edit_CreationDate.IsEnabled = input;
+        }
+
+        private void button_Event_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            tempEvent.Address = textBox_Event_Edit_Adress.Text;
+            if (rbtn_Event_Edit_Availability_False.IsEnabled == true ||
+                rbtn_Event_Edit_Availability_False.IsChecked == true)
+            {
+                tempEvent.Availability = availability;
+            }
+            tempEvent.CanonicalUrl = textBox_Event_Edit_CanonicalUrl.Text;
+            tempEvent.CreationDate = DateTime.Parse(datepicker_Event_Edit_CreationDate.ToString());
+            tempEvent.Description = textBox_Event_Edit_Description.Text;
+
+            if (textBox_Event_Edit_ExtraDescription.Text.Length != 0)
+            {
+                tempEvent.ExtraDescription = new List<ExtraDescription>()
+            {
+                new ExtraDescription()
+                {
+                    Description = textBox_Event_Edit_ExtraDescription.Text
+                }
+            };
+
+            }
+            tempEvent.Longitude = int.Parse(textBox_Event_Edit_Latitude.ToString());
+            tempEvent.Latitude = int.Parse(textBox_Event_Edit_Longtitude.ToString());
+            tempEvent.Name = textBox_Event_Edit_Name.Text;
+            tempEvent.Website = textBox_Event_Edit_Website.Text;
+
+
+
+
+
+
+
+
+
         }
     }
 }
