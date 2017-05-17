@@ -145,7 +145,7 @@ namespace Foxtrot.Classes.DB
             {
                 inputList = new List<KeyValuePair<int, string>>();
             }
-
+            inputList.Clear();
             DataTable dt = new DataTable();
 
             SqlConnection connection = null;
@@ -265,6 +265,7 @@ namespace Foxtrot.Classes.DB
 
         public static DataTable FillUserTable(DataTable userTable)
         {
+            userTable.Clear();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
@@ -429,7 +430,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            // try
+            try
             {
                 SqlCommand command = new SqlCommand("spGetProductFiles", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -445,10 +446,10 @@ namespace Foxtrot.Classes.DB
                 }
             }
 
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 

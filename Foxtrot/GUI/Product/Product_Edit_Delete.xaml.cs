@@ -20,7 +20,7 @@ namespace Foxtrot.GUI.Product
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Edit_Delete(Classes.User inputUser) // MANGLER!    -  Slet produkter, upload, slet og rediger billeder  -
+        public Product_Edit_Delete(Classes.User inputUser) // MANGLER!    -  Slet produkter, upload, slet og rediger billeder  - openinghours, by?
         {
             tempUser = inputUser;
             InitializeComponent();
@@ -111,6 +111,7 @@ namespace Foxtrot.GUI.Product
             rbtn_Product_Edit_Availability_False.IsEnabled = input;
             textBox_Product_Edit_Website.IsEnabled = input;
             textBox_Product_Edit_CanonicalUrl.IsEnabled = input;
+            comboBox_Product_Edit_CityID.IsEnabled = input;
         }
         private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
         {

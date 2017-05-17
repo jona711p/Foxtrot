@@ -25,8 +25,8 @@
         </Grid>
 
         <Grid HorizontalAlignment="Left" Height="40" Margin="20,130,0,0" VerticalAlignment="Top" Width="572">
-            <Label x:Name="lbl_Loaded_File" Content="Følgende Fil blev Valgt:" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,422,0" FontFamily="Arial" Height="40" Width="140"/>
-            <Label x:Name="lbl_Loaded_FileName" Content="{Binding FileName}" HorizontalAlignment="Center" Margin="155,0,10,0" VerticalAlignment="Center" FontFamily="Arial" Width="407" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="lbl_Loaded_File" Content="Følgende Fil blev Valgt:" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,382,0" FontFamily="Arial" Height="40" Width="180" FontSize="16"/>
+            <Label x:Name="lbl_Loaded_FileName" Content="{Binding FileName}" HorizontalAlignment="Center" Margin="190,0,10,0" VerticalAlignment="Center" FontFamily="Arial" Width="372" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontWeight="Bold"/>
         </Grid>
 
         <Grid HorizontalAlignment="Left" Height="60" Margin="10,170,0,0" VerticalAlignment="Top" Width="572">
@@ -39,8 +39,8 @@
 
         <Grid HorizontalAlignment="Left" Height="60" Margin="10,248,0,0" VerticalAlignment="Top" Width="572">
             <ProgressBar x:Name="pbStatus" Minimum="0" Maximum="100" Value="{Binding ProgressPercentage}"/>
-            <TextBlock Text="{Binding Value, ElementName=pbStatus, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,20,512,16" FontFamily="Arial" FontSize="20" Width="50" Height="24"/>
-            <Label x:Name="lbl_ProgressPoint" Content="{Binding ProgressPoint}" HorizontalAlignment="Center" Margin="60,10,10,10" VerticalAlignment="Center" Height="40" Width="502" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBlock Text="{Binding Value, ElementName=pbStatus, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,20,512,16" FontFamily="Arial" FontSize="20" Width="50" Height="24" FontWeight="Bold"/>
+            <Label x:Name="lbl_ProgressPoint" Content="{Binding ProgressPoint}" HorizontalAlignment="Center" Margin="60,10,10,10" VerticalAlignment="Center" Height="40" Width="502" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="572"/>
     </Grid>
