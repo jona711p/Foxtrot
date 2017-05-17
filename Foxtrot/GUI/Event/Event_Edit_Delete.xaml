@@ -72,7 +72,7 @@
             <RadioButton x:Name="rbtn_Event_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="883,74,0,0" VerticalAlignment="Top" />
             <RadioButton x:Name="rbtn_Event_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="950,75,0,0" VerticalAlignment="Top" />
             <Label x:Name="label_Event_Edit_CreationDate" Content="Oprettelsesdato" HorizontalAlignment="Left" Margin="899,116,0,0" VerticalAlignment="Top" Width="100"/>
-            <DatePicker HorizontalAlignment="Left" Margin="895,139,0,0" VerticalAlignment="Top" Width="108"/>
+            <DatePicker x:Name="datepicker_Event_Edit_CreationDate" HorizontalAlignment="Left" Margin="895,139,0,0" VerticalAlignment="Top" Width="108"/>
             <Button x:Name="button_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="291" Margin="20,469,0,0" VerticalAlignment="Top" Width="1272"/>
