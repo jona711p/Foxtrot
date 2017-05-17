@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.XMLImport"
         mc:Ignorable="d"
-        Title="XML Import" Height="350" Width="600">
+        Title="XML Import" Height="355" Width="605">
 
     <Grid>
         <Grid HorizontalAlignment="Center" Height="60" Margin="10,10,10,249" VerticalAlignment="Center" Width="572">
@@ -39,9 +39,10 @@
 
         <Grid HorizontalAlignment="Left" Height="60" Margin="10,248,0,0" VerticalAlignment="Top" Width="572">
             <ProgressBar x:Name="pbStatus" Minimum="0" Maximum="100" Value="{Binding ProgressPercentage}"/>
-            <TextBlock Text="{Binding Value, ElementName=pbStatus, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,19,522,15" FontFamily="Arial" FontSize="20" Width="40" Height="26"/>
-            <Label x:Name="lbl_ProgressPoint" Content="{Binding ProgressPoint}" HorizontalAlignment="Center" Margin="55,10,10,10" VerticalAlignment="Center" Height="40" Width="507" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBlock Text="{Binding Value, ElementName=pbStatus, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,20,512,16" FontFamily="Arial" FontSize="20" Width="50" Height="24"/>
+            <Label x:Name="lbl_ProgressPoint" Content="{Binding ProgressPoint}" HorizontalAlignment="Center" Margin="60,10,10,10" VerticalAlignment="Center" Height="40" Width="502" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="572"/>
     </Grid>
 
 </Window>
