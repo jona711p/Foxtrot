@@ -88,6 +88,11 @@ namespace Foxtrot.GUI.User
                                     "\nArbejds Telefon: '" + tempActor.WorkPhone + "'" +
                                     "\nArbejds Email: '" + tempActor.WorkEmail + "'" +
                                     "\nArbejds Fax: '" + tempActor.WorkFax + "'");
+
+            //MainWindow window = new MainWindow();
+            //window.comboBox_Main_Usertype.SelectedItem = null;
+            //MainWindow.FillComboBoxWithAdminsAndActors();
+
         }
     }
 }
