@@ -1,4 +1,5 @@
-﻿using Foxtrot.Classes.DB;
+﻿using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +24,7 @@ namespace Foxtrot.GUI.Event
     public partial class Event_Edit_Delete : Page
     {
         Classes.Event tempEvent = new Classes.Event();
-        // Private bool = availabilty
+        private bool availability;
         public Event_Edit_Delete()
         {
             InitializeComponent();
@@ -62,7 +63,7 @@ namespace Foxtrot.GUI.Event
             rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
             datepicker_Event_Edit_CreationDate.Text = tempEvent.CreationDate.ToString();
         }
-    
+
         public void MakeFieldsEditable(bool input)
         {
             textBox_Event_Edit_Name.IsEnabled = input;
@@ -80,7 +81,39 @@ namespace Foxtrot.GUI.Event
 
         private void button_Event_Edit_Click(object sender, RoutedEventArgs e)
         {
-            // Int tempint;
+            tempEvent.Address = textBox_Event_Edit_Adress.Text;
+            if (rbtn_Event_Edit_Availability_False.IsEnabled == true ||
+                rbtn_Event_Edit_Availability_False.IsChecked == true)
+            {
+                tempEvent.Availability = availability;
+            }
+            tempEvent.CanonicalUrl = textBox_Event_Edit_CanonicalUrl.Text;
+            tempEvent.CreationDate = DateTime.Parse(datepicker_Event_Edit_CreationDate.ToString());
+            tempEvent.Description = textBox_Event_Edit_Description.Text;
+
+            if (textBox_Event_Edit_ExtraDescription.Text.Length != 0)
+            {
+                tempEvent.ExtraDescription = new List<ExtraDescription>()
+            {
+                new ExtraDescription()
+                {
+                    Description = textBox_Event_Edit_ExtraDescription.Text
+                }
+            };
+
+            }
+            tempEvent.Longitude = int.Parse(textBox_Event_Edit_Latitude.ToString());
+            tempEvent.Latitude = int.Parse(textBox_Event_Edit_Longtitude.ToString());
+            tempEvent.Name = textBox_Event_Edit_Name.Text;
+            tempEvent.Website = textBox_Event_Edit_Website.Text;
+
+
+
+
+
+
+
+
 
         }
     }
