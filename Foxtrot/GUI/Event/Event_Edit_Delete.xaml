@@ -40,7 +40,7 @@
     <Grid>
         <!-- Liste over arrangementer start -->
         <Grid HorizontalAlignment="Left" Height="406" Margin="418,31,0,0" VerticalAlignment="Top" Width="875">
-            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="16,33,0,0" VerticalAlignment="Top" Height="354" Background="White" Width="839" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_OnSelectionChanged" />
+            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding EventTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="16,33,0,0" VerticalAlignment="Top" Height="354" Background="White" Width="839" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_OnSelectionChanged" />
             <Label x:Name="lbl_Event_List" Content="Liste af arrangementer" HorizontalAlignment="Left" Margin="370,7,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="442" Margin="391,14,0,0" VerticalAlignment="Top" Width="913"/>
@@ -76,8 +76,7 @@
             <Button x:Name="button_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="291" Margin="20,469,0,0" VerticalAlignment="Top" Width="1272"/>
-       
-
         <!-- Rediger event slut -->
+        
     </Grid>
 </Page>
