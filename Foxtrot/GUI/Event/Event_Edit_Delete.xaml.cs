@@ -107,14 +107,17 @@ namespace Foxtrot.GUI.Event
             tempEvent.Name = textBox_Event_Edit_Name.Text;
             tempEvent.Website = textBox_Event_Edit_Website.Text;
 
+            DBUpdateLogic.UpdateEvent(tempEvent);
+            MessageBox.Show("Eventet: '" + tempEvent.Name + "' " + "er blevet redigeret i systemet!");
+        }
 
+        private void btb_Event_Search_Click(object sender, RoutedEventArgs e)
+        {
+            DBReadLogic.FillEventTable(tempEvent.EventTable);
+            if (textBox_Event_Search_Name.Text != "")
+            {
 
-
-
-
-
-
-
+            }
         }
     }
 }

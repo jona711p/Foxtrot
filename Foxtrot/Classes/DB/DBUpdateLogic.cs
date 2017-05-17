@@ -87,6 +87,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProduct.Website;
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProduct.CanonicalUrl;
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProduct.Cities.ID;
+                
 
                 command.ExecuteNonQuery();
 
@@ -96,6 +97,39 @@ namespace Foxtrot.Classes.DB
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        public static void UpdateEvent(Event tempevent)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateEvent", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = tempevent.ID;
+                command.Parameters.Add("Name", SqlDbType.NVarChar).Value = tempevent.Name;
+                command.Parameters.Add("Address", SqlDbType.NVarChar).Value = tempevent.Address;
+                command.Parameters.Add("Longtitude", SqlDbType.Float).Value = tempevent.Longitude;
+                command.Parameters.Add("Latitude", SqlDbType.Float).Value = tempevent.Latitude;
+                command.Parameters.Add("Description", SqlDbType.NVarChar).Value = tempevent.Description;
+                command.Parameters.Add("ExtraDescription", SqlDbType.NVarChar).Value = tempevent.ExtraDescription[0].Description;
+                command.Parameters.Add("CanonicalUrl", SqlDbType.NVarChar).Value = tempevent.CanonicalUrl;
+                command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
+                command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
+                command.Parameters.Add("CreationDate", SqlDbType.DateTime).Value = tempevent.CreationDate;
+
+                command.ExecuteNonQuery();
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
