@@ -68,11 +68,11 @@
             <TextBox x:Name="textBox_Event_Edit_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="474,142,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
             <TextBox x:Name="textBox_Event_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="699,70,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
             <TextBox x:Name="textBox_Event_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="698,140,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
-            <Label x:Name="label_Event_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="915,52,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rbtn_Event_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="881,80,0,0" VerticalAlignment="Top" />
-            <RadioButton x:Name="rbtn_Event_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="958,80,0,0" VerticalAlignment="Top" />
-            <Label x:Name="label_Event_Edit_CreationDate" Content="Oprettelsesdato" HorizontalAlignment="Left" Margin="913,117,0,0" VerticalAlignment="Top" Width="100"/>
-            <DatePicker HorizontalAlignment="Left" Margin="918,139,0,0" VerticalAlignment="Top" Width="100"/>
+            <Label x:Name="label_Event_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="901,42,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Event_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="883,74,0,0" VerticalAlignment="Top" />
+            <RadioButton x:Name="rbtn_Event_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="950,75,0,0" VerticalAlignment="Top" />
+            <Label x:Name="label_Event_Edit_CreationDate" Content="Oprettelsesdato" HorizontalAlignment="Left" Margin="899,116,0,0" VerticalAlignment="Top" Width="100"/>
+            <DatePicker HorizontalAlignment="Left" Margin="895,139,0,0" VerticalAlignment="Top" Width="108"/>
             <Button x:Name="button_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="291" Margin="20,469,0,0" VerticalAlignment="Top" Width="1272"/>
