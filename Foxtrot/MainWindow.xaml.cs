@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using Foxtrot.Classes;
@@ -90,6 +91,17 @@ namespace Foxtrot
         private void MenuItem_Menu_XML_Import_OnClick(object sender, RoutedEventArgs e)
         {
             xmlImport.Show();
+        }
+
+        private void MenuItem_Menu_Exit_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Afslutte?", "Afslut?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (response == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)

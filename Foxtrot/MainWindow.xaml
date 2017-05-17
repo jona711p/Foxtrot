@@ -13,6 +13,7 @@
                 <MenuItem Header="Menu">
                     <MenuItem x:Name="Frontpage_MenuItem" Header="Forside" Click="MenuItem_Menu_Frontpage_OnClick"/>
                     <MenuItem x:Name="XML_Import_MenuItem" Header="XML Import" Click="MenuItem_Menu_XML_Import_OnClick"/>
+                    <MenuItem x:Name="Exit_MenuItem" Header="Afslut" Click="MenuItem_Menu_Exit_OnClick"/>
                 </MenuItem>
                 <MenuItem x:Name="User_MenuItem" Header="Bruger">
                     <MenuItem x:Name="User_MenuItem_Add" Header="Opret" Click="MenuItem_User_Add_OnClick"/>
