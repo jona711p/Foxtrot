@@ -463,23 +463,30 @@ namespace Foxtrot.Classes.DB
             try
             {
                 SqlCommand command = new SqlCommand("spGetEventInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
-                dt.Load(command.ExecuteReader());
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
 
                 foreach (DataRow row in dt.Rows) 
                 {
                     Event tempevent = new Event();
-                    tempevent.ID = int.Parse(row["ID"].ToString());
-                    tempevent.Name = Convert.ToString(row["Name"]);
-                    tempevent.Address = Convert.ToString(row["Adress"]);
-                    tempevent.Longitude = int.Parse(row["Longtitude"].ToString());
-                    tempevent.Longitude = int.Parse(row["Latitude"].ToString());
-                    tempevent.Longitude = int.Parse(row["CreationDate"].ToString());
-                    tempevent.Description = Convert.ToString(row["Description"].ToString());
-                    //tempevent.ExtraDescription = Convert.ToString(row["ExtraDescription"].ToString());
-                    tempevent.Availability = bool.Parse(row["Availability"].ToString());
-                    tempevent.Website = Convert.ToString(row["Website"]);
-                    tempevent.CanonicalUrl = Convert.ToString(row["CanocicalUrl"]);
+                    tempevent.ID = int.Parse(reader["ID"].ToString());
+                    tempevent.Name = reader["Name"].ToString();
+                    tempevent.Address = reader["Address"].ToString();
+                    tempevent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
+                    tempevent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
+                    tempevent.CreationDate = Convert.ToDateTime(reader["CreationDate"].ToString());
+                    tempevent.Description = reader["Description"].ToString();
+
+                    tempevent.ExtraDescription = new List<ExtraDescription>();
+                    ExtraDescription tempExtraDescription = new ExtraDescription();
+                    tempevent.ExtraDescription.Add(tempExtraDescription);
+                    tempExtraDescription.Description = reader["ExtraDescription"].ToString();
+
+                    tempevent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                    tempevent.Website = reader["Website"].ToString();
+                    tempevent.CanonicalUrl = reader["CanocicalUrl"].ToString();
                 }
 
             }
