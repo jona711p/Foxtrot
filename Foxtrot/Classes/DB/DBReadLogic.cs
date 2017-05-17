@@ -462,6 +462,7 @@ namespace Foxtrot.Classes.DB
             try
             {
                 SqlCommand command = new SqlCommand("spGetEventInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
                 dt.Load(command.ExecuteReader());
 
