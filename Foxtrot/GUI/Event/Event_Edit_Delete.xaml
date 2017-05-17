@@ -38,12 +38,45 @@
     </Page.Resources>
 
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="385" Margin="22,33,0,0" VerticalAlignment="Top" Width="1252">
-            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="12,29,0,0" VerticalAlignment="Top" Height="350" Background="White" Width="1222" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_OnSelectionChanged" />
-            <Label x:Name="label" Content="Liste af arrangementer" HorizontalAlignment="Left" Margin="577,5,0,0" VerticalAlignment="Top"/>
+        <!-- Liste over arrangementer start -->
+        <Grid HorizontalAlignment="Left" Height="406" Margin="418,31,0,0" VerticalAlignment="Top" Width="875">
+            <DataGrid x:Name="datagrid_Event_list" ItemsSource="{Binding EventTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="16,33,0,0" VerticalAlignment="Top" Height="354" Background="White" Width="839" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="datagrid_Event_list_OnSelectionChanged" />
+            <Label x:Name="lbl_Event_List" Content="Liste af arrangementer" HorizontalAlignment="Left" Margin="370,7,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" Margin="13,14,0,0" VerticalAlignment="Top" Width="1275"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="442" Margin="391,14,0,0" VerticalAlignment="Top" Width="913"/>
+        <!-- Liste over arrangementer slut -->
 
+        <!-- Søg efter event start -->
+        <Grid HorizontalAlignment="Left" Height="406" Margin="37,33,0,0" VerticalAlignment="Top" Width="335">
+            <Label x:Name="lbl_Event_Search" Content="Søg på arrangement" HorizontalAlignment="Left" Margin="98,7,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox_Event_Search_Name" HorizontalAlignment="Left" Height="35" Margin="22,54,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="224" Tag="Navn"/>
+            <TextBox x:Name="textBox_Event_Search_Adress" HorizontalAlignment="Left" Height="35" Margin="22,125,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="224" Tag="Adresse"/>
+            <DatePicker x:Name="datePicker__Event_Search_CreationDate" HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
+            <Button x:Name="btb_Event_Search" Content="Søg" HorizontalAlignment="Left" Margin="183,274,0,0" VerticalAlignment="Top" Width="76" />
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="441" Margin="20,13,0,0" VerticalAlignment="Top" Width="360"/>
+        <!-- Søg efter event slut -->
 
+        <!-- Rediger event start -->
+        <Grid HorizontalAlignment="Left" Height="268" Margin="34,480,0,0" VerticalAlignment="Top" Width="1248">
+            <Label x:Name="lbl_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="568,5,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox_Event_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="30,65,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
+            <TextBox x:Name="textBox_Event_Edit_Adress" HorizontalAlignment="Left" Height="23" Margin="30,142,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
+            <TextBox x:Name="textBox_Event_Edit_Longtitude" HorizontalAlignment="Left" Height="23" Margin="257,66,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
+            <TextBox x:Name="textBox_Event_Edit_Latitude" HorizontalAlignment="Left" Height="23" Margin="255,142,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Breddegrad" />
+            <TextBox x:Name="textBox_Event_Edit_Description" HorizontalAlignment="Left" Height="23" Margin="474,67,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
+            <TextBox x:Name="textBox_Event_Edit_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="474,142,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
+            <TextBox x:Name="textBox_Event_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="699,70,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
+            <TextBox x:Name="textBox_Event_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="698,140,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
+            <Label x:Name="label_Event_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="901,42,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Event_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="883,74,0,0" VerticalAlignment="Top" />
+            <RadioButton x:Name="rbtn_Event_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="950,75,0,0" VerticalAlignment="Top" />
+            <Label x:Name="label_Event_Edit_CreationDate" Content="Oprettelsesdato" HorizontalAlignment="Left" Margin="899,116,0,0" VerticalAlignment="Top" Width="100"/>
+            <DatePicker HorizontalAlignment="Left" Margin="895,139,0,0" VerticalAlignment="Top" Width="108"/>
+            <Button x:Name="button_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="291" Margin="20,469,0,0" VerticalAlignment="Top" Width="1272"/>
+        <!-- Rediger event slut -->
+        
     </Grid>
 </Page>
