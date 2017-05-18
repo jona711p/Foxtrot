@@ -145,6 +145,7 @@ namespace Foxtrot.Classes.DB
             {
                 inputList = new List<KeyValuePair<int, string>>();
             }
+
             inputList.Clear();
             DataTable dt = new DataTable();
 

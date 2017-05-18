@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
-using System.Collections.Generic;
 
 namespace Foxtrot.GUI.User
 {
@@ -14,8 +13,8 @@ namespace Foxtrot.GUI.User
     public partial class User_Edit_Delete : Page
     {
         private Classes.User tempUser = new Classes.User();
-        private Actor tempActor = new Actor();
         private Administrator tempAdministrator = new Administrator();
+        private Actor tempActor = new Actor();
         private int availibility;
 
         public User_Edit_Delete(Classes.User inputUser)
@@ -39,7 +38,7 @@ namespace Foxtrot.GUI.User
             {
                 if (
                     int.Parse(
-                        ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                        ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
                     1) //If the selected row is an administrator
                 {
                     {
@@ -64,7 +63,7 @@ namespace Foxtrot.GUI.User
                 }
                 if (
                     int.Parse(
-                        ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                        ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
                     2) //If the selected row is an actor
                 {
                     {
@@ -142,7 +141,7 @@ namespace Foxtrot.GUI.User
 
             if (
                 int.Parse(
-                    ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                    ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
                 1)
             {
                 DBDeleteLogic.DeleteAdmin(tempAdministrator);
@@ -150,7 +149,7 @@ namespace Foxtrot.GUI.User
 
             if (
                 int.Parse(
-                    ((TextBlock) dataGrid_User_Edit.Columns[7].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
+                    ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
                 2)
             {
                 DBDeleteLogic.DeleteActor(tempActor);

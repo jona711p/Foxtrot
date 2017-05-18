@@ -25,14 +25,14 @@ namespace Foxtrot.GUI.Event
         private Classes.Event tempEvent = new Classes.Event();
         private Classes.User tempUser = new Classes.User();
         public City tempCity = new City();
-        
+
         public Event_Add(Classes.User inputUser) //FK_ActorID til userID
         {
             InitializeComponent();
 
             tempUser = inputUser;
             comboBox_Event_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
-    }
+        }
 
         private void Button_Event_Add_Create_OnClick(object sender, RoutedEventArgs e)
         {
@@ -51,31 +51,31 @@ namespace Foxtrot.GUI.Event
             textBox_Event_Add_Description.Text = tempEvent.Description;
 
             tempEvent.ExtraDescription = new List<ExtraDescription>()
-            {
-                new ExtraDescription()
                 {
-                    Description = textBox_Event_Add_ExtraDescription.Text
-                }
-            };
+                    new ExtraDescription()
+                    {
+                        Description = textBox_Event_Add_ExtraDescription.Text
+                    }
+                };
 
             Boolean h = rbtn_Event_Add_Availability_True.IsChecked;
             bool? b2 = (bool?)b;
 
-            tempEvent.Availability = Convert.ToBoolean?() ;
-                //rbtn_Event_Add_Availability_True.IsChecked
+            tempEvent.Availability = Convert.ToBoolean ? () ;
+            //rbtn_Event_Add_Availability_True.IsChecked
         }
-            tempProduct.Cities = new City();
-            tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
+        tempProduct.Cities = new City();
+        tempProduct.Cities.ID = ((KeyValuePair<string, int>) comboBox_Product_Edit_CityID.SelectedItem).Value;
 
 
 
 
-            textBox_Event_Add_Website.Text = tempEvent.Website;
-            textBox_Event_Add_CanonicalUrl.Text = tempEvent.CanonicalUrl;
+                textBox_Event_Add_Website.Text = tempEvent.Website;
+                textBox_Event_Add_CanonicalUrl.Text = tempEvent.CanonicalUrl;
 
-            tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
+                tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
 
-            GUISortingLogic.Message("Arrangementet: " + tempEvent.Name + " er nu oprettet.");
-        }
-    }
+                GUISortingLogic.Message("Arrangementet: " + tempEvent.Name + " er nu oprettet.");
+            }
+}
 }
