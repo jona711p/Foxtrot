@@ -224,9 +224,9 @@ namespace Foxtrot.Classes.DB
 
         public static DataTable FillProductTable(DataTable productTable)
         {
+            productTable.Clear();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-            productTable.Clear();
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
@@ -245,19 +245,20 @@ namespace Foxtrot.Classes.DB
         }
         public static DataTable FillEventTable(DataTable eventtable)
         {
+            eventtable.Clear();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-            eventtable.Clear();
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection); // Skal laves stored procedure
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection);
+
                 adapter.Fill(eventtable);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
@@ -297,7 +298,7 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spGetActorInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.User_ID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.UserID;
 
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -335,7 +336,7 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.User_ID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.UserID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
@@ -408,7 +409,7 @@ namespace Foxtrot.Classes.DB
                 inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
-                inputProduct.ActorID = DBSortingLogic.ConvertToNullableInt(reader["userID"]);
+                inputProduct.UserID = DBSortingLogic.ConvertToNullableInt(reader["UserID"]);
 
                 inputProduct.Cities = new City();
                 inputProduct.Cities.Name = reader["CityName"].ToString();

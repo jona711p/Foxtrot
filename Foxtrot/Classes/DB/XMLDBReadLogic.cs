@@ -17,7 +17,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT ID FROM Actors WHERE CompanyName = @CompanyName", connection);
+                SqlCommand command = new SqlCommand("SELECT UserID FROM viewActors WHERE CompanyName = @CompanyName", connection);
 
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
 

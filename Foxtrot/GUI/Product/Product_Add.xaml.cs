@@ -17,18 +17,8 @@ namespace Foxtrot.GUI.Product
 
         public Product_Add(Classes.User inputUser)
         {
-            tempProduct.ProductTable = new DataTable();
-
-            if (inputUser.Permission == 1)
-            {
-                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Administrators", inputUser.ID.Value);
-            }
-
-            if (inputUser.Permission == 2)
-            {
-                tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);
-            }
             InitializeComponent();
+
             //tempCity.CityDictionary = new Dictionary<string, int>();
             //DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             //comboBox_Product_Add_CityID.ItemsSource = tempCity.CityDictionary;

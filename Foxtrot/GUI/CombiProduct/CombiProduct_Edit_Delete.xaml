@@ -37,8 +37,34 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="37" Margin="553,222,0,0" TextWrapping="Wrap" Text="CombiProduct EDIT DELETE" VerticalAlignment="Top" Width="146"/>
 
+
+    <Grid>
+        <!-- Liste over Combiprodukt start -->
+        <Grid HorizontalAlignment="Left" Height="334" Margin="353,42,0,0" VerticalAlignment="Top" Width="942">
+            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+            <Label x:Name="label_CombiProduct_List" Content="Liste over combi produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="155"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="356" Margin="337,34,0,0" VerticalAlignment="Top" Width="966"/>
+        <!-- Liste over Combiprodukt slut -->
+
+        <!-- Søg CombiProdukt Start -->
+        <Grid HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
+            <Label x:Name="label_CombiProduct_Search" Content="Søg efter combi produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="93,4,0,0"/>
+            <TextBox x:Name="textBox_CombiProduct_SearchName" HorizontalAlignment="Left" Height="35" Margin="24,71,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
+            <TextBox x:Name="textBox_CombiProduct_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="19,167,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
+            <Button x:Name="btb_CombiProduct_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76"/>
+            <Border BorderBrush="Black" BorderThickness="1" Height="357" Margin="-4,6,15,0" VerticalAlignment="Top"/>
+        </Grid>
+        <!-- Søg Produkt Slut -->
+
+        <!-- Rediger Produkt Start -->
+        <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
+            <Label x:Name="label_CombiProduct_EditNew" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="143"/>
+            <Button x:Name="button_CombiProduct_Edit_Edit" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="1106,209,0,0" VerticalAlignment="Top" Width="129" Height="21"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
+        <!-- Rediger Produkt Slut -->
     </Grid>
+
 </Page>

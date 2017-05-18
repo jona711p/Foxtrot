@@ -49,7 +49,7 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spWriteActors", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+                SqlParameter outputID = new SqlParameter("@UserID", SqlDbType.Int);
 
                 command.Parameters.Add("@Permission", SqlDbType.Int).Value = inputActor.Permission;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
@@ -233,7 +233,7 @@ namespace Foxtrot.Classes.DB
                     SqlCommand command = new SqlCommand("spWriteProducts", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter outputID = new SqlParameter("@ID", SqlDbType.Int);
+                    SqlParameter outputID = new SqlParameter("@ProductID", SqlDbType.Int);
 
                     command.Parameters.Add("@XMLID", SqlDbType.Int).Value = product.XMLID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = product.Name;
@@ -260,7 +260,7 @@ namespace Foxtrot.Classes.DB
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
                     command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID;
-                    command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = product.ActorID;
+                    command.Parameters.Add("@FK_UserD", SqlDbType.Int).Value = product.UserID;
 
                     command.Parameters.Add(outputID);
                     outputID.Direction = ParameterDirection.Output;

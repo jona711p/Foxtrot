@@ -82,7 +82,7 @@ namespace Foxtrot.GUI.Event
             //tempEvent.Website = textBox_Event_Add_Website.Text;
             tempEvent.CanonicalUrl = textBox_Event_Add_CanonicalUrl.Text;
 
-            tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
+            tempEvent.UserID = tempUser.ID; // skal rettes til så userid
 
             GUISortingLogic.Message("Arrangementet: '" + tempEvent.Name + "' er nu oprettet.");
         }

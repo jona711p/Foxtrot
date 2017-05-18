@@ -43,8 +43,8 @@
                        NavigationUIVisibility="Hidden"/>
         </ScrollViewer>
 
-        <GridSplitter x:Name="GridSplitter_Top" HorizontalAlignment="Left" Height="10" Margin="0,127,0,0" VerticalAlignment="Top" Width="1432" Background ="Green"/>
-        <GridSplitter x:Name="GridSplitter_Button" HorizontalAlignment="Left" Height="8" Margin="0,613,0,0" VerticalAlignment="Top" Width="1342" Background ="Green"/>
+        <GridSplitter x:Name="GridSplitter_Top" HorizontalAlignment="Left" Height="10" Margin="0,127,0,0" VerticalAlignment="Top" Width="1432" Background="Red"/>
+        <GridSplitter x:Name="GridSplitter_Button" HorizontalAlignment="Left" Height="8" Margin="0,613,0,0" VerticalAlignment="Top" Width="1342" Background="Red"/>
         <GridSplitter x:Name="GridSplitter_Left" HorizontalAlignment="Left" Height="476" Margin="0,137,0,0" VerticalAlignment="Top" Width="10"/>
 
         <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="573,27,546,567"  Width="223" Source="IMG/SET Logo Front Trans.png"/>

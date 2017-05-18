@@ -17,7 +17,7 @@ namespace Foxtrot.Classes.DB
                 command.CommandType = CommandType.StoredProcedure;
 
                 //command.Parameters.Add("@ID", SqlDbType.Int).Value = inputActor.ID;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.User_ID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.UserID;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputActor.WorkPhone;
@@ -45,7 +45,7 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spUpdateAdmin", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.User_ID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.UserID;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdmin.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdmin.LastName;
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdmin.WorkPhone;
@@ -120,7 +120,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
                 command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
                 command.Parameters.Add("FK_CityID", SqlDbType.Bit).Value = tempevent.Cities.ID;
-                command.Parameters.Add("FK_ActorID", SqlDbType.Bit).Value = tempevent.ActorID;
+                command.Parameters.Add("FK_ActorID", SqlDbType.Bit).Value = tempevent.UserID;
 
                 command.ExecuteNonQuery();
 

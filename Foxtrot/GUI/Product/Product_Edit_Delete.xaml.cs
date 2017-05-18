@@ -46,7 +46,7 @@ namespace Foxtrot.GUI.Product
                 tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
                 MakeFieldsEditable(false);
 
-                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
+                if (tempProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
                 {
                     MakeFieldsEditable(true);
                 }
