@@ -45,8 +45,8 @@ namespace Foxtrot.GUI.User
                                 .Text);
                         tempAdministrator = DBReadLogic.GetAdminInfo(tempAdministrator);
 
-                        textBox_User_Edit_Firstname.Text = tempAdministrator.FirstName;
-                        textBox_User_Edit_Lastname.Text = tempAdministrator.LastName;
+                        textBox_User_Edit_FirstName.Text = tempAdministrator.FirstName;
+                        textBox_User_Edit_LastName.Text = tempAdministrator.LastName;
                         textBox_User_Edit_Phone.Text = tempAdministrator.WorkPhone.ToString();
                         textBox_User_Edit_Email.Text = tempAdministrator.WorkEmail;
                         textBox_User_Edit_Fax.Text = tempAdministrator.WorkFax.ToString();
@@ -66,8 +66,8 @@ namespace Foxtrot.GUI.User
                         tempActor = DBReadLogic.GetActorInfo(tempActor);
 
                         textBox_User_Edit_CompanyName.Text = tempActor.CompanyName;
-                        textBox_User_Edit_Firstname.Text = tempActor.FirstName;
-                        textBox_User_Edit_Lastname.Text = tempActor.LastName;
+                        textBox_User_Edit_FirstName.Text = tempActor.FirstName;
+                        textBox_User_Edit_LastName.Text = tempActor.LastName;
                         textBox_User_Edit_Phone.Text = tempActor.WorkPhone.ToString();
                         textBox_User_Edit_Email.Text = tempActor.WorkEmail;
                         textBox_User_Edit_Fax.Text = tempActor.WorkFax.ToString();
@@ -84,8 +84,8 @@ namespace Foxtrot.GUI.User
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
-                tempActor.FirstName = textBox_User_Edit_Firstname.Text;
-                tempActor.LastName = textBox_User_Edit_Lastname.Text;
+                tempActor.FirstName = textBox_User_Edit_FirstName.Text;
+                tempActor.LastName = textBox_User_Edit_LastName.Text;
 
                 if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
                 {
@@ -104,8 +104,8 @@ namespace Foxtrot.GUI.User
 
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
-                tempAdministrator.FirstName = textBox_User_Edit_Firstname.Text;
-                tempAdministrator.LastName = textBox_User_Edit_Lastname.Text;
+                tempAdministrator.FirstName = textBox_User_Edit_FirstName.Text;
+                tempAdministrator.LastName = textBox_User_Edit_LastName.Text;
 
                 if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
                 {

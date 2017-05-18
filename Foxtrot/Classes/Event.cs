@@ -6,7 +6,6 @@ namespace Foxtrot.Classes
 {
     public class Event : Product
     {
-        public int? UserID { get; set; }
         public int? ProductID { get; set; }
         public DataTable EventTable { get; set; }
 

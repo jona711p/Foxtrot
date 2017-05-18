@@ -120,7 +120,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
                 command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
                 command.Parameters.Add("FK_CityID", SqlDbType.Bit).Value = tempevent.Cities.ID;
-                command.Parameters.Add("FK_ActorID", SqlDbType.Bit).Value = tempevent.ActorID;
+                command.Parameters.Add("FK_ActorID", SqlDbType.Bit).Value = tempevent.UserID;
 
                 command.ExecuteNonQuery();
 

@@ -5,7 +5,6 @@ using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using System.Collections.Generic;
 using System.Windows;
-using System.Data.SqlClient;
 using System.Windows.Media.Imaging;
 
 namespace Foxtrot.GUI.Product
@@ -47,7 +46,7 @@ namespace Foxtrot.GUI.Product
                 tempProduct = DBReadLogic.GetFileInfo(tempProduct);
                 MakeFieldsEditable(false);
 
-                if (tempProduct.ActorID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
+                if (tempProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
                 {
                     MakeFieldsEditable(true);
                 }

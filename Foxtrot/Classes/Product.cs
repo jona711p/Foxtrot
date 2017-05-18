@@ -33,7 +33,7 @@ namespace Foxtrot.Classes
 
         public List<File> Files { get; set; }
 
-        public int? ActorID { get; set; }
+        public int? UserID { get; set; }
 
         public List<CombiProduct> CombiProducts { get; set; }
         public List<Event> Events { get; set; }
