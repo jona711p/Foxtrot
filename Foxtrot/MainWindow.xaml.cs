@@ -129,7 +129,7 @@ namespace Foxtrot
 
         private void MenuItem_CombiProduct_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new CombiProduct_Add();
+            MainFrame.Content = new CombiProduct_Add(tempUser);
         }
 
         private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)

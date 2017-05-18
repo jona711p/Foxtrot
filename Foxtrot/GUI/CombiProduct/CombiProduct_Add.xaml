@@ -38,7 +38,25 @@
     </Page.Resources>
 
     <Grid>
-        <TextBox x:Name="textBox"  HorizontalAlignment="Left" Height="42" Margin="496,252,0,0" TextWrapping="Wrap" Text="CombiProduct ADD" VerticalAlignment="Top" Width="159"/>
+        <!-- Liste over Combiprodukt start -->
+        <Grid HorizontalAlignment="Left" Height="336" Margin="664,42,0,0" VerticalAlignment="Top" Width="631">
+            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="15,29,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="623" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+            <Label x:Name="label_CombiProduct_List" Content="Liste over combi produkter" HorizontalAlignment="Left" Margin="290,-5,0,0" VerticalAlignment="Top" Height="31" Width="155"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="369" Margin="661,34,0,0" VerticalAlignment="Top" Width="642"/>
+        <!-- Liste over Combiprodukt slut -->
+
+        <!-- Liste over produkt start -->
+        <Grid HorizontalAlignment="Left" Height="334" Margin="31,57,0,0" VerticalAlignment="Top" Width="606">
+            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="580" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged" />
+            <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="188,-5,0,0" VerticalAlignment="Top" Height="31" Width="121"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" Margin="21,34,0,0" VerticalAlignment="Top" Width="631"/>
+        <Button x:Name="CombiProduct_Add_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="586,426,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="CombiProduct_Add_Delete" Content="Fjern" HorizontalAlignment="Left" Margin="693,426,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <!-- Liste over produkt slut -->
+
 
     </Grid>
 </Page>
