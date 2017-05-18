@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using Foxtrot.GUI;
@@ -111,7 +109,7 @@ namespace Foxtrot
 
         private void MenuItem_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new User_Edit_Delete(tempUser);
+            MainFrame.Content = new User_Edit_Delete();
         }
 
         private void MenuItem_User_Modify_OnClick(object sender, RoutedEventArgs e)
