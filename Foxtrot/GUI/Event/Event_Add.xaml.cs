@@ -24,7 +24,7 @@ namespace Foxtrot.GUI.Event
     {
         private Classes.Event tempEvent = new Classes.Event();
         private Classes.User tempUser = new Classes.User();
-        public City tempCity = new City();
+        private City tempCity = new City();
         
         public Event_Add(Classes.User inputUser) //FK_ActorID til userID
         {

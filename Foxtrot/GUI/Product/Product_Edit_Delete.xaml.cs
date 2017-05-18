@@ -43,7 +43,7 @@ namespace Foxtrot.GUI.Product
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
-                tempProduct = DBReadLogic.GetFileInfo(tempProduct);
+                tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
                 MakeFieldsEditable(false);
 
                 if (tempProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
@@ -76,13 +76,13 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_Website.Text = tempProduct.Website;
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
 
-                for (int i = 0; i <  5; i++) //Resets all images
+                for (int i = 0; i <  4; i++) //Resets all images
                 {
-                    ((System.Windows.Controls.Image)imageGrid.Children[i]).Source = null;
+                    ((System.Windows.Controls.Image)product_imageGrid.Children[i]).Source = null;
                 }
-                for (int i = 0; i < tempProduct.Files.Count && i < 5; i++) //Sets the UI images to display images related to the product
+                for (int i = 0; i < tempProduct.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
                 {
-                    ((System.Windows.Controls.Image)imageGrid.Children[i]).Source = new BitmapImage(new Uri(tempProduct.Files[i].URI));
+                    ((System.Windows.Controls.Image)product_imageGrid.Children[i]).Source = new BitmapImage(new Uri(tempProduct.Files[i].URI));
                 }
                 
                 comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
