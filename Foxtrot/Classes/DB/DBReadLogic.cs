@@ -455,41 +455,36 @@ namespace Foxtrot.Classes.DB
 
             return inputProduct;
         }
-        public static Event GetEventInfo(Event EventInfo)
+        public static Event GetEventInfo(Event tempevent)
         {
-            DataTable dt = new DataTable();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
             try
             {
                 SqlCommand command = new SqlCommand("spGetEventInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = EventInfo.ID;
+                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = tempevent.ID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
-                foreach (DataRow row in dt.Rows) 
-                {
-                    Event tempevent = new Event();
-                    tempevent.ID = int.Parse(reader["ID"].ToString());
-                    tempevent.Name = reader["Name"].ToString();
-                    tempevent.Address = reader["Address"].ToString();
-                    tempevent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
-                    tempevent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
-                    tempevent.CreationDate = Convert.ToDateTime(reader["CreationDate"].ToString());
-                    tempevent.Description = reader["Description"].ToString();
+                tempevent.ID = int.Parse(reader["ID"].ToString());
+                tempevent.Name = reader["Name"].ToString();
+                tempevent.Address = reader["Address"].ToString();
+                tempevent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
+                tempevent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
+                tempevent.CreationDate = Convert.ToDateTime(reader["CreationDate"].ToString());
+                tempevent.Description = reader["Description"].ToString();
 
-                    tempevent.ExtraDescription = new List<ExtraDescription>();
-                    ExtraDescription tempExtraDescription = new ExtraDescription();
-                    tempevent.ExtraDescription.Add(tempExtraDescription);
-                    tempExtraDescription.Description = reader["ExtraDescription"].ToString();
+                tempevent.ExtraDescription = new List<ExtraDescription>();
+                ExtraDescription tempExtraDescription = new ExtraDescription();
+                tempevent.ExtraDescription.Add(tempExtraDescription);
+                tempExtraDescription.Description = reader["ExtraDescription"].ToString();
 
-                    tempevent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
-                    tempevent.Website = reader["Website"].ToString();
-                    tempevent.CanonicalUrl = reader["CanocicalUrl"].ToString();
+                tempevent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                tempevent.Website = reader["Website"].ToString();
+                tempevent.CanonicalUrl = reader["CanocicalUrl"].ToString();
                 }
-
-            }
+            
             catch (Exception)
             {
 
@@ -498,7 +493,7 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return EventInfo;
+            return tempevent;
         }
     }
 }

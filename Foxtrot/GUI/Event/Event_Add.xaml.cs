@@ -58,24 +58,24 @@ namespace Foxtrot.GUI.Event
                 }
             };
 
-            Boolean h = rbtn_Event_Add_Availability_True.IsChecked;
-            bool? b2 = (bool?)b;
+        //    Boolean h = rbtn_Event_Add_Availability_True.IsChecked;
+        //    bool? b2 = (bool?)b;
 
-            tempEvent.Availability = Convert.ToBoolean?() ;
-                //rbtn_Event_Add_Availability_True.IsChecked
-        }
-            tempProduct.Cities = new City();
-            tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
-
-
+        //    tempEvent.Availability = Convert.ToBoolean?() ;
+        //        //rbtn_Event_Add_Availability_True.IsChecked
+        //}
+        //    tempProduct.Cities = new City();
+        //    tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
 
 
-            textBox_Event_Add_Website.Text = tempEvent.Website;
-            textBox_Event_Add_CanonicalUrl.Text = tempEvent.CanonicalUrl;
 
-            tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
 
-            GUISortingLogic.Message("Arrangementet: " + tempEvent.Name + " er nu oprettet.");
+        //    textBox_Event_Add_Website.Text = tempEvent.Website;
+        //    textBox_Event_Add_CanonicalUrl.Text = tempEvent.CanonicalUrl;
+
+        //    tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
+
+        //    GUISortingLogic.Message("Arrangementet: " + tempEvent.Name + " er nu oprettet.");
         }
     }
 }
