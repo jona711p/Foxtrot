@@ -3,18 +3,9 @@ using Foxtrot.Classes.DB;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Foxtrot.GUI.Event
 {
@@ -24,11 +15,17 @@ namespace Foxtrot.GUI.Event
     public partial class Event_Edit_Delete : Page
     {
         Classes.Event tempEvent = new Classes.Event();
+        Classes.User tempUser = new Classes.User();
+
         private bool availability;
-        public Event_Edit_Delete()
+        private City tempCity = new City();
+
+        public Event_Edit_Delete(Classes.User inputUser)
         {
             InitializeComponent();
             tempEvent.EventTable = new DataTable();
+            tempUser = inputUser;
+            comboBox_Event_Edit_Delete_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             DBReadLogic.FillEventTable(tempEvent.EventTable);
             DataContext = tempEvent;
         }
@@ -47,6 +44,8 @@ namespace Foxtrot.GUI.Event
                         datagrid_Event_list.SelectedItem))
                         .Text);
                 tempEvent = DBReadLogic.GetEventInfo(tempEvent);
+                tempEvent = DBReadLogic.GetEventFileInfo(tempEvent);
+
                 MakeFieldsEditable(true);
 
                 textBox_Event_Edit_Name.Text = tempEvent.Name;
@@ -62,6 +61,33 @@ namespace Foxtrot.GUI.Event
                 textBox_Event_Edit_Website.Text = tempEvent.Website;
                 rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
                 rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
+
+                //for (int i = 0; i < 4; i++) //Resets all images
+                //{
+                //    ((System.Windows.Controls.Image)event_imageGrid.Children[i]).Source = null;
+                //}
+                //for (int i = 0; i < tempEvent.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
+                //{
+                //    ((System.Windows.Controls.Image)event_imageGrid.Children[i]).Source = new BitmapImage(new Uri(tempEvent.Files[i].URI));
+                //}
+                if (tempEvent.Files.Count > 0 && tempEvent.Files[0].URI != "")
+                {
+                    event_imageDisplay01.Source = new BitmapImage(new Uri(tempEvent.Files[0].URI));
+                }
+                if (tempEvent.Files.Count > 0 && tempEvent.Files[1].URI != "")
+                {
+                    event_imageDisplay01.Source = new BitmapImage(new Uri(tempEvent.Files[1].URI));
+                }
+                if (tempEvent.Files.Count > 0 && tempEvent.Files[2].URI != "")
+                {
+                    event_imageDisplay01.Source = new BitmapImage(new Uri(tempEvent.Files[2].URI));
+                }
+                if (tempEvent.Files.Count > 0 && tempEvent.Files[3].URI != "")
+                {
+                    event_imageDisplay01.Source = new BitmapImage(new Uri(tempEvent.Files[3].URI));
+                }
+                image.Source = new BitmapImage(new Uri(tempEvent.Files[0].URI));
+                //comboBox_Event_Edit_Delete_CityID.Text = tempEvent.Cities.Name;
             }
         }
 
@@ -82,8 +108,7 @@ namespace Foxtrot.GUI.Event
         private void button_Event_Edit_Click(object sender, RoutedEventArgs e)
         {
             tempEvent.Address = textBox_Event_Edit_Adress.Text;
-            if (rbtn_Event_Edit_Availability_False.IsEnabled == true ||
-                rbtn_Event_Edit_Availability_False.IsChecked == true)
+            if (rbtn_Event_Edit_Availability_True.IsChecked == true || rbtn_Event_Edit_Availability_False.IsChecked == true)
             {
                 tempEvent.Availability = availability;
             }
@@ -93,18 +118,22 @@ namespace Foxtrot.GUI.Event
             if (textBox_Event_Edit_ExtraDescription.Text.Length != 0)
             {
                 tempEvent.ExtraDescription = new List<ExtraDescription>()
-            {
-                new ExtraDescription()
-                {
-                    Description = textBox_Event_Edit_ExtraDescription.Text
-                }
-            };
-
+                    {
+                        new ExtraDescription()
+                        {
+                            Description = textBox_Event_Edit_ExtraDescription.Text
+                        }
+                    };
             }
             tempEvent.Longitude = float.Parse(textBox_Event_Edit_Latitude.Text.ToString());
             tempEvent.Latitude = float.Parse(textBox_Event_Edit_Longtitude.Text.ToString());
             tempEvent.Name = textBox_Event_Edit_Name.Text;
             tempEvent.Website = textBox_Event_Edit_Website.Text;
+            if (comboBox_Event_Edit_Delete_CityID.SelectedItem != null)
+            {
+                tempEvent.Cities = new City();
+                tempEvent.Cities.ID = ((KeyValuePair<string, int>)comboBox_Event_Edit_Delete_CityID.SelectedItem).Value;
+            }
 
             DBUpdateLogic.UpdateEvent(tempEvent);
             MessageBox.Show("Eventet: '" + tempEvent.Name + "' " + "er blevet redigeret i systemet!");
@@ -117,6 +146,16 @@ namespace Foxtrot.GUI.Event
             {
 
             }
+        }
+
+        private void rbtn_Event_Edit_Availability_False_Click(object sender, RoutedEventArgs e)
+        {
+            availability = false;
+        }
+
+        private void rbtn_Event_Edit_Availability_True_Click(object sender, RoutedEventArgs e)
+        {
+            availability = true;
         }
     }
 }

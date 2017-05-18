@@ -88,7 +88,7 @@
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
         <!-- Rediger Produkt Slut -->
-        <Grid x:Name="imageGrid">
+        <Grid x:Name="product_imageGrid">
 
 
             <Image x:Name="imageDisplay01" HorizontalAlignment="Left" Height="200"  Margin="150,668,0,0" VerticalAlignment="Top" Width="200">
@@ -136,25 +136,6 @@
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-
-            <Image x:Name="imageDisplay05" HorizontalAlignment="Left" Height="200" Margin="970,668,0,0" VerticalAlignment="Top" Width="200">
-                <Image.ToolTip>
-                    <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                            <Image Source="{Binding Source}" Stretch="None" />
-                        </Border>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-
-
-
-            <!--<Image x:Name="imageDisplay01" HorizontalAlignment="Left" Height="200"  Margin="150,668,0,0" VerticalAlignment="Top" Width="200" />-->
-            <!--<Image x:Name="imageDisplay02" HorizontalAlignment="Left" Height="200" Margin="355,668,0,0" VerticalAlignment="Top" Width="200"/>
-            <Image x:Name="imageDisplay03" HorizontalAlignment="Left" Height="200" Margin="560,668,0,0" VerticalAlignment="Top" Width="200"/>
-            <Image x:Name="imageDisplay04" HorizontalAlignment="Left" Height="200" Margin="765,668,0,0" VerticalAlignment="Top" Width="200"/>
-            <Image x:Name="imageDisplay05" HorizontalAlignment="Left" Height="200" Margin="975,668,0,0" VerticalAlignment="Top" Width="200"/>-->
         </Grid>
        
     </Grid>

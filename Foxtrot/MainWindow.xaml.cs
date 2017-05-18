@@ -146,7 +146,7 @@ namespace Foxtrot
 
         private void MenuItem_Event_Edit_Delete_Onclick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Event_Edit_Delete();
+            MainFrame.Content = new Event_Edit_Delete(tempUser);
         }
     }
 }

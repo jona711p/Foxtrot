@@ -423,7 +423,7 @@ namespace Foxtrot.Classes.DB
 
             return inputProduct;
         }
-        public static Product GetFileInfo(Product inputProduct)
+        public static Product GetProductFileInfo(Product inputProduct)
         {
             DataTable dt = new DataTable();
             inputProduct.Files = new List<File>();
@@ -438,7 +438,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
                 dt.Load(command.ExecuteReader());
 
-                foreach (DataRow row in dt.Rows) // skipper altid
+                foreach (DataRow row in dt.Rows)
                 {
                     File tempFile = new File();
                     tempFile.ID = int.Parse(row["ID"].ToString());
@@ -455,6 +455,39 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputProduct;
+        }
+        public static Event GetEventFileInfo(Event inputEvent)
+        {
+            DataTable dt = new DataTable();
+            inputEvent.Files = new List<File>();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetEventFiles", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@EventID", SqlDbType.Int).Value = inputEvent.ID;
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    File tempFile = new File();
+                    tempFile.ID = int.Parse(row["ID"].ToString());
+                    tempFile.URI = Convert.ToString(row["URI"]);
+                    inputEvent.Files.Add(tempFile);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputEvent;
         }
         public static Event GetEventInfo(Event tempevent)
         {

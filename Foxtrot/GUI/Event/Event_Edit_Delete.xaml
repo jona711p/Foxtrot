@@ -68,12 +68,63 @@
             <TextBox x:Name="textBox_Event_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="699,70,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
             <TextBox x:Name="textBox_Event_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="698,140,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
             <Label x:Name="label_Event_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="901,42,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rbtn_Event_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="883,74,0,0" VerticalAlignment="Top" />
-            <RadioButton x:Name="rbtn_Event_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="950,75,0,0" VerticalAlignment="Top" />
-            <Button x:Name="button_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="893,145,0,0" VerticalAlignment="Top" Width="113" Click="button_Event_Edit_Click"/>
+            <RadioButton x:Name="rbtn_Event_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="883,74,0,0" VerticalAlignment="Top" Click="rbtn_Event_Edit_Availability_True_Click"/>
+            <RadioButton x:Name="rbtn_Event_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="950,75,0,0" VerticalAlignment="Top" Click="rbtn_Event_Edit_Availability_False_Click"/>
+            <Button x:Name="button_Event_Edit" Content="Rediger arrangement" HorizontalAlignment="Left" Margin="880,199,0,0" VerticalAlignment="Top" Width="113" Click="button_Event_Edit_Click"/>
+            <ComboBox x:Name="comboBox_Event_Edit_Delete_CityID" HorizontalAlignment="Left" Margin="883,145,0,0" VerticalAlignment="Top" Width="113" ItemsSource = "{Binding CityDictionary}" Height="20"  DisplayMemberPath="Key" />
+            <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="1098,63,0,0" VerticalAlignment="Top" Width="100"/>
+
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="291" Margin="20,469,0,0" VerticalAlignment="Top" Width="1272"/>
         <!-- Rediger event slut -->
-        
+        <Grid x:Name="event_imageGrid" Margin="290,264,564,54">
+
+
+            <Image x:Name="event_imageDisplay01" HorizontalAlignment="Left" Height="200"  Margin="10,10,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+
+            <Image x:Name="event_imageDisplay02" HorizontalAlignment="Left" Height="200" Margin="243,10,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+
+
+            <Image x:Name="event_imageDisplay03" HorizontalAlignment="Left" Height="200" Margin="0,235,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+
+
+            <Image x:Name="event_imageDisplay04" HorizontalAlignment="Left" Height="200" Margin="243,235,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+        </Grid>
     </Grid>
+    
 </Page>
