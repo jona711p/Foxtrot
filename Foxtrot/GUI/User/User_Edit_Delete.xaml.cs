@@ -34,10 +34,7 @@ namespace Foxtrot.GUI.User
             //the new information is stored in the object 'tempAdministrator' or 'tempAdctor' depending on the usertype and displayed in the relavant inputfields in the GUI 
             if (dataGrid_User_Edit.SelectedItem != null)
             {
-                if (
-                    int.Parse(
-                        ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
-                    1) //If the selected row is an administrator
+                if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator") //If the selected row is an administrator
                 {
                     {
                         tempAdministrator.User_ID =
@@ -60,10 +57,7 @@ namespace Foxtrot.GUI.User
                     }
                 }
 
-                if (
-                    int.Parse(
-                        ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
-                    2) //If the selected row is an actor
+                if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør") //If the selected row is an actor
                 {
                     {
                         tempActor.User_ID =
