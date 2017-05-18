@@ -15,9 +15,8 @@ namespace Foxtrot.GUI.User
         private Classes.User tempUser = new Classes.User();
         private Administrator tempAdministrator = new Administrator();
         private Actor tempActor = new Actor();
-        private int availibility;
 
-        public User_Edit_Delete(Classes.User inputUser)
+        public User_Edit_Delete()
         {
             InitializeComponent();
             DataContext = tempUser;
@@ -27,7 +26,6 @@ namespace Foxtrot.GUI.User
             DBReadLogic.FillUserTable(tempUser.UserTable);
             DataContext = tempUser;
         }
-
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -55,12 +53,13 @@ namespace Foxtrot.GUI.User
                         textBox_User_Edit_Phone.Text = tempAdministrator.WorkPhone.ToString();
                         textBox_User_Edit_Email.Text = tempAdministrator.WorkEmail;
                         textBox_User_Edit_Fax.Text = tempAdministrator.WorkFax.ToString();
+
                         rdbtn_User_Edit_Admin.IsChecked = true;
                         rdbtn_User_Edit_Actor.IsChecked = false;
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
-                        //tempAdministrator.User_ID = 
                     }
                 }
+
                 if (
                     int.Parse(
                         ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
@@ -81,18 +80,18 @@ namespace Foxtrot.GUI.User
                         textBox_User_Edit_Phone.Text = tempActor.WorkPhone.ToString();
                         textBox_User_Edit_Email.Text = tempActor.WorkEmail;
                         textBox_User_Edit_Fax.Text = tempActor.WorkFax.ToString();
+
                         rdbtn_User_Edit_Admin.IsChecked = false;
                         rdbtn_User_Edit_Actor.IsChecked = true;
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
                     }
                 }
-
             }
         }
 
         private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            int tempint;
+            int tempInt;
 
             if (rdbtn_User_Edit_Actor.IsChecked == true)
             {
@@ -100,45 +99,46 @@ namespace Foxtrot.GUI.User
                 tempActor.FirstName = textBox_User_Edit_Firstname.Text;
                 tempActor.LastName = textBox_User_Edit_Lastname.Text;
 
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) && textBox_User_Edit_Phone.Text.Length == 8)
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
                 {
-                    tempActor.WorkPhone = tempint;
+                    tempActor.WorkPhone = tempInt;
                 }
 
                 tempActor.WorkEmail = textBox_User_Edit_Email.Text;
 
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && textBox_User_Edit_Fax.Text.Length == 8)
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempInt) && textBox_User_Edit_Fax.Text.Length == 8)
                 {
-                    tempActor.WorkFax = tempint;
+                    tempActor.WorkFax = tempInt;
                 }
 
                 DBUpdateLogic.UpdateActor(tempActor);
             }
+
             if (rdbtn_User_Edit_Admin.IsChecked == true)
             {
                 tempAdministrator.FirstName = textBox_User_Edit_Firstname.Text;
                 tempAdministrator.LastName = textBox_User_Edit_Lastname.Text;
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempint) && textBox_User_Edit_Phone.Text.Length == 8)
-                {
-                    tempAdministrator.WorkPhone = tempint;
-                }
-                ;
-                tempAdministrator.WorkEmail = textBox_User_Edit_Email.Text;
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempint) && textBox_User_Edit_Fax.Text.Length == 8)
-                {
-                    tempAdministrator.WorkFax = tempint;
-                }
-                DBUpdateLogic.UpdateAdmin(tempAdministrator);
 
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
+                {
+                    tempAdministrator.WorkPhone = tempInt;
+                }
+
+                tempAdministrator.WorkEmail = textBox_User_Edit_Email.Text;
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempInt) && textBox_User_Edit_Fax.Text.Length == 8)
+                {
+                    tempAdministrator.WorkFax = tempInt;
+                }
+
+                DBUpdateLogic.UpdateAdmin(tempAdministrator);
             }
+
             DBReadLogic.FillUserTable(tempUser.UserTable);
             MainWindow.FillComboBoxWithAdminsAndActors();
-
-
         }
+
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-
             if (
                 int.Parse(
                     ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
@@ -154,10 +154,9 @@ namespace Foxtrot.GUI.User
             {
                 DBDeleteLogic.DeleteActor(tempActor);
             } //If the selected row is an actor
+
             DBReadLogic.FillUserTable(tempUser.UserTable);
             MainWindow.FillComboBoxWithAdminsAndActors();
-
         }
-
     }
 }
