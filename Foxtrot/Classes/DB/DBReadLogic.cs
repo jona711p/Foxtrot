@@ -224,9 +224,9 @@ namespace Foxtrot.Classes.DB
 
         public static DataTable FillProductTable(DataTable productTable)
         {
+            productTable.Clear();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-            productTable.Clear();
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
@@ -245,19 +245,20 @@ namespace Foxtrot.Classes.DB
         }
         public static DataTable FillEventTable(DataTable eventtable)
         {
+            eventtable.Clear();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-            eventtable.Clear();
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection); // Skal laves stored procedure
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection);
+
                 adapter.Fill(eventtable);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
