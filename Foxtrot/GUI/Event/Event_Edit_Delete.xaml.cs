@@ -90,7 +90,6 @@ namespace Foxtrot.GUI.Event
                 tempEvent.Availability = availability;
             }
             tempEvent.CanonicalUrl = textBox_Event_Edit_CanonicalUrl.Text;
-            tempEvent.CreationDate = DateTime.Parse(datepicker_Event_Edit_CreationDate.ToString());
             tempEvent.Description = textBox_Event_Edit_Description.Text;
 
             if (textBox_Event_Edit_ExtraDescription.Text.Length != 0)
@@ -104,8 +103,8 @@ namespace Foxtrot.GUI.Event
             };
 
             }
-            tempEvent.Longitude = int.Parse(textBox_Event_Edit_Latitude.ToString());
-            tempEvent.Latitude = int.Parse(textBox_Event_Edit_Longtitude.ToString());
+            tempEvent.Longitude = float.Parse(textBox_Event_Edit_Latitude.Text.ToString());
+            tempEvent.Latitude = float.Parse(textBox_Event_Edit_Longtitude.Text.ToString());
             tempEvent.Name = textBox_Event_Edit_Name.Text;
             tempEvent.Website = textBox_Event_Edit_Website.Text;
 

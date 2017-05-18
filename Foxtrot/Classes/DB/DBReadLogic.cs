@@ -460,11 +460,11 @@ namespace Foxtrot.Classes.DB
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
-            try
+            //try
             {
                 SqlCommand command = new SqlCommand("spGetEventInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = tempevent.ID;
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = tempevent.ID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
@@ -473,7 +473,6 @@ namespace Foxtrot.Classes.DB
                 tempevent.Address = reader["Address"].ToString();
                 tempevent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
                 tempevent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
-                tempevent.CreationDate = Convert.ToDateTime(reader["CreationDate"].ToString());
                 tempevent.Description = reader["Description"].ToString();
 
                 tempevent.ExtraDescription = new List<ExtraDescription>();
@@ -483,14 +482,14 @@ namespace Foxtrot.Classes.DB
 
                 tempevent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
                 tempevent.Website = reader["Website"].ToString();
-                tempevent.CanonicalUrl = reader["CanocicalUrl"].ToString();
+                tempevent.CanonicalUrl = reader["CanonicalUrl"].ToString();
                 }
             
-            catch (Exception ex)
-            {
+            //catch (Exception ex)
+            //{
 
-                throw ex;
-            }
+            //    throw ex;
+            //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 

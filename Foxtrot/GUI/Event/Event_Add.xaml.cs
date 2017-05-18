@@ -68,7 +68,7 @@ namespace Foxtrot.GUI.Event
             }
             if (rbtn_Event_Add_Availability_True.IsChecked == true || rbtn_Event_Add_Availability_False.IsChecked == true)
             {
-                tempEvent.Availability = rbtn_Event_Add_Availability_True.IsChecked;
+                //tempEvent.Availability = rbtn_Event_Add_Availability_True.IsChecked;
             }
             if (comboBox_Event_Add_CityID.SelectedItem != null)
             {
@@ -79,7 +79,7 @@ namespace Foxtrot.GUI.Event
 
 
 
-            tempEvent.Website = textBox_Event_Add_Website.Text;
+            //tempEvent.Website = textBox_Event_Add_Website.Text;
             tempEvent.CanonicalUrl = textBox_Event_Add_CanonicalUrl.Text;
 
             tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
