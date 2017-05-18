@@ -38,43 +38,54 @@ namespace Foxtrot.GUI.Event
         {
             if (textBox_Event_Add_Name.Text != "")
             {
-                textBox_Event_Add_Name.Text = tempEvent.Name;
+                tempEvent.Name = GUISortingLogic.Name(textBox_Event_Add_Name); 
             }
             if (textBox_Event_Add_Address.Text != "")
             {
-                textBox_Event_Add_Address.Text = tempEvent.Address;
+                tempEvent.Address = GUISortingLogic.Name(textBox_Event_Add_Address);
             }
-
-            textBox_Event_Add_Latitude.Text = tempEvent.Latitude.ToString();
-            textBox_Event_Add_Longitude.Text = tempEvent.Longitude.ToString();
-
-            textBox_Event_Add_Description.Text = tempEvent.Description;
-
-            tempEvent.ExtraDescription = new List<ExtraDescription>()
+            if (textBox_Event_Add_Longitude.Text != "")
+            {
+                tempEvent.Longitude = float.Parse(textBox_Event_Add_Longitude.Text);
+            }
+            if (textBox_Event_Add_Latitude.Text != "")
+            {
+                tempEvent.Latitude = float.Parse(textBox_Event_Add_Latitude.Text);
+            }
+            if (textBox_Event_Add_Description.Text != "")
+            {
+                tempEvent.Description = textBox_Event_Add_Description.Text;
+            }
+            if (textBox_Event_Add_ExtraDescription.Text != "")
+            {
+                tempEvent.ExtraDescription = new List<ExtraDescription>()
             {
                 new ExtraDescription()
                 {
                     Description = textBox_Event_Add_ExtraDescription.Text
                 }
             };
+            }
+            if (rbtn_Event_Add_Availability_True.IsChecked == true || rbtn_Event_Add_Availability_False.IsChecked == true)
+            {
+                tempEvent.Availability = rbtn_Event_Add_Availability_True.IsChecked;
+            }
+            if (comboBox_Event_Add_CityID.SelectedItem != null)
+            {
+                tempEvent.Cities = new City();
+                tempEvent.Cities.ID = ((KeyValuePair<string, int>)comboBox_Event_Add_CityID.SelectedItem).Value;
+            }
 
-            //Boolean h = rbtn_Event_Add_Availability_True.IsChecked;
-            //bool? b2 = (bool?)b;
-
-            //tempEvent.Availability = ;
-            //rbtn_Event_Add_Availability_True.IsChecked
-            tempEvent.Cities = new City();
-            tempEvent.Cities.ID = ((KeyValuePair<string, int>)comboBox_Event_Add_CityID.SelectedItem).Value;
 
 
 
-            textBox_Event_Add_Website.Text = tempEvent.Website;
-            textBox_Event_Add_CanonicalUrl.Text = tempEvent.CanonicalUrl;
+            tempEvent.Website = textBox_Event_Add_Website.Text;
+            tempEvent.CanonicalUrl = textBox_Event_Add_CanonicalUrl.Text;
 
             tempEvent.ActorID = tempUser.ID; // skal rettes til så userid
 
-            GUISortingLogic.Message("Arrangementet: " + tempEvent.Name + " er nu oprettet.");
+            GUISortingLogic.Message("Arrangementet: '" + tempEvent.Name + "' er nu oprettet.");
         }
        
-        }
     }
+}
