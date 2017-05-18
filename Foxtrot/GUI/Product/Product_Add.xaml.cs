@@ -173,7 +173,7 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
-                MessageBox.Show("Du skal indtaste URL på produktet");
+                MessageBox.Show("Du skal indtaste byportal på produktet");
                 return;
             }
             tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);
