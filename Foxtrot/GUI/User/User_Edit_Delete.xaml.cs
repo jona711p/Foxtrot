@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using Foxtrot.Classes;
@@ -50,9 +49,6 @@ namespace Foxtrot.GUI.User
                         textBox_User_Edit_Phone.Text = tempAdministrator.WorkPhone.ToString();
                         textBox_User_Edit_Email.Text = tempAdministrator.WorkEmail;
                         textBox_User_Edit_Fax.Text = tempAdministrator.WorkFax.ToString();
-
-                        rdbtn_User_Edit_Admin.IsChecked = true;
-                        rdbtn_User_Edit_Actor.IsChecked = false;
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
                     }
                 }
@@ -74,9 +70,6 @@ namespace Foxtrot.GUI.User
                         textBox_User_Edit_Phone.Text = tempActor.WorkPhone.ToString();
                         textBox_User_Edit_Email.Text = tempActor.WorkEmail;
                         textBox_User_Edit_Fax.Text = tempActor.WorkFax.ToString();
-
-                        rdbtn_User_Edit_Admin.IsChecked = false;
-                        rdbtn_User_Edit_Actor.IsChecked = true;
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
                     }
                 }
@@ -87,7 +80,7 @@ namespace Foxtrot.GUI.User
         {
             int tempInt;
 
-            if (rdbtn_User_Edit_Actor.IsChecked == true)
+            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
                 tempActor.FirstName = textBox_User_Edit_Firstname.Text;
@@ -108,7 +101,7 @@ namespace Foxtrot.GUI.User
                 DBUpdateLogic.UpdateActor(tempActor);
             }
 
-            if (rdbtn_User_Edit_Admin.IsChecked == true)
+            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
                 tempAdministrator.FirstName = textBox_User_Edit_Firstname.Text;
                 tempAdministrator.LastName = textBox_User_Edit_Lastname.Text;
