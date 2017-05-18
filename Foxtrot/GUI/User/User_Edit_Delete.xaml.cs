@@ -25,6 +25,7 @@ namespace Foxtrot.GUI.User
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
             DataContext = tempUser;
+
         }
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

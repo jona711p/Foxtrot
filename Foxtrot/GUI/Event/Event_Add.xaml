@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.Event"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1310"
-      Background="White"
       Title="Event_Add">
 
 
@@ -39,7 +38,7 @@
     </Page.Resources>
 
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="450" Margin="559,93,0,0" VerticalAlignment="Top" Width="250">
+        <Grid HorizontalAlignment="Left" Height="450" Margin="572,35,0,0" VerticalAlignment="Top" Width="250">
             <TextBox x:Name="textBox_Event_Add_Name" HorizontalAlignment="Left" Height="23" Margin="54,1,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Navn"/>
             <TextBox x:Name="textBox_Event_Add_Address" HorizontalAlignment="Left" Height="23" Margin="54,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}"  Tag="Adresse"/>
             <TextBox x:Name="textBox_Event_Add_Description" HorizontalAlignment="Left" Height="23" Margin="54,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Beskrivelse"/>
@@ -54,7 +53,7 @@
             <RadioButton x:Name="rbtn_Event_Add_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="120,394,0,0" VerticalAlignment="Top" RenderTransformOrigin="-16.133,2.756"/>
             <Button x:Name="button_Event_Add_Create" Content="Opret arrangement" HorizontalAlignment="Left" Margin="59,422,0,0" VerticalAlignment="Top" Width="113" Click="Button_Event_Add_Create_OnClick"/>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="513" Margin="534,55,0,0" VerticalAlignment="Top" Width="294">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="513" Margin="540,3,0,0" VerticalAlignment="Top" Width="294">
             <Label x:Name="label_Event_Add" Content="Tilføj arrangement" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Width="116" Margin="80.2,3.2,0,0"/>
         </Border>
 

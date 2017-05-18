@@ -7,7 +7,6 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1310"
-      Background="White"
       Title="Product_Add">
 
     <Page.Resources>
