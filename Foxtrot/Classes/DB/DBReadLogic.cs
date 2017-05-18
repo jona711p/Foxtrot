@@ -297,7 +297,7 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spGetActorInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.User_ID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.UserID;
 
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -335,7 +335,7 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.User_ID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.UserID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 

@@ -38,7 +38,7 @@ namespace Foxtrot.Classes
 
     public class Administrator : User
     {
-        public int? User_ID { get; set; }
+        public int? UserID { get; set; }
         public Administrator()
         {
             Permission = 1;
@@ -47,7 +47,7 @@ namespace Foxtrot.Classes
 
     public class Actor : User
     {
-        public int? User_ID { get; set; }
+        public int? UserID { get; set; }
         public string CompanyName { get; set; }
         public Actor()
         {

@@ -17,7 +17,7 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spDeleteAdmin", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@userID", SqlDbType.Int).Value = inputAdmin.User_ID;
+                command.Parameters.Add("@userID", SqlDbType.Int).Value = inputAdmin.UserID;
                 command.ExecuteNonQuery();
 
             }
@@ -36,7 +36,7 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spDeleteActor", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@userID", SqlDbType.Int).Value = inputActor.User_ID;
+                command.Parameters.Add("@userID", SqlDbType.Int).Value = inputActor.UserID;
                 command.ExecuteNonQuery();
 
             }
