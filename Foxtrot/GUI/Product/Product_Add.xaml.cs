@@ -28,16 +28,16 @@ namespace Foxtrot.GUI.Product
             {
                 tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);
             }
-            
+            InitializeComponent();
             //tempCity.CityDictionary = new Dictionary<string, int>();
             //DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             //comboBox_Product_Add_CityID.ItemsSource = tempCity.CityDictionary;
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
-
+         
 
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
-            InitializeComponent();
+           
 
         }
 
@@ -173,7 +173,7 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
-                MessageBox.Show("Du skal indtaste URL på produktet");
+                MessageBox.Show("Du skal indtaste byportal på produktet");
                 return;
             }
             tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);

@@ -39,29 +39,30 @@ namespace Foxtrot.GUI.Event
             //finds the selected products ID and retrieves all information about it from the database
             //the new information is stored in the object 'tempEvent' and displayed in the relavant inputfields in the GUI 
             if (datagrid_Event_list.SelectedItem != null)
+            {
                 tempEvent.ID =
                 int.Parse(
                     ((TextBlock)
                     datagrid_Event_list.Columns[0].GetCellContent(
                         datagrid_Event_list.SelectedItem))
                         .Text);
-            tempEvent = DBReadLogic.GetEventInfo(tempEvent);
-            MakeFieldsEditable(true);
+                tempEvent = DBReadLogic.GetEventInfo(tempEvent);
+                MakeFieldsEditable(true);
 
-            textBox_Event_Edit_Name.Text = tempEvent.Name;
-            textBox_Event_Edit_Adress.Text = tempEvent.Address;
-            textBox_Event_Edit_CanonicalUrl.Text = tempEvent.CanonicalUrl;
-            textBox_Event_Edit_Description.Text = tempEvent.Description;
-            if (tempEvent.ExtraDescription.Count != 0)
-            {
-                textBox_Event_Edit_ExtraDescription.Text = tempEvent.ExtraDescription[0].Description;
+                textBox_Event_Edit_Name.Text = tempEvent.Name;
+                textBox_Event_Edit_Adress.Text = tempEvent.Address;
+                textBox_Event_Edit_CanonicalUrl.Text = tempEvent.CanonicalUrl;
+                textBox_Event_Edit_Description.Text = tempEvent.Description;
+                if (tempEvent.ExtraDescription.Count != 0)
+                {
+                    textBox_Event_Edit_ExtraDescription.Text = tempEvent.ExtraDescription[0].Description;
+                }
+                textBox_Event_Edit_Latitude.Text = tempEvent.Latitude.ToString();
+                textBox_Event_Edit_Longtitude.Text = tempEvent.Longitude.ToString();
+                textBox_Event_Edit_Website.Text = tempEvent.Website;
+                rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
+                rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
             }
-            textBox_Event_Edit_Latitude.Text = tempEvent.Latitude.ToString();
-            textBox_Event_Edit_Longtitude.Text = tempEvent.Longitude.ToString();
-            textBox_Event_Edit_Website.Text = tempEvent.Website;
-            rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
-            rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
-            datepicker_Event_Edit_CreationDate.Text = tempEvent.CreationDate.ToString();
         }
 
         public void MakeFieldsEditable(bool input)
@@ -76,7 +77,6 @@ namespace Foxtrot.GUI.Event
             textBox_Event_Edit_Website.IsEnabled = input;
             rbtn_Event_Edit_Availability_False.IsEnabled = input;
             rbtn_Event_Edit_Availability_True.IsEnabled = input;
-            datepicker_Event_Edit_CreationDate.IsEnabled = input;
         }
 
         private void button_Event_Edit_Click(object sender, RoutedEventArgs e)
@@ -88,7 +88,6 @@ namespace Foxtrot.GUI.Event
                 tempEvent.Availability = availability;
             }
             tempEvent.CanonicalUrl = textBox_Event_Edit_CanonicalUrl.Text;
-            tempEvent.CreationDate = DateTime.Parse(datepicker_Event_Edit_CreationDate.ToString());
             tempEvent.Description = textBox_Event_Edit_Description.Text;
 
             if (textBox_Event_Edit_ExtraDescription.Text.Length != 0)
@@ -102,8 +101,8 @@ namespace Foxtrot.GUI.Event
             };
 
             }
-            tempEvent.Longitude = int.Parse(textBox_Event_Edit_Latitude.ToString());
-            tempEvent.Latitude = int.Parse(textBox_Event_Edit_Longtitude.ToString());
+            tempEvent.Longitude = float.Parse(textBox_Event_Edit_Latitude.Text.ToString());
+            tempEvent.Latitude = float.Parse(textBox_Event_Edit_Longtitude.Text.ToString());
             tempEvent.Name = textBox_Event_Edit_Name.Text;
             tempEvent.Website = textBox_Event_Edit_Website.Text;
 

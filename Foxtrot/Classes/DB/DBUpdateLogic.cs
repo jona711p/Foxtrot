@@ -104,7 +104,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            //try
             {
                 SqlCommand command = new SqlCommand("spUpdateEvent", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -119,18 +119,19 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("CanonicalUrl", SqlDbType.NVarChar).Value = tempevent.CanonicalUrl;
                 command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
                 command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
-                command.Parameters.Add("CreationDate", SqlDbType.DateTime).Value = tempevent.CreationDate;
+                command.Parameters.Add("FK_CityID", SqlDbType.Bit).Value = tempevent.Cities.ID;
+                command.Parameters.Add("FK_ActorID", SqlDbType.Bit).Value = tempevent.ActorID;
 
                 command.ExecuteNonQuery();
 
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             }
-            catch (Exception)
-            {
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
         }
     }
 }
