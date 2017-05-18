@@ -62,7 +62,6 @@ namespace Foxtrot.GUI.Event
                 textBox_Event_Edit_Website.Text = tempEvent.Website;
                 rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
                 rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
-                datepicker_Event_Edit_CreationDate.Text = tempEvent.CreationDate.ToString();
             }
         }
 
@@ -78,7 +77,6 @@ namespace Foxtrot.GUI.Event
             textBox_Event_Edit_Website.IsEnabled = input;
             rbtn_Event_Edit_Availability_False.IsEnabled = input;
             rbtn_Event_Edit_Availability_True.IsEnabled = input;
-            datepicker_Event_Edit_CreationDate.IsEnabled = input;
         }
 
         private void button_Event_Edit_Click(object sender, RoutedEventArgs e)
@@ -90,7 +88,6 @@ namespace Foxtrot.GUI.Event
                 tempEvent.Availability = availability;
             }
             tempEvent.CanonicalUrl = textBox_Event_Edit_CanonicalUrl.Text;
-            tempEvent.CreationDate = DateTime.Parse(datepicker_Event_Edit_CreationDate.ToString());
             tempEvent.Description = textBox_Event_Edit_Description.Text;
 
             if (textBox_Event_Edit_ExtraDescription.Text.Length != 0)

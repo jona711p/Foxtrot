@@ -120,7 +120,6 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
                 command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
                 command.Parameters.Add("CreationDate", SqlDbType.DateTime).Value = tempevent.CreationDate;
-
                 command.ExecuteNonQuery();
 
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
