@@ -68,7 +68,7 @@ namespace Foxtrot.GUI.Event
             }
             if (rbtn_Event_Add_Availability_True.IsChecked == true || rbtn_Event_Add_Availability_False.IsChecked == true)
             {
-                tempEvent.Availability = rbtn_Event_Add_Availability_True.IsChecked;
+                rbtn_Event_Add_Availability_True.IsChecked = tempEvent.Availability;
             }
             if (comboBox_Event_Add_CityID.SelectedItem != null)
             {
