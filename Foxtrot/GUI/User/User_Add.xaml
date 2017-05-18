@@ -78,8 +78,8 @@
         </Grid>
 
         <Grid HorizontalAlignment="Center" Height="70" Margin="521,332,489,366" VerticalAlignment="Center" Width="300" x:Name="Grid_CompanyName">
-            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Center" Height="22" Margin="10,10,40,38" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn **" FontFamily="Arial"/>
-            <Label x:Name="lbl_CompanyName_Star" Content="** = Skal Udfyldes ved Aktør!" HorizontalAlignment="Center" Margin="10,37,126,9" VerticalAlignment="Center" FontFamily="Arial"/>
+            <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Center" Height="22" Margin="10,10,40,38" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn *" FontFamily="Arial"/>
+            <Label x:Name="lbl_CompanyName_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,36,185,10" VerticalAlignment="Center" FontFamily="Arial"/>
             <Border x:Name="border_CompanyName" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="72" Margin="0,-2,0,0" VerticalAlignment="Center" Width="300">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
