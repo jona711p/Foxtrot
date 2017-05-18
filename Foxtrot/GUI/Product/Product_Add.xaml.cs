@@ -28,16 +28,16 @@ namespace Foxtrot.GUI.Product
             {
                 tempProduct.ActorID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);
             }
-            
+            InitializeComponent();
             //tempCity.CityDictionary = new Dictionary<string, int>();
             //DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             //comboBox_Product_Add_CityID.ItemsSource = tempCity.CityDictionary;
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
-
+         
 
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
-            InitializeComponent();
+           
 
         }
 

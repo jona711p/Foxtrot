@@ -486,10 +486,10 @@ namespace Foxtrot.Classes.DB
                 tempevent.CanonicalUrl = reader["CanocicalUrl"].ToString();
                 }
             
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);

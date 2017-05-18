@@ -39,29 +39,31 @@ namespace Foxtrot.GUI.Event
             //finds the selected products ID and retrieves all information about it from the database
             //the new information is stored in the object 'tempEvent' and displayed in the relavant inputfields in the GUI 
             if (datagrid_Event_list.SelectedItem != null)
+            {
                 tempEvent.ID =
                 int.Parse(
                     ((TextBlock)
                     datagrid_Event_list.Columns[0].GetCellContent(
                         datagrid_Event_list.SelectedItem))
                         .Text);
-            tempEvent = DBReadLogic.GetEventInfo(tempEvent);
-            MakeFieldsEditable(true);
+                tempEvent = DBReadLogic.GetEventInfo(tempEvent);
+                MakeFieldsEditable(true);
 
-            textBox_Event_Edit_Name.Text = tempEvent.Name;
-            textBox_Event_Edit_Adress.Text = tempEvent.Address;
-            textBox_Event_Edit_CanonicalUrl.Text = tempEvent.CanonicalUrl;
-            textBox_Event_Edit_Description.Text = tempEvent.Description;
-            if (tempEvent.ExtraDescription.Count != 0)
-            {
-                textBox_Event_Edit_ExtraDescription.Text = tempEvent.ExtraDescription[0].Description;
+                textBox_Event_Edit_Name.Text = tempEvent.Name;
+                textBox_Event_Edit_Adress.Text = tempEvent.Address;
+                textBox_Event_Edit_CanonicalUrl.Text = tempEvent.CanonicalUrl;
+                textBox_Event_Edit_Description.Text = tempEvent.Description;
+                if (tempEvent.ExtraDescription.Count != 0)
+                {
+                    textBox_Event_Edit_ExtraDescription.Text = tempEvent.ExtraDescription[0].Description;
+                }
+                textBox_Event_Edit_Latitude.Text = tempEvent.Latitude.ToString();
+                textBox_Event_Edit_Longtitude.Text = tempEvent.Longitude.ToString();
+                textBox_Event_Edit_Website.Text = tempEvent.Website;
+                rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
+                rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
+                datepicker_Event_Edit_CreationDate.Text = tempEvent.CreationDate.ToString();
             }
-            textBox_Event_Edit_Latitude.Text = tempEvent.Latitude.ToString();
-            textBox_Event_Edit_Longtitude.Text = tempEvent.Longitude.ToString();
-            textBox_Event_Edit_Website.Text = tempEvent.Website;
-            rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
-            rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
-            datepicker_Event_Edit_CreationDate.Text = tempEvent.CreationDate.ToString();
         }
 
         public void MakeFieldsEditable(bool input)
