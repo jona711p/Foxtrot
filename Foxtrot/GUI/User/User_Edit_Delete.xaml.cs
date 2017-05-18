@@ -127,18 +127,12 @@ namespace Foxtrot.GUI.User
 
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            if (
-                int.Parse(
-                    ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
-                1)
+            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 DBDeleteLogic.DeleteAdmin(tempAdministrator);
             } //If the selected row is an administrator
 
-            if (
-                int.Parse(
-                    ((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text) ==
-                2)
+            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
                 DBDeleteLogic.DeleteActor(tempActor);
             } //If the selected row is an actor
