@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d" 
+      Background="White"
       d:DesignHeight="768" d:DesignWidth="1310"
       Title="Product_Add">
 
@@ -64,7 +65,7 @@
                 </Button.Effect>
             </Button>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="10333596" VerticalAlignment="Center" Width="410" Margin="437,39,463,-10332867">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="544" VerticalAlignment="Center" Width="453" Margin="421,34,436.4,190">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Border.Effect>
