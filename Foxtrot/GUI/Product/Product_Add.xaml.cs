@@ -71,7 +71,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste breddegrad");
                 return;
             }
-            //tempProduct.ContactPhone = GUISortingLogic.Number(textBox_Product_Add_ContactPhone);
+            tempProduct.ContactPhone[0] = GUISortingLogic.Number(textBox_Product_Add_ContactPhone);
             if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
@@ -85,7 +85,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste et gyldigt telefonnummer");
                 return;
             }
-            //tempProduct.ContactEmail = GUISortingLogic.Email(textBox_Product_Add_ContactEmail);
+            tempProduct.ContactEmail[0] = GUISortingLogic.Email(textBox_Product_Add_ContactEmail);
             if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
                 tempProduct.ContactEmail = new List<string>()
@@ -99,7 +99,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
                 return;
             }
-            //tempProduct.ContactFax = GUISortingLogic.Number(textBox_Product_Add_ContactFax);
+            tempProduct.ContactFax[0] = GUISortingLogic.Number(textBox_Product_Add_ContactFax);
             if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) &&
                 textBox_Product_Add_ContactFax.Text.Length == 8)
             {
@@ -134,7 +134,7 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
                 return;
             }
-            //tempProduct.ExtraDescription = GUISortingLogic.Name(textBox_Product_Add_ExtraDescription);
+            //tempProduct.ExtraDescription[0] = GUISortingLogic.Name(textBox_Product_Add_ExtraDescription);
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
             {
                 tempProduct.ExtraDescription = new List<ExtraDescription>()

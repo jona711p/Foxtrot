@@ -86,8 +86,6 @@ namespace Foxtrot.GUI.Product
                 }
                 
                 comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
-
-                tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
             }
         }
 
@@ -197,6 +195,7 @@ namespace Foxtrot.GUI.Product
             tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
 
             DBUpdateLogic.UpdateProduct(tempProduct);
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
 
