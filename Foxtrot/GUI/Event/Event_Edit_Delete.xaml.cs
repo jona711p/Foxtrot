@@ -16,9 +16,8 @@ namespace Foxtrot.GUI.Event
     {
         Classes.Event tempEvent = new Classes.Event();
         Classes.User tempUser = new Classes.User();
-
         private bool availability;
-        private City tempCity = new City();
+        public City tempCity = new City();
 
         public Event_Edit_Delete(Classes.User inputUser)
         {
@@ -28,10 +27,12 @@ namespace Foxtrot.GUI.Event
             comboBox_Event_Edit_Delete_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
             DBReadLogic.FillEventTable(tempEvent.EventTable);
             DataContext = tempEvent;
+
         }
 
         private void datagrid_Event_list_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             // Runs when the user selects any item on the datagrid
             //finds the selected products ID and retrieves all information about it from the database
             //the new information is stored in the object 'tempEvent' and displayed in the relavant inputfields in the GUI 
@@ -61,6 +62,8 @@ namespace Foxtrot.GUI.Event
                 textBox_Event_Edit_Website.Text = tempEvent.Website;
                 rbtn_Event_Edit_Availability_True.IsChecked = tempEvent.Availability;
                 rbtn_Event_Edit_Availability_False.IsChecked = !tempEvent.Availability;
+                comboBox_Event_Edit_Delete_CityID.Text = tempEvent.Cities.Name;
+                tempEvent.ID = tempUser.ID;
 
                 //for (int i = 0; i < 4; i++) //Resets all images
                 //{
@@ -86,8 +89,8 @@ namespace Foxtrot.GUI.Event
                 {
                     event_imageDisplay01.Source = new BitmapImage(new Uri(tempEvent.Files[3].URI));
                 }
-                image.Source = new BitmapImage(new Uri(tempEvent.Files[0].URI));
-                //comboBox_Event_Edit_Delete_CityID.Text = tempEvent.Cities.Name;
+                //image.Source = new BitmapImage(new Uri(tempEvent.Files[0].URI));
+          
             }
         }
 
@@ -103,6 +106,7 @@ namespace Foxtrot.GUI.Event
             textBox_Event_Edit_Website.IsEnabled = input;
             rbtn_Event_Edit_Availability_False.IsEnabled = input;
             rbtn_Event_Edit_Availability_True.IsEnabled = input;
+            comboBox_Event_Edit_Delete_CityID.IsEnabled = input;
         }
 
         private void button_Event_Edit_Click(object sender, RoutedEventArgs e)
@@ -129,11 +133,10 @@ namespace Foxtrot.GUI.Event
             tempEvent.Latitude = float.Parse(textBox_Event_Edit_Longtitude.Text.ToString());
             tempEvent.Name = textBox_Event_Edit_Name.Text;
             tempEvent.Website = textBox_Event_Edit_Website.Text;
-            if (comboBox_Event_Edit_Delete_CityID.SelectedItem != null)
-            {
+           
                 tempEvent.Cities = new City();
                 tempEvent.Cities.ID = ((KeyValuePair<string, int>)comboBox_Event_Edit_Delete_CityID.SelectedItem).Value;
-            }
+            
 
             DBUpdateLogic.UpdateEvent(tempEvent);
             MessageBox.Show("Eventet: '" + tempEvent.Name + "' " + "er blevet redigeret i systemet!");
