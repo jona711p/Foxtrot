@@ -19,7 +19,7 @@ namespace Foxtrot.GUI.Product
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
 
-        public Product_Edit_Delete(Classes.User inputUser) // MANGLER!    -  Slet produkter, upload, slet og rediger billeder  - openinghours, by?
+        public Product_Edit_Delete(Classes.User inputUser) 
         {
             tempUser = inputUser;
             InitializeComponent();
@@ -87,9 +87,7 @@ namespace Foxtrot.GUI.Product
                 
                 comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
 
-
-
-                //tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
+                tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
             }
         }
 
