@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1310"
+      d:DesignHeight="470" d:DesignWidth="1310"
       Title="User_Edit_Delete">
 
     <Page.Resources>
@@ -36,29 +36,42 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
-        <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="54,431,0,0" VerticalAlignment="Top" Width="76" Click="Button_User_Edit_Edit_OnClick"/>
-        <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Left" Margin="164,431,0,0" VerticalAlignment="Top" Width="75" Click="Button_User_Edit_Delete_OnClick"/>
-        <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="23" Margin="54,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Telefon nr. *"/>
-        <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Left" Height="23" Margin="54,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="E-Mail"/>
-        <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Left" Height="23" Margin="54,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Fax"/>
-        <TextBox x:Name="textBox_User_Edit_CompanyName" HorizontalAlignment="Left" Height="23" Margin="54,395,0,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Firmanavn *" Visibility="Collapsed"/>
+    <Grid Margin="0,0,0,219" Width="1310" Height="470">
 
-        <Label x:Name="label_User_Edit_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Left" Margin="55,335,0,0" VerticalAlignment="Top"/>
-
-        <Grid HorizontalAlignment="Center" Height="198" Margin="274,519,777,51" VerticalAlignment="Center" Width="259">
-            <TextBox x:Name="textBox_User_Edit_FirstName" HorizontalAlignment="Left" Height="23" Margin="10,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="10,94,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="10,122,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="textBox_User_Edit_LastName" HorizontalAlignment="Left" Height="23" Margin="10,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
-
+        <Grid HorizontalAlignment="Center" Height="450" Margin="10,10,1040,10" VerticalAlignment="Center" Width="260">
+            <TextBox x:Name="textBox_User_Edit_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,10,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" HorizontalContentAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
+            <TextBox x:Name="textBox_User_Edit_LastName" HorizontalAlignment="Center" Height="24" Margin="10,60,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
+            <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Center" Height="24" Margin="10,110,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *"/>
+            <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Center" Height="24" Margin="10,160,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" HorizontalContentAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *"/>
+            <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Center" Height="24" Margin="10,210,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax"/>
+            <TextBox x:Name="textBox_User_Edit_CompanyName" HorizontalAlignment="Center" Height="23" Margin="10,260,14,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="235" Visibility="Visible" FontFamily="Arial" HorizontalContentAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="Firmanavn **"/>
+            <Label x:Name="label_User_Edit_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,260,10,115" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" Width="239"/>
+            <Label x:Name="label_User_Edit_Stars" Content="** = Skal Udfyldes ved Aktør!" HorizontalAlignment="Center" Margin="10,310,10,116" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" Width="239"/>
+            <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Center" Margin="10,339,149,91" VerticalAlignment="Center" Width="100" Click="Button_User_Edit_Edit_OnClick" Background="White" BorderBrush="Black" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="14" FontWeight="Bold" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Rediger en Administrator eller Aktør i systemet!">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="button_User_Edit_Delete" Content="Slet" HorizontalAlignment="Center" Margin="149,339,10,91" VerticalAlignment="Center" Width="100" Click="Button_User_Edit_Delete_OnClick" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Sletter en Administrator eller Aktør i systemet!">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Button.Effect>
+            </Button>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="259">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Border.Effect>
+            </Border>
         </Grid>
 
-        <Grid HorizontalAlignment="Center" Height="450" Margin="274,10,10,308" VerticalAlignment="Center" Width="1026">
+        <Grid HorizontalAlignment="Center" Height="450" Margin="274,10,10,10" VerticalAlignment="Center" Width="1026">
             <DataGrid x:Name="dataGrid_User_Edit" ItemsSource="{Binding UserTable, Mode=TwoWay}" SelectionMode="Single" IsReadOnly="True" Background="White" AlternationCount="2" AlternatingRowBackground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Top" Height="450" Width="1026" SelectionChanged="DataGrid_User_Edit_OnSelectionChanged"/>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="1026"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="1026">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Border.Effect>
+            </Border>
         </Grid>
-
 
     </Grid>
 </Page>

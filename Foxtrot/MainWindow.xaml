@@ -53,10 +53,13 @@
 
 
 
-        <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Left" Margin="1112,32,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,30,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
         <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AdminActorList}" DisplayMemberPath="Value" FontFamily="Arial" Background="White" BorderBrush="Black"/>
-        <Button x:Name="btn_Login_User" Content="Login" HorizontalAlignment="Left" Margin="1241,63,0,0" VerticalAlignment="Top" Width="75" Click="btn_Login_User_Click" FontFamily="Arial" Background="White" BorderBrush="Black"/>
-
+        <Button x:Name="btn_Login_User" Content="Login" HorizontalAlignment="Left" Margin="1241,61,0,0" VerticalAlignment="Top" Width="75" Click="btn_Login_User_Click" FontFamily="Arial" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
 
     </Grid>
 </Window>
