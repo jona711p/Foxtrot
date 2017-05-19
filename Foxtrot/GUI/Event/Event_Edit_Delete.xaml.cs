@@ -134,11 +134,12 @@ namespace Foxtrot.GUI.Event
             tempEvent.Name = textBox_Event_Edit_Name.Text;
             tempEvent.Website = textBox_Event_Edit_Website.Text;
            
-                tempEvent.Cities = new City();
-                tempEvent.Cities.ID = ((KeyValuePair<string, int>)comboBox_Event_Edit_Delete_CityID.SelectedItem).Value;
+            tempEvent.Cities = new City();
+            tempEvent.Cities.ID = ((KeyValuePair<string, int>)comboBox_Event_Edit_Delete_CityID.SelectedItem).Value;
             
 
             DBUpdateLogic.UpdateEvent(tempEvent);
+            DBReadLogic.FillEventTable(tempEvent.EventTable);
             MessageBox.Show("Eventet: '" + tempEvent.Name + "' " + "er blevet redigeret i systemet!");
         }
 
@@ -147,8 +148,19 @@ namespace Foxtrot.GUI.Event
             DBReadLogic.FillEventTable(tempEvent.EventTable);
             if (textBox_Event_Search_Name.Text != "")
             {
-
+                foreach (DataRow row in tempEvent.EventTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (!row["Navn"].ToString().Contains(textBox_Event_Search_Name.Text))
+                            row.Delete();
+                    }
+                }
             }
+            //if ()
+            //{
+                
+            //}
         }
 
         private void rbtn_Event_Edit_Availability_False_Click(object sender, RoutedEventArgs e)
