@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d" 
+      Background="White"
       d:DesignHeight="768" d:DesignWidth="1310"
       Title="Product_Edit_Delete">
 
@@ -48,8 +49,9 @@
         <!-- Søg Produkt Start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
             <Label x:Name="label_Product_Search" Content="Søg efter produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="92.8,3.8,0,0"/>
-            <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="24,71,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
-            <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="19,167,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
+            <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="25,68,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
+            <TextBox x:Name="textBox_Product_SearchCombiProduct" HorizontalAlignment="Left" Height="35" Margin="25,128,0,0" TextWrapping="Wrap" Text="{Binding CombiProduct}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Arrangement"/>
+            <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="25,186,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
             <DatePicker x:Name="datePicker__Product_Search_Date_From" HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
             <DatePicker x:Name="datePicker_Product_Search_Date_To" HorizontalAlignment="Left" Margin="174,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
             <Button x:Name="btb_Product_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76" Click="btb_Product_Search_Click"/>
