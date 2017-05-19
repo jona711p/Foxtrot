@@ -22,7 +22,7 @@ namespace Foxtrot.GUI.Product
             tempUser = inputUser;
         
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
-            DBReadLogic.FillProductTable(tempProduct.ProductTable);
+            //DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
         }
 

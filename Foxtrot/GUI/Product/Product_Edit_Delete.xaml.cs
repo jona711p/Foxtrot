@@ -238,9 +238,7 @@ namespace Foxtrot.GUI.Product
                         if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
                             row.Delete();
                 }
-            }
-
-            
+            }            
         }
     }
 }
