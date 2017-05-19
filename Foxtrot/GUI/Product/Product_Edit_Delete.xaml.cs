@@ -87,7 +87,7 @@ namespace Foxtrot.GUI.Product
                 
                 comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
 
-                tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
+                tempProduct.Cities.ID =((KeyValuePair<string, int>)comboBox_Product_Edit_CityID.SelectedItem).Value;
             }
         }
 
@@ -239,9 +239,7 @@ namespace Foxtrot.GUI.Product
                         if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
                             row.Delete();
                 }
-            }
-
-            
+            }            
         }
     }
 }
