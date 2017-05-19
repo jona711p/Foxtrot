@@ -67,8 +67,6 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
                 SqlCommand command = new SqlCommand("spUpdateProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
@@ -92,12 +90,9 @@ namespace Foxtrot.Classes.DB
                 command.ExecuteNonQuery();
 
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
-            }
+            
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+           
         }
         public static void UpdateEvent(Event tempevent)
         {
