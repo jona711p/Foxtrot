@@ -183,7 +183,7 @@ namespace Foxtrot.GUI.User
             {
                 XMLDBWriteLogic.WriteActors(tempActor);
 
-                GUISortingLogic.Message("En Aktør med firmanavnet: '" + tempActor.CompanyName + "' er blevet oprettet i systemet");
+                GUISortingLogic.Message("En Aktør med firmanavnet: '" + tempActor.CompanyName + "' er blevet oprettet i systemet!");
             }
 
             else

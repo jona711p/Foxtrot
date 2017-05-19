@@ -109,7 +109,7 @@ namespace Foxtrot.GUI.XMLImport
 
             else
             {
-                MessageBox.Show("Du skal vælge en XML Fil først!");
+                MessageBox.Show("Du Skal Vælge en XML Fil Først!");
             }
 
             EnableButtoms();
@@ -197,7 +197,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadRelCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produktrelationer til Kategorier i Databasen";
+            ProgressPoint = "Skriver nu Kategori Relationer til Produkter i DataBasen";
 
             XMLDBWriteLogic.WriteRelCategories(productList);
 
@@ -206,7 +206,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadRelCombiProductsFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produktrelationer til CombiProdukter i Databasen";
+            ProgressPoint = "Skriver nu CombiProdukt Relationer til Produkter i DataBasen";
 
             XMLDBWriteLogic.WriteRelCombiProducts(productList);
 
@@ -215,7 +215,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadRelEventsProductsFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produktrelationer til Arrangementer i Databasen";
+            ProgressPoint = "Skriver nu Arrangement Relationer til Produkter i DataBasen";
 
             XMLDBWriteLogic.WriteRelEventsProducts(productList);
 
@@ -224,7 +224,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadRelFilesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produktrelationer til Billeder i Databasen";
+            ProgressPoint = "Skriver nu Billed Relationer til Produkter i DataBasen";
 
             XMLDBWriteLogic.WriteRelFiles(productList);
 
@@ -233,7 +233,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadRelMainCategoriesFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produktrelationer til Hovedkategorier i Databasen";
+            ProgressPoint = "Skriver nu Hovedkategori Relationer til Produkter i DataBasen";
 
             XMLDBWriteLogic.WriteRelMainCategories(productList);
 
@@ -242,7 +242,7 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadRelOpeningHoursFromXML(object sender, DoWorkEventArgs e)
         {
-            ProgressPoint = "Skriver nu Produktrelationer til Åbningstider i Databasen";
+            ProgressPoint = "Skriver nu Åbningstids Relationer til Produkter i DataBasen";
 
             XMLDBWriteLogic.WriteRelOpeningHours(productList);
 

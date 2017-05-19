@@ -81,13 +81,7 @@ namespace Foxtrot.GUI.User
 
             DBUpdateLogic.UpdateActor(tempActor);
 
-            GUISortingLogic.Message("Informationerne er blevet ændret til:" +
-                                    "\nFirmanavn: '" + tempActor.CompanyName + "'" +
-                                    "\nFornavn: '" + tempActor.FirstName + "'" +
-                                    "\nEfternavn: '" + tempActor.LastName + "'" +
-                                    "\nArbejds Telefon: '" + tempActor.WorkPhone + "'" +
-                                    "\nArbejds Email: '" + tempActor.WorkEmail + "'" +
-                                    "\nArbejds Fax: '" + tempActor.WorkFax + "'");
+            GUISortingLogic.Message("Dine Brugeroplysninger er blevet Ændret!");
 
             MainWindow.FillComboBoxWithAdminsAndActors();
         }
