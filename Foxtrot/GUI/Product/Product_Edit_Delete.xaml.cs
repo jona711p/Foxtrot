@@ -224,6 +224,16 @@ namespace Foxtrot.GUI.Product
                             row.Delete();
                 }
             }
+            if (textBox_Product_SearchCombiProduct.Text != "")
+            {
+                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                        if (!row["CombiProduct"].ToString().Contains(textBox_Product_SearchCombiProduct.Text))
+                            row.Delete();
+       
+                }
+            }
 
             if (datePicker__Product_Search_Date_From.SelectedDate != null && datePicker_Product_Search_Date_To != null)
             {
