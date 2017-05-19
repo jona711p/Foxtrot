@@ -60,8 +60,9 @@
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>
         </Button>
-
-            <TextBlock Margin="935,630,275,29">           
+        
+    <Grid>
+    <TextBlock Margin="935,630,275,29">           
     <Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate">
         Click here
     </Hyperlink>
