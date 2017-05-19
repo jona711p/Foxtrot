@@ -55,7 +55,7 @@ namespace Foxtrot
                 User_MenuItem_Edit_Delete.IsEnabled = true;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
-                Event_MenuItem.IsEnabled = true;
+                //Event_MenuItem.IsEnabled = true;
             }
 
             if (tempUser.Permission == 2)
@@ -65,7 +65,7 @@ namespace Foxtrot
                 User_MenuItem_Modify.IsEnabled = true;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
-                Event_MenuItem.IsEnabled = true;
+                //Event_MenuItem.IsEnabled = true;
             }
 
             MainFrame.Content = new Frontpage();
