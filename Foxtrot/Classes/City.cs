@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Foxtrot.Classes
 {
-    public class City : IEquatable<City> // Used by "Distinct()" to find dupes in the list
+    public class City : IEquatable<City>, INotifyPropertyChanged // Used by "Distinct()" to find dupes in the list
     {
         public int? ID { get; set; }
         public string Name { get; set; }
         public int? PostalCode { get; set; }
+
+        private static List<KeyValuePair<int, string>> cityList = new List<KeyValuePair<int, string>>();
+
+        public List<KeyValuePair<int, string>> CityList
+        {
+            get { return cityList; }
+            set { cityList = value; NotifyPropertyChanged(); }
+        }
 
         public bool Equals(City other) // Checks if the same "ID" already exists in the list
         {
@@ -24,6 +34,15 @@ namespace Foxtrot.Classes
 
             return hashID;
         }
-        public  Dictionary<string,int> CityDictionary { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

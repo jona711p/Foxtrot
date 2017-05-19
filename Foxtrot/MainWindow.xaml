@@ -28,10 +28,6 @@
                     <MenuItem Header="Opret" Click="MenuItem_CombiProduct_Add_OnClick" />
                     <MenuItem Header="Rediger" Click="MenuItem_CombiProduct_Edit_Delete_OnClick" />
                 </MenuItem>
-                <MenuItem x:Name="Event_MenuItem" Header="Events" >
-                    <MenuItem Header="Opret" Click="MenuItem_Event_Add_Onclick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_Event_Edit_Delete_Onclick" />
-                </MenuItem>
             </Menu>
         </DockPanel>
 

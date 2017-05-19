@@ -19,7 +19,7 @@ namespace Foxtrot.GUI.XMLImport
 
         public static float? TryToConvertNodeValueToFloat(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format. And with "." replaced by ",", because float needs "," to read it properly
         {
-            return node == null || node.Value.Equals("") ? null : (float?)float.Parse(node.Value.Replace('.', ','));
+            return node == null || node.Value.Length == 0 ? null : (float?)float.Parse(node.Value.Replace('.', ','));
         }
 
         public static int TryToConvertNodeValueToInt(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
@@ -31,7 +31,7 @@ namespace Foxtrot.GUI.XMLImport
         {
             List<int?> output = new List<int?>();
 
-            if (node == null || node.Value.Equals(""))
+            if (node == null || node.Value.Length == 0)
             {
                 return null;
             }
@@ -54,7 +54,7 @@ namespace Foxtrot.GUI.XMLImport
 
         public static string TryToConvertNodeValueToString(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format
         {
-            if (node == null || node.Value.Equals(""))
+            if (node == null || node.Value.Length == 0)
             {
                 return null;
             }
@@ -71,7 +71,7 @@ namespace Foxtrot.GUI.XMLImport
         {
             List<string> output = new List<string>();
 
-            if (node == null || node.Value.Equals(""))
+            if (node == null || node.Value.Length == 0)
             {
                 return null;
             }
@@ -91,7 +91,7 @@ namespace Foxtrot.GUI.XMLImport
 
         public static DateTime? TryToConvertNodeValueToTime(XElement node) // If the output from the XML is "Empty", "NULL" or contains "S" it returns NULL, else it returns the right value in the right format, and removes "P", "T" and "H" and only gets the timed format
         {
-            if (node == null || node.Value.Equals("") || node.Value.Contains("S"))
+            if (node == null || node.Value.Length == 0 || node.Value.Contains("S"))
             {
                 return null;
             }

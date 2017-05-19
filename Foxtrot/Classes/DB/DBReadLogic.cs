@@ -70,46 +70,7 @@ namespace Foxtrot.Classes.DB
             }
         }
 
-        public static User GetUserInfo(User inputUser)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE ID = @ID", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputUser.ID;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (!reader.HasRows)
-                {
-                    return null;
-                }
-
-                reader.Read();
-                inputUser.Permission = int.Parse(reader["Permission"].ToString());
-                inputUser.FirstName = reader["FirstName"].ToString();
-                inputUser.LastName = reader["LastName"].ToString();
-                inputUser.WorkPhone = int.Parse(reader["WorkPhone"].ToString());
-                inputUser.WorkEmail = reader["WorkEmail"].ToString();
-                inputUser.WorkFax = int.Parse(reader["WorkFax"].ToString());
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return inputUser;
-        }
-
-        public static List<KeyValuePair<int, string>> FillAdminActorList(
-            List<KeyValuePair<int, string>> inputList)
+        public static List<KeyValuePair<int, string>> FillAdminActorList(List<KeyValuePair<int, string>> inputList)
         {
             if (inputList != null)
             {
@@ -124,8 +85,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command1 = new SqlCommand("SELECT * FROM viewAdmins ORDER BY FirstName", connection);
-                command1.CommandType = CommandType.StoredProcedure;
+                SqlCommand command1 = new SqlCommand("SELECT UserID, FirstName, LastName FROM viewAdmins ORDER BY FirstName", connection);
 
                 dt.Load(command1.ExecuteReader());
 
@@ -136,8 +96,7 @@ namespace Foxtrot.Classes.DB
                     inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
 
-                SqlCommand command2 = new SqlCommand("SELECT * FROM viewActors ORDER BY CompanyName", connection);
-                command2.CommandType = CommandType.StoredProcedure;
+                SqlCommand command2 = new SqlCommand("SELECT UserID, CompanyName FROM viewActors ORDER BY CompanyName", connection);
 
                 dt.Clear();
                 dt.Load(command2.ExecuteReader());
@@ -160,25 +119,67 @@ namespace Foxtrot.Classes.DB
             return inputList;
         }
 
-        public static Dictionary<string, int> FillCityDictionary(Dictionary<string, int> inputDictionary)
+        public static User GetUserInfo(User inputUser)
         {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE ID = @ID", connection);
+
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputUser.ID;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    return null;
+                }
+
+                reader.Read();
+                inputUser.Permission = int.Parse(reader["Permission"].ToString());
+                inputUser.FirstName = reader["FirstName"].ToString() == null || reader["FirstName"].ToString().Length == 0 ? null : reader["FirstName"].ToString();
+                inputUser.LastName = reader["LastName"].ToString() == null || reader["LastName"].ToString().Length == 0 ? null : reader["LastName"].ToString();
+                inputUser.WorkPhone = reader["WorkPhone"].ToString() == null || reader["WorkPhone"].ToString().Length == 0 ? null : (int?)int.Parse(reader["WorkPhone"].ToString());
+                inputUser.WorkEmail = reader["WorkEmail"].ToString() == null || reader["WorkEmail"].ToString().Length == 0 ? null : reader["WorkEmail"].ToString();
+                inputUser.WorkFax = reader["WorkFax"].ToString() == null || reader["WorkFax"].ToString().Length == 0 ? null : (int?)int.Parse(reader["WorkFax"].ToString());
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputUser;
+        }
+
+        public static List<KeyValuePair<int, string>> FillCityList(List<KeyValuePair<int, string>> inputList)
+        {
+            if (inputList != null)
+            {
+                inputList = new List<KeyValuePair<int, string>>();
+            }
+
+            inputList.Clear();
             DataTable dt = new DataTable();
-            inputDictionary = new Dictionary<string, int>();
 
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("spFillCityDictionary", connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM Cities ORDER BY Name", connection);
 
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    string tempString = Convert.ToString(row["Name"]);
                     int tempInt = int.Parse(row["ID"].ToString());
-                    inputDictionary.Add(tempString, tempInt);
+                    string tempString = Convert.ToString(row["Name"]);
+                    inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
             }
 
@@ -189,7 +190,7 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return inputDictionary;
+            return inputList;
         }
 
         public static DataTable FillProductTable(DataTable productTable)

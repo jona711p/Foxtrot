@@ -8,7 +8,6 @@ using Foxtrot.GUI.Product;
 using Foxtrot.GUI.User;
 using Foxtrot.GUI.XMLImport;
 using Foxtrot.GUI.CombiProduct;
-using Foxtrot.GUI.Event;
 using System.Diagnostics;
 using System.Windows.Navigation;
 using Application = System.Windows.Application;
@@ -75,7 +74,6 @@ namespace Foxtrot
                 User_MenuItem_Edit_Delete.IsEnabled = true;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
-                //Event_MenuItem.IsEnabled = true;
             }
 
             if (tempUser.Permission == 2)
@@ -85,7 +83,6 @@ namespace Foxtrot
                 User_MenuItem_Modify.IsEnabled = true;
                 Product_MenuItem.IsEnabled = true;
                 CombiProduct_MenuItem.IsEnabled = true;
-                //Event_MenuItem.IsEnabled = true;
             }
 
             MainFrame.Content = new Frontpage();
@@ -100,7 +97,6 @@ namespace Foxtrot
             User_MenuItem_Modify.IsEnabled = false;
             Product_MenuItem.IsEnabled = false;
             CombiProduct_MenuItem.IsEnabled = false;
-            Event_MenuItem.IsEnabled = false;
         }
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
@@ -146,16 +142,6 @@ namespace Foxtrot
         private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new CombiProduct_Edit_Delete();
-        }
-
-        private void MenuItem_Event_Add_Onclick(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new Event_Add(tempUser);
-        }
-
-        private void MenuItem_Event_Edit_Delete_Onclick(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new Event_Edit_Delete(tempUser);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)

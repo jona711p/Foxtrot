@@ -21,7 +21,7 @@ namespace Foxtrot.GUI.Product
             InitializeComponent();
             tempUser = inputUser;
         
-            comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
+            comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityList(tempCity.CityList);
             DataContext = tempProduct;
         }
 
@@ -169,7 +169,7 @@ namespace Foxtrot.GUI.Product
             }
 
             tempProduct.Cities = new City();
-            tempProduct.Cities.ID = ((KeyValuePair<string, int>)comboBox_Product_Add_CityID.SelectedItem).Value;
+            tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
 
             tempProduct.UserID = tempUser.ID;
             DBWriteLogic.WriteNewProduct(tempProduct);
