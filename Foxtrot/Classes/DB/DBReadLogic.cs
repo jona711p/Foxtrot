@@ -490,7 +490,7 @@ namespace Foxtrot.Classes.DB
 
             return inputEvent;
         }
-        public static Event GetEventInfo(Event tempevent)
+        public static Event GetEventInfo(Event inputEvent)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -498,26 +498,29 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spGetEventInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@ID", SqlDbType.Int).Value = tempevent.ID;
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputEvent.ID;
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
-                tempevent.ID = int.Parse(reader["ID"].ToString());
-                tempevent.Name = reader["Name"].ToString();
-                tempevent.Address = reader["Address"].ToString();
-                tempevent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
-                tempevent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
-                tempevent.Description = reader["Description"].ToString();
+                inputEvent.ID = int.Parse(reader["ID"].ToString());
+                inputEvent.Name = reader["Name"].ToString();
+                inputEvent.Address = reader["Address"].ToString();
+                inputEvent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
+                inputEvent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
+                inputEvent.Description = reader["Description"].ToString();
 
-                tempevent.ExtraDescription = new List<ExtraDescription>();
+                inputEvent.ExtraDescription = new List<ExtraDescription>();
                 ExtraDescription tempExtraDescription = new ExtraDescription();
-                tempevent.ExtraDescription.Add(tempExtraDescription);
+                inputEvent.ExtraDescription.Add(tempExtraDescription);
                 tempExtraDescription.Description = reader["ExtraDescription"].ToString();
 
-                tempevent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
-                tempevent.Website = reader["Website"].ToString();
-                tempevent.CanonicalUrl = reader["CanonicalUrl"].ToString();
-                }
+                inputEvent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                inputEvent.Website = reader["Website"].ToString();
+                inputEvent.CanonicalUrl = reader["CanonicalUrl"].ToString();
+
+                inputEvent.Cities = new City();
+                inputEvent.Cities.Name = reader["CityName"].ToString();
+            }
             
             //catch (Exception ex)
             //{
@@ -527,7 +530,7 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return tempevent;
+            return inputEvent;
         }
     }
 }

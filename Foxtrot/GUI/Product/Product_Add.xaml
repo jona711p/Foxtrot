@@ -64,7 +64,7 @@
                 </Button.Effect>
             </Button>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="528" VerticalAlignment="Center" Width="410" Margin="437,39,463.4,201">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="10333596" VerticalAlignment="Center" Width="410" Margin="437,39,463,-10332867">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Border.Effect>
