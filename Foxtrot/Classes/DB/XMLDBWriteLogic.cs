@@ -87,7 +87,7 @@ namespace Foxtrot.Classes.DB
                     SqlCommand command = new SqlCommand("spWriteCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = category.XMLID;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = category.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = category.Name;
 
                     command.ExecuteNonQuery();
@@ -169,45 +169,8 @@ namespace Foxtrot.Classes.DB
                     SqlCommand command = new SqlCommand("spWriteMainCategories", connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = mainCategory.XMLID;
+                    command.Parameters.Add("@ID", SqlDbType.Int).Value = mainCategory.ID;
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = mainCategory.Name;
-
-                    command.ExecuteNonQuery();
-                }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteOpeningHours(List<OpeningHour> inputOpeningHours)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (OpeningHour openingHour in inputOpeningHours)
-            {
-                try
-                {
-                    SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.Add("@XMLID", SqlDbType.Int).Value = openingHour.XMLID;
-                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = openingHour.StartDate;
-                    command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = openingHour.EndDate;
-                    command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = openingHour.StartTime;
-                    command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = openingHour.EndTime;
-                    command.Parameters.Add("@Monday", SqlDbType.Bit).Value = openingHour.Monday;
-                    command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = openingHour.Tuesday;
-                    command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = openingHour.Wednesday;
-                    command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = openingHour.Thursday;
-                    command.Parameters.Add("@Friday", SqlDbType.Bit).Value = openingHour.Friday;
-                    command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = openingHour.Saturday;
-                    command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = openingHour.Sunday;
 
                     command.ExecuteNonQuery();
                 }
@@ -259,7 +222,14 @@ namespace Foxtrot.Classes.DB
                     command.Parameters.Add("@Availability", SqlDbType.Bit).Value = product.Availability;
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;
+
+                    command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = product.Categories.ID;
                     command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = product.Cities.ID;
+                    command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = product.MainCategories.ID;
+                    command.Parameters.Add("@FK_OpeningHourID", SqlDbType.Int).Value = product.OpeningHours == null
+                        ? null
+                        : (int?) WriteOpeningHours(product.OpeningHours);
+
                     command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = product.UserID;
 
                     command.Parameters.Add(outputID);
@@ -279,102 +249,44 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
-        public static void WriteRelCategories(List<Product> inputProducts)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-            {
-                foreach (Product product in inputProducts)
-                {
-                    try
-                    {
-                        SqlCommand command = new SqlCommand("spWriteRel_Categories", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = product.Categories.XMLID;
-
-                        command.ExecuteNonQuery();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteRelCombiProducts(List<Product> inputProducts)
+        public static int WriteOpeningHours(OpeningHour inputOpeningHours)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            foreach (Product product in inputProducts)
+            try
             {
-                if (product.CombiProducts != null)
-                {
-                    foreach (CombiProduct combiProduct in product.CombiProducts)
-                    {
-                        try
-                        {
-                            SqlCommand command = new SqlCommand("spWriteRel_CombiProducts", connection);
-                            command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
-                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                            command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = combiProduct.ID;
+                SqlParameter outputID = new SqlParameter("@OpeningHourID", SqlDbType.Int);
 
-                            command.ExecuteNonQuery();
-                        }
+                command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = inputOpeningHours.StartDate;
+                command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = inputOpeningHours.EndDate;
+                command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = inputOpeningHours.StartTime;
+                command.Parameters.Add("@Endtime", SqlDbType.DateTime).Value = inputOpeningHours.EndTime;
+                command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputOpeningHours.Monday;
+                command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputOpeningHours.Tuesday;
+                command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputOpeningHours.Wednesday;
+                command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = inputOpeningHours.Thursday;
+                command.Parameters.Add("@Friday", SqlDbType.Bit).Value = inputOpeningHours.Friday;
+                command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputOpeningHours.Saturday;
+                command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputOpeningHours.Sunday;
 
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                }
+                command.Parameters.Add(outputID);
+                outputID.Direction = ParameterDirection.Output;
 
-                else break;
+                command.ExecuteNonQuery();
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+                return int.Parse(outputID.Value.ToString());
             }
 
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteRelEventsProducts(List<Product> inputProducts)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (Product product in inputProducts)
+            catch (Exception ex)
             {
-                if (product.Events != null)
-                {
-                    foreach (Event events in product.Events)
-                    {
-                        try
-                        {
-                            SqlCommand command = new SqlCommand("spWriteRel_EventsProducts", connection);
-                            command.CommandType = CommandType.StoredProcedure;
-
-                            command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                            command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = events.ID;
-
-                            command.ExecuteNonQuery();
-                        }
-
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                }
-
-                else break;
+                throw ex;
             }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
         public static void WriteRelFiles(List<Product> inputProducts)
@@ -393,65 +305,6 @@ namespace Foxtrot.Classes.DB
 
                         command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
                         command.Parameters.Add("@XMLID", SqlDbType.Int).Value = file.XMLID;
-
-                        command.ExecuteNonQuery();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteRelMainCategories(List<Product> inputProducts)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-            {
-                foreach (Product product in inputProducts)
-                {
-                    try
-                    {
-                        SqlCommand command = new SqlCommand("spWriteRel_MainCategories", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = product.MainCategories.XMLID;
-
-                        command.ExecuteNonQuery();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-        }
-
-        public static void WriteRelOpeningHours(List<Product> inputProducts)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            foreach (Product product in inputProducts)
-            {
-                foreach (OpeningHour openingHour in product.OpeningHours)
-                {
-                    try
-                    {
-                        SqlCommand command = new SqlCommand("spWriteRel_OpeningHours", connection);
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = product.ID;
-                        command.Parameters.Add("@FK_EventID", SqlDbType.Int).Value = product.Events;
-                        command.Parameters.Add("@XMLID", SqlDbType.Int).Value = openingHour.XMLID;
 
                         command.ExecuteNonQuery();
                     }

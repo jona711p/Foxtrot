@@ -37,9 +37,9 @@
 
         <!--Scrollbar skal deaktiveres på forsiden-->
         <ScrollViewer Margin="10,137,0,83">
-            <Frame x:Name="MainFrame" Content="{Binding}" Width="1310" HorizontalAlignment="Center" 
-                       ScrollViewer.VerticalScrollBarVisibility="Visible" 
-                       ScrollViewer.CanContentScroll="True" 
+            <Frame x:Name="MainFrame" Content="{Binding}" Width="1310" HorizontalAlignment="Center"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto"
+                       ScrollViewer.CanContentScroll="True"
                        NavigationUIVisibility="Hidden"/>
         </ScrollViewer>
 

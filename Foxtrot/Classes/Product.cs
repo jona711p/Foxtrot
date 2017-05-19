@@ -19,7 +19,7 @@ namespace Foxtrot.Classes
         public List<int?> ContactFax { get; set; }
 
         public DateTime? CreationDate { get; set; }
-        public List<OpeningHour> OpeningHours { get; set; }
+        public OpeningHour OpeningHours { get; set; }
         public bool Availability { get; set; }
 
         public string Description { get; set; } //Text

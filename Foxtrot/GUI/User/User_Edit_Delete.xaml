@@ -36,15 +36,14 @@
         </Style>
     </Page.Resources>
 
-    <Grid Margin="0,0,0,219" Width="1310" Height="470">
-
+    <Grid>
         <Grid HorizontalAlignment="Center" Height="450" Margin="10,10,1040,10" VerticalAlignment="Center" Width="260">
-            <TextBox x:Name="textBox_User_Edit_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,10,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" HorizontalContentAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
-            <TextBox x:Name="textBox_User_Edit_LastName" HorizontalAlignment="Center" Height="24" Margin="10,60,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
-            <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Center" Height="24" Margin="10,110,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *"/>
-            <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Center" Height="24" Margin="10,160,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" HorizontalContentAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *"/>
-            <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Center" Height="24" Margin="10,210,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" HorizontalContentAlignment="Center" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax"/>
-            <TextBox x:Name="textBox_User_Edit_CompanyName" HorizontalAlignment="Center" Height="23" Margin="10,260,14,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="235" Visibility="Visible" FontFamily="Arial" HorizontalContentAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="Firmanavn **"/>
+            <TextBox x:Name="textBox_User_Edit_FirstName" HorizontalAlignment="Left" Height="24" Margin="10,10,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
+            <TextBox x:Name="textBox_User_Edit_LastName" HorizontalAlignment="Left" Height="24" Margin="10,60,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
+            <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="24" Margin="10,110,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *"/>
+            <TextBox x:Name="textBox_User_Edit_Email" HorizontalAlignment="Left" Height="24" Margin="10,160,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *"/>
+            <TextBox x:Name="textBox_User_Edit_Fax" HorizontalAlignment="Left" Height="24" Margin="10,210,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax"/>
+            <TextBox x:Name="textBox_User_Edit_CompanyName" HorizontalAlignment="Left" Height="23" Margin="10,260,14,0" TextWrapping="Wrap" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="235" Visibility="Collapsed" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Firmanavn **"/>
             <Label x:Name="label_User_Edit_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,260,10,115" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" Width="239"/>
             <Label x:Name="label_User_Edit_Stars" Content="** = Skal Udfyldes ved Aktør!" HorizontalAlignment="Center" Margin="10,310,10,116" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" Width="239"/>
             <Button x:Name="button_User_Edit_Edit" Content="Rediger" HorizontalAlignment="Center" Margin="10,339,149,91" VerticalAlignment="Center" Width="100" Click="Button_User_Edit_Edit_OnClick" Background="White" BorderBrush="Black" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="14" FontWeight="Bold" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Rediger en Administrator eller Aktør i systemet!">

@@ -7,7 +7,7 @@ using Foxtrot.Classes.DB;
 namespace Foxtrot.GUI.User
 {
     /// <summary>
-    /// Interaction logic for User_Edit.xaml
+    /// Jonas Lykke & Thomas Nielsen
     /// </summary>
     public partial class User_Edit_Delete : Page
     {
@@ -17,14 +17,12 @@ namespace Foxtrot.GUI.User
 
         public User_Edit_Delete()
         {
-            InitializeComponent();
-            DataContext = tempUser;
-
             tempUser.UserTable = new DataTable();
-
             DBReadLogic.FillUserTable(tempUser.UserTable);
-            DataContext = tempUser;
 
+            InitializeComponent();
+            
+            DataContext = tempUser;
         }
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

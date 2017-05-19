@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
@@ -10,6 +11,8 @@ using Foxtrot.GUI.CombiProduct;
 using Foxtrot.GUI.Event;
 using System.Diagnostics;
 using System.Windows.Navigation;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Foxtrot
 {
@@ -21,6 +24,7 @@ namespace Foxtrot
         {
             ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (1350x735) and disables the ability to minimize
             InitializeComponent();
+            this.Closing += WindowClosing;
 
             HideAll();
             FillComboBoxWithAdminsAndActors();
@@ -33,6 +37,22 @@ namespace Foxtrot
             textBox_RightFooter.Text = "Åbningstider:" +
                 "\nMandag – Torsdag kl. 09.00 - 15.00" +
                 "\nFredag kl. 09.00 - 14.00";
+        }
+
+        void WindowClosing(object sender, CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItem_Menu_Exit_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Afslutte?", "Afslut?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (response == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         public static void FillComboBoxWithAdminsAndActors()
@@ -91,17 +111,6 @@ namespace Foxtrot
         private void MenuItem_Menu_XML_Import_OnClick(object sender, RoutedEventArgs e)
         {
             xmlImport.Show();
-        }
-
-        private void MenuItem_Menu_Exit_OnClick(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Afslutte?", "Afslut?",
-                MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (response == MessageBoxResult.Yes)
-            {
-                Application.Current.Shutdown();
-            }
         }
 
         private void MenuItem_User_Add_OnClick(object sender, RoutedEventArgs e)

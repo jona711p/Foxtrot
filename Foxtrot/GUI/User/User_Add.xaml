@@ -6,7 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1310"
+      d:DesignHeight="470" d:DesignWidth="1310"
       Title="Tilføj Bruger">
 
     <Page.Resources>
@@ -38,9 +38,9 @@
     </Page.Resources>
 
     <Grid>
-        <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Center" Margin="588,10,566,721" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+        <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Center" Margin="10,10,10,425" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Height="35" Width="1290" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <Grid HorizontalAlignment="Center" Height="35" Margin="521,52,489,681" VerticalAlignment="Center" Width="300">
+        <Grid HorizontalAlignment="Center" Height="35" Margin="505,45,505,390" VerticalAlignment="Center" Width="300">
             <RadioButton x:Name="rbtn_Administrator" Content="Administrator" HorizontalAlignment="Center" Margin="10,10,200,11" VerticalAlignment="Center" FontFamily="Arial" Click="Rbtn_Administrator_OnClick"/>
             <RadioButton x:Name="rbtn_Actor" Content="Aktør" HorizontalAlignment="Center" Margin="242,10,10,11" VerticalAlignment="Center" FlowDirection="RightToLeft" FontFamily="Arial" Click="Rbtn_Actor_OnClick"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="36" VerticalAlignment="Center" Width="300" Margin="0,0,0,-1">
@@ -50,7 +50,7 @@
             </Border>
         </Grid>
 
-        <Grid HorizontalAlignment="Center" Height="100" Margin="521,92,489,576" VerticalAlignment="Center" Width="300">
+        <Grid HorizontalAlignment="Center" Height="100" Margin="505,85,505,285" VerticalAlignment="Center" Width="300">
             <TextBox x:Name="txtbox_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,10,40,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *" FontFamily="Arial"/>
             <TextBox x:Name="txtbox_LastName" HorizontalAlignment="Center" Height="24" Margin="10,40,40,36" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *" FontFamily="Arial"/>
             <Label x:Name="lbl_Name_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,70,185,6" VerticalAlignment="Center" FontFamily="Arial"/>
@@ -61,7 +61,7 @@
             </Border>
         </Grid>
 
-        <Grid HorizontalAlignment="Center" Height="130" Margin="521,197,489,441" VerticalAlignment="Center" Width="300">
+        <Grid HorizontalAlignment="Center" Height="130" Margin="505,190,505,150" VerticalAlignment="Center" Width="300">
             <TextBox x:Name="txtbox_WorkPhone" HorizontalAlignment="Center" Height="26" Margin="10,10,40,94" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *" FontFamily="Arial"/>
             <TextBox x:Name="txtbox_WorkEmail" HorizontalAlignment="Center" Height="26" Margin="10,41,40,63" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *" FontFamily="Arial"/>
             <TextBox x:Name="txtbox_WorkFax" HorizontalAlignment="Center" Height="24" Margin="10,72,40,34" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax" FontFamily="Arial"/>
@@ -73,7 +73,7 @@
             </Border>
         </Grid>
 
-        <Grid HorizontalAlignment="Center" Height="70" Margin="521,332,489,366" VerticalAlignment="Center" Width="300" x:Name="Grid_CompanyName">
+        <Grid HorizontalAlignment="Center" Height="70" Margin="505,325,505,75" VerticalAlignment="Center" Width="300" x:Name="Grid_CompanyName">
             <TextBox x:Name="txtbox_CompanyName" HorizontalAlignment="Center" Height="22" Margin="10,10,40,38" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn *" FontFamily="Arial"/>
             <Label x:Name="lbl_CompanyName_Star" Content="* = Skal Udfyldes!" HorizontalAlignment="Center" Margin="10,36,185,10" VerticalAlignment="Center" FontFamily="Arial"/>
             <Border x:Name="border_CompanyName" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="72" Margin="0,-2,0,0" VerticalAlignment="Center" Width="300">
@@ -82,8 +82,8 @@
                 </Border.Effect>
             </Border>
         </Grid>
-        
-        <Button x:Name="btnCreateUser" Content="Opret" HorizontalAlignment="Center" Margin="616,407,594,341" VerticalAlignment="Center" Width="100" Click="btnAddUser_Click" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center">
+
+        <Button x:Name="btnCreateUser" Content="Opret" HorizontalAlignment="Center" Margin="606,400,604,50" VerticalAlignment="Center" Width="100" Click="btnAddUser_Click" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>

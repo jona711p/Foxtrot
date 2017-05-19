@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1310"
+      d:DesignHeight="470" d:DesignWidth="1310"
       Title="Rediger din Bruger">
 
     <Page.Resources>
@@ -37,11 +37,11 @@
     </Page.Resources>
 
     <Grid>
-        <Label x:Name="lbl_User_Modify_Header" Content="REDIGER:" HorizontalAlignment="Center" Margin="605,10,605,721" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="100"/>
+        <Label x:Name="lbl_User_Modify_Header" Content="REDIGER:" HorizontalAlignment="Center" Margin="10,10,10,423" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <Label x:Name="lbl_User_Modify_CompanyName" Content="{Binding CompanyName}" HorizontalAlignment="Center" Margin="10,52,10,676" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="lbl_User_Modify_CompanyName" Content="{Binding CompanyName}" HorizontalAlignment="Center" Margin="10,47,10,383" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <Grid HorizontalAlignment="Center" Height="165" Margin="504,97,506,506" VerticalAlignment="Center" Width="300">
+        <Grid HorizontalAlignment="Center" Height="165" Margin="507,89,503,216" VerticalAlignment="Center" Width="300">
             <TextBox x:Name="txtbox_Modify_CompanyName" HorizontalAlignment="Center" Height="24" Margin="10,17,40,124" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn *" FontFamily="Arial" Text="{Binding CompanyName}"/>
             <TextBox x:Name="txtbox_Modify_FirstName" HorizontalAlignment="Center" Height="24" Margin="10,46,40,95" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *" FontFamily="Arial" Text="{Binding FirstName}"/>
             <TextBox x:Name="txtbox_Modify_LastName" HorizontalAlignment="Center" Height="24" Margin="10,75,40,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *" FontFamily="Arial" Text="{Binding LastName}"/>
@@ -53,7 +53,7 @@
             </Border>
         </Grid>
 
-        <Grid HorizontalAlignment="Center" Height="130" Margin="504,267,506,371" VerticalAlignment="Center" Width="300">
+        <Grid HorizontalAlignment="Center" Height="130" Margin="507,259,503,81" VerticalAlignment="Center" Width="300">
             <TextBox x:Name="txtbox_Modify_WorkPhone" HorizontalAlignment="Center" Height="26" Margin="10,10,40,94" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *" FontFamily="Arial" Text="{Binding WorkPhone}"/>
             <TextBox x:Name="txtbox_Modify_WorkEmail" HorizontalAlignment="Center" Height="26" Margin="10,41,40,63" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Email *" FontFamily="Arial" Text="{Binding WorkEmail}"/>
             <TextBox x:Name="txtbox_Modify_WorkFax" HorizontalAlignment="Center" Height="24" Margin="10,72,40,34" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Fax" FontFamily="Arial" Text="{Binding WorkFax}"/>
@@ -66,7 +66,7 @@
         </Grid>
 
 
-        <Button x:Name="btn_Modify_CreateUser" Content="Rediger" HorizontalAlignment="Center" Margin="605,402,605,346" VerticalAlignment="Center" Width="100" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="Btn_ModifyUser_OnClick">
+        <Button x:Name="btn_Modify_CreateUser" Content="Rediger" HorizontalAlignment="Center" Margin="605,394,605,56" VerticalAlignment="Center" Width="100" ToolTip="Opretter en Administrator eller Aktør i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="Btn_ModifyUser_OnClick">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>
