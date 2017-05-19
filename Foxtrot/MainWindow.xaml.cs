@@ -8,6 +8,8 @@ using Foxtrot.GUI.User;
 using Foxtrot.GUI.XMLImport;
 using Foxtrot.GUI.CombiProduct;
 using Foxtrot.GUI.Event;
+using System.Diagnostics;
+using System.Windows.Navigation;
 
 namespace Foxtrot
 {
@@ -145,6 +147,12 @@ namespace Foxtrot
         private void MenuItem_Event_Edit_Delete_Onclick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Event_Edit_Delete(tempUser);
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }
