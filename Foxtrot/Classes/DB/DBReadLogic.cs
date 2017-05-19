@@ -224,7 +224,6 @@ namespace Foxtrot.Classes.DB
 
         public static DataTable FillProductTable(DataTable productTable)
         {
-            //productTable = new DataTable();
             productTable.Clear();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);

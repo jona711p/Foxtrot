@@ -82,7 +82,7 @@ namespace Foxtrot.GUI.XMLImport
 
                 foreach (string emails in moreThanOneEmails)
                 {
-                    output.Add(emails);
+                    output.Add(emails.ToLower());
                 }
             }
 
@@ -121,7 +121,7 @@ namespace Foxtrot.GUI.XMLImport
 
             foreach (ExtraDescription extraDesription in ExtraDesriptions)
             {
-                sb.AppendLine(extraDesription.Description);
+                sb.AppendLine(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(extraDesription.Description.ToLower()));
             }
 
             return sb.ToString();

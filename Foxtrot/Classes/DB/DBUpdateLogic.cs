@@ -67,8 +67,6 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
                 SqlCommand command = new SqlCommand("spUpdateProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
@@ -92,12 +90,9 @@ namespace Foxtrot.Classes.DB
                 command.ExecuteNonQuery();
 
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
-            }
+            
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+           
         }
         public static void UpdateEvent(Event tempevent)
         {
@@ -120,7 +115,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
                 command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
                 command.Parameters.Add("FK_CityID", SqlDbType.Bit).Value = tempevent.Cities.ID;
-                command.Parameters.Add("FK_ActorID", SqlDbType.Bit).Value = tempevent.UserID;
+                command.Parameters.Add("FK_UserID", SqlDbType.Bit).Value = tempevent.UserID;
 
                 command.ExecuteNonQuery();
 
