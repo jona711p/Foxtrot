@@ -44,7 +44,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProducts.Website;
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProducts.CanonicalUrl;
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProducts.Cities.ID;
-                command.Parameters.Add("@FK_ActorID", SqlDbType.Int).Value = inputProducts.UserID;
+                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputProducts.UserID;
 
                 command.ExecuteNonQuery();
             }
