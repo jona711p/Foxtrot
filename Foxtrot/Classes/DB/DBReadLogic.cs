@@ -11,35 +11,6 @@ namespace Foxtrot.Classes.DB
     /// </summary>
     class DBReadLogic
     {
-        public static bool DupeCheckActor(Actor inputActor)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT * FROM Actors WHERE CompanyName = @CompanyName", connection);
-
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    return true;
-                }
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-                return false;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public static bool DupeCheckAdmin(Administrator inputAdministrator)
         {
             SqlConnection connection = null;
@@ -47,9 +18,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command =
-                    new SqlCommand("SELECT * FROM Users WHERE FirstName = @FirstName AND LastName = @LastName",
-                        connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM viewAdmins WHERE FirstName = @FirstName AND LastName = @LastName", connection);
 
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdministrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdministrator.LastName;
@@ -72,26 +41,27 @@ namespace Foxtrot.Classes.DB
             }
         }
 
-        public static int GetIDFromUser(string tableName, int userID)
+        public static bool DupeCheckActor(Actor inputActor)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT ID FROM " + tableName + " WHERE FK_UserID = " + userID, connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM viewActors WHERE CompanyName = @CompanyName", connection);
+
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
 
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
-                    reader.Read();
-                    return int.Parse(reader[0].ToString());
+                    return true;
                 }
 
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-                return 0;
+                return false;
             }
 
             catch (Exception ex)
@@ -107,7 +77,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("spGetUserInfo", connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE ID = @ID", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ID", SqlDbType.Int).Value = inputUser.ID;
@@ -123,17 +93,17 @@ namespace Foxtrot.Classes.DB
                 inputUser.Permission = int.Parse(reader["Permission"].ToString());
                 inputUser.FirstName = reader["FirstName"].ToString();
                 inputUser.LastName = reader["LastName"].ToString();
-                inputUser.WorkPhone = int.Parse(reader["Permission"].ToString());
-                inputUser.WorkEmail = reader["Permission"].ToString();
-                inputUser.WorkFax = int.Parse(reader["Permission"].ToString());
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
+                inputUser.WorkPhone = int.Parse(reader["WorkPhone"].ToString());
+                inputUser.WorkEmail = reader["WorkEmail"].ToString();
+                inputUser.WorkFax = int.Parse(reader["WorkFax"].ToString());
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputUser;
         }
@@ -154,19 +124,19 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command1 = new SqlCommand("spFillAdminList", connection);
+                SqlCommand command1 = new SqlCommand("SELECT * FROM viewAdmins ORDER BY FirstName", connection);
                 command1.CommandType = CommandType.StoredProcedure;
 
                 dt.Load(command1.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    int tempInt = int.Parse(row["FK_UserID"].ToString());
+                    int tempInt = int.Parse(row["UserID"].ToString());
                     string tempString = row["FirstName"] + " " + row["LastName"];
                     inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
 
-                SqlCommand command2 = new SqlCommand("spFillActorList", connection);
+                SqlCommand command2 = new SqlCommand("SELECT * FROM viewActors ORDER BY CompanyName", connection);
                 command2.CommandType = CommandType.StoredProcedure;
 
                 dt.Clear();
@@ -174,7 +144,7 @@ namespace Foxtrot.Classes.DB
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    int tempInt = int.Parse(row["FK_UserID"].ToString());
+                    int tempInt = int.Parse(row["UserID"].ToString());
                     string tempString = Convert.ToString(row["CompanyName"]);
                     inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
                 }
@@ -521,7 +491,7 @@ namespace Foxtrot.Classes.DB
                 inputEvent.Cities = new City();
                 inputEvent.Cities.Name = reader["CityName"].ToString();
             }
-            
+
             //catch (Exception ex)
             //{
 

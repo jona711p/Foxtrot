@@ -6,35 +6,6 @@ namespace Foxtrot.Classes.DB
 {
     class DBUpdateLogic
     {
-        public static void UpdateActor(Actor inputActor)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("spUpdateActor", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                //command.Parameters.Add("@ID", SqlDbType.Int).Value = inputActor.ID;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.UserID;
-                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
-                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
-                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputActor.WorkPhone;
-                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputActor.WorkEmail;
-                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputActor.WorkFax;
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
-
-                command.ExecuteNonQuery();
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public static void UpdateAdmin(Administrator inputAdmin)
         {
             SqlConnection connection = null;
@@ -45,7 +16,7 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spUpdateAdmin", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.UserID;
+                command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputAdmin.UserID;
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdmin.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdmin.LastName;
                 command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdmin.WorkPhone;
@@ -53,20 +24,52 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdmin.WorkFax;
 
                 command.ExecuteNonQuery();
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+
+        public static void UpdateActor(Actor inputActor)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateActor", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                
+                command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputActor.UserID;
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputActor.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputActor.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputActor.WorkFax;
+                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
+
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
         public static void UpdateProduct(Product inputProduct)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
+            try
+            {
                 SqlCommand command = new SqlCommand("spUpdateProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
@@ -85,48 +88,16 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProduct.Website;
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProduct.CanonicalUrl;
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProduct.Cities.ID;
-                
 
                 command.ExecuteNonQuery();
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-            
-
-           
-        }
-        public static void UpdateEvent(Event tempevent)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            //try
-            {
-                SqlCommand command = new SqlCommand("spUpdateEvent", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.Add("@ID", SqlDbType.Int).Value = tempevent.ID;
-                command.Parameters.Add("Name", SqlDbType.NVarChar).Value = tempevent.Name;
-                command.Parameters.Add("Address", SqlDbType.NVarChar).Value = tempevent.Address;
-                command.Parameters.Add("Longtitude", SqlDbType.Float).Value = tempevent.Longitude;
-                command.Parameters.Add("Latitude", SqlDbType.Float).Value = tempevent.Latitude;
-                command.Parameters.Add("Description", SqlDbType.NVarChar).Value = tempevent.Description;
-                command.Parameters.Add("ExtraDescription", SqlDbType.NVarChar).Value = tempevent.ExtraDescription[0].Description;
-                command.Parameters.Add("CanonicalUrl", SqlDbType.NVarChar).Value = tempevent.CanonicalUrl;
-                command.Parameters.Add("Website", SqlDbType.NVarChar).Value = tempevent.Website;
-                command.Parameters.Add("Availability", SqlDbType.Bit).Value = tempevent.Availability;
-                command.Parameters.Add("FK_CityID", SqlDbType.Bit).Value = tempevent.Cities.ID;
-                command.Parameters.Add("FK_UserID", SqlDbType.Bit).Value = tempevent.UserID;
-
-                command.ExecuteNonQuery();
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-
             }
-            //catch (Exception)
-            //{
 
-            //    throw;
-            //}
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }
 }

@@ -79,28 +79,8 @@ namespace Foxtrot.GUI.User
         {
             int tempInt;
 
-            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
-            {
-                tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
-                tempActor.FirstName = textBox_User_Edit_FirstName.Text;
-                tempActor.LastName = textBox_User_Edit_LastName.Text;
-
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
-                {
-                    tempActor.WorkPhone = tempInt;
-                }
-
-                tempActor.WorkEmail = textBox_User_Edit_Email.Text;
-
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempInt) && textBox_User_Edit_Fax.Text.Length == 8)
-                {
-                    tempActor.WorkFax = tempInt;
-                }
-
-                DBUpdateLogic.UpdateActor(tempActor);
-            }
-
-            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
+            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text ==
+                "Administrator")
             {
                 tempAdministrator.FirstName = textBox_User_Edit_FirstName.Text;
                 tempAdministrator.LastName = textBox_User_Edit_LastName.Text;
@@ -121,6 +101,28 @@ namespace Foxtrot.GUI.User
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
             MainWindow.FillComboBoxWithAdminsAndActors();
+
+            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text ==
+                "Aktør")
+            {
+                tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
+                tempActor.FirstName = textBox_User_Edit_FirstName.Text;
+                tempActor.LastName = textBox_User_Edit_LastName.Text;
+
+                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
+                {
+                    tempActor.WorkPhone = tempInt;
+                }
+
+                tempActor.WorkEmail = textBox_User_Edit_Email.Text;
+
+                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempInt) && textBox_User_Edit_Fax.Text.Length == 8)
+                {
+                    tempActor.WorkFax = tempInt;
+                }
+
+                DBUpdateLogic.UpdateActor(tempActor);
+            }
         }
 
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)

@@ -14,8 +14,7 @@ namespace Foxtrot.GUI.User
         public User_Modify(Classes.User inputUser)
         {
             tempActor.UserID = inputUser.ID;
-            tempActor.ID = DBReadLogic.GetIDFromUser("Actors", inputUser.ID.Value);
-
+            
             DBReadLogic.GetActorInfo(tempActor);
 
             InitializeComponent();
