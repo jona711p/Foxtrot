@@ -57,6 +57,14 @@
         <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AdminActorList}" DisplayMemberPath="Value" FontFamily="Arial" Background="White" BorderBrush="Black"/>
         <Button x:Name="btn_Login_User" Content="Login" HorizontalAlignment="Left" Margin="1241,63,0,0" VerticalAlignment="Top" Width="75" Click="btn_Login_User_Click" FontFamily="Arial" Background="White" BorderBrush="Black"/>
 
+        <Grid>
 
+            <TextBlock>           
+    <Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate">
+        Click here
+    </Hyperlink>
+            </TextBlock>
+        </Grid>
     </Grid>
+
 </Window>
