@@ -38,11 +38,7 @@
     </Page.Resources>
 
     <Grid>
-        <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Center" Margin="588,10,566,721" VerticalAlignment="Center" FontSize="20" FontWeight="Bold">
-            <Label.Effect>
-                <DropShadowEffect ShadowDepth="3"/>
-            </Label.Effect>
-        </Label>
+        <Label x:Name="lbl_User_Add_Header" Content="TILFØJ BRUGER" HorizontalAlignment="Center" Margin="588,10,566,721" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
 
         <Grid HorizontalAlignment="Center" Height="35" Margin="521,52,489,681" VerticalAlignment="Center" Width="300">
             <RadioButton x:Name="rbtn_Administrator" Content="Administrator" HorizontalAlignment="Center" Margin="10,10,200,11" VerticalAlignment="Center" FontFamily="Arial" Click="Rbtn_Administrator_OnClick"/>

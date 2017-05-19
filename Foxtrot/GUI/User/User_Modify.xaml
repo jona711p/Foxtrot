@@ -37,17 +37,9 @@
     </Page.Resources>
 
     <Grid>
-        <Label x:Name="lbl_User_Modify_Header" Content="REDIGER:" HorizontalAlignment="Center" Margin="605,10,605,721" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="100">
-            <Label.Effect>
-                <DropShadowEffect ShadowDepth="3"/>
-            </Label.Effect>
-        </Label>
+        <Label x:Name="lbl_User_Modify_Header" Content="REDIGER:" HorizontalAlignment="Center" Margin="605,10,605,721" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="100"/>
 
-        <Label x:Name="lbl_User_Modify_Header_Copy" Content="{Binding CompanyName}" HorizontalAlignment="Center" Margin="10,52,10,676" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            <Label.Effect>
-                <DropShadowEffect ShadowDepth="3"/>
-            </Label.Effect>
-        </Label>
+        <Label x:Name="lbl_User_Modify_CompanyName" Content="{Binding CompanyName}" HorizontalAlignment="Center" Margin="10,52,10,676" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
         <Grid HorizontalAlignment="Center" Height="165" Margin="504,97,506,506" VerticalAlignment="Center" Width="300">
             <TextBox x:Name="txtbox_Modify_CompanyName" HorizontalAlignment="Center" Height="24" Margin="10,17,40,124" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Style="{StaticResource WaterMarkStyle}" Tag="Firma Navn *" FontFamily="Arial" Text="{Binding CompanyName}"/>

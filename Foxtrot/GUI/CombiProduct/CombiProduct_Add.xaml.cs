@@ -40,7 +40,7 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
-                tempProduct = DBReadLogic.GetFileInfo(tempProduct);
+                tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
             }
         }
     }
