@@ -83,7 +83,7 @@ namespace Foxtrot.GUI.Event
             tempEvent.CanonicalUrl = textBox_Event_Add_CanonicalUrl.Text;
 
             tempEvent.UserID = tempUser.ID; // skal rettes til så userid
-
+            DBWriteLogic.WriteNewEvent(tempEvent);
             GUISortingLogic.Message("Arrangementet: '" + tempEvent.Name + "' er nu oprettet.");
         }
        

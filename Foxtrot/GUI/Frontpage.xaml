@@ -8,7 +8,5 @@
       d:DesignHeight="768" d:DesignWidth="1310"
       Title="Frontpage">
 
-    <Grid>
-        
-    </Grid>
+    <Grid/>
 </Page>

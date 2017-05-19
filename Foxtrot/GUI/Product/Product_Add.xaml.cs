@@ -22,7 +22,6 @@ namespace Foxtrot.GUI.Product
             tempUser = inputUser;
         
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityDictionary(tempCity.CityDictionary);
-            //DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DataContext = tempProduct;
         }
 
@@ -71,7 +70,6 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste breddegrad");
                 return;
             }
-            tempProduct.ContactPhone[0] = GUISortingLogic.Number(textBox_Product_Add_ContactPhone);
             if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
             {
@@ -85,7 +83,6 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste et gyldigt telefonnummer");
                 return;
             }
-            tempProduct.ContactEmail[0] = GUISortingLogic.Email(textBox_Product_Add_ContactEmail);
             if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
             {
                 tempProduct.ContactEmail = new List<string>()
@@ -99,7 +96,6 @@ namespace Foxtrot.GUI.Product
                 MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
                 return;
             }
-            tempProduct.ContactFax[0] = GUISortingLogic.Number(textBox_Product_Add_ContactFax);
             if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) &&
                 textBox_Product_Add_ContactFax.Text.Length == 8)
             {
@@ -114,7 +110,6 @@ namespace Foxtrot.GUI.Product
                 return;
             }
 
-            tempProduct.Price = GUISortingLogic.Number(textBox_Product_Add_Príce);
             if (textBox_Product_Add_Príce.Text.Length != 0)
             {
                 tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
