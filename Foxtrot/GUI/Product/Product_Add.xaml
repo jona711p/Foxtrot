@@ -59,6 +59,8 @@
             <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="237,388,0,0" VerticalAlignment="Top"/>
             <RadioButton x:Name="rbtn_Product_Add_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="236,427,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_True_OnClick"/>
             <RadioButton x:Name="rbtn_Product_Add_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="292,426,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_False_OnClick"/>
+            <DatePicker x:Name="datePicker__Product_Add_Date_From"  HorizontalAlignment="Left" Margin="27,464,0,-7" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
+            <DatePicker x:Name="datePicker_Product_Add_Date_To" HorizontalAlignment="Left" Margin="148,464,0,-7" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
             <Button x:Name="button_Product_Add_Create" Content="Opret Produkt" HorizontalAlignment="Center" Margin="256,463,0,0" VerticalAlignment="Center" Width="100" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter et produkt i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="button_Product_Add_Create_Click">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
