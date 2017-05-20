@@ -208,17 +208,21 @@ namespace Foxtrot.Classes.DB
                         || product.ContactPhone.Count == 0
                             ? null
                             : (int?)product.ContactPhone[0].Value;
+
                     command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = product.ContactEmail == null
                         ? null
                         : product.ContactEmail[0];
+
                     command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = product.ContactFax == null
                         ? null
                         : (int?)product.ContactFax[0].Value;
+
                     command.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = product.CreationDate;
                     command.Parameters.Add("@Price", SqlDbType.Float).Value = product.Price;
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = product.Description;
                     command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
                         XMLSortingLogic.TryToConvertNodeValueToStringBuilder(product.ExtraDescription);
+
                     command.Parameters.Add("@Availability", SqlDbType.Bit).Value = product.Availability;
                     command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = product.Website;
                     command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = product.CanonicalUrl;

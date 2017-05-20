@@ -139,10 +139,10 @@ namespace Foxtrot.Classes.DB
 
                 reader.Read();
                 inputUser.Permission = int.Parse(reader["Permission"].ToString());
-                inputUser.FirstName = reader["FirstName"].ToString() == null || reader["FirstName"].ToString().Length == 0 ? null : reader["FirstName"].ToString();
-                inputUser.LastName = reader["LastName"].ToString() == null || reader["LastName"].ToString().Length == 0 ? null : reader["LastName"].ToString();
+                inputUser.FirstName = reader["FirstName"].ToString();
+                inputUser.LastName = reader["LastName"].ToString();
                 inputUser.WorkPhone = reader["WorkPhone"].ToString() == null || reader["WorkPhone"].ToString().Length == 0 ? null : (int?)int.Parse(reader["WorkPhone"].ToString());
-                inputUser.WorkEmail = reader["WorkEmail"].ToString() == null || reader["WorkEmail"].ToString().Length == 0 ? null : reader["WorkEmail"].ToString();
+                inputUser.WorkEmail = reader["WorkEmail"].ToString();
                 inputUser.WorkFax = reader["WorkFax"].ToString() == null || reader["WorkFax"].ToString().Length == 0 ? null : (int?)int.Parse(reader["WorkFax"].ToString());
             }
 
@@ -154,6 +154,71 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputUser;
+        }
+
+        public static Administrator GetAdminInfo(Administrator inputAdmin)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputAdmin.UserID;
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                inputAdmin.FirstName = reader["Fornavn"].ToString();
+                inputAdmin.LastName = reader["Efternavn"].ToString();
+                inputAdmin.WorkPhone = reader["Arbejds Telefon"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Telefon"].ToString());
+                inputAdmin.WorkEmail = reader["Arbejds Email"].ToString();
+                inputAdmin.WorkFax = reader["Arbejds Fax"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Fax"].ToString());
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputAdmin;
+        }
+
+        public static Actor GetActorInfo(Actor inputActor)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetActorInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputActor.UserID;
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                inputActor.CompanyName = reader["Firmanavn"].ToString();
+                inputActor.FirstName = reader["Fornavn"].ToString();
+                inputActor.LastName = reader["Efternavn"].ToString();
+                inputActor.WorkPhone = reader["Arbejds Telefon"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Telefon"].ToString());
+                inputActor.WorkEmail = reader["Arbejds Email"].ToString();
+                inputActor.WorkFax = reader["Arbejds Fax"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Fax"].ToString());
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputActor;
         }
 
         public static List<KeyValuePair<int, string>> FillCityList(List<KeyValuePair<int, string>> inputList)
@@ -193,52 +258,10 @@ namespace Foxtrot.Classes.DB
             return inputList;
         }
 
-        public static DataTable FillProductTable(DataTable productTable)
-        {
-            productTable.Clear();
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-            try
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
-
-                adapter.Fill(productTable);
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return productTable;
-        }
-        public static DataTable FillEventTable(DataTable eventtable)
-        {
-            eventtable.Clear();
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-            try
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter("spFillEventTable", connection);
-
-                adapter.Fill(eventtable);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return eventtable;
-        }
-
         public static DataTable FillUserTable(DataTable userTable)
         {
             userTable.Clear();
+
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
@@ -259,33 +282,18 @@ namespace Foxtrot.Classes.DB
             return userTable;
         }
 
-        public static Actor GetActorInfo(Actor inputActor)
+        public static DataTable FillProductTable(DataTable productTable)
         {
+            productTable.Clear();
+
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("spGetActorInfo", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
 
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputActor.UserID;
-
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                inputActor.CompanyName = reader["Firmanavn"].ToString();
-                inputActor.FirstName = reader["Fornavn"].ToString();
-                inputActor.LastName = reader["Efternavn"].ToString();
-                //implenter me convertnullable metoder
-                inputActor.WorkPhone = (reader["Telefon nr."].ToString().Equals("")
-                    ? null
-                    : (int?)int.Parse(reader["Telefon nr."].ToString()));
-                inputActor.WorkEmail = reader["E-Mail"].ToString();
-                //implenter me convertnullable metoder
-                inputActor.WorkFax = (reader["Fax"].ToString().Equals("")
-                    ? null
-                    : (int?)int.Parse(reader["Fax"].ToString()));
+                adapter.Fill(productTable);
             }
 
             catch (Exception ex)
@@ -295,43 +303,7 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return inputActor;
-        }
-
-        public static Administrator GetAdminInfo(Administrator inputAdmin)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("spGetAdminInfo", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputAdmin.UserID;
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                inputAdmin.FirstName = reader["FirstName"].ToString();
-                inputAdmin.LastName = reader["LastName"].ToString();
-                //implenter me convertnullable metoder
-                inputAdmin.WorkPhone = (reader["WorkPhone"].ToString().Equals("")
-                    ? null
-                    : (int?)int.Parse(reader["WorkPhone"].ToString()));
-                inputAdmin.WorkEmail = reader["WorkEmail"].ToString();
-                //implenter me convertnullable metoder
-                inputAdmin.WorkFax = (reader["WorkFax"].ToString().Equals("")
-                    ? null
-                    : (int?)int.Parse(reader["WorkFax"].ToString()));
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return inputAdmin;
+            return productTable;
         }
 
         public static Product GetProductInfo(Product inputProduct)
@@ -343,11 +315,13 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spGetProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
+
+                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
-                inputProduct.ID = int.Parse(reader["ID"].ToString());
+                inputProduct.ID = int.Parse(reader["ProductID"].ToString());
                 inputProduct.Name = reader["Name"].ToString();
                 inputProduct.Address = reader["Address"].ToString();
                 inputProduct.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
@@ -375,15 +349,14 @@ namespace Foxtrot.Classes.DB
                 ExtraDescription tempExtraDescription = new ExtraDescription();
                 inputProduct.ExtraDescription.Add(tempExtraDescription);
                 tempExtraDescription.Description = reader["ExtraDescription"].ToString();
-
-
-                inputProduct.Availability = Convert.ToBoolean(reader["Availability"].ToString());
+                
+                inputProduct.Availability = bool.Parse(reader["Availability"].ToString());
                 inputProduct.Website = reader["Website"].ToString();
                 inputProduct.CanonicalUrl = reader["CanonicalUrl"].ToString();
                 inputProduct.UserID = DBSortingLogic.ConvertToNullableInt(reader["UserID"]);
 
                 inputProduct.Cities = new City();
-                inputProduct.Cities.Name = reader["CityName"].ToString();
+                inputProduct.Cities.Name = reader["City"].ToString();
             }
 
             catch (Exception ex)
@@ -395,6 +368,7 @@ namespace Foxtrot.Classes.DB
 
             return inputProduct;
         }
+
         public static Product GetProductFileInfo(Product inputProduct)
         {
             DataTable dt = new DataTable();
@@ -407,13 +381,14 @@ namespace Foxtrot.Classes.DB
             {
                 SqlCommand command = new SqlCommand("spGetProductFiles", connection);
                 command.CommandType = CommandType.StoredProcedure;
+
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
                 dt.Load(command.ExecuteReader());
 
                 foreach (DataRow row in dt.Rows)
                 {
                     File tempFile = new File();
-                    tempFile.ID = int.Parse(row["ID"].ToString());
+                    tempFile.ID = int.Parse(row["FileID"].ToString());
                     tempFile.URI = Convert.ToString(row["URI"]);
                     inputProduct.Files.Add(tempFile);
                 }
@@ -427,81 +402,6 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputProduct;
-        }
-        public static Event GetEventFileInfo(Event inputEvent)
-        {
-            DataTable dt = new DataTable();
-            inputEvent.Files = new List<File>();
-
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("spGetEventFiles", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@EventID", SqlDbType.Int).Value = inputEvent.ID;
-                dt.Load(command.ExecuteReader());
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    File tempFile = new File();
-                    tempFile.ID = int.Parse(row["ID"].ToString());
-                    tempFile.URI = Convert.ToString(row["URI"]);
-                    inputEvent.Files.Add(tempFile);
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return inputEvent;
-        }
-        public static Event GetEventInfo(Event inputEvent)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-            //try
-            {
-                SqlCommand command = new SqlCommand("spGetEventInfo", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputEvent.ID;
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                inputEvent.ID = int.Parse(reader["ID"].ToString());
-                inputEvent.Name = reader["Name"].ToString();
-                inputEvent.Address = reader["Address"].ToString();
-                inputEvent.Longitude = DBSortingLogic.ConvertToNullableFloat(reader["Longitude"]);
-                inputEvent.Latitude = DBSortingLogic.ConvertToNullableFloat(reader["Latitude"]);
-                inputEvent.Description = reader["Description"].ToString();
-
-                inputEvent.ExtraDescription = new List<ExtraDescription>();
-                ExtraDescription tempExtraDescription = new ExtraDescription();
-                inputEvent.ExtraDescription.Add(tempExtraDescription);
-                tempExtraDescription.Description = reader["ExtraDescription"].ToString();
-
-                inputEvent.Availability = Convert.ToBoolean(reader["Availability"].ToString());
-                inputEvent.Website = reader["Website"].ToString();
-                inputEvent.CanonicalUrl = reader["CanonicalUrl"].ToString();
-
-                inputEvent.Cities = new City();
-                inputEvent.Cities.Name = reader["CityName"].ToString();
-            }
-
-            //catch (Exception ex)
-            //{
-
-            //    throw ex;
-            //}
-
-            connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-            return inputEvent;
         }
     }
 }
