@@ -13,8 +13,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("spDeleteAdmin", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("DELETE FROM Administrators WHERE FK_UserID = @UserID", connection);
 
                 command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputAdmin.UserID;
 
@@ -36,8 +35,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("spDeleteActor", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("DELETE FROM Actors WHERE FK_UserID = @UserID", connection);
 
                 command.Parameters.Add("@userID", SqlDbType.Int).Value = inputActor.UserID;
 

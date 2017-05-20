@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 namespace Foxtrot.Classes.DB
 {
     /// <summary>
-    /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
+    /// Jonas Lykke
     /// </summary>
     class XMLDBReadLogic
     {

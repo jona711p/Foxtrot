@@ -15,7 +15,7 @@ using Microsoft.Win32;
 namespace Foxtrot.GUI.XMLImport
 {
     /// <summary>
-    /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
+    /// Jonas Lykke
     /// </summary>
     public partial class XMLImport : Window, INotifyPropertyChanged
     {

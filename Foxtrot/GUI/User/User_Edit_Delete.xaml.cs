@@ -41,14 +41,12 @@ namespace Foxtrot.GUI.User
                                     dataGrid_User_Edit.Columns[0].GetCellContent(
                                         dataGrid_User_Edit.SelectedItem))
                                 .Text);
+
                         tempAdministrator = DBReadLogic.GetAdminInfo(tempAdministrator);
 
-                        textBox_User_Edit_FirstName.Text = tempAdministrator.FirstName;
-                        textBox_User_Edit_LastName.Text = tempAdministrator.LastName;
-                        textBox_User_Edit_Phone.Text = tempAdministrator.WorkPhone.ToString();
-                        textBox_User_Edit_Email.Text = tempAdministrator.WorkEmail;
-                        textBox_User_Edit_Fax.Text = tempAdministrator.WorkFax.ToString();
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
+
+                        DataContext = tempAdministrator;
                     }
                 }
 
@@ -61,15 +59,12 @@ namespace Foxtrot.GUI.User
                                     dataGrid_User_Edit.Columns[0].GetCellContent(
                                         dataGrid_User_Edit.SelectedItem))
                                 .Text);
+
                         tempActor = DBReadLogic.GetActorInfo(tempActor);
 
-                        textBox_User_Edit_CompanyName.Text = tempActor.CompanyName;
-                        textBox_User_Edit_FirstName.Text = tempActor.FirstName;
-                        textBox_User_Edit_LastName.Text = tempActor.LastName;
-                        textBox_User_Edit_Phone.Text = tempActor.WorkPhone.ToString();
-                        textBox_User_Edit_Email.Text = tempActor.WorkEmail;
-                        textBox_User_Edit_Fax.Text = tempActor.WorkFax.ToString();
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
+
+                        DataContext = tempActor;
                     }
                 }
             }
@@ -79,50 +74,127 @@ namespace Foxtrot.GUI.User
         {
             int tempInt;
 
-            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text ==
-                "Administrator")
+            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
-                tempAdministrator.FirstName = textBox_User_Edit_FirstName.Text;
-                tempAdministrator.LastName = textBox_User_Edit_LastName.Text;
+                tempAdministrator.FirstName = GUISortingLogic.Name(textBox_User_Edit_FirstName);
 
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
+                if (tempAdministrator.FirstName == null)
                 {
-                    tempAdministrator.WorkPhone = tempInt;
+                    GUISortingLogic.Message("Du SKAL indtast et FORNAVN!");
+                    return;
                 }
 
-                tempAdministrator.WorkEmail = textBox_User_Edit_Email.Text;
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempInt) && textBox_User_Edit_Fax.Text.Length == 8)
+                tempAdministrator.LastName = GUISortingLogic.Name(textBox_User_Edit_LastName);
+
+                if (tempAdministrator.LastName == null)
                 {
-                    tempAdministrator.WorkFax = tempInt;
+                    GUISortingLogic.Message("Du SKAL indtast et EFTERNAVN!");
+                    return;
+                }
+
+                tempAdministrator.WorkPhone = GUISortingLogic.Number(textBox_User_Edit_Phone);
+
+                if (tempAdministrator.WorkPhone == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                    return;
+                }
+
+                tempAdministrator.WorkEmail = GUISortingLogic.Email(textBox_User_Edit_Email);
+
+                if (tempAdministrator.WorkEmail == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
+                    return;
+                }
+
+                if (textBox_User_Edit_Fax.Text.Length != 0)
+                {
+                    tempAdministrator.WorkFax = GUISortingLogic.Number(textBox_User_Edit_Fax);
+
+                    if (tempAdministrator.WorkEmail == null)
+                    {
+                        GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                        return;
+                    }
+                }
+
+                else
+                {
+                    tempAdministrator.WorkFax = null;
                 }
 
                 DBUpdateLogic.UpdateAdmin(tempAdministrator);
+
+                GUISortingLogic.Message("Brugeroplysninger til: " + tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Ændret!");
             }
 
-            DBReadLogic.FillUserTable(tempUser.UserTable);
-            MainWindow.FillComboBoxWithAdminsAndActors();
-
-            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text ==
-                "Aktør")
+            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
-                tempActor.CompanyName = textBox_User_Edit_CompanyName.Text;
-                tempActor.FirstName = textBox_User_Edit_FirstName.Text;
-                tempActor.LastName = textBox_User_Edit_LastName.Text;
+                tempActor.FirstName = GUISortingLogic.Name(textBox_User_Edit_FirstName);
 
-                if (int.TryParse(textBox_User_Edit_Phone.Text, out tempInt) && textBox_User_Edit_Phone.Text.Length == 8)
+                if (tempActor.FirstName == null)
                 {
-                    tempActor.WorkPhone = tempInt;
+                    GUISortingLogic.Message("Du SKAL indtast et FORNAVN!");
+                    return;
                 }
 
-                tempActor.WorkEmail = textBox_User_Edit_Email.Text;
+                tempActor.LastName = GUISortingLogic.Name(textBox_User_Edit_LastName);
 
-                if (int.TryParse(textBox_User_Edit_Fax.Text, out tempInt) && textBox_User_Edit_Fax.Text.Length == 8)
+                if (tempActor.LastName == null)
                 {
-                    tempActor.WorkFax = tempInt;
+                    GUISortingLogic.Message("Du SKAL indtast et EFTERNAVN!");
+                    return;
+                }
+
+                tempActor.WorkPhone = GUISortingLogic.Number(textBox_User_Edit_Phone);
+
+                if (tempActor.WorkPhone == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                    return;
+                }
+
+                tempActor.WorkEmail = GUISortingLogic.Email(textBox_User_Edit_Email);
+
+                if (tempActor.WorkEmail == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast en gyldig EMAIL ADRESSE!");
+                    return;
+                }
+
+                if (textBox_User_Edit_Fax.Text.Length != 0)
+                {
+                    tempActor.WorkFax = GUISortingLogic.Number(textBox_User_Edit_Fax);
+
+                    if (tempActor.WorkEmail == null)
+                    {
+                        GUISortingLogic.Message("Du SKAL indtast et 8-CIFRET TELEFON NR.!");
+                        return;
+                    }
+                }
+
+                else
+                {
+                    tempActor.WorkFax = null;
+                }
+
+                tempActor.CompanyName = GUISortingLogic.Name(textBox_User_Edit_CompanyName);
+
+                if (tempActor.CompanyName == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast et FIRMANAVN!");
+                    return;
                 }
 
                 DBUpdateLogic.UpdateActor(tempActor);
+
+                GUISortingLogic.Message("Brugeroplysninger til: " + tempActor.CompanyName + " er blevet Ændret!");
             }
+
+            DBReadLogic.FillUserTable(tempUser.UserTable);
+
+            MainWindow.FillComboBoxWithAdminsAndActors();
         }
 
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
@@ -130,14 +202,19 @@ namespace Foxtrot.GUI.User
             if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 DBDeleteLogic.DeleteAdmin(tempAdministrator);
+
+                GUISortingLogic.Message(tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Slettet!");
             } //If the selected row is an administrator
 
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
                 DBDeleteLogic.DeleteActor(tempActor);
+
+                GUISortingLogic.Message(tempActor.CompanyName + " er blevet Slettet!");
             } //If the selected row is an actor
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
+
             MainWindow.FillComboBoxWithAdminsAndActors();
         }
     }

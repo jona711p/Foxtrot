@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Windows.Controls;
 using System.Windows;
 using Foxtrot.Classes;
@@ -7,8 +6,9 @@ using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.Product
 {
-    /// // Mikael
-    ///             
+    /// <summary>
+    /// Mikael Paaske
+    /// </summary>
     public partial class Product_Add : Page
     {
         private bool availibility;

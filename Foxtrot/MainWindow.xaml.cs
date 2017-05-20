@@ -38,6 +38,12 @@ namespace Foxtrot
                 "\nFredag kl. 09.00 - 14.00";
         }
 
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
+
         void WindowClosing(object sender, CancelEventArgs e)
         {
             Application.Current.Shutdown();
@@ -142,12 +148,6 @@ namespace Foxtrot
         private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new CombiProduct_Edit_Delete();
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
         }
     }
 }
