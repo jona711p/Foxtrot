@@ -25,7 +25,7 @@ namespace Foxtrot.GUI.User
             DataContext = tempUser;
         }
 
-        private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e) //griddet bliver tømt efter man vælger en (mulighedvis pga. datacontexten bliver ændret)
         {
             //Runs when the user selects any item on the datagrid
             //Checks the selected users permission/usertype and and ID then runs the corresponding method to retrieves all information about it from the database

@@ -80,9 +80,16 @@ namespace Foxtrot.GUI.Product
                 {
                     ((System.Windows.Controls.Image)product_imageGrid.Children[i]).Source = null;
                 }
+                
                 for (int i = 0; i < tempProduct.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
                 {
-                    ((System.Windows.Controls.Image)product_imageGrid.Children[i]).Source = new BitmapImage(new Uri(tempProduct.Files[i].URI));
+                    if (!string.IsNullOrEmpty(tempProduct.Files[i].URI))
+                    {
+
+
+                        ((System.Windows.Controls.Image) product_imageGrid.Children[i]).Source =
+                            new BitmapImage(new Uri(tempProduct.Files[i].URI));
+                    }
                 }
                 
                 comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;

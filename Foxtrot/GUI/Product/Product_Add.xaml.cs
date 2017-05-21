@@ -21,7 +21,7 @@ namespace Foxtrot.GUI.Product
         OpeningHour tempTime = new OpeningHour();
 
 
-        public Product_Add(Classes.User inputUser)
+        public Product_Add(Classes.User inputUser) // MANGLER TILFØJELSE AF HOVED/KATEGORI OG FILER
         {
             InitializeComponent();
             tempUser = inputUser;
@@ -178,13 +178,13 @@ namespace Foxtrot.GUI.Product
                 tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
                 tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
 
-                //tempTime.Monday = checkBox_Product_Add_Monday.IsChecked ? null : false; //hvis det er null skal den sættes til false
-                //tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked ? null : false;
-                //tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked ? null : false;
-                //tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked ? null : false;
-                //tempTime.Friday = checkBox_Product_Add_Friday.IsChecked ? null : false;
-                //tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked ? null : false;
-                //tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked ? null : false;
+                tempTime.Monday = checkBox_Product_Add_Monday.IsChecked == true;
+                tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked == true;
+                tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked == true;
+                tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked == true;
+                tempTime.Friday = checkBox_Product_Add_Friday.IsChecked == true;
+                tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked == true;
+                tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked == true;
 
             }
 
