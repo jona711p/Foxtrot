@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows;
 using Foxtrot.Classes;
@@ -15,6 +16,10 @@ namespace Foxtrot.GUI.Product
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
         Classes.User tempUser = new Classes.User();
+        DateTime? tempTimeFrom = new DateTime?();
+        DateTime? tempTimeTo = new DateTime?();
+        OpeningHour tempTime = new OpeningHour();
+
 
         public Product_Add(Classes.User inputUser)
         {
@@ -161,6 +166,27 @@ namespace Foxtrot.GUI.Product
             {
                 tempProduct.Website = textBox_Product_Add_Website.Text;
             }
+            if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateFrom != null)
+            {
+
+                tempTimeFrom = datePicker_Product_Add_DateFrom.Value;
+                tempTimeTo = datePicker_Product_Add_DateTo.Value;
+
+
+                tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
+                tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
+                tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
+                tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
+
+                //tempTime.Monday = checkBox_Product_Add_Monday.IsChecked ? null : false; //hvis det er null skal den sættes til false
+                //tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked ? null : false;
+                //tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked ? null : false;
+                //tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked ? null : false;
+                //tempTime.Friday = checkBox_Product_Add_Friday.IsChecked ? null : false;
+                //tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked ? null : false;
+                //tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked ? null : false;
+
+            }
 
             if (rbtn_Product_Add_Availability_False.IsEnabled == true ||
                 rbtn_Product_Add_Availability_True.IsChecked == true)
@@ -171,6 +197,7 @@ namespace Foxtrot.GUI.Product
             tempProduct.Cities = new City();
             tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
 
+            tempProduct.OpeningHours = tempTime;
             tempProduct.UserID = tempUser.ID;
             DBWriteLogic.WriteNewProduct(tempProduct);
             MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet oprettet i systemet!");

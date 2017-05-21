@@ -291,7 +291,24 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(@"
+SELECT
+Products.ID AS 'Produkt Nr.',
+Products.[Name] AS 'Navn',
+Products.[Address] AS 'Addresse',
+Cities.Name AS 'By',
+MainCategories.Name AS 'Hovedkategori',
+Categories.Name AS 'Kategori',
+CONVERT(NVARCHAR, (CONVERT(DATE, OpeningHours.StartDate, 103)), 103) AS 'Start Dato',
+CONVERT(NVARCHAR, (CONVERT(DATE, OpeningHours.EndDate, 103)), 103) AS 'Slut Dato'
+FROM Products
+
+INNER JOIN Cities ON FK_CityID = Cities.ID
+INNER JOIN MainCategories ON FK_MainCategoryID = MainCategories.ID
+INNER JOIN Categories ON FK_CategoryID = Categories.ID
+INNER JOIN OpeningHours ON FK_OpeningHourID = OpeningHours.ID
+
+ORDER BY[Produkt Nr.]", connection);
 
                 adapter.Fill(productTable);
             }
