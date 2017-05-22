@@ -62,12 +62,12 @@ namespace Foxtrot.Classes.DB
 
         //    connection = DBConnectionLogic.DisconnectFromDB(connection);
         //}
-        public static void WriteNewProduct(Product inputProducts)
+        public static int? WriteNewProduct(Product inputProducts)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            //try
             {
                 SqlCommand command = new SqlCommand("spWriteNewProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -100,10 +100,10 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProducts.CanonicalUrl;
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProducts.Cities.ID;
                 command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputProducts.UserID;
-                command.Parameters.Add("@MainCategoryID", SqlDbType.Int).Value = inputProducts.MainCategories.ID;
+                command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = inputProducts.MainCategories.ID;
                 command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = inputProducts.Categories.ID;
 
-                // OPENINGHOURS MANGLER FLERE PARAMETER!
+                //todo OPENINGHOURS MANGLER FLERE PARAMETER!
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
                 command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//usikker
@@ -117,19 +117,19 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Friday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Friday;
                 command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Saturday;
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
-                command.ExecuteNonQuery();
+                inputProducts.ID=(int)command.ExecuteScalar();
             }
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+            return inputProducts.ID;
         }
         public static List<File> WriteNewFiles(List<File> inputFiles)
         {
-            //List<int> FileIDList = new List<int>();
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
             try
@@ -137,18 +137,22 @@ namespace Foxtrot.Classes.DB
                 for (int i = 0; i < inputFiles.Count; i++)
                 {
                     {
-                    SqlCommand command = new SqlCommand(@"
-                        DECLARE @Url NVARCHAR(MAX)
-                        INSERT INTO Files(URI)
-                        VALUES(@Url)", connection);
-                    command.Parameters.Add("@Url", SqlDbType.NVarChar).Value = inputFiles[i];
-                    inputFiles[i].ID = ((int)command.ExecuteScalar());  
+
+
+                        SqlCommand command = new SqlCommand(string.Format(@"INSERT INTO Files(URI) VALUES('{0}');
+                        select CAST(SCOPE_IDENTITY() AS INT )", inputFiles[i].URI), connection);
+                      
+                        inputFiles[i].ID = ((int)command.ExecuteScalar());  
                     }
                 }                
             }
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
             return inputFiles;
         }
@@ -162,15 +166,8 @@ namespace Foxtrot.Classes.DB
                 for (int i = 0; i < inputProduct.Files.Count; i++)
                 {
                     {
-                        SqlCommand command = new SqlCommand(@"
-                        DECLARE @FK_ProductID INT
-                        DECLARE @FK_FileID INT
-
-                        INSERT INTO Rel_Files(FK_ProductID, FK_FileID)
-                        VALUES(@FK_ProductID, @FK_FileID)", connection);
-                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
-                        command.Parameters.Add("@FK_FileID", SqlDbType.Int).Value = inputProduct.Files[i].URI;
-
+                        SqlCommand command = new SqlCommand(String.Format(@"INSERT INTO Rel_Files(FK_ProductID, FK_FileID)
+                        VALUES({0}, {1})", inputProduct.ID, inputProduct.Files[i].ID), connection);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -178,6 +175,10 @@ namespace Foxtrot.Classes.DB
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
         }
         public static void WriteNewCombiProduct(Product inputProduct)
@@ -196,6 +197,10 @@ namespace Foxtrot.Classes.DB
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
         }
     }

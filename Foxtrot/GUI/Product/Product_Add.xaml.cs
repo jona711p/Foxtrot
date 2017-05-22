@@ -242,8 +242,10 @@ namespace Foxtrot.GUI.Product
             tempProduct.Files.Add(tempFile3);
             tempProduct.Files.Add(tempFile4);
 
+
+
             tempProduct.Files = DBWriteLogic.WriteNewFiles(tempProduct.Files);
-            DBWriteLogic.WriteNewProduct(tempProduct);
+            tempProduct.ID = DBWriteLogic.WriteNewProduct(tempProduct);
 
             DBWriteLogic.WriteNewRelFiles(tempProduct);
             MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet oprettet i systemet!");

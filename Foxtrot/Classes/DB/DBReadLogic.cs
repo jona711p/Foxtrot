@@ -455,8 +455,10 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
 
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                adapter.Fill(dt);
+
 
                 foreach (DataRow row in dt.Rows)
                 {
