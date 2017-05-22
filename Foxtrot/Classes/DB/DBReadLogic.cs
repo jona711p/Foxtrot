@@ -390,7 +390,6 @@ namespace Foxtrot.Classes.DB
                     if (!string.IsNullOrEmpty(row["FileID"].ToString()) &&
                         !string.IsNullOrEmpty(row["URI"].ToString()))
                     {
-
                         File tempFile = new File();
                         tempFile.ID = int.Parse(row["FileID"].ToString());
                         tempFile.URI = Convert.ToString(row["URI"]);
