@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Foxtrot.GUI.XMLImport;
@@ -126,7 +127,59 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+        public static List<File> WriteNewFiles(List<File> inputFiles)
+        {
+            //List<int> FileIDList = new List<int>();
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                for (int i = 0; i < inputFiles.Count; i++)
+                {
+                    {
+                    SqlCommand command = new SqlCommand(@"
+                        DECLARE @Url NVARCHAR(MAX)
+                        INSERT INTO Files(URI)
+                        VALUES(@Url)", connection);
+                    command.Parameters.Add("@Url", SqlDbType.NVarChar).Value = inputFiles[i];
+                    inputFiles[i].ID = ((int)command.ExecuteScalar());  
+                    }
+                }                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return inputFiles;
+        }
+        public static void WriteNewRelFiles(Product inputProduct)
+        {
+            //List<int> FileIDList = new List<int>();
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                for (int i = 0; i < inputProduct.Files.Count; i++)
+                {
+                    {
+                        SqlCommand command = new SqlCommand(@"
+                        DECLARE @FK_ProductID INT
+                        DECLARE @FK_FileID INT
 
+                        INSERT INTO Rel_Files(FK_ProductID, FK_FileID)
+                        VALUES(@FK_ProductID, @FK_FileID)", connection);
+                        command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = inputProduct.ID;
+                        command.Parameters.Add("@FK_FileID", SqlDbType.Int).Value = inputProduct.Files[i].URI;
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public static void WriteNewCombiProduct(Product inputProduct)
         {
             SqlConnection connection = null;
