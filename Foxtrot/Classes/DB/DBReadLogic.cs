@@ -480,5 +480,37 @@ namespace Foxtrot.Classes.DB
 
             return inputProduct;
         }
+
+        public static DataTable GetSingleProductInfo(Product inputProduct, DataTable inputTable)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                bool dupe;
+
+                SqlCommand command = new SqlCommand("spGetSingleProductInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+
+                dupe = DBSortingLogic.DupeCheckCombiProductDataTable(inputProduct, inputTable);
+
+                if (!dupe)
+                {
+                    inputTable.Load(command.ExecuteReader());
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputTable;
+        }
     }
 }

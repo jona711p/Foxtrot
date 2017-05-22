@@ -38,39 +38,71 @@
     </Page.Resources>
 
     <Grid>
-        <!-- Liste over Combiprodukt start -->
-        <Grid HorizontalAlignment="Left" Height="450" Margin="664,10,0,0" VerticalAlignment="Top" Width="631">
-            <DataGrid x:Name="dataGrid_CombiProduct_List" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Height="167" Background="White" Width="611" AlternationCount="2" AlternatingRowBackground="LightGray"/>
-            <Label x:Name="label_CombiProduct_List" Content="Liste over combi produkter" HorizontalAlignment="Center" Margin="10,10,10,407" VerticalAlignment="Center" Width="611" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Height="33"/>
-            <Grid HorizontalAlignment="Left" Height="143" Margin="10,266,0,0" VerticalAlignment="Top" Width="611">
-                <TextBox x:Name="textBox_Combi_Add_Name" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <TextBox x:Name="textBox_Combi_Add_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="10,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                <RadioButton x:Name="rdbtn_Combi_Availibility_True" Content="Synlig" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="rdbtn_Combi_Availibility_False" Content="Usynlig" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="CombiProduct_Add_Delete" Content="Fjern" HorizontalAlignment="Left" Margin="10,-219,0,0" VerticalAlignment="Top" Width="75"/>
-            </Grid>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="631">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="3"/>
-                </Border.Effect>
-            </Border>
-        </Grid>
-        <!-- Liste over Combiprodukt slut -->
 
-        <!-- Liste over produkt start -->
         <Grid HorizontalAlignment="Left" Height="450" Margin="10,10,0,0" VerticalAlignment="Top" Width="642">
-            <Button x:Name="CombiProduct_Add_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="557,46,0,0" VerticalAlignment="Top" Width="75" Click="CombiProduct_Add_Add_OnClick"/>
-            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Height="354" Background="White" Width="622" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged" />
-            <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Center" Margin="10,10,10,409" VerticalAlignment="Center" Height="31" Width="622" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"/>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="642">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="3"/>
-                </Border.Effect>
-            </Border>
+            <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="622">
+                <Label x:Name="label_Product_List" Content="Liste over Produkter:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="602" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"/>
+                <Button x:Name="CombiProduct_Add_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="537,45,0,0" VerticalAlignment="Top" Width="75" Click="CombiProduct_Add_Add_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontSize="14" FontWeight="Bold">
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Button.Effect>
+                </Button>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="622">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Border.Effect>
+                </Border>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="350" Margin="10,90,0,0" VerticalAlignment="Top" Width="622">
+                <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="350" Background="White" Width="622" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="350" VerticalAlignment="Top" Width="622">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Border.Effect>
+                </Border>
+            </Grid>
         </Grid>
 
-        <!-- Liste over produkt slut -->
-
+        <Grid HorizontalAlignment="Left" Height="450" Margin="664,10,0,0" VerticalAlignment="Top" Width="631">
+            <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="621">
+                <Label x:Name="label_CombiProduct_List" Content="Liste over Combi Produkter:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="601" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                <Button x:Name="CombiProduct_Add_Delete" Content="Fjern" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="75" Click="CombiProduct_Add_Delete_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Button.Effect>
+                </Button>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="621">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Border.Effect>
+                </Border>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="235" Margin="10,90,0,0" VerticalAlignment="Top" Width="621">
+                <DataGrid x:Name="dataGrid_CombiProduct_List" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="235" Background="White" Width="621" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="621">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Border.Effect>
+                </Border>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="110" Margin="10,330,0,0" VerticalAlignment="Top" Width="621">
+                <TextBox x:Name="textBox_Combi_Add_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Navn *"/>
+                <TextBox x:Name="textBox_Combi_Add_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Tilbuds Pris i Procent (%)"/>
+                <RadioButton x:Name="rdbtn_Combi_Add_Availibility_True" Content="Synlig *" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <RadioButton x:Name="rdbtn_Combi_Add_Availibility_False" Content="Usynlig *" HorizontalAlignment="Left" Margin="245,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <Label x:Name="lbl_Combi_Add_Star" Content="* = Skal Udfyldes!" FontFamily="Arial" Margin="180,85,331,0"/>
+                <Button x:Name="btn_Combi_Add_Add" Content="Opret" HorizontalAlignment="Left" Margin="355,79,0,0" VerticalAlignment="Top" Width="75" Click="btn_Combi_Add_Add_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Button.Effect>
+                </Button>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="621">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </Border.Effect>
+                </Border>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Page>

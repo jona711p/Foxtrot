@@ -1,8 +1,11 @@
 ﻿
+using System.Data;
+using Foxtrot.GUI;
+
 namespace Foxtrot.Classes.DB
 {
     /// <summary>
-    /// Thomas Nielsen
+    /// Jonas Lykke & Thomas Nielsen
     /// </summary>
     class DBSortingLogic
     {
@@ -18,6 +21,20 @@ namespace Foxtrot.Classes.DB
         //using this method increases readability and understanding of what's going on in the code  
         {
             return objectFromReader.ToString().Equals("") ? null : (float?)float.Parse(objectFromReader.ToString());
+        }
+
+        public static bool DupeCheckCombiProductDataTable(Product inputProduct, DataTable inputTable)
+        {
+            foreach (DataRow row in inputTable.Rows)
+            {
+                if (int.Parse(row[0].ToString()) == inputProduct.ID)
+                {
+                    GUISortingLogic.Message("Produktet findes Allerede på Listen!");
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

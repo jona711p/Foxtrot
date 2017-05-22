@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Foxtrot.Classes
 {
@@ -10,8 +11,9 @@ namespace Foxtrot.Classes
         public string Name { get; set; }
         public bool Availability { get; set; }
         public List<int?> ProductID { get; set; }//list
-        public int? UserID { get; set; }//auto
         public float? PackagePrice { get; set; } //auto
+        public int? UserID { get; set; }//auto
+        public DataTable ProductTable { get; set; }
 
         public CombiProduct()
         {
