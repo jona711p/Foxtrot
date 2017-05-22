@@ -16,9 +16,10 @@ namespace Foxtrot.GUI.CombiProduct
     public partial class CombiProduct_Add : Page
     {
         public Classes.User tempUser = new Classes.User();
-        private bool availibility;
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
+
+        private bool availibility;
 
         public CombiProduct_Add(Classes.User inputUser)
         {

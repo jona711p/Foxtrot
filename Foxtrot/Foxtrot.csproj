@@ -137,7 +137,6 @@
     <Compile Include="Classes\File.cs" />
     <Compile Include="Classes\OpeningHour.cs" />
     <Compile Include="Classes\DB\DBWriteLogic.cs" />
-    <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="GUI\CombiProduct\CombiProduct_Add.xaml.cs">
