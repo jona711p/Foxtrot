@@ -108,7 +108,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
                 command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//usikker
                 command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
-                
+
 
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
@@ -144,7 +144,7 @@ namespace Foxtrot.Classes.DB
                       
                         inputFiles[i].ID = ((int)command.ExecuteScalar());  
                     }
-                }                
+                }
             }
             catch (Exception)
             {
@@ -181,19 +181,32 @@ namespace Foxtrot.Classes.DB
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
         }
-        public static void WriteNewCombiProduct(Product inputProduct)
+
+        public static void WriteNewCombiProduct(CombiProduct inputCombiProduct)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
+
             try
             {
-                SqlCommand command = new SqlCommand("spWriteNewProduct", connection);
+                SqlCommand command = new SqlCommand("spWriteNewCombiProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-               
+                SqlParameter outputID = new SqlParameter("@CombiProductID", SqlDbType.Int);
+
+                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
+                command.Parameters.Add("@PackagePrice", SqlDbType.Float).Value = inputCombiProduct.PackagePrice;
+                command.Parameters.Add("@Availability", SqlDbType.Bit).Value = inputCombiProduct.Availability;
+                command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputCombiProduct.UserID;
+
+                command.Parameters.Add(outputID);
+                outputID.Direction = ParameterDirection.Output;
+
                 command.ExecuteNonQuery();
-            
+
+                int.Parse(outputID.Value.ToString());
             }
+
             catch (Exception)
             {
                 throw;

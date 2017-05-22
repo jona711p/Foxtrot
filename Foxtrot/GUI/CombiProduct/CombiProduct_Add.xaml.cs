@@ -98,6 +98,34 @@ namespace Foxtrot.GUI.CombiProduct
                 GUISortingLogic.Message("Du SKAL indtast et NAVN!");
                 return;
             }
+
+            if (textBox_Combi_Add_PackagePrice.Text.Length != 0)
+            {
+                tempCombiProduct.PackagePrice = GUISortingLogic.PackagePrice(textBox_Combi_Add_PackagePrice);
+
+                if (tempCombiProduct.PackagePrice == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast et Procent (%) Tal som skal Trækkes fra den Samlet Pris!");
+                    return;
+                }
+            }
+
+            else
+            {
+                tempCombiProduct.PackagePrice = null;
+            }
+
+            if (rdbtn_Combi_Add_Availibility_True.IsChecked == true)
+            {
+                tempCombiProduct.Availability = true;
+            }
+
+            if (rdbtn_Combi_Add_Availibility_False.IsChecked == true)
+            {
+                tempCombiProduct.Availability = false;
+            }
+
+            DBWriteLogic.WriteNewCombiProduct(tempCombiProduct);
         }
     }
 }
