@@ -175,7 +175,7 @@ namespace Foxtrot.Classes.DB
                 inputAdmin.LastName = reader["Efternavn"].ToString();
                 inputAdmin.WorkPhone = reader["Arbejds Telefon"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Telefon"].ToString());
                 inputAdmin.WorkEmail = reader["Arbejds Email"].ToString();
-                inputAdmin.WorkFax = reader["Arbejds Fax"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Fax"].ToString());
+                inputAdmin.WorkFax = reader["Arbejds Fax"].ToString() == null || reader["Arbejds Fax"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Fax"].ToString());
             }
 
             catch (Exception ex)
@@ -208,7 +208,7 @@ namespace Foxtrot.Classes.DB
                 inputActor.LastName = reader["Efternavn"].ToString();
                 inputActor.WorkPhone = reader["Arbejds Telefon"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Telefon"].ToString());
                 inputActor.WorkEmail = reader["Arbejds Email"].ToString();
-                inputActor.WorkFax = reader["Arbejds Fax"].ToString() == null || reader["Arbejds Telefon"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Fax"].ToString());
+                inputActor.WorkFax = reader["Arbejds Fax"].ToString() == null || reader["Arbejds Fax"].ToString().Length == 0 ? null : (int?)int.Parse(reader["Arbejds Fax"].ToString());
             }
 
             catch (Exception ex)

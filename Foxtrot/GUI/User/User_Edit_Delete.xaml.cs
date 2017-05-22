@@ -21,7 +21,7 @@ namespace Foxtrot.GUI.User
             DBReadLogic.FillUserTable(tempUser.UserTable);
 
             InitializeComponent();
-            
+
             DataContext = tempUser;
         }
 
@@ -46,7 +46,11 @@ namespace Foxtrot.GUI.User
 
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
 
-                        DataContext = tempAdministrator;
+                        textBox_User_Edit_FirstName.Text = tempAdministrator.FirstName;
+                        textBox_User_Edit_LastName.Text = tempAdministrator.LastName;
+                        textBox_User_Edit_Phone.Text = tempAdministrator.WorkPhone.ToString();
+                        textBox_User_Edit_Email.Text = tempAdministrator.WorkEmail;
+                        textBox_User_Edit_Fax.Text = tempAdministrator.WorkFax.ToString();
                     }
                 }
 
@@ -64,7 +68,12 @@ namespace Foxtrot.GUI.User
 
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
 
-                        DataContext = tempActor;
+                        textBox_User_Edit_FirstName.Text = tempActor.FirstName;
+                        textBox_User_Edit_LastName.Text = tempActor.LastName;
+                        textBox_User_Edit_Phone.Text = tempActor.WorkPhone.ToString();
+                        textBox_User_Edit_Email.Text = tempActor.WorkEmail;
+                        textBox_User_Edit_Fax.Text = tempActor.WorkFax.ToString();
+                        textBox_User_Edit_CompanyName.Text = tempActor.CompanyName;
                     }
                 }
             }
@@ -72,8 +81,6 @@ namespace Foxtrot.GUI.User
 
         private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            int tempInt;
-
             if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 tempAdministrator.FirstName = GUISortingLogic.Name(textBox_User_Edit_FirstName);
@@ -193,7 +200,6 @@ namespace Foxtrot.GUI.User
             }
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
-
             MainWindow.FillComboBoxWithAdminsAndActors();
         }
 
@@ -214,7 +220,6 @@ namespace Foxtrot.GUI.User
             } //If the selected row is an actor
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
-
             MainWindow.FillComboBoxWithAdminsAndActors();
         }
     }
