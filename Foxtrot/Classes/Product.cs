@@ -26,7 +26,6 @@ namespace Foxtrot.Classes
         public MainCategory MainCategories { get; set; }
         public Category Categories { get; set; }
         public List<File> Files { get; set; }
-        public List<CombiProduct> CombiProducts { get; set; }
         public float? Price { get; set; }
         public DataTable ProductTable { get; set; }
         public int? UserID { get; set; }

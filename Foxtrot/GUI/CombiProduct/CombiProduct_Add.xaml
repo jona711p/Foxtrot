@@ -54,7 +54,7 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="350" Margin="10,90,0,0" VerticalAlignment="Top" Width="622">
-                <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="350" Background="White" Width="622" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged" />
+                <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="350" Background="White" Width="622" AlternationCount="2" AlternatingRowBackground="LightGray"/>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="350" VerticalAlignment="Top" Width="622">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
@@ -86,10 +86,11 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="110" Margin="10,330,0,0" VerticalAlignment="Top" Width="621">
-                <TextBox x:Name="textBox_Combi_Add_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial"/>
-                <TextBox x:Name="textBox_Combi_Add_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial"/>
-                <RadioButton x:Name="rdbtn_Combi_Add_Availibility_True" Content="Synlig" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
-                <RadioButton x:Name="rdbtn_Combi_Add_Availibility_False" Content="Usynlig" HorizontalAlignment="Left" Margin="180,85,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <TextBox x:Name="textBox_Combi_Add_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Navn *"/>
+                <TextBox x:Name="textBox_Combi_Add_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Tilbuds Pris i Procent (%)"/>
+                <RadioButton x:Name="rdbtn_Combi_Add_Availibility_True" Content="Synlig *" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <RadioButton x:Name="rdbtn_Combi_Add_Availibility_False" Content="Usynlig *" HorizontalAlignment="Left" Margin="245,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <Label x:Name="lbl_Combi_Add_Star" Content="* = Skal Udfyldes!" FontFamily="Arial" Margin="180,85,331,0"/>
                 <Button x:Name="btn_Combi_Add_Add" Content="Opret" HorizontalAlignment="Left" Margin="355,79,0,0" VerticalAlignment="Top" Width="75" Click="btn_Combi_Add_Add_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
