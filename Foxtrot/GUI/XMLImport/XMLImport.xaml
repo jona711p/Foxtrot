@@ -10,17 +10,13 @@
 
     <Grid>
         <Grid HorizontalAlignment="Center" Height="60" Margin="10,10,10,249" VerticalAlignment="Center" Width="572">
-            <Label x:Name="lbl_XML_Import_Header" Content="Importere en ny XML Fil til DataBasen:" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Height="40" Width="552" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3"/>
-                </Label.Effect>
-            </Label>
+            <Label x:Name="lbl_XML_Import_Header" Content="Importere en ny XML Fil til DataBasen:" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Height="40" Width="552" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </Grid>
 
         <Grid HorizontalAlignment="Left" Height="60" Margin="10,70,0,0" VerticalAlignment="Top" Width="572">
             <Button x:Name="btn_Open_XML_File" Content="Vælg en XML Fil" Margin="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Background="White" BorderBrush="Black" Height="40" Width="552" Click="btn_Open_XML_File_Click">
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="3"/>
+                    <DropShadowEffect ShadowDepth="3"/>
                 </Button.Effect>
             </Button>
         </Grid>
@@ -33,7 +29,7 @@
         <Grid HorizontalAlignment="Left" Height="60" Margin="10,170,0,0" VerticalAlignment="Top" Width="572">
             <Button x:Name="btn_Start_Reading_From_XML" Content="Start Import af XML!" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Width="552" FontFamily="Arial" FontSize="20" Background="White" BorderBrush="Black" Height="40" FontWeight="Bold" Click="btn_Start_Reading_From_XML_Click">
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="3"/>
+                    <DropShadowEffect ShadowDepth="3"/>
                 </Button.Effect>
             </Button>
         </Grid>
@@ -43,7 +39,11 @@
             <TextBlock Text="{Binding Value, ElementName=pbStatus, StringFormat=\{0:0\}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,20,512,16" FontFamily="Arial" FontSize="20" Width="50" Height="24" FontWeight="Bold"/>
             <Label x:Name="lbl_ProgressPoint" Content="{Binding ProgressPoint}" HorizontalAlignment="Center" Margin="60,10,10,10" VerticalAlignment="Center" Height="40" Width="502" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="572"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="572">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Border.Effect>
+        </Border>
     </Grid>
 
 </Window>
