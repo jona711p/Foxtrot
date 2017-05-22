@@ -46,7 +46,7 @@ namespace Foxtrot.GUI.User
 
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Collapsed;
 
-                        DataContext = tempAdministrator;
+                        //DataContext = tempAdministrator;
                     }
                 }
 
@@ -64,7 +64,7 @@ namespace Foxtrot.GUI.User
 
                         textBox_User_Edit_CompanyName.Visibility = Visibility.Visible;
 
-                        DataContext = tempActor;
+                        //DataContext = tempActor;
                     }
                 }
             }

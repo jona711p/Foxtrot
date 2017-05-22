@@ -383,7 +383,9 @@ namespace Foxtrot.Classes.DB
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
-                dt.Load(command.ExecuteReader());
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
 
                 foreach (DataRow row in dt.Rows)
                 {
