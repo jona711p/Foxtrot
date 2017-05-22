@@ -42,11 +42,13 @@ namespace Foxtrot.GUI.CombiProduct
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
                 tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
             }
+            return;
         }
 
         private void CombiProduct_Add_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            
+           DBWriteLogic.WriteNewCombiProduct(tempProduct);
+            MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet tilføjet til combi produkt!");
         }
     }
 
