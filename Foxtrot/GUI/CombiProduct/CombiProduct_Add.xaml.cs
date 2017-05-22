@@ -61,6 +61,14 @@ namespace Foxtrot.GUI.CombiProduct
 
             dataGrid_CombiProduct_List.ItemsSource = productDataTable.AsDataView();
         }
+
+        private void CombiProduct_Add_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btn_Combi_Add_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
     }
 
 }
