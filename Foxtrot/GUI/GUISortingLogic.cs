@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI
 {
@@ -32,7 +34,7 @@ namespace Foxtrot.GUI
             {
                 return tempInt;
             }
-            
+
             return null;
         }
 
@@ -41,6 +43,18 @@ namespace Foxtrot.GUI
             if (inputEmail.Text.Length != 0 && inputEmail.Text.Contains("@"))
             {
                 return inputEmail.Text.ToLower();
+            }
+
+            return null;
+        }
+
+        public static float? PackagePrice(TextBox inputPackagePrice)
+        {
+            float tempFloat;
+
+            if (float.TryParse(inputPackagePrice.Text.Replace(".", ","), out tempFloat))
+            {
+                return tempFloat;
             }
 
             return null;
