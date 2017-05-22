@@ -99,8 +99,10 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProducts.CanonicalUrl;
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProducts.Cities.ID;
                 command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputProducts.UserID;
+                command.Parameters.Add("@MainCategoryID", SqlDbType.Int).Value = inputProducts.MainCategories.ID;
+                command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = inputProducts.Categories.ID;
 
-                // MANGLER FLERE PARAMETER!
+                // OPENINGHOURS MANGLER FLERE PARAMETER!
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
                 command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//usikker

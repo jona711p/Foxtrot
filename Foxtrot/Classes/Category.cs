@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Foxtrot.Classes
 {
@@ -6,6 +7,8 @@ namespace Foxtrot.Classes
     {
         public int? ID { get; set; }
         public string Name { get; set; }
+        public List<KeyValuePair<int, string>> CategoryList = new List<KeyValuePair<int, string>>();
+
 
         public bool Equals(Category other) // Checks if the same "ID" already exists in the list
         {
@@ -26,6 +29,8 @@ namespace Foxtrot.Classes
 
     public class MainCategory : Category, IEquatable<MainCategory> // Used by "Distinct()" to find dupes in the list
     {
+        public List<KeyValuePair<int, string>> MainCategoryList = new List<KeyValuePair<int, string>>();
+
         public bool Equals(MainCategory other) // Checks if the same "ID" already exists in the list
         {
             if (ID == other.ID)

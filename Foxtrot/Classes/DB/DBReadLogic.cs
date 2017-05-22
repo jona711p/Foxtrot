@@ -257,7 +257,78 @@ namespace Foxtrot.Classes.DB
 
             return inputList;
         }
+        public static List<KeyValuePair<int, string>> FillCategoryList(List<KeyValuePair<int, string>> inputList)
+        {
+            if (inputList != null)
+            {
+                inputList = new List<KeyValuePair<int, string>>();
+            }
 
+            inputList.Clear();
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Categories ORDER BY Name", connection);
+
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int tempInt = int.Parse(row["ID"].ToString());
+                    string tempString = Convert.ToString(row["Name"]);
+                    inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputList;
+        }
+        public static List<KeyValuePair<int, string>> FillMainCategoryList(List<KeyValuePair<int, string>> inputList)
+        {
+            if (inputList != null)
+            {
+                inputList = new List<KeyValuePair<int, string>>();
+            }
+
+            inputList.Clear();
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM MainCategories ORDER BY Name", connection);
+
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int tempInt = int.Parse(row["ID"].ToString());
+                    string tempString = Convert.ToString(row["Name"]);
+                    inputList.Add(new KeyValuePair<int, string>(tempInt, tempString));
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputList;
+        }
         public static DataTable FillUserTable(DataTable userTable)
         {
             userTable.Clear();

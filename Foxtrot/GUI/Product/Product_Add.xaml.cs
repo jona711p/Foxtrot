@@ -19,14 +19,19 @@ namespace Foxtrot.GUI.Product
         DateTime? tempTimeFrom = new DateTime?();
         DateTime? tempTimeTo = new DateTime?();
         OpeningHour tempTime = new OpeningHour();
+        Category tempCategory = new Category();
+        MainCategory tempMainCategory = new MainCategory();
+
 
 
         public Product_Add(Classes.User inputUser) // MANGLER TILFØJELSE AF HOVED/KATEGORI OG FILER
         {
             InitializeComponent();
             tempUser = inputUser;
-        
             comboBox_Product_Add_CityID.ItemsSource = DBReadLogic.FillCityList(tempCity.CityList);
+            comboBox_Product_Add_MainCategory.ItemsSource = DBReadLogic.FillMainCategoryList(tempMainCategory.MainCategoryList);
+            comboBox_Product_Add_Category.ItemsSource = DBReadLogic.FillCategoryList(tempCategory.CategoryList);
+                
             DataContext = tempProduct;
         }
 
@@ -193,8 +198,11 @@ namespace Foxtrot.GUI.Product
             {
                 tempProduct.Availability = availibility;
             }
-
+            tempProduct.MainCategories = new MainCategory();
+            tempProduct.Categories = new MainCategory();
             tempProduct.Cities = new City();
+            tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_MainCategory.SelectedItem).Key;
+            tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_Category.SelectedItem).Key;
             tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
 
             tempProduct.OpeningHours = tempTime;

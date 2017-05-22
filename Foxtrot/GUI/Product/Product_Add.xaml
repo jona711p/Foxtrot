@@ -47,32 +47,42 @@
             </Border.Effect>
         </Border>
         <Grid HorizontalAlignment="Left" Height="416" Margin="396,32,0,0" VerticalAlignment="Top" Width="665">
-            <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="-111,14,0,0" VerticalAlignment="Top" Width="113"/>
-            <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="40,34,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
-            <TextBox x:Name="textBox_Product_Add_Adress" HorizontalAlignment="Left" Height="23" Margin="224,32,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
-            <TextBox x:Name="textBox_Product_Add_Longtitude" HorizontalAlignment="Left" Height="23" Margin="40,94,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
-            <TextBox x:Name="textBox_Product_Add_Latitude" HorizontalAlignment="Left" Height="23" Margin="223,97,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Breddegrad" />
-            <TextBox x:Name="textBox_Product_Add_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="43,153,0,0" TextWrapping="Wrap" Text="{Binding ContactPhone}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Telefon nummer" />
-            <TextBox x:Name="textBox_Product_Add_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="223,158,0,0" TextWrapping="Wrap" Text="{Binding ContactEmail}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Email" />
-            <TextBox x:Name="textBox_Product_Add_ContactFax" HorizontalAlignment="Left" Height="23" Margin="44,214,0,0" TextWrapping="Wrap" Text="{Binding ContactFax}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Fax" />
-            <TextBox x:Name="textBox_Product_Add_Príce" HorizontalAlignment="Left" Height="23" Margin="224,216,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
-            <TextBox x:Name="textBox_Product_Add_Description" HorizontalAlignment="Left" Height="23" Margin="44,275,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
-            <TextBox x:Name="textBox_Product_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="225,278,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
-            <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="46,338,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="By portal" />
-            <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="224,340,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
-            <ComboBox x:Name="comboBox_Product_Add_CityID" HorizontalAlignment="Left" Margin="373,278,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
-            <Label x:Name="label_Product_Add_CityID" Content="Vælg by:" HorizontalAlignment="Left" Margin="373,247,0,0" VerticalAlignment="Top" Width="62"/>
-            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="490,245,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rbtn_Product_Add_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="503,284,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_True_OnClick"/>
-            <RadioButton x:Name="rbtn_Product_Add_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="559,283,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_False_OnClick"/>
-            <Button x:Name="button_Product_Add_Create" Content="Opret Produkt" HorizontalAlignment="Center" Margin="506,322,59,72" VerticalAlignment="Center" Width="100" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter et produkt i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="button_Product_Add_Create_Click" Height="22">
+            <Label x:Name="label_Product_AddNew" Content="Opret nyt produkt" HorizontalAlignment="Left" Margin="-132,-80,0,0" VerticalAlignment="Top" Width="113"/>
+
+        </Grid>
+        <Grid x:Name="grid_selectionInputs" Margin="596,172,543,104">
+            <Label x:Name="label_Product_Add_CityID" Content="Vælg by:" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="62"/>
+            <Label x:Name="label_Product_Add_MainCategory" Content="Vælg hovedkategori:" HorizontalAlignment="Left" Margin="19,65,0,0" VerticalAlignment="Top" Width="125"/>
+            <Label x:Name="label_Product_Add_Category" Content="Vælg kategori:" HorizontalAlignment="Left" Margin="19,119,0,0" VerticalAlignment="Top" Width="106"/>
+
+            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="142,26,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Product_Add_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="155,65,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_True_OnClick"/>
+            <RadioButton x:Name="rbtn_Product_Add_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="211,64,0,0" VerticalAlignment="Top" Click="Rbtn_Product_Add_Availability_False_OnClick"/>
+            <ComboBox x:Name="comboBox_Product_Add_CityID" HorizontalAlignment="Left" Margin="25,41,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+            <ComboBox x:Name="comboBox_Product_Add_MainCategory" HorizontalAlignment="Left" Margin="25,96,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+            <ComboBox x:Name="comboBox_Product_Add_Category" HorizontalAlignment="Left" Margin="25,146,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+
+            <Button x:Name="button_Product_Add_Create" Content="Opret Produkt" HorizontalAlignment="Center" Margin="155,109,40,0" VerticalAlignment="Top" Width="100" BorderThickness="1,1,1,1" AllowDrop="True" ToolTip="Opretter et produkt i systemet!" FontWeight="Bold" FontFamily="Arial" FontSize="14" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" Click="button_Product_Add_Create_Click" Height="22">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
                 </Button.Effect>
             </Button>
         </Grid>
-
-        <Grid x:Name="grid_timeInputs" Margin="736,49,394,226">
+        <Grid x:Name="grid_textInputs" Margin="-377,49,1533,239">
+            <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="12,7,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
+            <TextBox x:Name="textBox_Product_Add_Adress" HorizontalAlignment="Left" Height="23" Margin="174,7,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
+            <TextBox x:Name="textBox_Product_Add_Longtitude" HorizontalAlignment="Left" Height="23" Margin="12,35,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
+            <TextBox x:Name="textBox_Product_Add_Latitude" HorizontalAlignment="Left" Height="23" Margin="174,35,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Breddegrad" />
+            <TextBox x:Name="textBox_Product_Add_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="12,63,0,0" TextWrapping="Wrap" Text="{Binding ContactPhone}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Telefon nummer" />
+            <TextBox x:Name="textBox_Product_Add_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="174,63,0,0" TextWrapping="Wrap" Text="{Binding ContactEmail}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Email" />
+            <TextBox x:Name="textBox_Product_Add_ContactFax" HorizontalAlignment="Left" Height="23" Margin="12,91,0,0" TextWrapping="Wrap" Text="{Binding ContactFax}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Fax" />
+            <TextBox x:Name="textBox_Product_Add_Príce" HorizontalAlignment="Left" Height="23" Margin="174,91,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
+            <TextBox x:Name="textBox_Product_Add_Description" HorizontalAlignment="Left" Height="23" Margin="12,119,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
+            <TextBox x:Name="textBox_Product_Add_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="174,119,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
+            <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="12,147,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="By portal" />
+            <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="174,147,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
+        </Grid>
+        <Grid x:Name="grid_timeInputs" Margin="-377,290,1507,-16">
             <CheckBox x:Name="checkBox_Product_Add_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>
             <CheckBox x:Name="checkBox_Product_Add_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="43,65,0,0" VerticalAlignment="Top" IsChecked="True"/>
             <CheckBox x:Name="checkBox_Product_Add_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top" IsChecked="True"/>
