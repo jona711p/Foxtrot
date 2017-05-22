@@ -291,7 +291,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM viewProductsEditTable", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillProductTable", connection);
 
                 adapter.Fill(productTable);
             }

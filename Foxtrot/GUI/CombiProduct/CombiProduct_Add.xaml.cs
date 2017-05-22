@@ -3,10 +3,7 @@ using System.Data;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
-using System.Collections.Generic;
 using System.Windows;
-using System.Data.SqlClient;
-using System.Windows.Media.Imaging;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -18,7 +15,8 @@ namespace Foxtrot.GUI.CombiProduct
         public Classes.User tempUser = new Classes.User();
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
-
+        
+        private DataTable productDataTable = new DataTable();
         private bool availibility;
 
         public CombiProduct_Add(Classes.User inputUser)
@@ -27,7 +25,10 @@ namespace Foxtrot.GUI.CombiProduct
             InitializeComponent();
             tempProduct.ProductTable = new DataTable();
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
+
             DataContext = tempProduct;
+
+            productDataTable.Columns.Add("Produkt Nr");
         }
 
         private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,16 +41,25 @@ namespace Foxtrot.GUI.CombiProduct
                             dataGrid_Product_List.Columns[0].GetCellContent(
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
+
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
                 tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
             }
-            return;
         }
 
         private void CombiProduct_Add_Add_OnClick(object sender, RoutedEventArgs e)
         {
-           DBWriteLogic.WriteNewCombiProduct(tempProduct);
-            MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet tilføjet til combi produkt!");
+            int tempInt;
+
+            tempInt = int.Parse(
+                ((TextBlock)
+                    dataGrid_Product_List.Columns[0].GetCellContent(
+                        dataGrid_Product_List.SelectedItem))
+                .Text);
+
+            productDataTable.Rows.Add(tempInt);
+
+            dataGrid_CombiProduct_List.ItemsSource = productDataTable.AsDataView();
         }
     }
 
