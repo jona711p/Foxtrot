@@ -43,6 +43,11 @@ namespace Foxtrot.GUI.CombiProduct
                 tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
             }
         }
+
+        private void CombiProduct_Add_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 
 }

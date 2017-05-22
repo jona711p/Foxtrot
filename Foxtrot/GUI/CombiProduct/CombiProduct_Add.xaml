@@ -52,7 +52,7 @@
             <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="188,-5,0,0" VerticalAlignment="Top" Height="31" Width="121"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" Margin="21,34,0,0" VerticalAlignment="Top" Width="631"/>
-        <Button x:Name="CombiProduct_Add_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="586,426,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="CombiProduct_Add_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="586,426,0,0" VerticalAlignment="Top" Width="75" Click="CombiProduct_Add_Add_OnClick"/>
         <Button x:Name="CombiProduct_Add_Delete" Content="Fjern" HorizontalAlignment="Left" Margin="693,426,0,0" VerticalAlignment="Top" Width="75"/>
 
         <!-- Liste over produkt slut -->
