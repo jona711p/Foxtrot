@@ -21,6 +21,9 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdministrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdministrator.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdministrator.WorkPhone == null ? null : inputAdministrator.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputAdministrator.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdministrator.WorkFax == null ? null : inputAdministrator.WorkFax;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -47,8 +50,14 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM viewActors WHERE CompanyName = @CompanyName", connection);
+                SqlCommand command = new SqlCommand("spDupeCheckActor", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputActor.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputActor.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputActor.WorkFax;
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
 
                 SqlDataReader reader = command.ExecuteReader();
