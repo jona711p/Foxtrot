@@ -5,7 +5,9 @@ using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Media.Imaging;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Foxtrot.GUI.Product
 {
@@ -74,7 +76,7 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
                 comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
                 comboBox_Product_Edit_MainCategory.Text = tempProduct.MainCategories.Name;
-                comboBox_Product_Edit_Category.SelectedValuePath = tempProduct.Categories.Name;
+                comboBox_Product_Edit_Category.Text = tempProduct.Categories.Name;
 
                 if (tempProduct.ContactPhone.Count != 0)
                 {
@@ -105,6 +107,34 @@ namespace Foxtrot.GUI.Product
 
                         ((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                     }
+                }
+                checkBox_Product_Edit_Monday.IsChecked = tempProduct.OpeningHours.Monday;
+                checkBox_Product_Edit_Tuesday.IsChecked = tempProduct.OpeningHours.Tuesday;
+                checkBox_Product_Edit_Wednesday.IsChecked = tempProduct.OpeningHours.Wednesday;
+                checkBox_Product_Edit_Thursday.IsChecked = tempProduct.OpeningHours.Thursday;
+                checkBox_Product_Edit_Friday.IsChecked = tempProduct.OpeningHours.Friday;
+                checkBox_Product_Edit_Saturday.IsChecked = tempProduct.OpeningHours.Saturday;
+                checkBox_Product_Edit_Sunday.IsChecked = tempProduct.OpeningHours.Sunday;
+
+                if (tempProduct.OpeningHours.StartDate != null && tempProduct.OpeningHours.StartTime != null)
+                {
+                    DateTime? tempStartDateTime = new DateTime(tempProduct.OpeningHours.StartDate.Value.Year, tempProduct.OpeningHours.StartDate.Value.Month, tempProduct.OpeningHours.StartDate.Value.Day,
+                        tempProduct.OpeningHours.StartTime.Value.Hour, tempProduct.OpeningHours.StartTime.Value.Minute, tempProduct.OpeningHours.StartTime.Value.Second);
+                    datePicker_Product_Edit_DateFrom.Value = tempStartDateTime;
+                }
+                else
+                {
+                    datePicker_Product_Edit_DateFrom.Value = tempProduct.OpeningHours.StartDate;
+                }
+                if (tempProduct.OpeningHours.EndDate != null && tempProduct.OpeningHours.EndTime != null)
+                {
+                    DateTime? tempEndDateTime = new DateTime(tempProduct.OpeningHours.EndDate.Value.Year, tempProduct.OpeningHours.EndDate.Value.Month, tempProduct.OpeningHours.EndDate.Value.Day,
+                        tempProduct.OpeningHours.EndTime.Value.Hour, tempProduct.OpeningHours.EndTime.Value.Minute, tempProduct.OpeningHours.EndTime.Value.Second);
+                    datePicker_Product_Edit_DateTo.Value = tempEndDateTime;
+                }
+                else
+                {
+                    datePicker_Product_Edit_DateTo.Value = tempProduct.OpeningHours.EndDate;
                 }
             }
         }
@@ -212,11 +242,11 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Availability = availibility;
             }
 
-            if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateFrom != null)
+            if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateFrom != null)
             {
 
-                tempTimeFrom = datePicker_Product_Add_DateFrom.Value;
-                tempTimeTo = datePicker_Product_Add_DateTo.Value;
+                tempTimeFrom = datePicker_Product_Edit_DateFrom.Value;
+                tempTimeTo = datePicker_Product_Edit_DateTo.Value;
 
 
                 tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
@@ -224,13 +254,13 @@ namespace Foxtrot.GUI.Product
                 tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
                 tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
 
-                tempTime.Monday = checkBox_Product_Add_Monday.IsChecked == true;
-                tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked == true;
-                tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked == true;
-                tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked == true;
-                tempTime.Friday = checkBox_Product_Add_Friday.IsChecked == true;
-                tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked == true;
-                tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked == true;
+                tempTime.Monday = checkBox_Product_Edit_Monday.IsChecked == true;
+                tempTime.Tuesday = checkBox_Product_Edit_Tuesday.IsChecked == true;
+                tempTime.Wednesday = checkBox_Product_Edit_Wednesday.IsChecked == true;
+                tempTime.Thursday = checkBox_Product_Edit_Thursday.IsChecked == true;
+                tempTime.Friday = checkBox_Product_Edit_Friday.IsChecked == true;
+                tempTime.Saturday = checkBox_Product_Edit_Saturday.IsChecked == true;
+                tempTime.Sunday = checkBox_Product_Edit_Sunday.IsChecked == true;
             }
 
             tempProduct.Cities = new City();

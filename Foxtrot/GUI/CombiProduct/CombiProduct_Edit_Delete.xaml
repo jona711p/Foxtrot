@@ -43,7 +43,7 @@
     <Grid>
         <!-- Liste over Combiprodukt start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="337,10,0,0" VerticalAlignment="Top" Width="963">
-            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="0,33,0,0" VerticalAlignment="Top" Height="330" Background="White" Width="963" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged"/>
+            <DataGrid x:Name="dataGrid_CombiProduct_List"  IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="0,33,0,0" VerticalAlignment="Top" Height="330" Background="White" Width="963" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged"/>
             <Label x:Name="label_CombiProduct_List" Content="Liste over combi produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="155"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="363" Margin="337,10,0,0" VerticalAlignment="Top" Width="963"/>
@@ -67,7 +67,7 @@
         <Grid HorizontalAlignment="Left" Height="451" Margin="10,399,0,0" VerticalAlignment="Top" Width="642">
             <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="622">
                 <Label x:Name="label_Product_List" Content="Liste over Produkter:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="602" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"/>
-                <Button x:Name="CombiProduct_Edit_Delete_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="537,45,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontSize="14" FontWeight="Bold">
+                <Button x:Name="CombiProduct_Edit_Delete_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="537,45,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" Click="CombiProduct_Edit_Delete_Add_OnClick" FontFamily="Arial" FontSize="14" FontWeight="Bold">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
                     </Button.Effect>
@@ -90,7 +90,7 @@
         <Grid HorizontalAlignment="Left" Height="451" Margin="669,399,0,0" VerticalAlignment="Top" Width="631">
             <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="621">
                 <Label x:Name="label_CombiProduct_List1" Content="Liste over Produkter i Combi Produktet:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="601" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
-                <Button x:Name="CombiProduct_Edit_Delete_Delete" Content="Fjern" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
+                <Button x:Name="CombiProduct_Edit_Delete_Delete" Content="Fjern" Click="CombiProduct_Edit_Delete_Delete_OnClick" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
                     </Button.Effect>

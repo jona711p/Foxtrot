@@ -12,14 +12,21 @@ namespace Foxtrot.GUI.CombiProduct
     {
         public Classes.User tempUser = new Classes.User();
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
+        Classes.Product tempProduct = new Classes.Product();
 
         public CombiProduct_Edit_Delete(Classes.User inputUser)
         {
             tempUser = inputUser;
-            InitializeComponent();
+
+
+            tempProduct.ProductTable = new DataTable();
             tempCombiProduct.CombiProductTable = new DataTable();
+            tempCombiProduct.CombiProductTable1 = new DataTable();
+            InitializeComponent();
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
-            DataContext = tempCombiProduct;
+            DataContext = tempProduct;
+            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
 
         private void DataGrid_CombiProduct_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -88,8 +95,58 @@ namespace Foxtrot.GUI.CombiProduct
                 tempCombiProduct.CombiProductTable =
                     DBReadLogic.GetProductInfoAndCupeCheck(productID, tempCombiProduct.CombiProductTable);
             }
+        }
 
-            dataGrid_CombiProduct_ProductList.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
+        private void CombiProduct_Edit_Delete_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_Product_List.SelectedItem == null)
+            {
+                GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
+            }
+
+            else
+            {
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_Product_List.Columns[0].GetCellContent(
+                                dataGrid_Product_List.SelectedItem))
+                        .Text);
+
+                    tempCombiProduct.CombiProductTable1 =
+                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable1);
+
+            }
+
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
+        }
+
+        private void CombiProduct_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_CombiProduct_List1.SelectedItem == null)
+            {
+                GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
+            }
+
+            else
+            {
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_CombiProduct_List1.Columns[0].GetCellContent(
+                                dataGrid_CombiProduct_List1.SelectedItem))
+                        .Text);
+
+                foreach (DataRow row in tempCombiProduct.CombiProductTable1.Rows)
+                {
+                    if (int.Parse(row[0].ToString()) == tempProduct.ID)
+                    {
+                        row.Delete();
+                    }
+                }
+            }
+
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
         }
     }
 }
