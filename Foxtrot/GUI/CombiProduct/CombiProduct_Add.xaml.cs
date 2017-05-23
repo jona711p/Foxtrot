@@ -125,10 +125,20 @@ namespace Foxtrot.GUI.CombiProduct
                 tempCombiProduct.Availability = false;
             }
 
-            DBWriteLogic.WriteCombiProduct(tempCombiProduct);
-            DBWriteLogic.WritRelCombiProducts(tempCombiProduct);
+            bool dupe = DBReadLogic.DupeCheckCombiProduct(tempCombiProduct);
 
-            GUISortingLogic.Message("Et nyt Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' er blevet oprettet i systemet!");
+            if (!dupe)
+            {
+                DBWriteLogic.WriteCombiProduct(tempCombiProduct);
+                DBWriteLogic.WritRelCombiProducts(tempCombiProduct);
+
+                GUISortingLogic.Message("Et nyt Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' er blevet oprettet i systemet!");
+            }
+
+            else
+            {
+                GUISortingLogic.Message("Der Findes Allerede et Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' i systemet!");
+            }
         }
     }
 }
