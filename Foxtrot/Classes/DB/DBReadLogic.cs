@@ -516,8 +516,8 @@ namespace Foxtrot.Classes.DB
                 if (!string.IsNullOrEmpty(reader["Sunday"].ToString()))
                 {
                     inputProduct.OpeningHours.Sunday = Convert.ToBoolean(reader["Sunday"]);
-
                 }
+                inputProduct.OpeningHours.ID = int.Parse(reader["OpeningHoursID"].ToString());
             }
 
             //catch (Exception ex)
