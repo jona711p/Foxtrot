@@ -1,5 +1,5 @@
 ﻿<!--Jonas Lykke & Mikael Paaske-->
-    <Page x:Class="Foxtrot.GUI.CombiProduct.CombiProduct_Edit_Delete"
+<Page x:Class="Foxtrot.GUI.CombiProduct.CombiProduct_Edit_Delete"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -52,9 +52,9 @@
         <!-- Søg CombiProdukt Start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
             <Label x:Name="label_CombiProduct_Search" Content="Søg efter combi produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="93,4,0,0"/>
-            <TextBox x:Name="textBox_CombiProduct_SearchName" HorizontalAlignment="Left" Height="35" Margin="24,71,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
-            <TextBox x:Name="textBox_CombiProduct_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="19,167,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
-            <Button x:Name="btb_CombiProduct_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_CombiProductName" HorizontalAlignment="Left" Height="35" Margin="24,87,0,0" TextWrapping="Wrap" Text="{Binding CombiProductName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på Combi produkt"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_ProductName" HorizontalAlignment="Left" Height="35" Margin="26,173,0,0" TextWrapping="Wrap" Text="{Binding ProductName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på produkt"/>
+            <Button x:Name="btb_CombiProduct_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76" Click="Btb_CombiProduct_Search_OnClick"/>
             <Border BorderBrush="Black" BorderThickness="1" Height="357" Margin="-4,6,15,0" VerticalAlignment="Top"/>
         </Grid>
         <!-- Søg Produkt Slut -->
@@ -63,8 +63,10 @@
         <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
             <Label x:Name="label_CombiProduct_EditNew" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="143"/>
             <Button x:Name="button_CombiProduct_Edit_Edit" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="1106,209,0,0" VerticalAlignment="Top" Width="129" Height="21"/>
+            <TextBox x:Name="textBox_CombiProduct_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="23,35,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn" />
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
+       
         <!-- Rediger Produkt Slut -->
     </Grid>
 

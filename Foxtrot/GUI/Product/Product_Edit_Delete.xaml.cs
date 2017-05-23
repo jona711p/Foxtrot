@@ -18,14 +18,23 @@ namespace Foxtrot.GUI.Product
         private bool availibility;
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
+        DateTime? tempTimeFrom = new DateTime?();
+        DateTime? tempTimeTo = new DateTime?();
+        OpeningHour tempTime = new OpeningHour();
+        Category tempCategory = new Category();
+        MainCategory tempMainCategory = new MainCategory();
 
         public Product_Edit_Delete(Classes.User inputUser) 
         {
             tempUser = inputUser;
             InitializeComponent();
             tempProduct.ProductTable = new DataTable();
+            tempProduct.MainCategories = new MainCategory();
+            tempProduct.Categories = new MainCategory();
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             comboBox_Product_Edit_CityID.ItemsSource = DBReadLogic.FillCityList(tempCity.CityList);
+            comboBox_Product_Edit_MainCategory.ItemsSource = DBReadLogic.FillMainCategoryList(tempMainCategory.MainCategoryList);
+            comboBox_Product_Edit_Category.ItemsSource = DBReadLogic.FillCategoryList(tempCategory.CategoryList);
             DataContext = tempProduct;
 
         }
@@ -55,44 +64,48 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
                 textBox_Product_Edit_Longtitude.Text = tempProduct.Longitude.ToString();
                 textBox_Product_Edit_Latitude.Text = tempProduct.Latitude.ToString();
-                if (tempProduct.ContactPhone.Count != 0)
-                {
-                    textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone[0].ToString();
-                }
                 textBox_Product_Edit_ContactEmail.Text = tempProduct.ContactEmail[0];
-                if (tempProduct.ContactFax.Count != 0)
-                {
-                    textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();
-                }
                 textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();
                 textBox_Product_Edit_Príce.Text = tempProduct.Price.ToString();
                 textBox_Product_Edit_Description.Text = tempProduct.Description;
-                if (tempProduct.ExtraDescription.Count != 0)
-                {
-                    textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
-                }
                 rbtn_Product_Edit_Availability_True.IsChecked = tempProduct.Availability;
                 rbtn_Product_Edit_Availability_False.IsChecked = !tempProduct.Availability;
                 textBox_Product_Edit_Website.Text = tempProduct.Website;
                 textBox_Product_Edit_CanonicalUrl.Text = tempProduct.CanonicalUrl;
+                comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
+                comboBox_Product_Edit_MainCategory.Text = tempProduct.MainCategories.Name;
+                comboBox_Product_Edit_Category.SelectedValuePath = tempProduct.Categories.Name;
 
+                if (tempProduct.ContactPhone.Count != 0)
+                {
+                    textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone[0].ToString();
+                }
+
+                if (tempProduct.ContactFax.Count != 0)
+                {
+                    textBox_Product_Edit_ContactFax.Text = tempProduct.ContactFax[0].ToString();
+                }
+
+                if (tempProduct.ExtraDescription.Count != 0)
+                {
+                    textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
+                }
                 for (int i = 0; i <  4; i++) //Resets all images
                 {
                     ((System.Windows.Controls.Image)product_imageGrid.Children[i]).Source = null;
+                    ((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = null;
                 }
-                
+
                 for (int i = 0; i < tempProduct.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
                 {
                     if (!string.IsNullOrEmpty(tempProduct.Files[i].URI))
                     {
-
-
                         ((System.Windows.Controls.Image) product_imageGrid.Children[i]).Source =
                             new BitmapImage(new Uri(tempProduct.Files[i].URI));
+
+                        ((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                     }
                 }
-                
-                comboBox_Product_Edit_CityID.Text = tempProduct.Cities.Name;
             }
         }
 
@@ -197,6 +210,27 @@ namespace Foxtrot.GUI.Product
                 rbtn_Product_Edit_Availability_True.IsChecked == true)
             {
                 tempProduct.Availability = availibility;
+            }
+
+            if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateFrom != null)
+            {
+
+                tempTimeFrom = datePicker_Product_Add_DateFrom.Value;
+                tempTimeTo = datePicker_Product_Add_DateTo.Value;
+
+
+                tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
+                tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
+                tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
+                tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
+
+                tempTime.Monday = checkBox_Product_Add_Monday.IsChecked == true;
+                tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked == true;
+                tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked == true;
+                tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked == true;
+                tempTime.Friday = checkBox_Product_Add_Friday.IsChecked == true;
+                tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked == true;
+                tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked == true;
             }
 
             tempProduct.Cities = new City();

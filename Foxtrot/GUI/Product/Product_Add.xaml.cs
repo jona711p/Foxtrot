@@ -24,7 +24,7 @@ namespace Foxtrot.GUI.Product
 
 
 
-        public Product_Add(Classes.User inputUser) // MANGLER TILFØJELSE AF HOVED/KATEGORI OG FILER
+        public Product_Add(Classes.User inputUser) 
         {
             InitializeComponent();
             tempUser = inputUser;
@@ -167,10 +167,7 @@ namespace Foxtrot.GUI.Product
                 {
                     tempProduct.Website = textBox_Product_Add_Website.Text;
                 }
-            if (rbtn_Product_Add_Availability_True.IsChecked == true)
-            {
-                tempProduct.Availability = availibility;
-            }
+
             if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateFrom != null)
             {
 
@@ -192,57 +189,43 @@ namespace Foxtrot.GUI.Product
                 tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked == true;
             }
 
-            int counter = 0;
-            List<string> UrlList = new List<string>();
+            tempProduct.Files = new List<File>();
             File tempFile1 = new File();
             File tempFile2 = new File();
             File tempFile3 = new File();
             File tempFile4 = new File();
 
-
-
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url1.Text))
-            {
-                tempFile1.URI = textBox_Product_Add_Url1.Text;
-                //counter++;
-                //    UrlList[counter] = textBox_Product_Add_Url1.Text;
-            }
+                {
+                    tempFile1.URI = textBox_Product_Add_Url1.Text;
+                    tempProduct.Files.Add(tempFile1);
+                }
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url2.Text))
                 {
                     tempFile2.URI = textBox_Product_Add_Url2.Text;
-                //counter++;
-                //UrlList[counter] = textBox_Product_Add_Url2.Text;
-            }
+                    tempProduct.Files.Add(tempFile2);
+                }
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url3.Text))
                 {
                     tempFile3.URI = textBox_Product_Add_Url3.Text;
-                //counter++;
-                //UrlList[counter] = textBox_Product_Add_Url3.Text;
-            }
+                    tempProduct.Files.Add(tempFile3);
+                }
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url4.Text))
                 {
                     tempFile4.URI = textBox_Product_Add_Url4.Text;
-                //counter++;
-                //UrlList[counter] = textBox_Product_Add_Url4.Text;
-            }
+                    tempProduct.Files.Add(tempFile4);
+                }
 
             tempProduct.MainCategories = new MainCategory();
             tempProduct.Categories = new MainCategory();
             tempProduct.Cities = new City();
+
             tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_MainCategory.SelectedItem).Key;
             tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_Category.SelectedItem).Key;
             tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
-
             tempProduct.OpeningHours = tempTime;
             tempProduct.UserID = tempUser.ID;
-
-            tempProduct.Files = new List<File>();
-            tempProduct.Files.Add(tempFile1);
-            tempProduct.Files.Add(tempFile2);
-            tempProduct.Files.Add(tempFile3);
-            tempProduct.Files.Add(tempFile4);
-
-
+            tempProduct.Availability = availibility;
 
             tempProduct.Files = DBWriteLogic.WriteNewFiles(tempProduct.Files);
             tempProduct.ID = DBWriteLogic.WriteNewProduct(tempProduct);
@@ -259,11 +242,6 @@ namespace Foxtrot.GUI.Product
         private void Rbtn_Product_Add_Availability_False_OnClick(object sender, RoutedEventArgs e)
         {
             availibility = false;
-        }
-
-        private void comboBox_Product_Add_CityID_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            tempProduct.Cities.Name = comboBox_Product_Add_CityID.SelectedItem.ToString();
         }
     }
 }
