@@ -47,11 +47,14 @@ namespace Foxtrot.GUI.CombiProduct
                 {
                     MakeFieldsEditable(true);
                 }
+
+                textBox_CombiProduct_Edit_Name.Text = tempCombiProduct.Name;
+
             }
         }
         public void MakeFieldsEditable(bool input)
         {
-            
+            textBox_CombiProduct_Edit_Name.IsEnabled = input;
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)

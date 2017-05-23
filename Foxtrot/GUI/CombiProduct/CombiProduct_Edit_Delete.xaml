@@ -1,5 +1,5 @@
 ﻿<!--Jonas Lykke & Mikael Paaske-->
-    <Page x:Class="Foxtrot.GUI.CombiProduct.CombiProduct_Edit_Delete"
+<Page x:Class="Foxtrot.GUI.CombiProduct.CombiProduct_Edit_Delete"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -63,8 +63,10 @@
         <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
             <Label x:Name="label_CombiProduct_EditNew" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="143"/>
             <Button x:Name="button_CombiProduct_Edit_Edit" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="1106,209,0,0" VerticalAlignment="Top" Width="129" Height="21"/>
+            <TextBox x:Name="textBox_CombiProduct_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="23,35,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn" />
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
+       
         <!-- Rediger Produkt Slut -->
     </Grid>
 
