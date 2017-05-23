@@ -399,10 +399,12 @@ namespace Foxtrot.Classes.DB
 
                 adapter.Fill(CombiProductTable);
             }
+
             catch (Exception ex)
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return CombiProductTable;
@@ -542,6 +544,36 @@ namespace Foxtrot.Classes.DB
 
             return inputTable;
         }
+
+        public static bool DupeCheckCombiProduct(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM viewCombiProducts WHERE Name = @Name", connection);
+
+                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static CombiProduct GetCombiProductInfo(CombiProduct inputCombiProductProduct)
         {
             SqlConnection connection = null;
@@ -572,35 +604,6 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputCombiProductProduct;
-        }
-
-        public static bool DupeCheckCombiProduct(CombiProduct inputCombiProduct)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT * FROM viewCombiProducts WHERE Name = @Name", connection);
-
-                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    return true;
-                }
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-                return false;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
     }
 }
