@@ -17,13 +17,14 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM viewAdmins WHERE FirstName = @FirstName AND LastName = @LastName", connection);
+                SqlCommand command = new SqlCommand("spDupeCheckAdmin", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdministrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdministrator.LastName;
-                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdministrator.WorkPhone == null ? null : inputAdministrator.WorkPhone;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdministrator.WorkPhone;
                 command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputAdministrator.WorkEmail;
-                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdministrator.WorkFax == null ? null : inputAdministrator.WorkFax;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdministrator.WorkFax;
 
                 SqlDataReader reader = command.ExecuteReader();
 
