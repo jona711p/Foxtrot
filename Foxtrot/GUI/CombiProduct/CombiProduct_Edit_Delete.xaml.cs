@@ -1,7 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -50,6 +54,23 @@ namespace Foxtrot.GUI.CombiProduct
             
         }
 
-    }
+        private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
+        {
+            DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
+            if (TextBox_CombiProduct_Search_CombiProductName.Text != null)
+            {
+                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (!row["Navn"].ToString().Contains(TextBox_CombiProduct_Search_CombiProductName.Text))
+                            row.Delete();
+                    }
+                }
+            }
+        }
 
+
+
+    }
 }
