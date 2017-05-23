@@ -77,7 +77,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             if (TextBox_CombiProduct_Search_FirstName.Text != null) 
             {
-                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
@@ -146,12 +146,10 @@ namespace Foxtrot.GUI.CombiProduct
                             dataGrid_Product_List.Columns[0].GetCellContent(
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
-
-                tempCombiProduct.CombiProductTable1 =
-                DBReadLogic.GetProductInfoAndCupeCheck(tempProduct.ID, tempCombiProduct.CombiProductTable1);
+                tempNewCombiProduct.CombiProductTable = 
+                DBReadLogic.GetProductInfoAndCupeCheck(tempProduct.ID, tempNewCombiProduct.CombiProductTable);
 
             }
-
             dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
         }
 
@@ -186,6 +184,18 @@ namespace Foxtrot.GUI.CombiProduct
             }
 
             dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
+        }
+
+        private void Btn_Combi_Edit_Delete_Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Knappen Rediger
+
+        }
+
+        private void Btn_Combi_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Knappen slet
+            GUISortingLogic.Message("Combi Produktet: '" + tempNewCombiProduct.Name + "' er blevet slettet i systemet!");
         }
     }
 }

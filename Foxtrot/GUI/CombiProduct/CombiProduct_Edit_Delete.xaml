@@ -124,12 +124,12 @@
                 <RadioButton x:Name="rdbtn_Combi_Edit_Delete_Availibility_True" Content="Synlig *" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <RadioButton x:Name="rdbtn_Combi_Edit_Delete_Availibility_False" Content="Usynlig *" HorizontalAlignment="Left" Margin="245,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <Label x:Name="lbl_Combi_Edit_Delete_Star" Content="* = Skal Udfyldes!" FontFamily="Arial" Margin="180,85,331,0"/>
-                <Button x:Name="btn_Combi_Edit_Delete_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="355,79,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
+                <Button x:Name="btn_Combi_Edit_Delete_Edit" Content="Rediger" HorizontalAlignment="Left" Margin="355,79,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14" Click="Btn_Combi_Edit_Delete_Edit_OnClick">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="btn_Combi_Edit_Delete_Delete" Content="Slet" HorizontalAlignment="Left" Margin="435,79,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
+                <Button x:Name="btn_Combi_Edit_Delete_Delete" Content="Slet" HorizontalAlignment="Left" Margin="435,79,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" Click="Btn_Combi_Edit_Delete_Delete_OnClick" FontSize="14">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
                     </Button.Effect>
