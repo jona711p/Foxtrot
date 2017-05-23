@@ -23,11 +23,11 @@ namespace Foxtrot.Classes.DB
             return objectFromReader.ToString().Equals("") ? null : (float?)float.Parse(objectFromReader.ToString());
         }
 
-        public static bool DupeCheckCombiProductDataTable(Product inputProduct, DataTable inputTable)
+        public static bool DupeCheckCombiProductDataTable(int? productID, DataTable inputTable)
         {
             foreach (DataRow row in inputTable.Rows)
             {
-                if (int.Parse(row[0].ToString()) == inputProduct.ID)
+                if (int.Parse(row[0].ToString()) == productID)
                 {
                     GUISortingLogic.Message("Produktet findes Allerede på Listen!");
                     return true;

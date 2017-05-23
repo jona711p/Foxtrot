@@ -1,11 +1,7 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows.Controls;
-using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -15,7 +11,6 @@ namespace Foxtrot.GUI.CombiProduct
     public partial class CombiProduct_Edit_Delete : Page
     {
         public Classes.User tempUser = new Classes.User();
-        private bool availability;
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
         Classes.Product tempProduct = new Classes.Product();
 
@@ -26,6 +21,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             tempProduct.ProductTable = new DataTable();
             tempCombiProduct.CombiProductTable = new DataTable();
+            tempCombiProduct.CombiProductTable1 = new DataTable();
             InitializeComponent();
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
@@ -54,13 +50,14 @@ namespace Foxtrot.GUI.CombiProduct
                     MakeFieldsEditable(true);
                 }
 
-                //textBox_CombiProduct_Edit_Name.Text = tempCombiProduct.Name;
+                DBReadLogic.FillCombiProductProductList(tempCombiProduct);
 
+                FillDataGridWithProductsForCombiProduct(tempCombiProduct);
             }
         }
-        public void MakeFieldsEditable(bool input)
+        private void MakeFieldsEditable(bool input)
         {
-            //textBox_CombiProduct_Edit_Name.IsEnabled = input;
+
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
@@ -89,6 +86,67 @@ namespace Foxtrot.GUI.CombiProduct
                     }
                 }
             }
+        }
+
+        private void FillDataGridWithProductsForCombiProduct(Classes.CombiProduct inputCombiProduct)
+        {
+            foreach (int productID in inputCombiProduct.ProductID)
+            {
+                tempCombiProduct.CombiProductTable =
+                    DBReadLogic.GetProductInfoAndCupeCheck(productID, tempCombiProduct.CombiProductTable);
+            }
+        }
+
+        private void CombiProduct_Edit_Delete_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_Product_List.SelectedItem == null)
+            {
+                GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
+            }
+
+            else
+            {
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_Product_List.Columns[0].GetCellContent(
+                                dataGrid_Product_List.SelectedItem))
+                        .Text);
+
+                    tempCombiProduct.CombiProductTable1 =
+                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable1);
+
+            }
+
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
+        }
+
+        private void CombiProduct_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_CombiProduct_List1.SelectedItem == null)
+            {
+                GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
+            }
+
+            else
+            {
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_CombiProduct_List1.Columns[0].GetCellContent(
+                                dataGrid_CombiProduct_List1.SelectedItem))
+                        .Text);
+
+                foreach (DataRow row in tempCombiProduct.CombiProductTable1.Rows)
+                {
+                    if (int.Parse(row[0].ToString()) == tempProduct.ID)
+                    {
+                        row.Delete();
+                    }
+                }
+            }
+
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
         }
     }
 }
