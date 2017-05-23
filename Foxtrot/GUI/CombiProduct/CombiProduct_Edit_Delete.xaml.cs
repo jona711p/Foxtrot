@@ -107,8 +107,8 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
 
-                    tempCombiProduct.CombiProductTable =
-                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable);
+                //tempCombiProduct.CombiProductTable = DBReadLogic.GetProductInfo(tempProduct, tempCombiProduct.CombiProductTable);
+                //DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable);
             }
 
             dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
