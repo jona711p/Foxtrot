@@ -62,6 +62,7 @@ namespace Foxtrot.Classes.DB
 
         //    connection = DBConnectionLogic.DisconnectFromDB(connection);
         //}
+
         public static int? WriteNewProduct(Product inputProducts)
         {
             SqlConnection connection = null;
@@ -128,6 +129,7 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputProducts.ID;
         }
+
         public static List<File> WriteNewFiles(List<File> inputFiles)
         {
             SqlConnection connection = null;
@@ -137,8 +139,6 @@ namespace Foxtrot.Classes.DB
                 for (int i = 0; i < inputFiles.Count; i++)
                 {
                     {
-
-
                         SqlCommand command = new SqlCommand(string.Format(@"INSERT INTO Files(URI) VALUES('{0}');
                         select CAST(SCOPE_IDENTITY() AS INT )", inputFiles[i].URI), connection);
                       
@@ -146,21 +146,27 @@ namespace Foxtrot.Classes.DB
                     }
                 }
             }
+
             catch (Exception)
             {
                 throw;
             }
+
             finally
             {
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
+
             return inputFiles;
         }
+
         public static void WriteNewRelFiles(Product inputProduct)
         {
             //List<int> FileIDList = new List<int>();
+
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
+
             try
             {
                 for (int i = 0; i < inputProduct.Files.Count; i++)
@@ -172,24 +178,26 @@ namespace Foxtrot.Classes.DB
                     }
                 }
             }
+
             catch (Exception)
             {
                 throw;
             }
+
             finally
             {
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
         }
 
-        public static void WriteNewCombiProduct(CombiProduct inputCombiProduct)
+        public static void WriteCombiProduct(CombiProduct inputCombiProduct)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
             try
             {
-                SqlCommand command = new SqlCommand("spWriteNewCombiProduct", connection);
+                SqlCommand command = new SqlCommand("spWriteCombiProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter outputID = new SqlParameter("@CombiProductID", SqlDbType.Int);
@@ -204,13 +212,44 @@ namespace Foxtrot.Classes.DB
 
                 command.ExecuteNonQuery();
 
-                int.Parse(outputID.Value.ToString());
+                inputCombiProduct.ID = int.Parse(outputID.Value.ToString());
             }
 
             catch (Exception)
             {
                 throw;
             }
+
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+            }
+        }
+
+        public static void WritRelCombiProducts(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                foreach (int productID in inputCombiProduct.ProductID)
+                {
+                    SqlCommand command = new SqlCommand("spWriteRel_CombiProducts", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@FK_CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+                    command.Parameters.Add("@FK_ProductID", SqlDbType.Int).Value = productID;
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
             finally
             {
                 connection = DBConnectionLogic.DisconnectFromDB(connection);

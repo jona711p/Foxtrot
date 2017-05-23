@@ -329,6 +329,7 @@ namespace Foxtrot.Classes.DB
 
             return inputList;
         }
+
         public static DataTable FillUserTable(DataTable userTable)
         {
             userTable.Clear();
@@ -458,7 +459,6 @@ namespace Foxtrot.Classes.DB
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
 
                 adapter.Fill(dt);
-
 
                 foreach (DataRow row in dt.Rows)
                 {
