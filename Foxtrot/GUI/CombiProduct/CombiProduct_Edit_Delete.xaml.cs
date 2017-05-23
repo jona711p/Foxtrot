@@ -17,14 +17,20 @@ namespace Foxtrot.GUI.CombiProduct
         public Classes.User tempUser = new Classes.User();
         private bool availability;
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
+        Classes.Product tempProduct = new Classes.Product();
 
         public CombiProduct_Edit_Delete(Classes.User inputUser)
         {
             tempUser = inputUser;
-            InitializeComponent();
+
+
+            tempProduct.ProductTable = new DataTable();
             tempCombiProduct.CombiProductTable = new DataTable();
+            InitializeComponent();
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
-            DataContext = tempCombiProduct;
+            DataContext = tempProduct;
+            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
 
         private void DataGrid_CombiProduct_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,11 +53,14 @@ namespace Foxtrot.GUI.CombiProduct
                 {
                     MakeFieldsEditable(true);
                 }
+
+                //textBox_CombiProduct_Edit_Name.Text = tempCombiProduct.Name;
+
             }
         }
         public void MakeFieldsEditable(bool input)
         {
-            
+            //textBox_CombiProduct_Edit_Name.IsEnabled = input;
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
@@ -68,13 +77,14 @@ namespace Foxtrot.GUI.CombiProduct
                     }
                 }
             }
+
             if (TextBox_CombiProduct_Search_ProductName.Text != null) // Skal laves til produkt navn
             {
                 foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["fornavn"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
+                        if (!row["ProductName"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
                             row.Delete();
                     }
                 }
