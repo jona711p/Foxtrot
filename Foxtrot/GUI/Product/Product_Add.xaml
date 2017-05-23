@@ -8,6 +8,7 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
       x:Class="Foxtrot.GUI.Product.Product_Add"
       mc:Ignorable="d"
+      Background="White"
       d:DesignHeight="470" d:DesignWidth="1310"
       Title="Opret et Produkt">
 
@@ -41,6 +42,7 @@
 
     <Grid Margin="0,0,-150,0">
         <!-- Opret Produkt Start -->
+        <Label x:Name="label_Product_Add" Content="Tilføj Produkt" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="510,35,648.4,402.4" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="416" VerticalAlignment="Center" Width="790" Margin="276,32,394,22">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3"/>

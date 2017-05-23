@@ -6,6 +6,7 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d"
+      Background="White"
       d:DesignHeight="1000" d:DesignWidth="1310"
       Title="Se Alle Produkter, Rediger, Slet">
 
@@ -41,14 +42,14 @@
         <!-- Liste over produkt start -->
         <Grid HorizontalAlignment="Left" Height="334" Margin="347,48,0,0" VerticalAlignment="Top" Width="942">
             <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged"/>
-            <Label x:Name="label_Product_List" Content="Liste over produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="121" Grid.Column="1"/>
+            <Label x:Name="label_Product_List" Content="Liste over Produkter:" HorizontalAlignment="Center" Margin="0,-17,-1,307" VerticalAlignment="Center" Height="44" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="356" Margin="337,34,0,0" VerticalAlignment="Top" Width="966"/>
         <!-- Liste over produkt slut -->
 
         <!-- Søg Produkt Start -->
         <Grid x:Name="grid_Search" HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
-            <Label x:Name="label_Product_Search" Content="Søg efter produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="92.8,3.8,0,0"/>
+            <Label x:Name="label_Product_Search" Content="Søg Efter Produkter:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="10,10,10,320" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="25,68,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
             <TextBox x:Name="textBox_Product_SearchCity" HorizontalAlignment="Left" Height="35" Margin="25,128,0,0" TextWrapping="Wrap" Text="{Binding City}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="By"/>
             <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="25,186,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
@@ -63,7 +64,7 @@
 
         <!-- Rediger Produkt Start -->
         <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
-            <Label x:Name="label_Product_EditNew" Content="Rediger produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="113"/>
+            <Label x:Name="label_Product_Edit_Delete" Content="Rediger Produkt:" HorizontalAlignment="Center" Margin="177,-2,133,218" VerticalAlignment="Center" Height="38" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
             <TextBox x:Name="textBox_Product_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="30,65,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
             <TextBox x:Name="textBox_Product_Edit_Adress" HorizontalAlignment="Left" Height="23" Margin="30,111,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
             <TextBox x:Name="textBox_Product_Edit_Longtitude" HorizontalAlignment="Left" Height="23" Margin="170,66,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
@@ -91,7 +92,7 @@
         </Grid>
 
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="586" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
-        <!-- Rediger Produkt Slut -->
+
         <Grid x:Name="grid_timeInputs" Margin="498,466,472,321">
             <CheckBox x:Name="checkBox_Product_Edit_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>
             <CheckBox x:Name="checkBox_Product_Edit_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="43,65,0,0" VerticalAlignment="Top" IsChecked="True"/>
@@ -157,6 +158,6 @@
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
         </Grid>
-
+        <!-- Rediger Produkt Slut -->
     </Grid>
 </Page>
