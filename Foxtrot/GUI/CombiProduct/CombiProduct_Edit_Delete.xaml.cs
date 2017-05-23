@@ -48,13 +48,13 @@ namespace Foxtrot.GUI.CombiProduct
                     MakeFieldsEditable(true);
                 }
 
-                textBox_CombiProduct_Edit_Name.Text = tempCombiProduct.Name;
+                //textBox_CombiProduct_Edit_Name.Text = tempCombiProduct.Name;
 
             }
         }
         public void MakeFieldsEditable(bool input)
         {
-            textBox_CombiProduct_Edit_Name.IsEnabled = input;
+            //textBox_CombiProduct_Edit_Name.IsEnabled = input;
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
@@ -71,13 +71,14 @@ namespace Foxtrot.GUI.CombiProduct
                     }
                 }
             }
+
             if (TextBox_CombiProduct_Search_ProductName.Text != null) // Skal laves til produkt navn
             {
                 foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["fornavn"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
+                        if (!row["ProductName"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
                             row.Delete();
                     }
                 }
