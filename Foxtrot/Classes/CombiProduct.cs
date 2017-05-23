@@ -13,7 +13,7 @@ namespace Foxtrot.Classes
         public List<int?> ProductID { get; set; }//list
         public float? PackagePrice { get; set; } //auto
         public int? UserID { get; set; }//auto
-        public DataTable ProductTable { get; set; }
+        public DataTable CombiProductTable { get; set; }
 
         public CombiProduct()
         {

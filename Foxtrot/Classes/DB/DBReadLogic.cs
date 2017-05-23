@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -22,6 +21,9 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdministrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdministrator.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdministrator.WorkPhone == null ? null : inputAdministrator.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputAdministrator.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdministrator.WorkFax == null ? null : inputAdministrator.WorkFax;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -48,8 +50,14 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM viewActors WHERE CompanyName = @CompanyName", connection);
+                SqlCommand command = new SqlCommand("spDupeCheckActor", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputActor.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputActor.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputActor.WorkFax;
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -378,6 +386,30 @@ namespace Foxtrot.Classes.DB
             return productTable;
         }
 
+        public static DataTable FillCombiProductTable(DataTable CombiProductTable)
+        {
+            CombiProductTable.Clear();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillCombiProductTable", connection);
+
+                adapter.Fill(CombiProductTable);
+            }
+
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return CombiProductTable;
+        }
+
         public static Product GetProductInfo(Product inputProduct)
         {
             SqlConnection connection = null;
@@ -490,14 +522,12 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                bool dupe;
-
                 SqlCommand command = new SqlCommand("spGetShortProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
 
-                dupe = DBSortingLogic.DupeCheckCombiProductDataTable(inputProduct, inputTable);
+                bool dupe = DBSortingLogic.DupeCheckCombiProductDataTable(inputProduct, inputTable);
 
                 if (!dupe)
                 {
@@ -513,6 +543,68 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputTable;
+        }
+
+        public static bool DupeCheckCombiProduct(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM viewCombiProducts WHERE Name = @Name", connection);
+
+                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static CombiProduct GetCombiProductInfo(CombiProduct inputCombiProductProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetFullCombiProductInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProductProduct.ID;
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                inputCombiProductProduct.ID = int.Parse(reader["CombiProductID"].ToString());
+                inputCombiProductProduct.CreationDate = DateTime.Parse(reader["CreationDate"].ToString());
+                inputCombiProductProduct.PackagePrice = DBSortingLogic.ConvertToNullableFloat(reader["PackagePrice"].ToString());
+                inputCombiProductProduct.Availability = bool.Parse(reader["Availability"].ToString());
+                inputCombiProductProduct.Name = reader["Name"].ToString();
+                
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputCombiProductProduct;
         }
     }
 }
