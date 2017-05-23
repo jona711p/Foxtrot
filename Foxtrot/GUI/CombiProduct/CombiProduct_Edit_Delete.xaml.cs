@@ -26,6 +26,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             tempProduct.ProductTable = new DataTable();
             tempCombiProduct.CombiProductTable = new DataTable();
+            tempCombiProduct.CombiProductTable1 = new DataTable();
             InitializeComponent();
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
@@ -107,17 +108,17 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
 
-                //tempCombiProduct.CombiProductTable = DBReadLogic.GetProductInfo(tempProduct, tempCombiProduct.CombiProductTable);
-                //DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable);
+                    tempCombiProduct.CombiProductTable1 =
+                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable1);
+
             }
 
-            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
-
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
         }
 
         private void CombiProduct_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            if (dataGrid_CombiProduct_List.SelectedItem == null)
+            if (dataGrid_CombiProduct_List1.SelectedItem == null)
             {
                 GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
             }
@@ -127,8 +128,8 @@ namespace Foxtrot.GUI.CombiProduct
                 tempProduct.ID =
                     int.Parse(
                         ((TextBlock)
-                            dataGrid_CombiProduct_List.Columns[0].GetCellContent(
-                                dataGrid_CombiProduct_List.SelectedItem))
+                            dataGrid_CombiProduct_List1.Columns[0].GetCellContent(
+                                dataGrid_CombiProduct_List1.SelectedItem))
                         .Text);
 
                 foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
@@ -140,7 +141,7 @@ namespace Foxtrot.GUI.CombiProduct
                 }
             }
 
-            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
     }
 }
