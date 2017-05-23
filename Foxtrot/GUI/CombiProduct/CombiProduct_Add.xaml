@@ -65,7 +65,7 @@
 
         <Grid HorizontalAlignment="Left" Height="450" Margin="664,10,0,0" VerticalAlignment="Top" Width="631">
             <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="621">
-                <Label x:Name="label_CombiProduct_List" Content="Liste over Combi Produkter:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="601" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="label_CombiProduct_List" Content="Liste over Produkter i Combi Produktet:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="601" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
                 <Button x:Name="CombiProduct_Add_Delete" Content="Fjern" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="75" Click="CombiProduct_Add_Delete_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
