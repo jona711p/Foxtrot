@@ -68,9 +68,17 @@ namespace Foxtrot.GUI.CombiProduct
                     }
                 }
             }
+            if (TextBox_CombiProduct_Search_ProductName.Text != null) // Skal laves til produkt navn
+            {
+                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (!row["ProduktNavn"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
+                            row.Delete();
+                    }
+                }
+            }
         }
-
-
-
     }
 }
