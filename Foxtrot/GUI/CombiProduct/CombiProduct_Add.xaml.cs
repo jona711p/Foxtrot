@@ -7,7 +7,7 @@ using System.Windows;
 namespace Foxtrot.GUI.CombiProduct
 {
     /// <summary>
-    /// Interaction logic for CombiProduct_Add.xaml
+    /// Jonas Lykke & Mikael Paaske
     /// </summary>
     public partial class CombiProduct_Add : Page
     {
@@ -46,7 +46,7 @@ namespace Foxtrot.GUI.CombiProduct
                         .Text);
 
                 tempCombiProduct.ProductTable =
-                    DBReadLogic.GetSingleProductInfo(tempProduct, tempCombiProduct.ProductTable);
+                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.ProductTable);
             }
 
             dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.ProductTable.AsDataView();

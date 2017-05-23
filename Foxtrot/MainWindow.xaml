@@ -17,16 +17,16 @@
                 </MenuItem>
                 <MenuItem x:Name="User_MenuItem" Header="Bruger">
                     <MenuItem x:Name="User_MenuItem_Modify" Header="Rediger din Bruger" Click="MenuItem_User_Modify_OnClick"/>
-                    <MenuItem x:Name="User_MenuItem_Add" Header="Opret" Click="MenuItem_User_Add_OnClick"/>
-                    <MenuItem x:Name="User_MenuItem_Edit_Delete" Header="Rediger" Click="MenuItem_User_Edit_Delete_OnClick"/>
+                    <MenuItem x:Name="User_MenuItem_Add" Header="Opret en Bruger" Click="MenuItem_User_Add_OnClick"/>
+                    <MenuItem x:Name="User_MenuItem_Edit_Delete" Header="Se Alle Bruger, Rediger, Slet" Click="MenuItem_User_Edit_Delete_OnClick"/>
                 </MenuItem>
                 <MenuItem x:Name="Product_MenuItem" Header="Produkter" >
-                    <MenuItem Header="Opret" Click="MenuItem_Product_Add_OnClick"/>
-                    <MenuItem Header="Rediger" Click="MenuItem_Product_Edit_Delete_OnClick"/>
+                    <MenuItem Header="Opret et Produkt" Click="MenuItem_Product_Add_OnClick"/>
+                    <MenuItem Header="Se Alle Produkter, Rediger, Slet" Click="MenuItem_Product_Edit_Delete_OnClick"/>
                 </MenuItem>
                 <MenuItem x:Name="CombiProduct_MenuItem" Header="Combi Produkter">
-                    <MenuItem Header="Opret" Click="MenuItem_CombiProduct_Add_OnClick" />
-                    <MenuItem Header="Rediger" Click="MenuItem_CombiProduct_Edit_Delete_OnClick" />
+                    <MenuItem Header="Opret et Combi Produkt" Click="MenuItem_CombiProduct_Add_OnClick" />
+                    <MenuItem Header="Se Alle Combi Produkter, Rediger, Slet" Click="MenuItem_CombiProduct_Edit_Delete_OnClick" />
                 </MenuItem>
             </Menu>
         </DockPanel>

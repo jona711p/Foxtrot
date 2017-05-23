@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
       d:DesignHeight="470" d:DesignWidth="1310"
-      Title="User_Edit_Delete">
+      Title="Se Alle Bruger, Rediger, Slet">
 
     <Page.Resources>
         <Style x:Key="WaterMarkStyle" TargetType="{x:Type TextBox}">

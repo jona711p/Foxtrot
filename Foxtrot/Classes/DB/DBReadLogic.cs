@@ -451,7 +451,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("spGetProductFiles", connection);
+                SqlCommand command = new SqlCommand("spGetFullProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
@@ -483,7 +483,7 @@ namespace Foxtrot.Classes.DB
             return inputProduct;
         }
 
-        public static DataTable GetSingleProductInfo(Product inputProduct, DataTable inputTable)
+        public static DataTable GetProductInfoAndCupeCheck(Product inputProduct, DataTable inputTable)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -492,7 +492,7 @@ namespace Foxtrot.Classes.DB
             {
                 bool dupe;
 
-                SqlCommand command = new SqlCommand("spGetSingleProductInfo", connection);
+                SqlCommand command = new SqlCommand("spGetShortProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
