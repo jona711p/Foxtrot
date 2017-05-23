@@ -516,7 +516,7 @@ namespace Foxtrot.Classes.DB
             return inputProduct;
         }
 
-        public static DataTable GetProductInfoAndCupeCheck(Product inputProduct, DataTable inputTable)
+        public static DataTable GetProductInfoAndCupeCheck(int? productID, DataTable inputTable)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
@@ -526,9 +526,9 @@ namespace Foxtrot.Classes.DB
                 SqlCommand command = new SqlCommand("spGetShortProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = productID;
 
-                bool dupe = DBSortingLogic.DupeCheckCombiProductDataTable(inputProduct, inputTable);
+                bool dupe = DBSortingLogic.DupeCheckCombiProductDataTable(productID, inputTable);
 
                 if (!dupe)
                 {
@@ -603,6 +603,39 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputCombiProductProduct;
+        }
+
+        public static CombiProduct FillCombiProductProductList(CombiProduct inputCombiProduct)
+        {
+            DataTable dt = new DataTable();
+            inputCombiProduct.ProductID = new List<int?>();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT FK_ProductID FROM rel_CombiProducts WHERE FK_CombiProductID = @CombiProductID", connection);
+
+                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+
+                dt.Load(command.ExecuteReader());
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    int tempInt = int.Parse(row["FK_ProductID"].ToString());
+                    inputCombiProduct.ProductID.Add(tempInt);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputCombiProduct;
         }
     }
 }

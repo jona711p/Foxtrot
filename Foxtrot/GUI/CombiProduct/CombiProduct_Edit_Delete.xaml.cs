@@ -1,11 +1,7 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows.Controls;
-using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -15,7 +11,6 @@ namespace Foxtrot.GUI.CombiProduct
     public partial class CombiProduct_Edit_Delete : Page
     {
         public Classes.User tempUser = new Classes.User();
-        private bool availability;
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
 
         public CombiProduct_Edit_Delete(Classes.User inputUser)
@@ -48,13 +43,14 @@ namespace Foxtrot.GUI.CombiProduct
                     MakeFieldsEditable(true);
                 }
 
-                //textBox_CombiProduct_Edit_Name.Text = tempCombiProduct.Name;
+                DBReadLogic.FillCombiProductProductList(tempCombiProduct);
 
+                FillDataGridWithProductsForCombiProduct(tempCombiProduct);
             }
         }
-        public void MakeFieldsEditable(bool input)
+        private void MakeFieldsEditable(bool input)
         {
-            //textBox_CombiProduct_Edit_Name.IsEnabled = input;
+
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
@@ -83,6 +79,17 @@ namespace Foxtrot.GUI.CombiProduct
                     }
                 }
             }
+        }
+
+        private void FillDataGridWithProductsForCombiProduct(Classes.CombiProduct inputCombiProduct)
+        {
+            foreach (int productID in inputCombiProduct.ProductID)
+            {
+                tempCombiProduct.CombiProductTable =
+                    DBReadLogic.GetProductInfoAndCupeCheck(productID, tempCombiProduct.CombiProductTable);
+            }
+
+            dataGrid_CombiProduct_ProductList.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
     }
 }

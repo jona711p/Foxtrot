@@ -102,7 +102,7 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="235" Margin="10,90,0,0" VerticalAlignment="Top" Width="621">
-                <DataGrid x:Name="dataGrid_CombiProduct_List1" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="235" Background="White" Width="621" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+                <DataGrid x:Name="dataGrid_CombiProduct_ProductList" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="235" Background="White" Width="621" AlternationCount="2" AlternatingRowBackground="LightGray"/>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="621">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
