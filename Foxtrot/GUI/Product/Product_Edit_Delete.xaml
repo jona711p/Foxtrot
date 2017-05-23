@@ -3,9 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d"
-      d:DesignHeight="768" d:DesignWidth="1310"
+      d:DesignHeight="1000" d:DesignWidth="1310"
       Title="Se Alle Produkter, Rediger, Slet">
 
     <Page.Resources>
@@ -46,7 +47,7 @@
         <!-- Liste over produkt slut -->
 
         <!-- Søg Produkt Start -->
-        <Grid HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
+        <Grid x:Name="grid_Search" HorizontalAlignment="Left" Height="363" Margin="20,28,0,0" VerticalAlignment="Top" Width="322">
             <Label x:Name="label_Product_Search" Content="Søg efter produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="92.8,3.8,0,0"/>
             <TextBox x:Name="textBox_Product_SearchName" HorizontalAlignment="Left" Height="35" Margin="25,68,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn"/>
             <TextBox x:Name="textBox_Product_SearchCity" HorizontalAlignment="Left" Height="35" Margin="25,128,0,0" TextWrapping="Wrap" Text="{Binding City}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="By"/>
@@ -64,75 +65,98 @@
         <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
             <Label x:Name="label_Product_EditNew" Content="Rediger produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="113"/>
             <TextBox x:Name="textBox_Product_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="30,65,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
-            <TextBox x:Name="textBox_Product_Edit_Adress" HorizontalAlignment="Left" Height="23" Margin="30,142,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
-            <TextBox x:Name="textBox_Product_Edit_Longtitude" HorizontalAlignment="Left" Height="23" Margin="257,66,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
-            <TextBox x:Name="textBox_Product_Edit_Latitude" HorizontalAlignment="Left" Height="23" Margin="255,142,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Breddegrad" />
-            <TextBox x:Name="textBox_Product_Edit_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="471,64,0,0" TextWrapping="Wrap" Text="{Binding ContactPhone}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Telefon nummer" />
-            <TextBox x:Name="textBox_Product_Edit_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="469,140,0,0" TextWrapping="Wrap" Text="{Binding ContactEmail}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Email" />
-            <TextBox x:Name="textBox_Product_Edit_ContactFax" HorizontalAlignment="Left" Height="23" Margin="677,64,0,0" TextWrapping="Wrap" Text="{Binding ContactFax}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Fax" />
-            <TextBox x:Name="textBox_Product_Edit_Príce" HorizontalAlignment="Left" Height="23" Margin="679,142,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
-            <TextBox x:Name="textBox_Product_Edit_Description" HorizontalAlignment="Left" Height="23" Margin="867,66,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
-            <TextBox x:Name="textBox_Product_Edit_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="873,140,0,0" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
-            <TextBox x:Name="textBox_Product_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="1070,64,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
-            <TextBox x:Name="textBox_Product_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="1070,135,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
-            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="1122,211,0,0" VerticalAlignment="Top" Width="113" Click="button_Product_Edit_Edit_Click"/>
-            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="963,211,0,0" VerticalAlignment="Top" Width="113" ItemsSource="{Binding CityList}" Height="20"  DisplayMemberPath="Value" />
-            <Label x:Name="label_Product_Edit_CityID" Content="By" HorizontalAlignment="Left" Margin="1001,181,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="830,185,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="803,218,0,0" VerticalAlignment="Top" />
-            <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="876,216,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="textBox_Product_Edit_Adress" HorizontalAlignment="Left" Height="23" Margin="30,111,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
+            <TextBox x:Name="textBox_Product_Edit_Longtitude" HorizontalAlignment="Left" Height="23" Margin="170,66,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
+            <TextBox x:Name="textBox_Product_Edit_Latitude" HorizontalAlignment="Left" Height="23" Margin="170,111,0,0" TextWrapping="Wrap" Text="{Binding Latitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Breddegrad" />
+            <TextBox x:Name="textBox_Product_Edit_ContactPhone" HorizontalAlignment="Left" Height="23" Margin="30,153,0,0" TextWrapping="Wrap" Text="{Binding ContactPhone}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Telefon nummer" />
+            <TextBox x:Name="textBox_Product_Edit_ContactEmail" HorizontalAlignment="Left" Height="23" Margin="170,153,0,0" TextWrapping="Wrap" Text="{Binding ContactEmail}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Email" />
+            <TextBox x:Name="textBox_Product_Edit_ContactFax" HorizontalAlignment="Left" Height="23" Margin="30,195,0,0" TextWrapping="Wrap" Text="{Binding ContactFax}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Fax" />
+            <TextBox x:Name="textBox_Product_Edit_Príce" HorizontalAlignment="Left" Height="23" Margin="170,195,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Pris" />
+            <TextBox x:Name="textBox_Product_Edit_Description" HorizontalAlignment="Left" Height="23" Margin="30,238,0,-7" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Beskrivelse" />
+            <TextBox x:Name="textBox_Product_Edit_ExtraDescription" HorizontalAlignment="Left" Height="23" Margin="170,238,0,-7" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
+            <TextBox x:Name="textBox_Product_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="30,276,0,-45" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
+            <TextBox x:Name="textBox_Product_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="170,276,0,-45" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
+            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="516,354,0,-120" VerticalAlignment="Top" Width="114" Click="button_Product_Edit_Edit_Click"/>
+            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="334,65,0,0" VerticalAlignment="Top" Width="114" ItemsSource="{Binding CityList}" Height="20"  DisplayMemberPath="Value" />
+            <ComboBox x:Name="comboBox_Product_Edit_MainCategory" HorizontalAlignment="Left" Margin="334,153,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+            <ComboBox x:Name="comboBox_Product_Edit_Category" HorizontalAlignment="Left" Margin="334,238,0,-7" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+
+            <Label x:Name="label_Product_Edit_CityID" Content="Vælg by:" HorizontalAlignment="Left" Margin="328,39,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_MainCategory" Content="Vælg hovedkategori:" HorizontalAlignment="Left" Margin="325,127,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_Category" Content="Vælg kategori:" HorizontalAlignment="Left" Margin="325,213,0,0" VerticalAlignment="Top"/>
+
+            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="328,276,0,-48" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="334,312,0,-74" VerticalAlignment="Top" />
+            <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="412,312,0,-73" VerticalAlignment="Top" />
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="586" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
         <!-- Rediger Produkt Slut -->
-        <Grid x:Name="product_imageGrid">
+        <Grid x:Name="grid_timeInputs" Margin="498,466,472,321">
+            <CheckBox x:Name="checkBox_Product_Add_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Add_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="43,65,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Add_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Add_Thursday" Content="Torsdag" HorizontalAlignment="Left" Margin="43,105,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Add_Friday" Content="Fredag" HorizontalAlignment="Left" Margin="43,125,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Add_Saturday" Content="Lørdag" HorizontalAlignment="Left" Margin="43,145,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Add_Sunday" Content="Søndag" HorizontalAlignment="Left" Margin="43,165,0,0" VerticalAlignment="Top" IsChecked="True"/>
 
-
-            <Image x:Name="imageDisplay01" HorizontalAlignment="Left" Height="200"  Margin="150,668,0,0" VerticalAlignment="Top" Width="200">
-                <Image.ToolTip>
-                    <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                            <Image Source="{Binding Source}" Stretch="None" />
-                        </Border>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-
-            <Image x:Name="imageDisplay02" HorizontalAlignment="Left" Height="200" Margin="355,668,0,0" VerticalAlignment="Top" Width="200">
-                <Image.ToolTip>
-                    <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                            <Image Source="{Binding Source}" Stretch="None" />
-                        </Border>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-
-
-            <Image x:Name="imageDisplay03" HorizontalAlignment="Left" Height="200" Margin="560,668,0,0" VerticalAlignment="Top" Width="200">
-                <Image.ToolTip>
-                    <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                            <Image Source="{Binding Source}" Stretch="None" />
-                        </Border>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
-
-
-            <Image x:Name="imageDisplay04" HorizontalAlignment="Left" Height="200" Margin="765,668,0,0" VerticalAlignment="Top" Width="200">
-                <Image.ToolTip>
-                    <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                            <Image Source="{Binding Source}" Stretch="None" />
-                        </Border>
-                    </ToolTip>
-                </Image.ToolTip>
-            </Image>
+            <xctk:DateTimePicker  Name="datePicker_Product_Add_DateFrom" HorizontalAlignment="Left" Margin="154,73,0,0" VerticalAlignment="Top"/>
+            <xctk:DateTimePicker Name="datePicker_Product_Add_DateTo" HorizontalAlignment="Left" Margin="154,140,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Add_OpeningTimes" Content="Åbningstider:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,10,0,0"/>
+            <Label x:Name="label_Product_Add_dateTo" Content="Vælg startsdato og tidspunkt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,42,0,0"/>
+            <Label x:Name="label_Product_Add_dateFrom" Content="Vælg slutdato og tidspunkt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,109,0,0"/>
         </Grid>
-       
+
+        <Grid x:Name="product_imageGrid" Margin="843,466,50,116">
+            <Image x:Name="imageDisplay01" HorizontalAlignment="Left" Height="200"  Margin="0,10,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Image x:Name="imageDisplay02" HorizontalAlignment="Left" Height="200" Margin="205,10,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Image x:Name="imageDisplay03" HorizontalAlignment="Left" Height="200" Margin="10,210,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Image x:Name="imageDisplay04" HorizontalAlignment="Left" Height="200" Margin="205,210,0,0" VerticalAlignment="Top" Width="200">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="417"/>
+        </Grid>
+        <Grid x:Name="grid_urlInputs" Margin="680,684,486,192">
+            <TextBox x:Name="textBox_Product_Edit_Url1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 1" Margin="10,10,0,0"/>
+            <TextBox x:Name="textBox_Product_Edit_Url2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 2" Margin="10,37,0,0"/>
+            <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
+            <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
+        </Grid>
+
     </Grid>
 </Page>
