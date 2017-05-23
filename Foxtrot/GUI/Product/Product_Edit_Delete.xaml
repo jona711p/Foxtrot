@@ -93,19 +93,19 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="586" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
         <!-- Rediger Produkt Slut -->
         <Grid x:Name="grid_timeInputs" Margin="498,466,472,321">
-            <CheckBox x:Name="checkBox_Product_Add_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>
-            <CheckBox x:Name="checkBox_Product_Add_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="43,65,0,0" VerticalAlignment="Top" IsChecked="True"/>
-            <CheckBox x:Name="checkBox_Product_Add_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top" IsChecked="True"/>
-            <CheckBox x:Name="checkBox_Product_Add_Thursday" Content="Torsdag" HorizontalAlignment="Left" Margin="43,105,0,0" VerticalAlignment="Top" IsChecked="True"/>
-            <CheckBox x:Name="checkBox_Product_Add_Friday" Content="Fredag" HorizontalAlignment="Left" Margin="43,125,0,0" VerticalAlignment="Top" IsChecked="True"/>
-            <CheckBox x:Name="checkBox_Product_Add_Saturday" Content="Lørdag" HorizontalAlignment="Left" Margin="43,145,0,0" VerticalAlignment="Top" IsChecked="True"/>
-            <CheckBox x:Name="checkBox_Product_Add_Sunday" Content="Søndag" HorizontalAlignment="Left" Margin="43,165,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="43,65,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Thursday" Content="Torsdag" HorizontalAlignment="Left" Margin="43,105,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Friday" Content="Fredag" HorizontalAlignment="Left" Margin="43,125,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Saturday" Content="Lørdag" HorizontalAlignment="Left" Margin="43,145,0,0" VerticalAlignment="Top" IsChecked="True"/>
+            <CheckBox x:Name="checkBox_Product_Edit_Sunday" Content="Søndag" HorizontalAlignment="Left" Margin="43,165,0,0" VerticalAlignment="Top" IsChecked="True"/>
 
-            <xctk:DateTimePicker  Name="datePicker_Product_Add_DateFrom" HorizontalAlignment="Left" Margin="154,73,0,0" VerticalAlignment="Top"/>
-            <xctk:DateTimePicker Name="datePicker_Product_Add_DateTo" HorizontalAlignment="Left" Margin="154,140,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_Product_Add_OpeningTimes" Content="Åbningstider:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,10,0,0"/>
-            <Label x:Name="label_Product_Add_dateTo" Content="Vælg startsdato og tidspunkt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,42,0,0"/>
-            <Label x:Name="label_Product_Add_dateFrom" Content="Vælg slutdato og tidspunkt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,109,0,0"/>
+            <xctk:DateTimePicker  Name="datePicker_Product_Edit_DateFrom" HorizontalAlignment="Left" Margin="154,73,0,0" VerticalAlignment="Top"/>
+            <xctk:DateTimePicker Name="datePicker_Product_Edit_DateTo" HorizontalAlignment="Left" Margin="154,140,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_OpeningTimes" Content="Åbningstider:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,10,0,0"/>
+            <Label x:Name="label_Product_Edit_dateTo" Content="Vælg startsdato og tidspunkt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,42,0,0"/>
+            <Label x:Name="label_Product_Edit_dateFrom" Content="Vælg slutdato og tidspunkt" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,109,0,0"/>
         </Grid>
 
         <Grid x:Name="product_imageGrid" Margin="843,466,50,116">
