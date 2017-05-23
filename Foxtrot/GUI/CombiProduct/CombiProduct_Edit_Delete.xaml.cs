@@ -93,29 +93,26 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void CombiProduct_Edit_Delete_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            tempCombiProduct.UserID = tempUser.ID;
-
-            tempCombiProduct.ProductID = new List<int?>();
-
-            foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+            if (dataGrid_Product_List.SelectedItem == null)
             {
-                tempCombiProduct.ProductID.Add(int.Parse(row[0].ToString()));
-            }
-
-            bool dupe = DBReadLogic.DupeCheckCombiProduct(tempCombiProduct);
-
-            if (!dupe)
-            {
-                DBWriteLogic.WriteCombiProduct(tempCombiProduct);
-                DBWriteLogic.WritRelCombiProducts(tempCombiProduct);
-
-                GUISortingLogic.Message("Et nyt Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' er blevet oprettet i systemet!");
+                GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
             }
 
             else
             {
-                GUISortingLogic.Message("Der Findes Allerede et Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' i systemet!");
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_Product_List.Columns[0].GetCellContent(
+                                dataGrid_Product_List.SelectedItem))
+                        .Text);
+
+                    tempCombiProduct.CombiProductTable =
+                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable);
             }
+
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
+
         }
 
         private void CombiProduct_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
