@@ -17,14 +17,20 @@ namespace Foxtrot.GUI.CombiProduct
         public Classes.User tempUser = new Classes.User();
         private bool availability;
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
+        Classes.Product tempProduct = new Classes.Product();
 
         public CombiProduct_Edit_Delete(Classes.User inputUser)
         {
             tempUser = inputUser;
-            InitializeComponent();
+
+
+            tempProduct.ProductTable = new DataTable();
             tempCombiProduct.CombiProductTable = new DataTable();
+            InitializeComponent();
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
             DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
-            DataContext = tempCombiProduct;
+            DataContext = tempProduct;
+            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
 
         private void DataGrid_CombiProduct_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
