@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -512,14 +511,12 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                bool dupe;
-
                 SqlCommand command = new SqlCommand("spGetShortProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
 
-                dupe = DBSortingLogic.DupeCheckCombiProductDataTable(inputProduct, inputTable);
+                bool dupe = DBSortingLogic.DupeCheckCombiProductDataTable(inputProduct, inputTable);
 
                 if (!dupe)
                 {
@@ -566,6 +563,35 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputCombiProductProduct;
+        }
+
+        public static bool DupeCheckCombiProduct(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM viewCombiProducts WHERE Name = @Name", connection);
+
+                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
