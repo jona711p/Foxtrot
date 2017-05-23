@@ -21,6 +21,9 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputAdministrator.FirstName;
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputAdministrator.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputAdministrator.WorkPhone == null ? null : inputAdministrator.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputAdministrator.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputAdministrator.WorkFax == null ? null : inputAdministrator.WorkFax;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -47,8 +50,14 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM viewActors WHERE CompanyName = @CompanyName", connection);
+                SqlCommand command = new SqlCommand("spDupeCheckActor", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = inputActor.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = inputActor.LastName;
+                command.Parameters.Add("@WorkPhone", SqlDbType.Int).Value = inputActor.WorkPhone;
+                command.Parameters.Add("@WorkEmail", SqlDbType.NVarChar).Value = inputActor.WorkEmail;
+                command.Parameters.Add("@WorkFax", SqlDbType.Int).Value = inputActor.WorkFax;
                 command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -390,10 +399,12 @@ namespace Foxtrot.Classes.DB
 
                 adapter.Fill(CombiProductTable);
             }
+
             catch (Exception ex)
             {
                 throw;
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return CombiProductTable;
@@ -533,6 +544,36 @@ namespace Foxtrot.Classes.DB
 
             return inputTable;
         }
+
+        public static bool DupeCheckCombiProduct(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM viewCombiProducts WHERE Name = @Name", connection);
+
+                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static CombiProduct GetCombiProductInfo(CombiProduct inputCombiProductProduct)
         {
             SqlConnection connection = null;
@@ -563,35 +604,6 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputCombiProductProduct;
-        }
-
-        public static bool DupeCheckCombiProduct(CombiProduct inputCombiProduct)
-        {
-            SqlConnection connection = null;
-            connection = DBConnectionLogic.ConnectToDB(connection);
-
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT * FROM viewCombiProducts WHERE Name = @Name", connection);
-
-                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    return true;
-                }
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-                return false;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
     }
 }
