@@ -451,7 +451,7 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("spGetFullProductInfo", connection);
+                SqlCommand command = new SqlCommand("spGetProductFiles", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
