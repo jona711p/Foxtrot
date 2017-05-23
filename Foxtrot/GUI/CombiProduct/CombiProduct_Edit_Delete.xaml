@@ -43,15 +43,19 @@
     <Grid>
         <!-- Liste over Combiprodukt start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="337,10,0,0" VerticalAlignment="Top" Width="963">
-            <DataGrid x:Name="dataGrid_CombiProduct_List"  IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="0,33,0,0" VerticalAlignment="Top" Height="330" Background="White" Width="963" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged"/>
-            <Label x:Name="label_CombiProduct_List" Content="Liste over combi produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="155"/>
+            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="317" Background="White" Width="963" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged"/>
+            <Label x:Name="label_CombiProduct_List" Content="Liste over Combi Produkter:" HorizontalAlignment="Center" Margin="10,10,10,322" VerticalAlignment="Center" Height="31" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="363" Margin="337,10,0,0" VerticalAlignment="Top" Width="963"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="41" Margin="337,10,0,0" VerticalAlignment="Top" Width="963">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Border.Effect>
+        </Border>
         <!-- Liste over Combiprodukt slut -->
 
         <!-- Søg CombiProdukt Start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="10,10,0,0" VerticalAlignment="Top" Width="322">
-            <Label x:Name="label_CombiProduct_Search" Content="Søg efter combi produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="93,4,0,0"/>
+            <Label x:Name="label_CombiProduct_Search" Content="Søg Efter Combi Produkter:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="10,10,10,320" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             <TextBox x:Name="TextBox_CombiProduct_Search_CombiProductName" HorizontalAlignment="Left" Height="35" Margin="24,87,0,0" TextWrapping="Wrap" Text="{Binding CombiProductName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på Combi produkt"/>
             <TextBox x:Name="TextBox_CombiProduct_Search_FirstName" HorizontalAlignment="Left" Height="35" Margin="26,173,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Fornavn på ejer"/>
             <TextBox x:Name="TextBox_CombiProduct_Search_LastName" HorizontalAlignment="Left" Height="35" Margin="29,253,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Efternavn på ejer"/>
@@ -60,12 +64,16 @@
                     <DropShadowEffect ShadowDepth="3"/>
                 </Button.Effect>
             </Button>
-            <Border BorderBrush="Black" BorderThickness="1" Height="363" Margin="1,0,0,0" VerticalAlignment="Top"/>
+            <Border BorderBrush="Black" BorderThickness="1" Height="363" Margin="1,0,0,0" VerticalAlignment="Top">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Border.Effect>
+            </Border>
         </Grid>
         <!-- Søg Produkt Slut -->
 
         <!-- Rediger Produkt Start -->
-        <Grid HorizontalAlignment="Left" Height="451" Margin="10,399,0,0" VerticalAlignment="Top" Width="642">
+        <Grid HorizontalAlignment="Left" Height="451" Margin="0,399,0,0" VerticalAlignment="Top" Width="642">
             <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="622">
                 <Label x:Name="label_Product_List" Content="Liste over Produkter:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="602" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"/>
                 <Button x:Name="CombiProduct_Edit_Delete_Add" Content="Tilføj" HorizontalAlignment="Left" Margin="537,45,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" Click="CombiProduct_Edit_Delete_Add_OnClick" FontFamily="Arial" FontSize="14" FontWeight="Bold">
@@ -80,7 +88,7 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="350" Margin="10,90,0,0" VerticalAlignment="Top" Width="622">
-                <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="350" Background="White" Width="622" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+                <DataGrid x:Name="dataGrid_Product_List" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="350" Background="White" Width="622" AlternationCount="2" AlternatingRowBackground="LightGray"/>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="350" VerticalAlignment="Top" Width="622">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
@@ -90,7 +98,7 @@
         </Grid>
         <Grid HorizontalAlignment="Left" Height="451" Margin="669,399,0,0" VerticalAlignment="Top" Width="631">
             <Grid HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="621">
-                <Label x:Name="label_CombiProduct_List1" Content="Liste over Produkter i Combi Produktet:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="601" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="label_CombiProduct_Product_List" Content="Liste over Produkter i Combi Produktet:" HorizontalAlignment="Center" Margin="10,10,10,32" VerticalAlignment="Center" Width="601" FontFamily="Arial" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
                 <Button x:Name="CombiProduct_Edit_Delete_Delete" Content="Fjern" Click="CombiProduct_Edit_Delete_Delete_OnClick" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="Black" FontFamily="Arial" FontWeight="Bold" FontSize="14">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
@@ -111,8 +119,8 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="110" Margin="10,330,0,0" VerticalAlignment="Top" Width="621">
-                <TextBox x:Name="textBox_Combi_Edit_Delete_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Navn *"/>
-                <TextBox x:Name="textBox_Combi_Edit_Delete_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Tilbuds Pris i Procent (%)"/>
+                <TextBox x:Name="textBox_Combi_Edit_Delete_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Navn *"/>
+                <TextBox x:Name="textBox_Combi_Edit_Delete_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Tilbuds Pris i Procent (%)"/>
                 <RadioButton x:Name="rdbtn_Combi_Edit_Delete_Availibility_True" Content="Synlig *" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <RadioButton x:Name="rdbtn_Combi_Edit_Delete_Availibility_False" Content="Usynlig *" HorizontalAlignment="Left" Margin="245,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <Label x:Name="lbl_Combi_Edit_Delete_Star" Content="* = Skal Udfyldes!" FontFamily="Arial" Margin="180,85,331,0"/>
@@ -133,6 +141,11 @@
                 </Border>
             </Grid>
         </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="317" Margin="337,56,0,0" VerticalAlignment="Top" Width="963">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Border.Effect>
+        </Border>
         <!-- Rediger Produkt Slut -->
     </Grid>
 

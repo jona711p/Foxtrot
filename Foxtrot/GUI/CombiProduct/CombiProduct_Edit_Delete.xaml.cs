@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Foxtrot.Classes.DB;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -11,50 +12,49 @@ namespace Foxtrot.GUI.CombiProduct
     public partial class CombiProduct_Edit_Delete : Page
     {
         public Classes.User tempUser = new Classes.User();
-        Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
         Classes.Product tempProduct = new Classes.Product();
+        Classes.CombiProduct tempOldCombiProduct = new Classes.CombiProduct();
+        Classes.CombiProduct tempNewCombiProduct = new Classes.CombiProduct();
 
         public CombiProduct_Edit_Delete(Classes.User inputUser)
         {
             tempUser = inputUser;
 
-
             tempProduct.ProductTable = new DataTable();
-            tempCombiProduct.CombiProductTable = new DataTable();
-            tempCombiProduct.CombiProductTable1 = new DataTable();
+            tempOldCombiProduct.CombiProductTable = new DataTable();
+            tempNewCombiProduct.CombiProductTable = new DataTable();
+
             InitializeComponent();
+
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
-            DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
-            DataContext = tempProduct;
-            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
+            DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
+
+            DataContext = tempOldCombiProduct;
+            dataGrid_Product_List.ItemsSource = tempProduct.ProductTable.AsDataView();
         }
 
         private void DataGrid_CombiProduct_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Runs when the user selects any item on the datagrid
-            //finds the selected products ID and retrieves all information about it from the database
-            //the new information is stored in the object 'tempProduct' and displayed in the relavant inputfields in the GUI 
             if (dataGrid_CombiProduct_List.SelectedItem != null)
             {
-                tempCombiProduct.ID =
+                tempOldCombiProduct.ID =
                     int.Parse(
                         ((TextBlock)
                             dataGrid_CombiProduct_List.Columns[0].GetCellContent(
                                 dataGrid_CombiProduct_List.SelectedItem))
                         .Text);
-                tempCombiProduct = DBReadLogic.GetCombiProductInfo(tempCombiProduct);
+                tempOldCombiProduct = DBReadLogic.GetCombiProductInfo(tempOldCombiProduct);
                 MakeFieldsEditable(false);
 
-                if (tempCombiProduct.UserID == tempUser.ID || tempUser.Permission == 1)
+                if (tempOldCombiProduct.UserID == tempUser.ID || tempUser.Permission == 1)
                 {
                     MakeFieldsEditable(true);
                 }
 
-                DBReadLogic.FillCombiProductProductList(tempCombiProduct);
-
-                FillDataGridWithProductsForCombiProduct(tempCombiProduct);
+                FillCombiProductWithProducts();
             }
         }
+
         private void MakeFieldsEditable(bool input)
         {
 
@@ -62,10 +62,10 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
         {
-            DBReadLogic.FillCombiProductTable(tempCombiProduct.CombiProductTable);
+            DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
             if (TextBox_CombiProduct_Search_CombiProductName.Text != null)
             {
-                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
@@ -88,7 +88,7 @@ namespace Foxtrot.GUI.CombiProduct
             }
             if (TextBox_CombiProduct_Search_LastName.Text != null)
             {
-                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
@@ -99,12 +99,35 @@ namespace Foxtrot.GUI.CombiProduct
             }
         }
 
-        private void FillDataGridWithProductsForCombiProduct(Classes.CombiProduct inputCombiProduct)
+        private void FillCombiProductWithProducts()
         {
-            foreach (int productID in inputCombiProduct.ProductID)
+            if (tempOldCombiProduct.ProductID != null && tempNewCombiProduct.CombiProductTable != null)
             {
-                tempCombiProduct.CombiProductTable =
-                    DBReadLogic.GetProductInfoAndCupeCheck(productID, tempCombiProduct.CombiProductTable);
+                tempOldCombiProduct.ProductID.Clear();
+                tempNewCombiProduct.CombiProductTable.Clear();
+            }
+
+            DBReadLogic.FillCombiProductProductList(tempOldCombiProduct);
+
+            foreach (int productID in tempOldCombiProduct.ProductID)
+            {
+                tempNewCombiProduct.CombiProductTable =
+                    DBReadLogic.GetProductInfoAndCupeCheck(productID, tempNewCombiProduct.CombiProductTable);
+            }
+
+            dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
+
+            textBox_Combi_Edit_Delete_Name.Text = tempOldCombiProduct.Name;
+            textBox_Combi_Edit_Delete_PackagePrice.Text = tempOldCombiProduct.PackagePrice.ToString();
+
+            if (tempNewCombiProduct.Availability)
+            {
+                rdbtn_Combi_Edit_Delete_Availibility_True.IsChecked = true;
+            }
+
+            if (!tempNewCombiProduct.Availability)
+            {
+                rdbtn_Combi_Edit_Delete_Availibility_False.IsChecked = true;
             }
         }
 
@@ -129,12 +152,12 @@ namespace Foxtrot.GUI.CombiProduct
 
             }
 
-            dataGrid_CombiProduct_ProductList.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
+            dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
         }
 
         private void CombiProduct_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            if (dataGrid_CombiProduct_ProductList.SelectedItem == null)
+            if (dataGrid_CombiProduct_List.SelectedItem == null)
             {
                 GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
             }
@@ -148,16 +171,21 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_CombiProduct_ProductList.SelectedItem))
                         .Text);
 
-                foreach (DataRow row in tempCombiProduct.CombiProductTable1.Rows)
+                foreach (DataRow row in tempNewCombiProduct.CombiProductTable.Rows)
                 {
-                    if (int.Parse(row[0].ToString()) == tempProduct.ID)
+                    if (row.RowState != DataRowState.Deleted)
                     {
-                        row.Delete();
+                        if (row[0].ToString().Contains(tempProduct.ID.ToString()))
+                        {
+                            row.Delete();
+                        }
                     }
                 }
+
+                tempNewCombiProduct.CombiProductTable.AcceptChanges();
             }
 
-            dataGrid_CombiProduct_ProductList.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
+            dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
         }
     }
 }

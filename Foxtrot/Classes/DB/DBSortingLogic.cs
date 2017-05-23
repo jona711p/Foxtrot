@@ -27,7 +27,7 @@ namespace Foxtrot.Classes.DB
         {
             foreach (DataRow row in inputTable.Rows)
             {
-                if (int.Parse(row[0].ToString()) == productID)
+                if (row[0].ToString().Contains(productID.ToString()))
                 {
                     GUISortingLogic.Message("Produktet findes Allerede på Listen!");
                     return true;
