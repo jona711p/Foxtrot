@@ -231,12 +231,12 @@ namespace Foxtrot.GUI.Product
                             row.Delete();
                 }
             }
-            if (textBox_Product_SearchCombiProduct.Text != "")
+            if (textBox_Product_SearchCity.Text != "")
             {
                 foreach (DataRow row in tempProduct.ProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
-                        if (!row["CombiProduct"].ToString().Contains(textBox_Product_SearchCombiProduct.Text))
+                        if (!row["By"].ToString().Contains(textBox_Product_SearchCity.Text))
                             row.Delete();
        
                 }
