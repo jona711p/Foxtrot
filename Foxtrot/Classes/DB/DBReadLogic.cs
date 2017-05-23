@@ -415,7 +415,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            //try
             {
                 SqlCommand command = new SqlCommand("spGetFullProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -461,12 +461,68 @@ namespace Foxtrot.Classes.DB
 
                 inputProduct.Cities = new City();
                 inputProduct.Cities.Name = reader["City"].ToString();
+                inputProduct.MainCategories.Name = reader["MainCategory"].ToString();
+                inputProduct.Categories.Name = reader["Category"].ToString();
+
+                inputProduct.OpeningHours = new OpeningHour();
+                if (!string.IsNullOrEmpty(reader["StartDate"].ToString()))
+                {
+                    inputProduct.OpeningHours.StartDate = Convert.ToDateTime(reader["StartDate"]);
+                }
+                if (!string.IsNullOrEmpty(reader["EndDate"].ToString()))
+                {
+                    inputProduct.OpeningHours.EndDate = Convert.ToDateTime(reader["EndDate"]);
+                }
+                if (!string.IsNullOrEmpty(reader["StartTime"].ToString()))
+                {
+                    inputProduct.OpeningHours.StartTime = DateTime.Parse(reader["StartTime"].ToString());
+                }
+                if (!string.IsNullOrEmpty(reader["EndTime"].ToString()))
+                {
+                    inputProduct.OpeningHours.EndTime = DateTime.Parse(reader["EndTime"].ToString());
+                }
+
+                if (!string.IsNullOrEmpty(reader["Monday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Monday = Convert.ToBoolean(reader["Monday"]);
+
+                }
+                if (!string.IsNullOrEmpty(reader["Tuesday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Tuesday = Convert.ToBoolean(reader["Tuesday"]);
+
+                }
+                if (!string.IsNullOrEmpty(reader["Wednesday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Wednesday = Convert.ToBoolean(reader["Wednesday"]);
+
+                }
+                if (!string.IsNullOrEmpty(reader["Thursday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Thursday = Convert.ToBoolean(reader["Thursday"]);
+
+                }
+                if (!string.IsNullOrEmpty(reader["Friday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Friday = Convert.ToBoolean(reader["Friday"]);
+
+                }
+                if (!string.IsNullOrEmpty(reader["Saturday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Saturday = Convert.ToBoolean(reader["Saturday"]);
+
+                }
+                if (!string.IsNullOrEmpty(reader["Sunday"].ToString()))
+                {
+                    inputProduct.OpeningHours.Sunday = Convert.ToBoolean(reader["Sunday"]);
+
+                }
             }
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
