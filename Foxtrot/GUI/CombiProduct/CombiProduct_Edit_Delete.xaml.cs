@@ -132,7 +132,7 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_CombiProduct_List1.SelectedItem))
                         .Text);
 
-                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                foreach (DataRow row in tempCombiProduct.CombiProductTable1.Rows)
                 {
                     if (int.Parse(row[0].ToString()) == tempProduct.ID)
                     {
@@ -141,7 +141,7 @@ namespace Foxtrot.GUI.CombiProduct
                 }
             }
 
-            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
+            dataGrid_CombiProduct_List1.ItemsSource = tempCombiProduct.CombiProductTable1.AsDataView();
         }
     }
 }
