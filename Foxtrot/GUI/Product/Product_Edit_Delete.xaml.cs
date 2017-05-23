@@ -61,7 +61,7 @@ namespace Foxtrot.GUI.Product
                 {
                     MakeFieldsEditable(true);
                 }
-
+                tempTime.ID = tempProduct.OpeningHours.ID;
                 textBox_Product_Edit_Name.Text = tempProduct.Name;
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
                 textBox_Product_Edit_Longtitude.Text = tempProduct.Longitude.ToString();
@@ -157,6 +157,26 @@ namespace Foxtrot.GUI.Product
             textBox_Product_Edit_Website.IsEnabled = input;
             textBox_Product_Edit_CanonicalUrl.IsEnabled = input;
             comboBox_Product_Edit_CityID.IsEnabled = input;
+            comboBox_Product_Edit_MainCategory.IsEnabled = input;
+            comboBox_Product_Edit_Category.IsEnabled = input;
+            datePicker_Product_Edit_DateFrom.IsEnabled = input;
+            datePicker_Product_Edit_DateTo.IsEnabled = input;
+            textBox_Product_Edit_Url1.IsEnabled = input;
+            textBox_Product_Edit_Url2.IsEnabled = input;
+            textBox_Product_Edit_Url3.IsEnabled = input;
+            textBox_Product_Edit_Url4.IsEnabled = input;
+
+
+            checkBox_Product_Edit_Monday.IsEnabled = input;
+            checkBox_Product_Edit_Tuesday.IsEnabled = input;
+            checkBox_Product_Edit_Wednesday.IsEnabled = input;
+            checkBox_Product_Edit_Thursday.IsEnabled = input;
+            checkBox_Product_Edit_Friday.IsEnabled = input;
+            checkBox_Product_Edit_Saturday.IsEnabled = input;
+            checkBox_Product_Edit_Sunday.IsEnabled = input;
+
+            button_Product_Edit_Edit.IsEnabled = input;
+
         }
         private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -265,8 +285,10 @@ namespace Foxtrot.GUI.Product
 
             tempProduct.Cities = new City();
             tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
-
+            tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_MainCategory.SelectedItem).Key;
+            tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
             DBUpdateLogic.UpdateProduct(tempProduct);
+            DBUpdateLogic.UpdateOpeningHours(tempTime);
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }

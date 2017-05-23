@@ -68,7 +68,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            //try
+            try
             {
                 SqlCommand command = new SqlCommand("spWriteNewProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -104,13 +104,10 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = inputProducts.MainCategories.ID;
                 command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = inputProducts.Categories.ID;
 
-                //todo OPENINGHOURS MANGLER FLERE PARAMETER!
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
-                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//usikker
+                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
                 command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
-
-
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
                 command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Wednesday;
@@ -121,10 +118,10 @@ namespace Foxtrot.Classes.DB
                 inputProducts.ID=(int)command.ExecuteScalar();
             }
 
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputProducts.ID;
@@ -162,8 +159,6 @@ namespace Foxtrot.Classes.DB
 
         public static void WriteNewRelFiles(Product inputProduct)
         {
-            //List<int> FileIDList = new List<int>();
-
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 

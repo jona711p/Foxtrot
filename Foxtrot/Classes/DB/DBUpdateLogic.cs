@@ -88,6 +88,8 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProduct.Website;
                 command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProduct.CanonicalUrl;
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProduct.Cities.ID;
+                command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = inputProduct.MainCategories.ID;
+                command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = inputProduct.Categories.ID;
 
                 command.ExecuteNonQuery();
             }
@@ -97,6 +99,58 @@ namespace Foxtrot.Classes.DB
                 throw ex;
             }
 
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+        public static void UpdateOpeningHours(OpeningHour inputTimes)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateOpeningHours", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = inputTimes.ID;
+                command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputTimes.StartDate;
+                command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputTimes.EndDate;
+                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = inputTimes.StartTime.Value.TimeOfDay;
+                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = inputTimes.EndTime.Value.TimeOfDay;
+                command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputTimes.Monday;
+                command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputTimes.Tuesday;
+                command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputTimes.Wednesday;
+                command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = inputTimes.Thursday;
+                command.Parameters.Add("@Friday", SqlDbType.Bit).Value = inputTimes.Friday;
+                command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputTimes.Saturday;
+                command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputTimes.Sunday;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+        public static void UpdateFiles(Product inputProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                for (int i = 0; i < inputProduct.Files.Count; i++)
+                {
+                    SqlCommand command = new SqlCommand("spUpdateFiles", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputProduct.Files[i].ID;
+                    command.Parameters.Add("@Uri", SqlDbType.Date).Value = inputProduct.Files[i].URI;
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }
