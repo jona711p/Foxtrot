@@ -589,7 +589,7 @@ namespace Foxtrot.Classes.DB
 
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
-                //inputCombiProductProduct.ID = int.Parse(reader["CombiProductID"].ToString());
+                inputCombiProductProduct.ID = int.Parse(reader["ID"].ToString());
                 inputCombiProductProduct.CreationDate = DateTime.Parse(reader["CreationDate"].ToString());
                 inputCombiProductProduct.PackagePrice = DBSortingLogic.ConvertToNullableFloat(reader["PackagePrice"].ToString());
                 inputCombiProductProduct.Availability = bool.Parse(reader["Availability"].ToString());
