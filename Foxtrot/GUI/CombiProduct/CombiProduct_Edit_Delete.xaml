@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.CombiProduct"
       mc:Ignorable="d" 
+      Background="White"
       d:DesignHeight="768" d:DesignWidth="1310"
       Title="Se Alle Combi Produkter, Rediger, Slet">
 
@@ -42,7 +43,7 @@
     <Grid>
         <!-- Liste over Combiprodukt start -->
         <Grid HorizontalAlignment="Left" Height="334" Margin="353,42,0,0" VerticalAlignment="Top" Width="942">
-            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray"/>
+            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged"/>
             <Label x:Name="label_CombiProduct_List" Content="Liste over combi produkter" HorizontalAlignment="Left" Margin="417,-3,0,0" VerticalAlignment="Top" Height="31" Width="155"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="356" Margin="337,34,0,0" VerticalAlignment="Top" Width="966"/>

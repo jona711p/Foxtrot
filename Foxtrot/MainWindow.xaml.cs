@@ -147,7 +147,7 @@ namespace Foxtrot
 
         private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new CombiProduct_Edit_Delete();
+            MainFrame.Content = new CombiProduct_Edit_Delete(tempUser);
         }
     }
 }

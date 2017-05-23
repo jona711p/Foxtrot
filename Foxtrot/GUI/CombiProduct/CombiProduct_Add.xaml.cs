@@ -20,7 +20,7 @@ namespace Foxtrot.GUI.CombiProduct
             tempUser = inputUser;
 
             tempProduct.ProductTable = new DataTable();
-            tempCombiProduct.ProductTable = new DataTable();
+            tempCombiProduct.CombiProductTable = new DataTable();
 
             InitializeComponent();
 
@@ -45,11 +45,11 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
 
-                tempCombiProduct.ProductTable =
-                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.ProductTable);
+                tempCombiProduct.CombiProductTable =
+                    DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable);
             }
 
-            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.ProductTable.AsDataView();
+            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
 
         private void CombiProduct_Add_Delete_OnClick(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_CombiProduct_List.SelectedItem))
                         .Text);
 
-                foreach (DataRow row in tempCombiProduct.ProductTable.Rows)
+                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
                 {
                     if (int.Parse(row[0].ToString()) == tempProduct.ID)
                     {
@@ -77,7 +77,7 @@ namespace Foxtrot.GUI.CombiProduct
                 }
             }
 
-            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.ProductTable.AsDataView();
+            dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
         }
 
         private void btn_Combi_Add_Add_OnClick(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             tempCombiProduct.ProductID = new List<int?>();
 
-            foreach (DataRow row in tempCombiProduct.ProductTable.Rows)
+            foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
             {
                 tempCombiProduct.ProductID.Add(int.Parse(row[0].ToString()));
             }

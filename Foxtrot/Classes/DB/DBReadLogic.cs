@@ -378,6 +378,28 @@ namespace Foxtrot.Classes.DB
             return productTable;
         }
 
+        public static DataTable FillCombiProductTable(DataTable CombiProductTable)
+        {
+            CombiProductTable.Clear();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("spFillCombiProductTable", connection);
+
+                adapter.Fill(CombiProductTable);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return CombiProductTable;
+        }
+
         public static Product GetProductInfo(Product inputProduct)
         {
             SqlConnection connection = null;
@@ -513,6 +535,37 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputTable;
+        }
+        public static CombiProduct GetCombiProductInfo(CombiProduct inputCombiProductProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spGetFullCombiProductInfo", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProductProduct.ID;
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                inputCombiProductProduct.ID = int.Parse(reader["CombiProductID"].ToString());
+                inputCombiProductProduct.CreationDate = DateTime.Parse(reader["CreationDate"].ToString());
+                inputCombiProductProduct.PackagePrice = DBSortingLogic.ConvertToNullableFloat(reader["PackagePrice"].ToString());
+                inputCombiProductProduct.Availability = bool.Parse(reader["Availability"].ToString());
+                inputCombiProductProduct.Name = reader["Name"].ToString();
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputCombiProductProduct;
         }
     }
 }
