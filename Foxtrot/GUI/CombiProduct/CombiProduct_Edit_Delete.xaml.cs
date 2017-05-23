@@ -74,7 +74,7 @@ namespace Foxtrot.GUI.CombiProduct
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["ProduktNavn"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
+                        if (!row["fornavn"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
                             row.Delete();
                     }
                 }

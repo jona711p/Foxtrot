@@ -593,6 +593,7 @@ namespace Foxtrot.Classes.DB
                 inputCombiProductProduct.PackagePrice = DBSortingLogic.ConvertToNullableFloat(reader["PackagePrice"].ToString());
                 inputCombiProductProduct.Availability = bool.Parse(reader["Availability"].ToString());
                 inputCombiProductProduct.Name = reader["Name"].ToString();
+                
 
             }
 
