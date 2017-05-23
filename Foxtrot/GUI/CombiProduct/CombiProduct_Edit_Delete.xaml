@@ -60,13 +60,12 @@
         <!-- Søg Produkt Slut -->
 
         <!-- Rediger Produkt Start -->
-        <Grid HorizontalAlignment="Left" Height="254" Margin="36,425,0,0" VerticalAlignment="Top" Width="1253">
-            <Label x:Name="label_CombiProduct_EditNew" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="609,6,0,0" VerticalAlignment="Top" Width="143"/>
-            <Button x:Name="button_CombiProduct_Edit_Edit" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="1106,209,0,0" VerticalAlignment="Top" Width="129" Height="21"/>
+        <Grid HorizontalAlignment="Left" Height="246" Margin="630,425,0,0" VerticalAlignment="Top" Width="659">
+            <Label x:Name="label_CombiProduct_EditNew" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="871,11,0,0" VerticalAlignment="Top" Width="143"/>
+            <Button x:Name="button_CombiProduct_Edit_Edit" Content="Rediger combi produkt" HorizontalAlignment="Left" Margin="511,204,0,0" VerticalAlignment="Top" Width="129" Height="21"/>
             <TextBox x:Name="textBox_CombiProduct_Edit_Name" HorizontalAlignment="Left" Height="23" Margin="23,35,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn" />
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
-       
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="276" Margin="611,404,0,0" VerticalAlignment="Top" Width="691"/>
         <!-- Rediger Produkt Slut -->
     </Grid>
 
