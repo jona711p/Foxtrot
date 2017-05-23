@@ -126,6 +126,41 @@ namespace Foxtrot.Classes.DB
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputProducts.ID;
         }
+        public static int? WriteOpeningHours(Product inputProducts)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            //try
+            {
+                SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
+                command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
+                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
+                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
+                command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
+                command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
+                command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Wednesday;
+                command.Parameters.Add("@Thursday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Thursday;
+                command.Parameters.Add("@Friday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Friday;
+                command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Saturday;
+                command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
+
+                command.Parameters.Add("@OpeningHourID", SqlDbType.Int).Value = 5;
+
+                inputProducts.OpeningHours.ID = (int)command.ExecuteScalar();
+            }
+
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+            return inputProducts.ID;
+        }
 
         public static List<File> WriteNewFiles(List<File> inputFiles)
         {

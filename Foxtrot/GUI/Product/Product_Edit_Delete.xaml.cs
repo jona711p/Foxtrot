@@ -262,7 +262,7 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Availability = availibility;
             }
 
-            if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateFrom != null)
+            if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateTo != null)
             {
 
                 tempTimeFrom = datePicker_Product_Edit_DateFrom.Value;
@@ -282,13 +282,24 @@ namespace Foxtrot.GUI.Product
                 tempTime.Saturday = checkBox_Product_Edit_Saturday.IsChecked == true;
                 tempTime.Sunday = checkBox_Product_Edit_Sunday.IsChecked == true;
             }
+            tempProduct.OpeningHours = tempTime;
 
             tempProduct.Cities = new City();
             tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
             tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_MainCategory.SelectedItem).Key;
             tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
+
+
+            if (tempTime.ID != null)
+            {
+                DBUpdateLogic.UpdateOpeningHours(tempTime);
+            }
+            else if (tempTime.StartDate != null && tempTime.EndDate != null && tempProduct.OpeningHours.ID == null)
+            {
+                tempProduct.OpeningHours.ID = DBWriteLogic.WriteOpeningHours(tempProduct);
+            }
+
             DBUpdateLogic.UpdateProduct(tempProduct);
-            DBUpdateLogic.UpdateOpeningHours(tempTime);
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
