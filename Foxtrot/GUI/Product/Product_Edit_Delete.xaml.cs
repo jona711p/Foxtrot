@@ -289,6 +289,12 @@ namespace Foxtrot.GUI.Product
             tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_MainCategory.SelectedItem).Key;
             tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
 
+            tempProduct.Files[0].URI = textBox_Product_Edit_Url1.Text;
+            tempProduct.Files[1].URI = textBox_Product_Edit_Url2.Text;
+            tempProduct.Files[2].URI = textBox_Product_Edit_Url3.Text;
+            tempProduct.Files[3].URI = textBox_Product_Edit_Url4.Text;
+
+            DBUpdateLogic.UpdateFiles(tempProduct);
 
             if (tempTime.ID != null)
             {

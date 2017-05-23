@@ -153,7 +153,7 @@
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="417"/>
         </Grid>
         <Grid x:Name="grid_urlInputs" Margin="537,665,540,211">
-            <TextBox x:Name="textBox_Product_Edit_Url1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 1" Margin="10,10,0,0"/>
+            <TextBox x:Name="textBox_Product_Edit_Url1"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 1" Margin="10,10,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 2" Margin="10,37,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>

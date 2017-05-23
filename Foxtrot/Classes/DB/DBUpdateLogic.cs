@@ -90,6 +90,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProduct.Cities.ID;
                 command.Parameters.Add("@FK_MainCategoryID", SqlDbType.Int).Value = inputProduct.MainCategories.ID;
                 command.Parameters.Add("@FK_CategoryID", SqlDbType.Int).Value = inputProduct.Categories.ID;
+                command.Parameters.Add("@FK_OpeningHourID", SqlDbType.Int).Value = inputProduct.OpeningHours.ID;
 
                 command.ExecuteNonQuery();
             }
@@ -140,11 +141,25 @@ namespace Foxtrot.Classes.DB
             {
                 for (int i = 0; i < inputProduct.Files.Count; i++)
                 {
-                    SqlCommand command = new SqlCommand("spUpdateFiles", connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputProduct.Files[i].ID;
-                    command.Parameters.Add("@Uri", SqlDbType.Date).Value = inputProduct.Files[i].URI;
-                    command.ExecuteNonQuery();
+                    if (inputProduct.Files[i].ID == null)
+
+                    {
+                        //spcreatefile
+                    }
+                    else if(inputProduct.Files[i].ID != null && string.IsNullOrEmpty(inputProduct.Files[i].URI))
+                    {
+                        //slet fil med id
+                    }
+                    else
+                    {
+                        SqlCommand command = new SqlCommand("spUpdateFiles", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputProduct.Files[i].ID;
+                        command.Parameters.Add("@Uri", SqlDbType.Date).Value = inputProduct.Files[i].URI;
+                        command.ExecuteNonQuery();
+                    }
+
+                   
                 }
             }
             catch (Exception ex)

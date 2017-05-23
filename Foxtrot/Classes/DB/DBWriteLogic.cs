@@ -148,9 +148,10 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Saturday;
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
 
-                command.Parameters.Add("@OpeningHourID", SqlDbType.Int).Value = 5;
 
-                inputProducts.OpeningHours.ID = (int)command.ExecuteScalar();
+                var hest = command.ExecuteScalar();
+
+                inputProducts.OpeningHours.ID = Convert.ToInt32(hest);
             }
 
             //catch (Exception ex)
@@ -159,7 +160,7 @@ namespace Foxtrot.Classes.DB
             //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
-            return inputProducts.ID;
+            return inputProducts.OpeningHours.ID;
         }
 
         public static List<File> WriteNewFiles(List<File> inputFiles)
