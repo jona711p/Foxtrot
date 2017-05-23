@@ -14,7 +14,6 @@ namespace Foxtrot.Classes
         public float? PackagePrice { get; set; } //auto
         public int? UserID { get; set; }//auto
         public DataTable CombiProductTable { get; set; }
-        public DataTable CombiProductTable1 { get ; set; }
 
         public CombiProduct()
         {

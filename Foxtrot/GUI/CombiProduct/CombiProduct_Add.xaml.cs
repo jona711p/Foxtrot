@@ -15,6 +15,7 @@ namespace Foxtrot.GUI.CombiProduct
         Classes.Product tempProduct = new Classes.Product();
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
 
+
         public CombiProduct_Add(Classes.User inputUser)
         {
             tempUser = inputUser;
@@ -70,11 +71,16 @@ namespace Foxtrot.GUI.CombiProduct
 
                 foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
                 {
-                    if (int.Parse(row[0].ToString()) == tempProduct.ID)
+                    if (row.RowState != DataRowState.Deleted)
                     {
-                        row.Delete();
+                        if (row[0].ToString().Contains(tempProduct.ID.ToString()))
+                        {
+                            row.Delete();
+                        }
                     }
                 }
+
+                tempCombiProduct.CombiProductTable.AcceptChanges();
             }
 
             dataGrid_CombiProduct_List.ItemsSource = tempCombiProduct.CombiProductTable.AsDataView();
