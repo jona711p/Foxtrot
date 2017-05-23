@@ -75,13 +75,24 @@ namespace Foxtrot.GUI.CombiProduct
                 }
             }
 
-            if (TextBox_CombiProduct_Search_ProductName.Text != null) // Skal laves til produkt navn
+            if (TextBox_CombiProduct_Search_FirstName.Text != null) 
             {
                 foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["ProductName"].ToString().Contains(TextBox_CombiProduct_Search_ProductName.Text))
+                        if (!row["Fornavn"].ToString().Contains(TextBox_CombiProduct_Search_FirstName.Text))
+                            row.Delete();
+                    }
+                }
+            }
+            if (TextBox_CombiProduct_Search_LastName.Text != null)
+            {
+                foreach (DataRow row in tempCombiProduct.CombiProductTable.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        if (!row["Efternavn"].ToString().Contains(TextBox_CombiProduct_Search_LastName.Text))
                             row.Delete();
                     }
                 }
@@ -113,8 +124,8 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
 
-                //tempCombiProduct.CombiProductTable1 =
-                //DBReadLogic.GetProductInfoAndCupeCheck(tempProduct, tempCombiProduct.CombiProductTable1);
+                tempCombiProduct.CombiProductTable1 =
+                DBReadLogic.GetProductInfoAndCupeCheck(tempProduct.ID, tempCombiProduct.CombiProductTable1);
 
             }
 

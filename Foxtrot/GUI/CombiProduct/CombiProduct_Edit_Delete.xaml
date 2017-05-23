@@ -53,7 +53,8 @@
         <Grid HorizontalAlignment="Left" Height="363" Margin="10,10,0,0" VerticalAlignment="Top" Width="322">
             <Label x:Name="label_CombiProduct_Search" Content="Søg efter combi produkt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="93,4,0,0"/>
             <TextBox x:Name="TextBox_CombiProduct_Search_CombiProductName" HorizontalAlignment="Left" Height="35" Margin="24,87,0,0" TextWrapping="Wrap" Text="{Binding CombiProductName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på Combi produkt"/>
-            <TextBox x:Name="TextBox_CombiProduct_Search_ProductName" HorizontalAlignment="Left" Height="35" Margin="26,173,0,0" TextWrapping="Wrap" Text="{Binding ProductName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på produkt"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_FirstName" HorizontalAlignment="Left" Height="35" Margin="26,173,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Fornavn på ejer"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_LastName" HorizontalAlignment="Left" Height="35" Margin="29,253,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Efternavn på ejer"/>
             <Button x:Name="btb_CombiProduct_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76" Click="Btb_CombiProduct_Search_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontSize="14" FontWeight="Bold">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
