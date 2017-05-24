@@ -69,5 +69,24 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+        public static void DeleteProduct(Product inputProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM Products WHERE ID = @ProductID", connection);
+                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
     }
 }

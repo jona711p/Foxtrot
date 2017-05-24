@@ -176,6 +176,7 @@ namespace Foxtrot.GUI.Product
             checkBox_Product_Edit_Sunday.IsEnabled = input;
 
             button_Product_Edit_Edit.IsEnabled = input;
+            button_Product_Edit_Delete.IsEnabled = input;
 
         }
         private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -264,23 +265,30 @@ namespace Foxtrot.GUI.Product
 
             if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateTo != null)
             {
+                if (datePicker_Product_Edit_DateFrom.Value < datePicker_Product_Edit_DateTo.Value)
+                {
+                    tempTimeFrom = datePicker_Product_Edit_DateFrom.Value;
+                    tempTimeTo = datePicker_Product_Edit_DateTo.Value;
 
-                tempTimeFrom = datePicker_Product_Edit_DateFrom.Value;
-                tempTimeTo = datePicker_Product_Edit_DateTo.Value;
 
+                    tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
+                    tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
+                    tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
+                    tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
 
-                tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
-                tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
-                tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
-                tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
-
-                tempTime.Monday = checkBox_Product_Edit_Monday.IsChecked == true;
-                tempTime.Tuesday = checkBox_Product_Edit_Tuesday.IsChecked == true;
-                tempTime.Wednesday = checkBox_Product_Edit_Wednesday.IsChecked == true;
-                tempTime.Thursday = checkBox_Product_Edit_Thursday.IsChecked == true;
-                tempTime.Friday = checkBox_Product_Edit_Friday.IsChecked == true;
-                tempTime.Saturday = checkBox_Product_Edit_Saturday.IsChecked == true;
-                tempTime.Sunday = checkBox_Product_Edit_Sunday.IsChecked == true;
+                    tempTime.Monday = checkBox_Product_Edit_Monday.IsChecked == true;
+                    tempTime.Tuesday = checkBox_Product_Edit_Tuesday.IsChecked == true;
+                    tempTime.Wednesday = checkBox_Product_Edit_Wednesday.IsChecked == true;
+                    tempTime.Thursday = checkBox_Product_Edit_Thursday.IsChecked == true;
+                    tempTime.Friday = checkBox_Product_Edit_Friday.IsChecked == true;
+                    tempTime.Saturday = checkBox_Product_Edit_Saturday.IsChecked == true;
+                    tempTime.Sunday = checkBox_Product_Edit_Sunday.IsChecked == true;
+                }
+                else
+                {
+                    MessageBox.Show("Du kan ikke vælge en startdato der er senere end slutdatoen!");
+                    return;
+                }
             }
             tempProduct.OpeningHours = tempTime;
 
@@ -406,6 +414,20 @@ namespace Foxtrot.GUI.Product
                             row.Delete();
                 }
             }            
+        }
+
+        private void Button_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            DBDeleteLogic.DeleteProduct(tempProduct);
+
+            for (int i = 0; i < tempProduct.Files.Count; i++)
+            {
+                DBDeleteLogic.DeleteFile(tempProduct.Files[i]);
+            }
+            DBReadLogic.FillProductTable(tempProduct.ProductTable);
+
+            MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
+
         }
     }
 }
