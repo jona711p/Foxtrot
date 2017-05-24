@@ -203,6 +203,8 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void Btn_Combi_Edit_Delete_Edit_OnClick(object sender, RoutedEventArgs e)
         {
+            tempNewCombiProduct.ID = tempOldCombiProduct.ID;
+
             tempNewCombiProduct.ProductID = new List<int?>();
 
             foreach (DataRow row in tempNewCombiProduct.CombiProductTable.Rows)
@@ -239,7 +241,7 @@ namespace Foxtrot.GUI.CombiProduct
                 tempNewCombiProduct.Availability = true;
             }
 
-            if (rdbtn_Combi_Edit_Delete_Availibility_True.IsChecked == true)
+            if (rdbtn_Combi_Edit_Delete_Availibility_False.IsChecked == true)
             {
                 tempNewCombiProduct.Availability = false;
             }
@@ -247,6 +249,8 @@ namespace Foxtrot.GUI.CombiProduct
             DBUpdateLogic.UpdateCombiProduct(tempNewCombiProduct);
             DBDeleteLogic.DeleteRelCombiProducts(tempNewCombiProduct);
             DBWriteLogic.WriteRelCombiProducts(tempNewCombiProduct);
+
+            DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
 
             GUISortingLogic.Message("Combi Produktet med Navnet: '" + tempNewCombiProduct.Name + "' blev Ændret i systemet!");
 
