@@ -289,10 +289,56 @@ namespace Foxtrot.GUI.Product
             tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_MainCategory.SelectedItem).Key;
             tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
 
-            tempProduct.Files[0].URI = textBox_Product_Edit_Url1.Text;
-            tempProduct.Files[1].URI = textBox_Product_Edit_Url2.Text;
-            tempProduct.Files[2].URI = textBox_Product_Edit_Url3.Text;
-            tempProduct.Files[3].URI = textBox_Product_Edit_Url4.Text;
+
+            if (tempProduct.Files.Count == 0)
+            {
+                File tempFile1 = new File();
+                tempProduct.Files.Add(tempFile1);
+                File tempFile2 = new File();
+                tempProduct.Files.Add(tempFile2);
+                File tempFile3 = new File();
+                tempProduct.Files.Add(tempFile3);
+                File tempFile4 = new File();
+                tempProduct.Files.Add(tempFile4);
+            }
+           else if (tempProduct.Files.Count == 1)
+            {
+                File tempFile1 = new File();
+                tempProduct.Files.Add(tempFile1);
+                File tempFile2 = new File();
+                tempProduct.Files.Add(tempFile2);
+                File tempFile3 = new File();
+                tempProduct.Files.Add(tempFile3);
+            }
+           else if (tempProduct.Files.Count == 2)
+            {
+                File tempFile1 = new File();
+                tempProduct.Files.Add(tempFile1);
+                File tempFile2 = new File();
+                tempProduct.Files.Add(tempFile2);
+            }
+           else if (tempProduct.Files.Count == 3)
+            {
+                File tempFile = new File();
+                tempProduct.Files.Add(tempFile);
+            }
+            if (tempProduct.Files.Count == 4)
+            {
+                tempProduct.Files[0].URI = textBox_Product_Edit_Url1.Text;
+                tempProduct.Files[1].URI = textBox_Product_Edit_Url2.Text;
+                tempProduct.Files[2].URI = textBox_Product_Edit_Url3.Text;
+                tempProduct.Files[3].URI = textBox_Product_Edit_Url4.Text;
+            }
+
+
+
+
+
+
+
+
+
+
 
             DBUpdateLogic.UpdateFiles(tempProduct);
 

@@ -55,7 +55,7 @@ namespace Foxtrot.GUI.Product
                     MessageBox.Show("Du skal indtaste en adresse!");
                     return;
                 }
-            tempProduct.Longitude = GUISortingLogic.Number(textBox_Product_Add_Longtitude);
+            tempProduct.Longitude = GUISortingLogic.Float(textBox_Product_Add_Longtitude);
             if (textBox_Product_Add_Longtitude.Text.Length != 0)
                 {
                     tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
@@ -65,7 +65,7 @@ namespace Foxtrot.GUI.Product
                     MessageBox.Show("Du skal indtaste længdegrad");
                     return;
                 }
-            tempProduct.Latitude = GUISortingLogic.Number(textBox_Product_Add_Latitude);
+            tempProduct.Latitude = GUISortingLogic.Float(textBox_Product_Add_Latitude);
             if (textBox_Product_Add_Latitude.Text.Length != 0)
                 {
                     tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
