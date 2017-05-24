@@ -61,16 +61,22 @@
         </Button>
         
     <Grid>
-    <TextBlock Margin="924,637,318,45" FontFamily="Arial">           
+    <TextBlock Margin="935,632,307,49.6" FontFamily="Arial">           
     <Hyperlink NavigateUri="http://www.skiveet.dk/" RequestNavigate="Hyperlink_RequestNavigate">
         Hjemmeside
     </Hyperlink>
             </TextBlock>
-        <TextBlock Margin="924,659,318,23" FontFamily="Arial">           
+            <TextBlock Margin="935,658,334,24.6"  FontFamily="Arial">           
             <Hyperlink NavigateUri="https://www.facebook.com/skiveet/" RequestNavigate="Hyperlink_RequestNavigate">
                 Facebook
             </Hyperlink>
         </TextBlock>
+            <TextBlock Margin="935,685,334,-2.4"  FontFamily="Arial">           
+            <Hyperlink NavigateUri="https://www.linkedin.com/company-beta/2910577/" RequestNavigate="Hyperlink_RequestNavigate">
+                LinkedIn
+            </Hyperlink>
+        </TextBlock>
+
         </Grid>
     </Grid>
 
