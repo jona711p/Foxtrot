@@ -40,6 +40,7 @@ namespace Foxtrot.GUI.Product
             DataContext = tempProduct;
 
         }
+
         private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Runs when the user selects any item on the datagrid
@@ -179,6 +180,7 @@ namespace Foxtrot.GUI.Product
             button_Product_Edit_Delete.IsEnabled = input;
 
         }
+
         private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             int tempint;
@@ -257,12 +259,6 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Website = textBox_Product_Edit_Website.Text;
             }
 
-            if (rbtn_Product_Edit_Availability_False.IsEnabled == true ||
-                rbtn_Product_Edit_Availability_True.IsChecked == true)
-            {
-                tempProduct.Availability = availibility;
-            }
-
             if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateTo != null)
             {
                 if (datePicker_Product_Edit_DateFrom.Value < datePicker_Product_Edit_DateTo.Value)
@@ -290,6 +286,8 @@ namespace Foxtrot.GUI.Product
                     return;
                 }
             }
+
+            tempProduct.Availability = rbtn_Product_Edit_Availability_True.IsChecked == true;
             tempProduct.OpeningHours = tempTime;
 
             tempProduct.Cities = new City();
@@ -363,10 +361,9 @@ namespace Foxtrot.GUI.Product
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["Navn"].ToString().Contains(textBox_Product_SearchName.Text))
+                        if (!row["Navn"].ToString().ToLower().Contains(textBox_Product_SearchName.Text.ToLower()))
                             row.Delete();
                     }
-
                 }
             }
             if (textBox_Product_SearchCategory.Text != "")
@@ -374,7 +371,7 @@ namespace Foxtrot.GUI.Product
                 foreach (DataRow row in tempProduct.ProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
-                        if (!row["Kategori"].ToString().Contains(textBox_Product_SearchCategory.Text))
+                        if (!row["Kategori"].ToString().ToLower().Contains(textBox_Product_SearchCategory.Text.ToLower()))
                             row.Delete();
                 }
             }
@@ -383,7 +380,7 @@ namespace Foxtrot.GUI.Product
                 foreach (DataRow row in tempProduct.ProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
-                        if (!row["By"].ToString().Contains(textBox_Product_SearchCity.Text))
+                        if (!row["By"].ToString().ToLower().Contains(textBox_Product_SearchCity.Text.ToLower()))
                             row.Delete();
        
                 }

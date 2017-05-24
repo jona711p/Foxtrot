@@ -35,40 +35,40 @@ namespace Foxtrot.GUI.Product
         {
             int tempInt;
 
-            tempProduct.Name = GUISortingLogic.Name(textBox_Product_Add_Name);
             if (textBox_Product_Add_Name.Text.Length != 0)
                 {
                     tempProduct.Name = textBox_Product_Add_Name.Text;
+                tempProduct.Name = GUISortingLogic.Name(textBox_Product_Add_Name);
                 }
             else
                 {
                     MessageBox.Show("Du SKAL indtaste et navn!");
                     return;
                 }
-            tempProduct.Address = GUISortingLogic.Name(textBox_Product_Add_Adress);
             if (textBox_Product_Add_Adress.Text.Length != 0)
                 {
                     tempProduct.Address = textBox_Product_Add_Adress.Text;
+                tempProduct.Address = GUISortingLogic.Name(textBox_Product_Add_Adress);
                 }
             else
                 {
                     MessageBox.Show("Du skal indtaste en adresse!");
                     return;
                 }
-            tempProduct.Longitude = GUISortingLogic.Float(textBox_Product_Add_Longtitude);
             if (textBox_Product_Add_Longtitude.Text.Length != 0)
                 {
                     tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
+                tempProduct.Longitude = GUISortingLogic.Float(textBox_Product_Add_Longtitude);
             }
             else
                 {
                     MessageBox.Show("Du skal indtaste længdegrad");
                     return;
                 }
-            tempProduct.Latitude = GUISortingLogic.Float(textBox_Product_Add_Latitude);
             if (textBox_Product_Add_Latitude.Text.Length != 0)
                 {
                     tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
+                tempProduct.Latitude = GUISortingLogic.Float(textBox_Product_Add_Latitude);
             }
             else
                 {
@@ -117,53 +117,39 @@ namespace Foxtrot.GUI.Product
                 {
                     tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
                 }
-            else
-                {
-                    MessageBox.Show("Du skal indtaste en gyldig pris - Skriv 0 hvis gratis");
-                    return;
-                }
-            tempProduct.Description = GUISortingLogic.Name(textBox_Product_Add_Description);
+            
             if (textBox_Product_Add_Description.Text.Length != 0)
                 {
                     tempProduct.Description = textBox_Product_Add_Description.Text;
-                }
+                tempProduct.Description = GUISortingLogic.Name(textBox_Product_Add_Description);
+            }
             else
                 {
                     MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
                     return;
                 }
-            //tempProduct.ExtraDescription[0] = GUISortingLogic.Name(textBox_Product_Add_ExtraDescription);
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
                 {
                     tempProduct.ExtraDescription = new List<ExtraDescription>()
                 {
                     new ExtraDescription()
                     {
-                        Description = textBox_Product_Add_ExtraDescription.Text
+                        Description = GUISortingLogic.Name(textBox_Product_Add_ExtraDescription)
                     }
                 };
-
-            }
-            else
-                {
-                    MessageBox.Show("Du skal indtaste en ekstra beskrivelse af produktet");
-                    return;
                 }
-            tempProduct.CanonicalUrl = GUISortingLogic.Name(textBox_Product_Add_CanonicalUrl);
+         
             if (textBox_Product_Add_CanonicalUrl.Text.Length != 0)
                 {
                     tempProduct.CanonicalUrl = textBox_Product_Add_CanonicalUrl.Text;
-                }
-            else
-                {
-                    MessageBox.Show("Du skal indtaste byportal på produktet");
-                    return;
-                }
-            tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);
+                tempProduct.CanonicalUrl = GUISortingLogic.Name(textBox_Product_Add_CanonicalUrl);
+            }
+ 
             if (textBox_Product_Add_Website.Text.Length != 0)
                 {
                     tempProduct.Website = textBox_Product_Add_Website.Text;
-                }
+                tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);
+            }
 
             if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateFrom != null)
             {
@@ -217,16 +203,37 @@ namespace Foxtrot.GUI.Product
             tempProduct.Categories = new MainCategory();
             tempProduct.Cities = new City();
 
-            tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_MainCategory.SelectedItem).Key;
-            tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_Category.SelectedItem).Key;
-            tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
+            if (string.IsNullOrEmpty(comboBox_Product_Add_CityID.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Du skal vælge en by!");
+            }
+            else
+            {
+                tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
+            }
+            if (string.IsNullOrEmpty(comboBox_Product_Add_MainCategory.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Du skal vælge en hovedkategori!");
+            }
+            else
+            {
+                tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_MainCategory.SelectedItem).Key;
+            }
+            if (string.IsNullOrEmpty(comboBox_Product_Add_Category.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Du skal vælge en kategori!");
+            }
+            else
+            {
+                tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_Category.SelectedItem).Key;
+            }
             tempProduct.OpeningHours = tempTime;
             tempProduct.UserID = tempUser.ID;
 
             tempProduct.Files = DBWriteLogic.WriteNewFiles(tempProduct.Files);
             tempProduct.ID = DBWriteLogic.WriteNewProduct(tempProduct);
-
             DBWriteLogic.WriteNewRelFiles(tempProduct);
+
             MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet oprettet i systemet!");
         }
 
