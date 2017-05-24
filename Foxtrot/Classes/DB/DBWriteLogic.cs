@@ -303,7 +303,7 @@ namespace Foxtrot.Classes.DB
             }
         }
 
-        public static void WritRelCombiProducts(CombiProduct inputCombiProduct)
+        public static void WriteRelCombiProducts(CombiProduct inputCombiProduct)
         {
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);

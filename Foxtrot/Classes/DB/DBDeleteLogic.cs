@@ -88,5 +88,24 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+
+        public static void DeleteRelCombiProducts(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM rel_CombiProducts WHERE FK_CombiProductID = @CombiProductID", connection);
+                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
