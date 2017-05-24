@@ -78,9 +78,15 @@ namespace Foxtrot.GUI.User
                 tempActor.WorkFax = null;
             }
 
-            DBUpdateLogic.UpdateActor(tempActor);
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Ændre dine Brugeroplysninger?", "Ændre?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            GUISortingLogic.Message("Dine Brugeroplysninger er blevet Ændret!");
+            if (response == MessageBoxResult.Yes)
+            {
+                DBUpdateLogic.UpdateActor(tempActor);
+
+                GUISortingLogic.Message("Dine Brugeroplysninger er blevet Ændret!");
+            }
 
             MainWindow.FillComboBoxWithAdminsAndActors();
         }
