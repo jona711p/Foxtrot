@@ -88,5 +88,24 @@ namespace Foxtrot.Classes.DB
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+        public static void DeleteOpeningHour(OpeningHour inputTimes)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM OpeningHours WHERE ID = @OpeningHourID", connection);
+                command.Parameters.Add("@OpeningHourID", SqlDbType.Int).Value = inputTimes.ID;
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
     }
 }

@@ -338,16 +338,6 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Files[3].URI = textBox_Product_Edit_Url4.Text;
             }
 
-
-
-
-
-
-
-
-
-
-
             DBUpdateLogic.UpdateFiles(tempProduct);
 
             if (tempTime.ID != null)
@@ -424,7 +414,9 @@ namespace Foxtrot.GUI.Product
             {
                 DBDeleteLogic.DeleteFile(tempProduct.Files[i]);
             }
+            DBDeleteLogic.DeleteOpeningHour(tempProduct.OpeningHours);
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
+            
 
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
 
