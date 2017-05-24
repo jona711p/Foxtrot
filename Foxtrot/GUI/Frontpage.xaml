@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI"
       mc:Ignorable="d" 
+      Background="White"
       d:DesignHeight="470" d:DesignWidth="1310"
       Title="Frontpage">
 
