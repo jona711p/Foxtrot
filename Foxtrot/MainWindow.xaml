@@ -28,6 +28,9 @@
                     <MenuItem Header="Opret et Combi Produkt" Click="MenuItem_CombiProduct_Add_OnClick" />
                     <MenuItem Header="Se Alle Combi Produkter, Rediger, Slet" Click="MenuItem_CombiProduct_Edit_Delete_OnClick" />
                 </MenuItem>
+                <MenuItem x:Name="AboutUs" Header="Om Os">
+                    <MenuItem Header="Om Os" Click="MenuItem_OnClick"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
 
@@ -49,7 +52,7 @@
 
 
 
-        <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,30,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
+        <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,40,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
         <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AdminActorList}" DisplayMemberPath="Value" FontFamily="Arial" Background="White" BorderBrush="Black"/>
         <Button x:Name="btn_Login_User" Content="Login" HorizontalAlignment="Left" Margin="1241,61,0,0" VerticalAlignment="Top" Width="75" Click="btn_Login_User_Click" FontFamily="Arial" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold">
             <Button.Effect>
@@ -58,11 +61,22 @@
         </Button>
         
     <Grid>
-    <TextBlock Margin="935,630,275,29">           
-    <Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate">
-        Click here
+    <TextBlock Margin="935,632,307,49.6" FontFamily="Arial">           
+    <Hyperlink NavigateUri="http://www.skiveet.dk/" RequestNavigate="Hyperlink_RequestNavigate">
+        Hjemmeside
     </Hyperlink>
             </TextBlock>
+            <TextBlock Margin="935,658,334,24.6"  FontFamily="Arial">           
+            <Hyperlink NavigateUri="https://www.facebook.com/skiveet/" RequestNavigate="Hyperlink_RequestNavigate">
+                Facebook
+            </Hyperlink>
+        </TextBlock>
+            <TextBlock Margin="935,685,334,-2.4"  FontFamily="Arial">           
+            <Hyperlink NavigateUri="https://www.linkedin.com/company-beta/2910577/" RequestNavigate="Hyperlink_RequestNavigate">
+                LinkedIn
+            </Hyperlink>
+        </TextBlock>
+
         </Grid>
     </Grid>
 

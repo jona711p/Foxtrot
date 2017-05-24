@@ -194,9 +194,15 @@ namespace Foxtrot.GUI.User
                     return;
                 }
 
-                DBUpdateLogic.UpdateActor(tempActor);
+                MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Ændre '" + tempActor.CompanyName + "'?", "Ændre?",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                GUISortingLogic.Message("Brugeroplysninger til: " + tempActor.CompanyName + " er blevet Ændret!");
+                if (response == MessageBoxResult.Yes)
+                {
+                    DBUpdateLogic.UpdateActor(tempActor);
+
+                    GUISortingLogic.Message("Brugeroplysninger til: '" + tempActor.CompanyName + "' er blevet Ændret!");
+                }
             }
 
             DBReadLogic.FillUserTable(tempUser.UserTable);
@@ -207,16 +213,30 @@ namespace Foxtrot.GUI.User
         {
             if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
-                DBDeleteLogic.DeleteAdmin(tempAdministrator);
+                MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Slette '" + tempAdministrator.FirstName + " " + tempAdministrator.LastName + "'?", "Slet?",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                GUISortingLogic.Message(tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Slettet!");
+                if (response == MessageBoxResult.Yes)
+                {
+                    DBDeleteLogic.DeleteAdmin(tempAdministrator);
+
+                    GUISortingLogic.Message(tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Slettet!");
+                }
+
+
             } //If the selected row is an administrator
 
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
-                DBDeleteLogic.DeleteActor(tempActor);
+                MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Slette '" + tempActor.CompanyName + "'?", "Slet?",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                GUISortingLogic.Message(tempActor.CompanyName + " er blevet Slettet!");
+                if (response == MessageBoxResult.Yes)
+                {
+                    DBDeleteLogic.DeleteActor(tempActor);
+
+                    GUISortingLogic.Message(tempActor.CompanyName + " er blevet Slettet!");
+                }
             } //If the selected row is an actor
 
             DBReadLogic.FillUserTable(tempUser.UserTable);

@@ -111,7 +111,7 @@ namespace Foxtrot.GUI.CombiProduct
 
                 if (tempCombiProduct.PackagePrice == null)
                 {
-                    GUISortingLogic.Message("Du SKAL indtast et Procent (%) Tal som skal Trækkes fra den Samlet Pris!");
+                    GUISortingLogic.Message("Du SKAL indtast en SAMLET PRIS for hele Combi Produkt Pakken!");
                     return;
                 }
             }

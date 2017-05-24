@@ -80,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\About\AboutUs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\CombiProduct\CombiProduct_Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +143,9 @@
     <Compile Include="Classes\DB\DBWriteLogic.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="GUI\About\AboutUs.xaml.cs">
+      <DependentUpon>AboutUs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CombiProduct\CombiProduct_Add.xaml.cs">
       <DependentUpon>CombiProduct_Add.xaml</DependentUpon>
     </Compile>
@@ -216,6 +223,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMG\foto2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\Jonas.jpg" />
+    <Resource Include="IMG\Mikael.jpg" />
+    <Resource Include="IMG\Thomas.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

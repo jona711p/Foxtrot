@@ -87,7 +87,7 @@
             </Grid>
             <Grid HorizontalAlignment="Left" Height="110" Margin="10,330,0,0" VerticalAlignment="Top" Width="621">
                 <TextBox x:Name="textBox_Combi_Add_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Navn *"/>
-                <TextBox x:Name="textBox_Combi_Add_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Tilbuds Pris i Procent (%)"/>
+                <TextBox x:Name="textBox_Combi_Add_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Pris på Combi Produktet"/>
                 <RadioButton x:Name="rdbtn_Combi_Add_Availibility_True" Content="Synlig *" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <RadioButton x:Name="rdbtn_Combi_Add_Availibility_False" Content="Usynlig *" HorizontalAlignment="Left" Margin="245,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <Label x:Name="lbl_Combi_Add_Star" Content="* = Skal Udfyldes!" FontFamily="Arial" Margin="180,85,331,0"/>

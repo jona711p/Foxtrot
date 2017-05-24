@@ -21,7 +21,7 @@ namespace Foxtrot.GUI.Product
         Category tempCategory = new Category();
         MainCategory tempMainCategory = new MainCategory();
 
-        public Product_Add(Classes.User inputUser) 
+        public Product_Add(Classes.User inputUser)
         {
             InitializeComponent();
             tempUser = inputUser;
@@ -36,106 +36,106 @@ namespace Foxtrot.GUI.Product
             int tempInt;
 
             if (textBox_Product_Add_Name.Text.Length != 0)
-                {
-                    tempProduct.Name = textBox_Product_Add_Name.Text;
+            {
                 tempProduct.Name = GUISortingLogic.Name(textBox_Product_Add_Name);
-                }
+            }
+
             else
-                {
-                    MessageBox.Show("Du SKAL indtaste et navn!");
-                    return;
-                }
+            {
+                MessageBox.Show("Du SKAL indtaste et navn!");
+                return;
+            }
+
             if (textBox_Product_Add_Adress.Text.Length != 0)
-                {
-                    tempProduct.Address = textBox_Product_Add_Adress.Text;
+            {
                 tempProduct.Address = GUISortingLogic.Name(textBox_Product_Add_Adress);
-                }
+            }
+
             else
-                {
-                    MessageBox.Show("Du skal indtaste en adresse!");
-                    return;
-                }
+            {
+                MessageBox.Show("Du skal indtaste en adresse!");
+                return;
+            }
+
             if (textBox_Product_Add_Longtitude.Text.Length != 0)
-                {
-                    tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
+            {
                 tempProduct.Longitude = GUISortingLogic.Float(textBox_Product_Add_Longtitude);
             }
 
             if (textBox_Product_Add_Latitude.Text.Length != 0)
-                {
-                    tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
+            {
                 tempProduct.Latitude = GUISortingLogic.Float(textBox_Product_Add_Latitude);
             }
 
             if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempInt) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
-                {
-                    tempProduct.ContactPhone = new List<int?>()
+            {
+                tempProduct.ContactPhone = new List<int?>()
                     {
                         tempInt
                     };
-                }
+            }
             else
-                {
-                    MessageBox.Show("Du skal indtaste et gyldigt telefonnummer");
-                    return;
-                }
+            {
+                MessageBox.Show("Du skal indtaste et gyldigt telefonnummer");
+                return;
+            }
             if (textBox_Product_Add_ContactEmail.Text.Length != 0 && textBox_Product_Add_ContactEmail.Text.Contains("@"))
-                {
-                    tempProduct.ContactEmail = new List<string>()
+            {
+                tempProduct.ContactEmail = new List<string>()
                         {
                             textBox_Product_Add_ContactEmail.Text
                         };
-                }
+            }
             else
-                {
-                    MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
-                    return;
-                }
+            {
+                MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
+                return;
+            }
             if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempInt) &&
                 textBox_Product_Add_ContactFax.Text.Length == 8)
-                {
-                    tempProduct.ContactFax = new List<int?>()
+            {
+                tempProduct.ContactFax = new List<int?>()
                     {
                         tempInt
                     };
                 }
 
             if (textBox_Product_Add_Príce.Text.Length != 0)
-                {
-                    tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
-                }
-            
+            {
+                tempProduct.Price = float.Parse(textBox_Product_Add_Príce.Text);
+            }
+
             if (textBox_Product_Add_Description.Text.Length != 0)
-                {
-                    tempProduct.Description = textBox_Product_Add_Description.Text;
+            {
+                tempProduct.Description = textBox_Product_Add_Description.Text;
                 tempProduct.Description = GUISortingLogic.Name(textBox_Product_Add_Description);
             }
             else
-                {
-                    MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
-                    return;
-                }
+            {
+                MessageBox.Show("Du skal indtaste en beskrivelse af produktet");
+                return;
+            }
             if (textBox_Product_Add_ExtraDescription.Text.Length != 0)
-                {
-                    tempProduct.ExtraDescription = new List<ExtraDescription>()
+            {
+                tempProduct.ExtraDescription = new List<ExtraDescription>()
                 {
                     new ExtraDescription()
                     {
                         Description = GUISortingLogic.Name(textBox_Product_Add_ExtraDescription)
                     }
                 };
-                }
-         
+            }
+
             if (textBox_Product_Add_CanonicalUrl.Text.Length != 0)
-                {
-                    tempProduct.CanonicalUrl = textBox_Product_Add_CanonicalUrl.Text;
+            {
+                tempProduct.CanonicalUrl = textBox_Product_Add_CanonicalUrl.Text;
                 tempProduct.CanonicalUrl = GUISortingLogic.Name(textBox_Product_Add_CanonicalUrl);
             }
- 
+
             if (textBox_Product_Add_Website.Text.Length != 0)
-                {
-                    tempProduct.Website = textBox_Product_Add_Website.Text;
+            {
+                tempProduct.Website = textBox_Product_Add_Website.Text;
                 tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);
             }
 
@@ -167,25 +167,25 @@ namespace Foxtrot.GUI.Product
             File tempFile4 = new File();
 
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url1.Text))
-                {
-                    tempFile1.URI = textBox_Product_Add_Url1.Text;
-                    tempProduct.Files.Add(tempFile1);
-                }
+            {
+                tempFile1.URI = textBox_Product_Add_Url1.Text;
+                tempProduct.Files.Add(tempFile1);
+            }
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url2.Text))
-                {
-                    tempFile2.URI = textBox_Product_Add_Url2.Text;
-                    tempProduct.Files.Add(tempFile2);
-                }
+            {
+                tempFile2.URI = textBox_Product_Add_Url2.Text;
+                tempProduct.Files.Add(tempFile2);
+            }
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url3.Text))
-                {
-                    tempFile3.URI = textBox_Product_Add_Url3.Text;
-                    tempProduct.Files.Add(tempFile3);
-                }
+            {
+                tempFile3.URI = textBox_Product_Add_Url3.Text;
+                tempProduct.Files.Add(tempFile3);
+            }
             if (!string.IsNullOrEmpty(textBox_Product_Add_Url4.Text))
-                {
-                    tempFile4.URI = textBox_Product_Add_Url4.Text;
-                    tempProduct.Files.Add(tempFile4);
-                }
+            {
+                tempFile4.URI = textBox_Product_Add_Url4.Text;
+                tempProduct.Files.Add(tempFile4);
+            }
 
             tempProduct.MainCategories = new MainCategory();
             tempProduct.Categories = new MainCategory();

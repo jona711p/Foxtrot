@@ -55,9 +55,9 @@
         <!-- Søg CombiProdukt Start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="10,10,0,0" VerticalAlignment="Top" Width="322">
             <Label x:Name="label_CombiProduct_Search" Content="Søg Efter Combi Produkter:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="10,10,10,320" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <TextBox x:Name="TextBox_CombiProduct_Search_CombiProductName" HorizontalAlignment="Left" Height="35" Margin="24,87,0,0" TextWrapping="Wrap" Text="{Binding CombiProductName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på Combi produkt"/>
-            <TextBox x:Name="TextBox_CombiProduct_Search_FirstName" HorizontalAlignment="Left" Height="35" Margin="26,173,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Fornavn på ejer"/>
-            <TextBox x:Name="TextBox_CombiProduct_Search_LastName" HorizontalAlignment="Left" Height="35" Margin="29,253,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Efternavn på ejer"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_CombiProductName" HorizontalAlignment="Left" Height="35" Margin="24,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Navn på Combi Produkt"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_FirstName_And_LastName" HorizontalAlignment="Left" Height="35" Margin="26,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Fulde Navn på Ejer"/>
+            <TextBox x:Name="TextBox_CombiProduct_Search_CompanyName" HorizontalAlignment="Left" Height="35" Margin="29,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Firmanavn"/>
             <Button x:Name="btb_CombiProduct_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76" Click="Btb_CombiProduct_Search_OnClick" Background="White" BorderBrush="Black" FontFamily="Arial" FontSize="14" FontWeight="Bold">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
@@ -119,7 +119,7 @@
             </Grid>
             <Grid HorizontalAlignment="Left" Height="110" Margin="10,330,0,0" VerticalAlignment="Top" Width="621">
                 <TextBox x:Name="textBox_Combi_Edit_Delete_Name" HorizontalAlignment="Left" Height="23" Margin="180,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Navn *"/>
-                <TextBox x:Name="textBox_Combi_Edit_Delete_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Tilbuds Pris i Procent (%)"/>
+                <TextBox x:Name="textBox_Combi_Edit_Delete_PackagePrice" HorizontalAlignment="Left" Height="23" Margin="180,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Samlet Pris på Combi Produktet"/>
                 <RadioButton x:Name="rdbtn_Combi_Edit_Delete_Availibility_True" Content="Synlig *" HorizontalAlignment="Left" Margin="180,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <RadioButton x:Name="rdbtn_Combi_Edit_Delete_Availibility_False" Content="Usynlig *" HorizontalAlignment="Left" Margin="245,66,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <Label x:Name="lbl_Combi_Edit_Delete_Star" Content="* = Skal Udfyldes!" FontFamily="Arial" Margin="180,85,331,0"/>
