@@ -52,7 +52,7 @@
 
 
 
-        <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,30,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
+        <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,40,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
         <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AdminActorList}" DisplayMemberPath="Value" FontFamily="Arial" Background="White" BorderBrush="Black"/>
         <Button x:Name="btn_Login_User" Content="Login" HorizontalAlignment="Left" Margin="1241,61,0,0" VerticalAlignment="Top" Width="75" Click="btn_Login_User_Click" FontFamily="Arial" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold">
             <Button.Effect>
@@ -61,12 +61,12 @@
         </Button>
         
     <Grid>
-    <TextBlock Margin="935,630,334,52.6">           
+    <TextBlock Margin="924,637,318,45" FontFamily="Arial">           
     <Hyperlink NavigateUri="http://www.skiveet.dk/" RequestNavigate="Hyperlink_RequestNavigate">
         Hjemmeside
     </Hyperlink>
             </TextBlock>
-        <TextBlock Margin="935,658,334,24.6">           
+        <TextBlock Margin="924,659,318,23" FontFamily="Arial">           
             <Hyperlink NavigateUri="https://www.facebook.com/skiveet/" RequestNavigate="Hyperlink_RequestNavigate">
                 Facebook
             </Hyperlink>
