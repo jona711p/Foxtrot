@@ -66,11 +66,17 @@
         Hjemmeside
     </Hyperlink>
             </TextBlock>
-        <TextBlock Margin="935,658,334,24.6">           
+        <TextBlock Margin="936,655,333,27.6">           
             <Hyperlink NavigateUri="https://www.facebook.com/skiveet/" RequestNavigate="Hyperlink_RequestNavigate">
                 Facebook
             </Hyperlink>
         </TextBlock>
+        <TextBlock Margin="936,679,333,3.6">           
+            <Hyperlink NavigateUri="https://www.linkedin.com/company-beta/2910577/" RequestNavigate="Hyperlink_RequestNavigate">
+                LinkedIn
+            </Hyperlink>
+        </TextBlock>
+
         </Grid>
     </Grid>
 
