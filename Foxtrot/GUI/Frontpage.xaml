@@ -14,7 +14,7 @@
         </Grid.Background>
         <Label x:Name="label_Welcome" Content="Velkommen til SET produkt administration" HorizontalAlignment="Center" VerticalAlignment="Center" Width="447" Margin="424,11,439.4,427.4" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="label_Welcome_By" Content="Lavet af Thomas, Jonas og Mikael" HorizontalAlignment="Center" VerticalAlignment="Center" Width="447" Margin="422,41,441.4,397.4" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label x:Name="label_Welcome_User" Content="{Binding CompanyName}" HorizontalAlignment="Center" Margin="10,82,10.4,348.4" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="label_Welcome_User" Content="{Binding User}" HorizontalAlignment="Center" Margin="10,82,10.4,348.4" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Width="1290" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
 
     </Grid>

@@ -10,11 +10,28 @@ namespace Foxtrot.GUI
     public partial class Frontpage : Page
     {
         private static Actor tempActor = new Actor();
+        private  static Administrator tempAdmin = new Administrator();
         public Frontpage(Classes.User inputUser)
         {
+            string User;
+         
             tempActor.UserID = inputUser.ID;
+            tempAdmin.UserID = inputUser.ID;
+            
 
-            DBReadLogic.GetActorInfo(tempActor);
+            if (tempAdmin.UserID != null && tempAdmin.Permission == 1)
+            {
+                DBReadLogic.GetAdminInfo(tempAdmin);
+                User = tempAdmin.FirstName + "" + tempAdmin.LastName;
+                tempActor.UserID = null;
+            }
+
+            if (tempActor.UserID != null && tempActor.Permission == 2)
+            {
+                DBReadLogic.GetActorInfo(tempActor);
+                User = tempActor.CompanyName;
+                tempAdmin.UserID = null;
+            }
 
             InitializeComponent();
             DataContext = this;
