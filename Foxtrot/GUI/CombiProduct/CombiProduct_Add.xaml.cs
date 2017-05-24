@@ -136,7 +136,7 @@ namespace Foxtrot.GUI.CombiProduct
             if (!dupe)
             {
                 DBWriteLogic.WriteCombiProduct(tempCombiProduct);
-                DBWriteLogic.WritRelCombiProducts(tempCombiProduct);
+                DBWriteLogic.WriteRelCombiProducts(tempCombiProduct);
 
                 GUISortingLogic.Message("Et nyt Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' er blevet oprettet i systemet!");
             }

@@ -132,6 +132,7 @@ namespace Foxtrot.Classes.DB
             }
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
+
         public static void UpdateFiles(Product inputProduct)
         {
             SqlConnection connection = null;
@@ -174,6 +175,35 @@ namespace Foxtrot.Classes.DB
             //    throw ex;
             //}
             connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+
+        public static void UpdateCombiProduct(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateCombiProduct", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("@CombiProductID", SqlDbType.NVarChar).Value = inputCombiProduct.ID;
+                command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputCombiProduct.Name;
+                command.Parameters.Add("@PackagePrice", SqlDbType.Float).Value = inputCombiProduct.PackagePrice;
+                command.Parameters.Add("@Availability", SqlDbType.Bit).Value = inputCombiProduct.Availability;
+
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+            }
         }
     }
 }

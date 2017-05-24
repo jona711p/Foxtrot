@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Windows.Controls;
 using Foxtrot.Classes.DB;
 using System.Windows;
@@ -30,6 +31,8 @@ namespace Foxtrot.GUI.CombiProduct
 
             DataContext = tempOldCombiProduct;
             dataGrid_Product_List.ItemsSource = tempProduct.ProductTable.AsDataView();
+
+            MakeFieldsEditable(false);
         }
 
         private void DataGrid_CombiProduct_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,10 +45,10 @@ namespace Foxtrot.GUI.CombiProduct
                             dataGrid_CombiProduct_List.Columns[0].GetCellContent(
                                 dataGrid_CombiProduct_List.SelectedItem))
                         .Text);
+
                 tempOldCombiProduct = DBReadLogic.GetCombiProductInfo(tempOldCombiProduct);
 
                 MakeFieldsEditable(false);
-
                 if (tempProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
                 {
                     MakeFieldsEditable(true);
@@ -57,20 +60,29 @@ namespace Foxtrot.GUI.CombiProduct
 
         public void MakeFieldsEditable(bool input)
         {
+            CombiProduct_Edit_Delete_Add.IsEnabled = input;
+            dataGrid_Product_List.IsEnabled = input;
+            CombiProduct_Edit_Delete_Delete.IsEnabled = input;
+            dataGrid_CombiProduct_ProductList.IsEnabled = input;
             textBox_Combi_Edit_Delete_Name.IsEnabled = input;
             textBox_Combi_Edit_Delete_PackagePrice.IsEnabled = input;
+            rdbtn_Combi_Edit_Delete_Availibility_True.IsEnabled = input;
+            rdbtn_Combi_Edit_Delete_Availibility_False.IsEnabled = input;
+            btn_Combi_Edit_Delete_Edit.IsEnabled = input;
+            btn_Combi_Edit_Delete_Delete.IsEnabled = input;
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
         {
             DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
+
             if (TextBox_CombiProduct_Search_CombiProductName.Text != null)
             {
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["Navn"].ToString().Contains(TextBox_CombiProduct_Search_CombiProductName.Text))
+                        if (!row["Navn"].ToString().ToLower().Contains(TextBox_CombiProduct_Search_CombiProductName.Text.ToLower()))
                             row.Delete();
                     }
                 }
@@ -82,18 +94,19 @@ namespace Foxtrot.GUI.CombiProduct
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["Fornavn"].ToString().Contains(TextBox_CombiProduct_Search_FirstName.Text))
+                        if (!row["Fornavn"].ToString().ToLower().Contains(TextBox_CombiProduct_Search_FirstName.Text.ToLower()))
                             row.Delete();
                     }
                 }
             }
+
             if (TextBox_CombiProduct_Search_LastName.Text != null)
             {
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["Efternavn"].ToString().Contains(TextBox_CombiProduct_Search_LastName.Text))
+                        if (!row["Efternavn"].ToString().ToLower().Contains(TextBox_CombiProduct_Search_LastName.Text.ToLower()))
                             row.Delete();
                     }
                 }
@@ -147,6 +160,7 @@ namespace Foxtrot.GUI.CombiProduct
                             dataGrid_Product_List.Columns[0].GetCellContent(
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
+
                 tempNewCombiProduct.CombiProductTable =
                 DBReadLogic.GetProductInfoAndCupeCheck(tempProduct.ID, tempNewCombiProduct.CombiProductTable);
 
@@ -189,7 +203,52 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void Btn_Combi_Edit_Delete_Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            // Knappen Rediger
+            tempNewCombiProduct.ProductID = new List<int?>();
+
+            foreach (DataRow row in tempNewCombiProduct.CombiProductTable.Rows)
+            {
+                tempNewCombiProduct.ProductID.Add(int.Parse(row[0].ToString()));
+            }
+
+            tempNewCombiProduct.Name = GUISortingLogic.Name(textBox_Combi_Edit_Delete_Name);
+
+            if (tempNewCombiProduct.Name == null)
+            {
+                GUISortingLogic.Message("Du SKAL indtast et NAVN!");
+                return;
+            }
+
+            if (textBox_Combi_Edit_Delete_PackagePrice.Text.Length != 0)
+            {
+                tempNewCombiProduct.PackagePrice = GUISortingLogic.Float(textBox_Combi_Edit_Delete_PackagePrice);
+
+                if (tempNewCombiProduct.PackagePrice == null)
+                {
+                    GUISortingLogic.Message("Du SKAL indtast et Procent (%) Tal som skal Trækkes fra den Samlet Pris!");
+                    return;
+                }
+            }
+
+            else
+            {
+                tempNewCombiProduct.PackagePrice = null;
+            }
+
+            if (rdbtn_Combi_Edit_Delete_Availibility_True.IsChecked == true)
+            {
+                tempNewCombiProduct.Availability = true;
+            }
+
+            if (rdbtn_Combi_Edit_Delete_Availibility_True.IsChecked == true)
+            {
+                tempNewCombiProduct.Availability = false;
+            }
+
+            DBUpdateLogic.UpdateCombiProduct(tempNewCombiProduct);
+            DBDeleteLogic.DeleteRelCombiProducts(tempNewCombiProduct);
+            DBWriteLogic.WriteRelCombiProducts(tempNewCombiProduct);
+
+            GUISortingLogic.Message("Combi Produktet med Navnet: '" + tempNewCombiProduct.Name + "' blev Ændret i systemet!");
 
         }
 
