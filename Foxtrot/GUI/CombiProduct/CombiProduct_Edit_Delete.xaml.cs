@@ -43,9 +43,10 @@ namespace Foxtrot.GUI.CombiProduct
                                 dataGrid_CombiProduct_List.SelectedItem))
                         .Text);
                 tempOldCombiProduct = DBReadLogic.GetCombiProductInfo(tempOldCombiProduct);
+
                 MakeFieldsEditable(false);
 
-                if (tempOldCombiProduct.UserID == tempUser.ID || tempUser.Permission == 1)
+                if (tempProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
                 {
                     MakeFieldsEditable(true);
                 }
@@ -54,9 +55,10 @@ namespace Foxtrot.GUI.CombiProduct
             }
         }
 
-        private void MakeFieldsEditable(bool input)
+        public void MakeFieldsEditable(bool input)
         {
-
+            textBox_Combi_Edit_Delete_Name.IsEnabled = input;
+            textBox_Combi_Edit_Delete_PackagePrice.IsEnabled = input;
         }
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
@@ -74,7 +76,7 @@ namespace Foxtrot.GUI.CombiProduct
                 }
             }
 
-            if (TextBox_CombiProduct_Search_FirstName.Text != null) 
+            if (TextBox_CombiProduct_Search_FirstName.Text != null)
             {
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
@@ -145,7 +147,7 @@ namespace Foxtrot.GUI.CombiProduct
                             dataGrid_Product_List.Columns[0].GetCellContent(
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
-                tempNewCombiProduct.CombiProductTable = 
+                tempNewCombiProduct.CombiProductTable =
                 DBReadLogic.GetProductInfoAndCupeCheck(tempProduct.ID, tempNewCombiProduct.CombiProductTable);
 
             }
