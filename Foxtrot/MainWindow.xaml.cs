@@ -10,6 +10,7 @@ using Foxtrot.GUI.XMLImport;
 using Foxtrot.GUI.CombiProduct;
 using System.Diagnostics;
 using System.Windows.Navigation;
+using Foxtrot.GUI.About;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -148,6 +149,11 @@ namespace Foxtrot
         private void MenuItem_CombiProduct_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new CombiProduct_Edit_Delete(tempUser);
+        }
+
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AboutUs();
         }
     }
 }
