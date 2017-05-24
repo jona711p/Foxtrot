@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
+using System.Windows.Controls;
 
 namespace Foxtrot.GUI
 {
@@ -7,9 +9,15 @@ namespace Foxtrot.GUI
     /// </summary>
     public partial class Frontpage : Page
     {
-        public Frontpage()
+        private static Actor tempActor = new Actor();
+        public Frontpage(Classes.User inputUser)
         {
+            tempActor.UserID = inputUser.ID;
+
+            DBReadLogic.GetActorInfo(tempActor);
+
             InitializeComponent();
+            DataContext = this;
         }
     }
 }
