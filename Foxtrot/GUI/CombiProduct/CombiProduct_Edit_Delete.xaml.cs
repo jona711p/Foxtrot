@@ -49,7 +49,7 @@ namespace Foxtrot.GUI.CombiProduct
                 tempOldCombiProduct = DBReadLogic.GetCombiProductInfo(tempOldCombiProduct);
 
                 MakeFieldsEditable(false);
-                if (tempProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
+                if (tempOldCombiProduct.UserID == tempUser.ID || tempUser.Permission == 1) //Checks if the current user is an admin or the creator of the product 
                 {
                     MakeFieldsEditable(true);
                 }
@@ -246,20 +246,34 @@ namespace Foxtrot.GUI.CombiProduct
                 tempNewCombiProduct.Availability = false;
             }
 
-            DBUpdateLogic.UpdateCombiProduct(tempNewCombiProduct);
-            DBDeleteLogic.DeleteRelCombiProducts(tempNewCombiProduct);
-            DBWriteLogic.WriteRelCombiProducts(tempNewCombiProduct);
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Ændre '" + tempNewCombiProduct.Name + "'?", "Ændre?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
+            if (response == MessageBoxResult.Yes)
+            {
+                DBUpdateLogic.UpdateCombiProduct(tempNewCombiProduct);
+                DBDeleteLogic.DeleteRelCombiProducts(tempNewCombiProduct);
+                DBWriteLogic.WriteRelCombiProducts(tempNewCombiProduct);
 
-            GUISortingLogic.Message("Combi Produktet med Navnet: '" + tempNewCombiProduct.Name + "' blev Ændret i systemet!");
+                DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
 
+                GUISortingLogic.Message("Combi Produktet med Navnet: '" + tempNewCombiProduct.Name + "' blev Ændret i systemet!");
+            }
         }
 
         private void Btn_Combi_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            // Knappen slet
-            GUISortingLogic.Message("Combi Produktet: '" + tempOldCombiProduct.Name + "' er blevet slettet i systemet!");
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Slette '" + tempOldCombiProduct.Name + "'?", "Slet?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (response == MessageBoxResult.Yes)
+            {
+                DBDeleteLogic.DeleteCombiProducts(tempOldCombiProduct);
+
+                DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
+
+                GUISortingLogic.Message("Combi Produktet: '" + tempOldCombiProduct.Name + "' er blevet slettet i systemet!");
+            }
         }
     }
 }

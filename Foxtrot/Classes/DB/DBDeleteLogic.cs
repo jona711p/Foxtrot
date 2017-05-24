@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -58,7 +57,9 @@ namespace Foxtrot.Classes.DB
             try
             {
                     SqlCommand command = new SqlCommand("DELETE FROM Files WHERE ID = @FileID", connection);
+
                     command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputFile.ID;
+
                     command.ExecuteNonQuery();
             }
 
@@ -77,7 +78,9 @@ namespace Foxtrot.Classes.DB
             try
             {
                 SqlCommand command = new SqlCommand("DELETE FROM Products WHERE ID = @ProductID", connection);
+
                 command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+
                 command.ExecuteNonQuery();
             }
 
@@ -96,7 +99,9 @@ namespace Foxtrot.Classes.DB
             try
             {
                 SqlCommand command = new SqlCommand("DELETE FROM OpeningHours WHERE ID = @OpeningHourID", connection);
+
                 command.Parameters.Add("@OpeningHourID", SqlDbType.Int).Value = inputTimes.ID;
+
                 command.ExecuteNonQuery();
             }
 
@@ -116,7 +121,9 @@ namespace Foxtrot.Classes.DB
             try
             {
                 SqlCommand command = new SqlCommand("DELETE FROM rel_CombiProducts WHERE FK_CombiProductID = @CombiProductID", connection);
+
                 command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+
                 command.ExecuteNonQuery();
             }
 
@@ -124,7 +131,26 @@ namespace Foxtrot.Classes.DB
             {
                 throw ex;
             }
+        }
 
+        public static void DeleteCombiProducts(CombiProduct inputCombiProduct)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM CombiProducts WHERE ID = @CombiProductID", connection);
+
+                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

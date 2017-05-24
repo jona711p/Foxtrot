@@ -641,17 +641,19 @@ namespace Foxtrot.Classes.DB
 
             try
             {
-                SqlCommand command = new SqlCommand("spGetFullCombiProductInfo", connection);
+                SqlCommand command = new SqlCommand("spGetCombiProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProductProduct.ID;
 
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
+
                 inputCombiProductProduct.ID = int.Parse(reader["CombiProductID"].ToString());
+                inputCombiProductProduct.Name = reader["Name"].ToString();
                 inputCombiProductProduct.PackagePrice = DBSortingLogic.ConvertToNullableFloat(reader["PackagePrice"].ToString());
                 inputCombiProductProduct.Availability = bool.Parse(reader["Availability"].ToString());
-                inputCombiProductProduct.Name = reader["Name"].ToString();
+                inputCombiProductProduct.UserID = int.Parse(reader["UserID"].ToString());
             }
 
             catch (Exception ex)
