@@ -88,25 +88,27 @@ namespace Foxtrot.GUI.CombiProduct
                 }
             }
 
-            if (TextBox_CombiProduct_Search_FirstName.Text != null)
+            if (TextBox_CombiProduct_Search_FirstName_And_LastName.Text != null)
             {
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["Fornavn"].ToString().ToLower().Contains(TextBox_CombiProduct_Search_FirstName.Text.ToLower()))
+                        string tempString = row["Fornavn"] + " " + row["Efternavn"];
+
+                        if (!tempString.ToLower().Contains(TextBox_CombiProduct_Search_FirstName_And_LastName.Text.ToLower()))
                             row.Delete();
                     }
                 }
             }
 
-            if (TextBox_CombiProduct_Search_LastName.Text != null)
+            if (TextBox_CombiProduct_Search_CompanyName.Text != null)
             {
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
                     {
-                        if (!row["Efternavn"].ToString().ToLower().Contains(TextBox_CombiProduct_Search_LastName.Text.ToLower()))
+                        if (!row["Firmanavn"].ToString().ToLower().Contains(TextBox_CombiProduct_Search_CompanyName.Text.ToLower()))
                             row.Delete();
                     }
                 }
@@ -226,7 +228,7 @@ namespace Foxtrot.GUI.CombiProduct
 
                 if (tempNewCombiProduct.PackagePrice == null)
                 {
-                    GUISortingLogic.Message("Du SKAL indtast et Procent (%) Tal som skal Trækkes fra den Samlet Pris!");
+                    GUISortingLogic.Message("Du SKAL indtast en SAMLET PRIS for hele Combi Produkt Pakken!");
                     return;
                 }
             }

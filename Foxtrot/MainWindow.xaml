@@ -28,9 +28,8 @@
                     <MenuItem Header="Opret et Combi Produkt" Click="MenuItem_CombiProduct_Add_OnClick" />
                     <MenuItem Header="Se Alle Combi Produkter, Rediger, Slet" Click="MenuItem_CombiProduct_Edit_Delete_OnClick" />
                 </MenuItem>
-                
-               <MenuItem x:Name="AboutUs" Header="Om os">
-                    <MenuItem Header="Om os" Click="MenuItem_OnClick" />
+                <MenuItem x:Name="AboutUs" Header="Om Os">
+                    <MenuItem Header="Om Os" Click="MenuItem_OnClick"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
