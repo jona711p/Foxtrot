@@ -92,7 +92,7 @@
             <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="412,312,0,-73" VerticalAlignment="Top" />
         </Grid>
 
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="586" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="501" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
 
         <Grid x:Name="grid_timeInputs" Margin="498,466,472,321">
             <CheckBox x:Name="checkBox_Product_Edit_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>

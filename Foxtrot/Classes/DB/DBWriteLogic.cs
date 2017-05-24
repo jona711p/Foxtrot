@@ -68,7 +68,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            //try
             {
                 SqlCommand command = new SqlCommand("spWriteNewProduct", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -93,8 +93,15 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@Price", SqlDbType.Float).Value = inputProducts.Price;
                 command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = inputProducts.Description;
-                command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
-                    XMLSortingLogic.TryToConvertNodeValueToStringBuilder(inputProducts.ExtraDescription);
+                if (inputProducts.ExtraDescription != null)
+                {
+                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
+                        XMLSortingLogic.TryToConvertNodeValueToStringBuilder(inputProducts.ExtraDescription);
+                }
+                else
+                {
+                    command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = "";
+                }
 
                 command.Parameters.Add("@Availability", SqlDbType.Bit).Value = inputProducts.Availability;
                 command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProducts.Website;
@@ -106,8 +113,14 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
-                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
-                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
+                if (!string.IsNullOrEmpty(inputProducts.OpeningHours.StartTime.ToString()))
+                {
+                    command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
+                }
+                if (!string.IsNullOrEmpty(inputProducts.OpeningHours.EndTime.ToString()))
+                {
+                    command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
+                }
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
                 command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Wednesday;
@@ -118,10 +131,10 @@ namespace Foxtrot.Classes.DB
                 inputProducts.ID=(int)command.ExecuteScalar();
             }
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
             return inputProducts.ID;
