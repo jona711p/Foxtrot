@@ -27,7 +27,7 @@ namespace Foxtrot
 
             HideAll();
             FillComboBoxWithAdminsAndActors();
-            MainFrame.Content = new Frontpage();
+            MainFrame.Content = new Frontpage(tempUser);
             DataContext = tempUser;
 
             textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" + // skal opdateres med relevant information og hyperlink og sæættes ind i xamlkoden 
@@ -91,7 +91,7 @@ namespace Foxtrot
                 CombiProduct_MenuItem.IsEnabled = true;
             }
 
-            MainFrame.Content = new Frontpage();
+            MainFrame.Content = new Frontpage(tempUser);
         }
 
         private void HideAll()
@@ -107,7 +107,7 @@ namespace Foxtrot
 
         private void MenuItem_Menu_Frontpage_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Frontpage();
+            MainFrame.Content = new Frontpage(tempUser);
         }
 
         private void MenuItem_Menu_XML_Import_OnClick(object sender, RoutedEventArgs e)
