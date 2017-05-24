@@ -76,7 +76,9 @@
             <TextBox x:Name="textBox_Product_Edit_ExtraDescription" HorizontalAlignment="Left" Height="142" Margin="170,238,0,-126" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
             <TextBox x:Name="textBox_Product_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="30,397,0,-166" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
             <TextBox x:Name="textBox_Product_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="170,397,0,-166" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
-            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="664,400,0,-166" VerticalAlignment="Top" Width="114" Click="button_Product_Edit_Edit_Click"/>
+            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="659,405,0,-171" VerticalAlignment="Top" Width="114" Click="button_Product_Edit_Edit_Click"/>
+            <Button x:Name="button_Product_Edit_Delete" Content="Slet Produkt" HorizontalAlignment="Left" Margin="522,405,0,-171" VerticalAlignment="Top" Width="114" Click="Button_Product_Edit_Delete_OnClick"/>
+
             <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="334,65,0,0" VerticalAlignment="Top" Width="114" ItemsSource="{Binding CityList}" Height="20"  DisplayMemberPath="Value" />
             <ComboBox x:Name="comboBox_Product_Edit_MainCategory" HorizontalAlignment="Left" Margin="334,153,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
             <ComboBox x:Name="comboBox_Product_Edit_Category" HorizontalAlignment="Left" Margin="334,238,0,-7" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
