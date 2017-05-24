@@ -194,7 +194,7 @@ namespace Foxtrot.GUI.CombiProduct
         private void Btn_Combi_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
         {
             // Knappen slet
-            GUISortingLogic.Message("Combi Produktet: '" + tempNewCombiProduct.Name + "' er blevet slettet i systemet!");
+            GUISortingLogic.Message("Combi Produktet: '" + tempOldCombiProduct.Name + "' er blevet slettet i systemet!");
         }
     }
 }
