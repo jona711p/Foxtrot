@@ -28,6 +28,10 @@
                     <MenuItem Header="Opret et Combi Produkt" Click="MenuItem_CombiProduct_Add_OnClick" />
                     <MenuItem Header="Se Alle Combi Produkter, Rediger, Slet" Click="MenuItem_CombiProduct_Edit_Delete_OnClick" />
                 </MenuItem>
+                
+               <MenuItem x:Name="AboutUs" Header="Om os">
+                    <MenuItem Header="Om os" Click="MenuItem_OnClick" />
+                </MenuItem>
             </Menu>
         </DockPanel>
 
@@ -58,11 +62,16 @@
         </Button>
         
     <Grid>
-    <TextBlock Margin="935,630,275,29">           
-    <Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate">
-        Click here
+    <TextBlock Margin="935,630,334,52.6">           
+    <Hyperlink NavigateUri="http://www.skiveet.dk/" RequestNavigate="Hyperlink_RequestNavigate">
+        Hjemmeside
     </Hyperlink>
             </TextBlock>
+        <TextBlock Margin="935,658,334,24.6">           
+            <Hyperlink NavigateUri="https://www.facebook.com/skiveet/" RequestNavigate="Hyperlink_RequestNavigate">
+                Facebook
+            </Hyperlink>
+        </TextBlock>
         </Grid>
     </Grid>
 
