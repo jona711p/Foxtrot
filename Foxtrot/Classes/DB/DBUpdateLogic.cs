@@ -137,35 +137,42 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            //try
             {
                 for (int i = 0; i < inputProduct.Files.Count; i++)
                 {
-                    if (inputProduct.Files[i].ID == null)
+                    if (inputProduct.Files[i].ID == null && !string.IsNullOrEmpty(inputProduct.Files[i].URI))
 
                     {
-                        //spcreatefile
+                        DBWriteLogic.WriteNewFile(inputProduct.Files[i]);
+                        DBWriteLogic.WriteNewRelFile(inputProduct, i);
+
                     }
-                    else if(inputProduct.Files[i].ID != null && string.IsNullOrEmpty(inputProduct.Files[i].URI))
+
+                    else if (inputProduct.Files[i].ID != null && string.IsNullOrEmpty(inputProduct.Files[i].URI))
                     {
-                        //slet fil med id
+                        DBDeleteLogic.DeleteFile(inputProduct.Files[i]);
                     }
+                    else if (inputProduct.Files[i].ID == null && string.IsNullOrEmpty(inputProduct.Files[i].URI))
+                    {
+                        inputProduct.Files.Remove(inputProduct.Files[i]);
+                        i--;
+                    }
+                  
                     else
                     {
-                        SqlCommand command = new SqlCommand("spUpdateFiles", connection);
+                        SqlCommand command = new SqlCommand("spUpdateFile", connection);
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputProduct.Files[i].ID;
-                        command.Parameters.Add("@Uri", SqlDbType.Date).Value = inputProduct.Files[i].URI;
+                        command.Parameters.Add("@Uri", SqlDbType.NVarChar).Value = inputProduct.Files[i].URI;
                         command.ExecuteNonQuery();
                     }
-
-                   
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
     }

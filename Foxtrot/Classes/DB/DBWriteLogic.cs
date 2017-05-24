@@ -192,6 +192,30 @@ namespace Foxtrot.Classes.DB
 
             return inputFiles;
         }
+        public static File WriteNewFile(File inputFile)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            try
+            {
+                        SqlCommand command = new SqlCommand(string.Format(@"INSERT INTO Files(URI) VALUES('{0}');
+                        select CAST(SCOPE_IDENTITY() AS INT )", inputFile.URI), connection);
+
+                        inputFile.ID = ((int)command.ExecuteScalar());
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+            }
+
+            return inputFile;
+        }
 
         public static void WriteNewRelFiles(Product inputProduct)
         {
@@ -208,6 +232,28 @@ namespace Foxtrot.Classes.DB
                         command.ExecuteNonQuery();
                     }
                 }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                connection = DBConnectionLogic.DisconnectFromDB(connection);
+            }
+        }
+        public static void WriteNewRelFile(Product inputProduct, int counter)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                        SqlCommand command = new SqlCommand(String.Format(@"INSERT INTO Rel_Files(FK_ProductID, FK_FileID)
+                        VALUES({0}, {1})", inputProduct.ID, inputProduct.Files[counter].ID), connection);
+                        command.ExecuteNonQuery();
             }
 
             catch (Exception)

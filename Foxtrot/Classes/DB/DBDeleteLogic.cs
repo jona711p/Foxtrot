@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -40,6 +41,25 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@userID", SqlDbType.Int).Value = inputActor.UserID;
 
                 command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+        }
+        public static void DeleteFile(File inputFile)
+        {
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+
+            try
+            {
+                    SqlCommand command = new SqlCommand("DELETE FROM Files WHERE ID = @FileID", connection);
+                    command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputFile.ID;
+                    command.ExecuteNonQuery();
             }
 
             catch (Exception ex)
