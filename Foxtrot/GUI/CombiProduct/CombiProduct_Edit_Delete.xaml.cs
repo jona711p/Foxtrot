@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using Foxtrot.Classes.DB;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace Foxtrot.GUI.CombiProduct
 {

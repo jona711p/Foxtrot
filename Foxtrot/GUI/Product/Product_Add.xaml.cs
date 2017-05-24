@@ -12,8 +12,7 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_Add : Page
     {
-        private bool availibility;
-        public City tempCity = new City();
+        City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
         Classes.User tempUser = new Classes.User();
         DateTime? tempTimeFrom = new DateTime?();
@@ -21,8 +20,6 @@ namespace Foxtrot.GUI.Product
         OpeningHour tempTime = new OpeningHour();
         Category tempCategory = new Category();
         MainCategory tempMainCategory = new MainCategory();
-
-
 
         public Product_Add(Classes.User inputUser) 
         {
@@ -36,7 +33,7 @@ namespace Foxtrot.GUI.Product
 
         private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            int tempint;
+            int tempInt;
 
             tempProduct.Name = GUISortingLogic.Name(textBox_Product_Add_Name);
             if (textBox_Product_Add_Name.Text.Length != 0)
@@ -61,8 +58,8 @@ namespace Foxtrot.GUI.Product
             tempProduct.Longitude = GUISortingLogic.Number(textBox_Product_Add_Longtitude);
             if (textBox_Product_Add_Longtitude.Text.Length != 0)
                 {
-                    tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text);
-                }
+                    tempProduct.Longitude = float.Parse(textBox_Product_Add_Longtitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
+            }
             else
                 {
                     MessageBox.Show("Du skal indtaste længdegrad");
@@ -71,19 +68,19 @@ namespace Foxtrot.GUI.Product
             tempProduct.Latitude = GUISortingLogic.Number(textBox_Product_Add_Latitude);
             if (textBox_Product_Add_Latitude.Text.Length != 0)
                 {
-                    tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text);
-                }
+                    tempProduct.Latitude = float.Parse(textBox_Product_Add_Latitude.Text); //Laver lige en Float converter til dig til disse 2 Thomas :) GUISortingLogic.Float ;)
+            }
             else
                 {
                     MessageBox.Show("Du skal indtaste breddegrad");
                     return;
                 }
-            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempint) &&
+            if (int.TryParse(textBox_Product_Add_ContactPhone.Text, out tempInt) &&
                 textBox_Product_Add_ContactPhone.Text.Length == 8)
                 {
                     tempProduct.ContactPhone = new List<int?>()
                     {
-                       tempint
+                        tempInt
                     };
                 }
             else
@@ -103,12 +100,12 @@ namespace Foxtrot.GUI.Product
                     MessageBox.Show("Du skal indtaste en gyldig e-mail adresse!");
                     return;
                 }
-            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempint) &&
+            if (int.TryParse(textBox_Product_Add_ContactFax.Text, out tempInt) &&
                 textBox_Product_Add_ContactFax.Text.Length == 8)
                 {
                     tempProduct.ContactFax = new List<int?>()
                     {
-                        tempint
+                        tempInt
                     };
                 }
             else
@@ -225,7 +222,6 @@ namespace Foxtrot.GUI.Product
             tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Add_CityID.SelectedItem).Key;
             tempProduct.OpeningHours = tempTime;
             tempProduct.UserID = tempUser.ID;
-            tempProduct.Availability = availibility;
 
             tempProduct.Files = DBWriteLogic.WriteNewFiles(tempProduct.Files);
             tempProduct.ID = DBWriteLogic.WriteNewProduct(tempProduct);
@@ -236,12 +232,12 @@ namespace Foxtrot.GUI.Product
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)
         {
-            availibility = true;
+            tempProduct.Availability = true;
         }
 
         private void Rbtn_Product_Add_Availability_False_OnClick(object sender, RoutedEventArgs e)
         {
-            availibility = false;
+            tempProduct.Availability = false;
         }
     }
 }

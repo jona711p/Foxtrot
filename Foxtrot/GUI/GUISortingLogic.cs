@@ -48,11 +48,11 @@ namespace Foxtrot.GUI
             return null;
         }
 
-        public static float? PackagePrice(TextBox inputPackagePrice)
+        public static float? Float(TextBox inputFloat)
         {
             float tempFloat;
 
-            if (float.TryParse(inputPackagePrice.Text.Replace(".", ","), out tempFloat))
+            if (float.TryParse(inputFloat.Text.Replace(".", ","), out tempFloat))
             {
                 return tempFloat;
             }

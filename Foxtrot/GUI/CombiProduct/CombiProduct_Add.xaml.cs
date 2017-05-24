@@ -107,7 +107,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             if (textBox_Combi_Add_PackagePrice.Text.Length != 0)
             {
-                tempCombiProduct.PackagePrice = GUISortingLogic.PackagePrice(textBox_Combi_Add_PackagePrice);
+                tempCombiProduct.PackagePrice = GUISortingLogic.Float(textBox_Combi_Add_PackagePrice);
 
                 if (tempCombiProduct.PackagePrice == null)
                 {
