@@ -12,7 +12,7 @@ using MessageBox = System.Windows.MessageBox;
 namespace Foxtrot.GUI.Product
 {
     /// <summary>
-    /// Interaction logic for Product_Edit_Delete.xaml
+    /// Mikael Paaske og Thomas Nielsen
     /// </summary>
     public partial class Product_Edit_Delete : Page
     {

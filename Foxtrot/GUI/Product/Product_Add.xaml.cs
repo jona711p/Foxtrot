@@ -8,7 +8,7 @@ using Foxtrot.Classes.DB;
 namespace Foxtrot.GUI.Product
 {
     /// <summary>
-    /// Mikael Paaske
+    /// Mikael Paaske og Thomas Nielsen
     /// </summary>
     public partial class Product_Add : Page
     {

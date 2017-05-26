@@ -6,6 +6,9 @@ namespace Foxtrot.Classes.DB
 {
     class DBUpdateLogic
     {
+        /// <summary>
+        /// Jonas Lykke og Thomas Nielsen
+        /// </summary>
         public static void UpdateAdmin(Administrator inputAdmin)
         {
             SqlConnection connection = null;

@@ -5,6 +5,9 @@ using System.Runtime.CompilerServices;
 
 namespace Foxtrot.Classes
 {
+    /// <summary>
+    /// Jonas Lykke
+    /// </summary>
     public class City : IEquatable<City>, INotifyPropertyChanged // Used by "Distinct()" to find dupes in the list
     {
         public int? ID { get; set; }

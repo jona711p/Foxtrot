@@ -6,6 +6,9 @@ using System.Runtime.CompilerServices;
 
 namespace Foxtrot.Classes
 {
+    /// <summary>
+    /// Jonas Lykke
+    /// </summary>
     public class User : INotifyPropertyChanged
     {
         public int? ID { get; set; }
