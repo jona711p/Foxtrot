@@ -440,18 +440,24 @@ namespace Foxtrot.GUI.Product
 
         private void Button_GoogleWeb_OnClick(object sender, RoutedEventArgs e)
         {
+            button_GoogleWebClose.Visibility = Visibility.Visible;
+            GoogleWeb.Visibility = Visibility.Visible;
+
             string tal1, tal2;
             tal1 = textBox_Product_Edit_Longtitude.Text;
             tal2 = textBox_Product_Edit_Latitude.Text;
-
-            GoogleWeb.Visibility = Visibility.Visible;
             this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + tal2+","+tal1);
         }
 
         private void Product_Edit_Delete_OnLoaded(object sender, RoutedEventArgs e)
         {
-            //tempWebLogic.SetBrowserFeatureControl();
+            tempWebLogic.SetBrowserFeatureControl();
             GoogleWeb.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_GoogleWebClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
