@@ -14,7 +14,8 @@ namespace Foxtrot
     class WebbrowserLogic
     {
         // Kode stjålet fra https://stackoverflow.com/questions/18333459/c-sharp-webbrowser-ajax-call
-        // for at få Google Maps til at virke.
+        // Tilføjer nøgler til regedit for at få Webbroser i WPF til at køre med Internet Explorer 11
+        // Hvis denne metode ikke kaldes, vil WPF browser være for forældet til at kunne vise Google Maps
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
         {
             using (var key = Registry.CurrentUser.CreateSubKey(
