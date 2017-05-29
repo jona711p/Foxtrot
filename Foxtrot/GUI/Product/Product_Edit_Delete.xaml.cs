@@ -457,7 +457,8 @@ namespace Foxtrot.GUI.Product
 
         private void Button_GoogleWebClose_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            GoogleWeb.Visibility = Visibility.Collapsed;
+            button_GoogleWebClose.Visibility = Visibility.Collapsed;
         }
     }
 }
