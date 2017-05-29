@@ -59,9 +59,10 @@
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>
         </Button>
-        
-    <Grid>
-    <TextBlock Margin="935,632,307,49.6" FontFamily="Arial">           
+        <Image x:Name="icon_Web" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="60" Margin="1152,634,0,0" Source="IMG/web icon.png"/>
+
+        <Grid>
+            <TextBlock Margin="935,635,354,46" FontFamily="Arial">           
     <Hyperlink NavigateUri="http://www.skiveet.dk/" RequestNavigate="Hyperlink_RequestNavigate">
         Hjemmeside
     </Hyperlink>
@@ -70,14 +71,20 @@
             <Hyperlink NavigateUri="https://www.facebook.com/skiveet/" RequestNavigate="Hyperlink_RequestNavigate">
                 Facebook
             </Hyperlink>
-        </TextBlock>
+            </TextBlock>
             <TextBlock Margin="935,685,334,-2.4"  FontFamily="Arial">           
             <Hyperlink NavigateUri="https://www.linkedin.com/company-beta/2910577/" RequestNavigate="Hyperlink_RequestNavigate">
                 LinkedIn
             </Hyperlink>
-        </TextBlock>
+            </TextBlock>
 
         </Grid>
+        <Image x:Name="icon_Facebook" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="60" Margin="1212,634,0,0" Source="IMG/face icon.png"/>
+        <Image x:Name="icon_LinkedIn" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="60" Margin="1272,634,0,0" Source="IMG/LinkedIn icon.png"/>
+        <Button x:Name="btn_ShowWeb" Content="Button" HorizontalAlignment="Left" Height="60" Margin="1152,634,0,0" VerticalAlignment="Top" Width="60" Opacity="0" Click="Btn_ShowWeb_OnClick"/>
+        <Button x:Name="btn_ShowFacebook" Content="Button" HorizontalAlignment="Left" Height="60" Margin="1212,634,0,0" VerticalAlignment="Top" Width="60" Opacity="0" Click="Btn_ShowFacebook_OnClick"/>
+        <Button x:Name="btn_ShowLinkedIn" Content="Button" HorizontalAlignment="Left" Height="60" Margin="1272,634,0,0" VerticalAlignment="Top" Width="60" Opacity="0" Click="Btn_ShowLinkedIn_OnClick"/>
+
     </Grid>
 
 </Window>

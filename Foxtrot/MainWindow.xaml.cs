@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using Foxtrot.Classes;
@@ -68,31 +69,39 @@ namespace Foxtrot
 
         private void btn_Login_User_Click(object sender, RoutedEventArgs e)
         {
-            tempUser.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
-
-            tempUser = DBReadLogic.GetUserInfo(tempUser);
-
-            if (tempUser.Permission == 1)
+            try
             {
-                HideAll();
-                XML_Import_MenuItem.IsEnabled = true;
-                User_MenuItem.IsEnabled = true;
-                User_MenuItem_Add.IsEnabled = true;
-                User_MenuItem_Edit_Delete.IsEnabled = true;
-                Product_MenuItem.IsEnabled = true;
-                CombiProduct_MenuItem.IsEnabled = true;
-            }
+                tempUser.ID = ((KeyValuePair<int, string>)comboBox_Main_Usertype.SelectedItem).Key;
 
-            if (tempUser.Permission == 2)
+                tempUser = DBReadLogic.GetUserInfo(tempUser);
+
+                if (tempUser.Permission == 1)
+                {
+                    HideAll();
+                    XML_Import_MenuItem.IsEnabled = true;
+                    User_MenuItem.IsEnabled = true;
+                    User_MenuItem_Add.IsEnabled = true;
+                    User_MenuItem_Edit_Delete.IsEnabled = true;
+                    Product_MenuItem.IsEnabled = true;
+                    CombiProduct_MenuItem.IsEnabled = true;
+                }
+
+                if (tempUser.Permission == 2)
+                {
+                    HideAll();
+                    User_MenuItem.IsEnabled = true;
+                    User_MenuItem_Modify.IsEnabled = true;
+                    Product_MenuItem.IsEnabled = true;
+                    CombiProduct_MenuItem.IsEnabled = true;
+                }
+
+                MainFrame.Content = new Frontpage(tempUser);
+            }
+            catch (Exception)
             {
-                HideAll();
-                User_MenuItem.IsEnabled = true;
-                User_MenuItem_Modify.IsEnabled = true;
-                Product_MenuItem.IsEnabled = true;
-                CombiProduct_MenuItem.IsEnabled = true;
-            }
-
-            MainFrame.Content = new Frontpage(tempUser);
+                GUISortingLogic.Message("Vælg venligst en bruger");
+                return;
+            } 
         }
 
         private void HideAll()
@@ -154,6 +163,21 @@ namespace Foxtrot
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new AboutUs();
+        }
+
+        private void Btn_ShowWeb_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.skiveet.dk/");
+        }
+
+        private void Btn_ShowFacebook_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.facebook.com/skiveet/");
+        }
+
+        private void Btn_ShowLinkedIn_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.linkedin.com/company-beta/2910577/");
         }
     }
 }

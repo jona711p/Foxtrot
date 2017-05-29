@@ -444,8 +444,8 @@ namespace Foxtrot.GUI.Product
             GoogleWeb.Visibility = Visibility.Visible;
 
             string tal1, tal2;
-            tal1 = textBox_Product_Edit_Longtitude.Text;
-            tal2 = textBox_Product_Edit_Latitude.Text;
+            tal1 = textBox_Product_Edit_Longtitude.Text.Replace(",", ".");
+            tal2 = textBox_Product_Edit_Latitude.Text.Replace(",",".");
             this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + tal2+","+tal1);
         }
 
@@ -457,7 +457,8 @@ namespace Foxtrot.GUI.Product
 
         private void Button_GoogleWebClose_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            GoogleWeb.Visibility = Visibility.Collapsed;
+            button_GoogleWebClose.Visibility = Visibility.Collapsed;
         }
     }
 }
