@@ -19,6 +19,7 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
+        Declaration_of_Consent DOC = new Declaration_of_Consent();
         XMLImport xmlImport = new XMLImport();
         private static User tempUser = new User();
         public MainWindow()
@@ -38,6 +39,7 @@ namespace Foxtrot
             textBox_RightFooter.Text = "Åbningstider:" +
                 "\nMandag – Torsdag kl. 09.00 - 15.00" +
                 "\nFredag kl. 09.00 - 14.00";
+            DOC.Show();
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)

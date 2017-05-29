@@ -50,8 +50,6 @@
         <TextBox x:Name="textBox_LeftFooter" Text="" Margin="332,627,668,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Right" />
         <TextBox x:Name="textBox_RightFooter" Text="" Margin="674,627,420,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Left"/>
 
-
-
         <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,40,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
         <ComboBox x:Name="comboBox_Main_Usertype" HorizontalAlignment="Left" Margin="1196,36,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AdminActorList}" DisplayMemberPath="Value" FontFamily="Arial" Background="White" BorderBrush="Black"/>
         <Button x:Name="btn_Login_User" Content="Login" HorizontalAlignment="Left" Margin="1241,61,0,0" VerticalAlignment="Top" Width="75" Click="btn_Login_User_Click" FontFamily="Arial" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold">
@@ -70,8 +68,6 @@
             <Image x:Name="icon_LinkedIn" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="60" Margin="132,10,0,0" Source="IMG/LinkedIn icon.png"/>
             <Button x:Name="btn_ShowLinkedIn" Content="Button" HorizontalAlignment="Left" Height="60" Margin="132,10,0,0" VerticalAlignment="Top" Width="60" Opacity="0" Click="Btn_ShowLinkedIn_OnClick"/>
         </Grid>
-
-
     </Grid>
 
 </Window>
