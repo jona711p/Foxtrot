@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.About"
         mc:Ignorable="d"
-        Title="Declaration_of_Consent" Height="300" Width="300">
+        Title="Samtykkeerklæring" Height="500" Width="450">
+
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="47,228,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="178,236,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="textBox" Height="134" TextWrapping="Wrap" Text="TextBox" Width="244"/>
-        <WebBrowser HorizontalAlignment="Left" Height="100" Margin="68,35,0,0" VerticalAlignment="Top" Width="100"/>
-
-
+        <RichTextBox x:Name="richTextBox_DOC_AgreementBox" HorizontalAlignment="Left" Height="424" Margin="10,10,0,0" VerticalAlignment="Top" Width="422">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="btn_DOC_Accept" Content="Godkend" HorizontalAlignment="Left" Margin="357,439,0,0" VerticalAlignment="Top" Width="75" Click="Btn_DOC_Accept_OnClick"/>
+        <Button x:Name="btn_DOC_Decline" Content="Anuller" HorizontalAlignment="Left" Margin="277,439,0,0" VerticalAlignment="Top" Width="75" Click="Btn_DOC_Decline_OnClick"/>
     </Grid>
 </Window>

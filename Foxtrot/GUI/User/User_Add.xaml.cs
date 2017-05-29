@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
+using Foxtrot.GUI.About;
 
 namespace Foxtrot.GUI.User
 {
@@ -10,6 +11,8 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Add : Page
     {
+        Declaration_of_Consent DOC = new Declaration_of_Consent();
+
         public User_Add()
         {
             InitializeComponent();
@@ -36,12 +39,12 @@ namespace Foxtrot.GUI.User
             
             if (rbtn_Administrator.IsChecked == true)
             {
-                Administrator();
+                    Administrator();    
             }
 
             if (rbtn_Actor.IsChecked == true)
             {
-                Actor();
+                    Actor();   
             }
 
             MainWindow.FillComboBoxWithAdminsAndActors();
@@ -103,11 +106,18 @@ namespace Foxtrot.GUI.User
 
             if (!dupe)
             {
-                
-                XMLDBWriteLogic.WriteAdministrators(tempAdministrator);
+                DOC.ShowDialog();
+                if (DOC.accept == true)
+                {
+                    XMLDBWriteLogic.WriteAdministrators(tempAdministrator);
 
-                GUISortingLogic.Message("En Administrator med navnet: '" + tempAdministrator.FirstName + " " +
-                        tempAdministrator.LastName + "' er blevet oprettet i systemet!");
+                    GUISortingLogic.Message("En Administrator med navnet: '" + tempAdministrator.FirstName + " " +
+                            tempAdministrator.LastName + "' er blevet oprettet i systemet!");
+                }
+                else
+                {
+                    MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen");
+                }
             }
 
             else
@@ -181,9 +191,18 @@ namespace Foxtrot.GUI.User
 
             if (!dupe)
             {
-                XMLDBWriteLogic.WriteActors(tempActor);
+                DOC.ShowDialog();
+                if (DOC.accept == true)
+                {
+                    XMLDBWriteLogic.WriteActors(tempActor);
 
-                GUISortingLogic.Message("En Aktør med firmanavnet: '" + tempActor.CompanyName + "' er blevet oprettet i systemet!");
+                    GUISortingLogic.Message("En Aktør med firmanavnet: '" + tempActor.CompanyName + "' er blevet oprettet i systemet!");
+                }
+                else
+                {
+                    MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen");
+                }
+                
             }
 
             else
