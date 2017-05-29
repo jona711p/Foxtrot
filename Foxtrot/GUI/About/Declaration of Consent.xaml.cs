@@ -34,7 +34,7 @@ namespace Foxtrot.GUI.About
             accept = false;
             this.Hide();
         }
-        private void OnClosing()
+        private void OnClosing() //accept skal sættes til false hvis vinduet lukkes oppe i hjørnet
         {
             accept = false;
             System.Windows.MessageBox.Show("heste hest: " + accept);

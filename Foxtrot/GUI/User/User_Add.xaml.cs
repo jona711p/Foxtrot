@@ -116,7 +116,7 @@ namespace Foxtrot.GUI.User
                 }
                 else
                 {
-                    MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen");
+                    MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen.");
                 }
             }
 
@@ -200,7 +200,7 @@ namespace Foxtrot.GUI.User
                 }
                 else
                 {
-                    MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen");
+                    MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen.");
                 }
                 
             }
