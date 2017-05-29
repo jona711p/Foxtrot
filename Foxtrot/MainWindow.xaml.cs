@@ -155,5 +155,20 @@ namespace Foxtrot
         {
             MainFrame.Content = new AboutUs();
         }
+
+        private void Btn_ShowWeb_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.skiveet.dk/");
+        }
+
+        private void Btn_ShowFacebook_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.facebook.com/skiveet/");
+        }
+
+        private void Btn_ShowLinkedIn_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.linkedin.com/company-beta/2910577/");
+        }
     }
 }

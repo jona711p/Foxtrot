@@ -210,9 +210,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMG\SET Banner.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="IMG\set icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +225,11 @@
     <Resource Include="IMG\Jonas.jpg" />
     <Resource Include="IMG\Mikael.jpg" />
     <Resource Include="IMG\Thomas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\face icon.png" />
+    <Resource Include="IMG\LinkedIn icon.png" />
+    <Resource Include="IMG\web icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
