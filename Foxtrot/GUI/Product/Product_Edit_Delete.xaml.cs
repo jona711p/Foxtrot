@@ -7,12 +7,23 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using MessageBox = System.Windows.MessageBox;
+
+using System.Linq;
+using System.Text;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace Foxtrot.GUI.Product
 {
     /// <summary>
-    /// Interaction logic for Product_Edit_Delete.xaml
+    /// Mikael Paaske og Thomas Nielsen
     /// </summary>
     public partial class Product_Edit_Delete : Page
     {
@@ -25,6 +36,7 @@ namespace Foxtrot.GUI.Product
         OpeningHour tempTime = new OpeningHour();
         Category tempCategory = new Category();
         MainCategory tempMainCategory = new MainCategory();
+        WebbrowserLogic tempWebLogic = new WebbrowserLogic();
 
         public Product_Edit_Delete(Classes.User inputUser) 
         {
@@ -62,7 +74,11 @@ namespace Foxtrot.GUI.Product
                 {
                     MakeFieldsEditable(true);
                 }
-                tempTime.ID = tempProduct.OpeningHours.ID;
+
+                //tempTime.ID = tempProduct.OpeningHours.ID;
+                tempTime = tempProduct.OpeningHours;
+
+
                 textBox_Product_Edit_Name.Text = tempProduct.Name;
                 textBox_Product_Edit_Adress.Text = tempProduct.Address;
                 textBox_Product_Edit_Longtitude.Text = tempProduct.Longitude.ToString();
@@ -140,50 +156,11 @@ namespace Foxtrot.GUI.Product
             }
         }
 
-        public void MakeFieldsEditable(bool input)
-        {
-            textBox_Product_Edit_Name.IsEnabled = input;
-            textBox_Product_Edit_Adress.IsEnabled = input;
-            textBox_Product_Edit_Longtitude.IsEnabled = input;
-            textBox_Product_Edit_Latitude.IsEnabled = input;
-            textBox_Product_Edit_ContactPhone.IsEnabled = input;
-            textBox_Product_Edit_ContactEmail.IsEnabled = input;
-            textBox_Product_Edit_ContactFax.IsEnabled = input;
-            textBox_Product_Edit_ContactFax.IsEnabled = input;
-            textBox_Product_Edit_Príce.IsEnabled = input;
-            textBox_Product_Edit_Description.IsEnabled = input;
-            textBox_Product_Edit_ExtraDescription.IsEnabled = input;
-            rbtn_Product_Edit_Availability_True.IsEnabled = input;
-            rbtn_Product_Edit_Availability_False.IsEnabled = input;
-            textBox_Product_Edit_Website.IsEnabled = input;
-            textBox_Product_Edit_CanonicalUrl.IsEnabled = input;
-            comboBox_Product_Edit_CityID.IsEnabled = input;
-            comboBox_Product_Edit_MainCategory.IsEnabled = input;
-            comboBox_Product_Edit_Category.IsEnabled = input;
-            datePicker_Product_Edit_DateFrom.IsEnabled = input;
-            datePicker_Product_Edit_DateTo.IsEnabled = input;
-            textBox_Product_Edit_Url1.IsEnabled = input;
-            textBox_Product_Edit_Url2.IsEnabled = input;
-            textBox_Product_Edit_Url3.IsEnabled = input;
-            textBox_Product_Edit_Url4.IsEnabled = input;
-
-
-            checkBox_Product_Edit_Monday.IsEnabled = input;
-            checkBox_Product_Edit_Tuesday.IsEnabled = input;
-            checkBox_Product_Edit_Wednesday.IsEnabled = input;
-            checkBox_Product_Edit_Thursday.IsEnabled = input;
-            checkBox_Product_Edit_Friday.IsEnabled = input;
-            checkBox_Product_Edit_Saturday.IsEnabled = input;
-            checkBox_Product_Edit_Sunday.IsEnabled = input;
-
-            button_Product_Edit_Edit.IsEnabled = input;
-            button_Product_Edit_Delete.IsEnabled = input;
-
-        }
-
         private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             int tempint;
+
+            #region contactinfo
 
             tempProduct.Name = textBox_Product_Edit_Name.Text;
             tempProduct.Address = textBox_Product_Edit_Adress.Text;
@@ -239,63 +216,21 @@ namespace Foxtrot.GUI.Product
             };
 
             }
-            else
-            {
-                MessageBox.Show("Du skal indtaste en ekstra beskrivelse af produktet");
-                return;
-            }
+
 
             if (textBox_Product_Edit_CanonicalUrl.Text.Length != 0)
             {
                 tempProduct.CanonicalUrl = textBox_Product_Edit_CanonicalUrl.Text;
             }
-            else
-            {
-                MessageBox.Show("Du skal indtaste URL på produktet");
-                return;
-            }
+
             if (textBox_Product_Edit_Website.Text.Length != 0)
             {
                 tempProduct.Website = textBox_Product_Edit_Website.Text;
             }
 
-            if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateTo != null)
-            {
-                if (datePicker_Product_Edit_DateFrom.Value < datePicker_Product_Edit_DateTo.Value)
-                {
-                    tempTimeFrom = datePicker_Product_Edit_DateFrom.Value;
-                    tempTimeTo = datePicker_Product_Edit_DateTo.Value;
+            #endregion
 
-
-                    tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
-                    tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
-                    tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
-                    tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
-
-                    tempTime.Monday = checkBox_Product_Edit_Monday.IsChecked == true;
-                    tempTime.Tuesday = checkBox_Product_Edit_Tuesday.IsChecked == true;
-                    tempTime.Wednesday = checkBox_Product_Edit_Wednesday.IsChecked == true;
-                    tempTime.Thursday = checkBox_Product_Edit_Thursday.IsChecked == true;
-                    tempTime.Friday = checkBox_Product_Edit_Friday.IsChecked == true;
-                    tempTime.Saturday = checkBox_Product_Edit_Saturday.IsChecked == true;
-                    tempTime.Sunday = checkBox_Product_Edit_Sunday.IsChecked == true;
-                }
-                else
-                {
-                    MessageBox.Show("Du kan ikke vælge en startdato der er senere end slutdatoen!");
-                    return;
-                }
-            }
-
-            tempProduct.Availability = rbtn_Product_Edit_Availability_True.IsChecked == true;
-            tempProduct.OpeningHours = tempTime;
-
-            tempProduct.Cities = new City();
-            tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
-            tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_MainCategory.SelectedItem).Key;
-            tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
-
-
+            #region FILES
             if (tempProduct.Files.Count == 0)
             {
                 File tempFile1 = new File();
@@ -335,6 +270,51 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Files[2].URI = textBox_Product_Edit_Url3.Text;
                 tempProduct.Files[3].URI = textBox_Product_Edit_Url4.Text;
             }
+#endregion
+
+            #region TIME
+
+
+
+            
+            if (checkBox_Product_Edit_Monday.IsChecked == tempTime.Monday || checkBox_Product_Edit_Tuesday.IsChecked == tempTime.Tuesday || checkBox_Product_Edit_Wednesday.IsChecked == tempTime.Wednesday || checkBox_Product_Edit_Thursday.IsChecked == tempTime.Thursday || checkBox_Product_Edit_Friday.IsChecked == tempTime.Friday || checkBox_Product_Edit_Saturday.IsChecked == tempTime.Saturday || checkBox_Product_Edit_Sunday.IsChecked == tempTime.Sunday)
+            {
+                tempTime.Monday = checkBox_Product_Edit_Monday.IsChecked == true;
+                tempTime.Tuesday = checkBox_Product_Edit_Tuesday.IsChecked == true;
+                tempTime.Wednesday = checkBox_Product_Edit_Wednesday.IsChecked == true;
+                tempTime.Thursday = checkBox_Product_Edit_Thursday.IsChecked == true;
+                tempTime.Friday = checkBox_Product_Edit_Friday.IsChecked == true;
+                tempTime.Saturday = checkBox_Product_Edit_Saturday.IsChecked == true;
+                tempTime.Sunday = checkBox_Product_Edit_Sunday.IsChecked == true;
+            }
+
+            if (datePicker_Product_Edit_DateFrom.Value != null && datePicker_Product_Edit_DateTo != null)
+            {
+                if (datePicker_Product_Edit_DateFrom.Value < datePicker_Product_Edit_DateTo.Value)
+                {
+                    tempTimeFrom = datePicker_Product_Edit_DateFrom.Value;
+                    tempTimeTo = datePicker_Product_Edit_DateTo.Value;
+
+                    tempTime.StartDate = Convert.ToDateTime(tempTimeFrom.Value.ToString("yyyy-MM-dd"));
+                    tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
+                    tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
+                    tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
+                }
+                else
+                {
+                    MessageBox.Show("Du kan ikke vælge en startdato der er senere end slutdatoen!");
+                    return;
+                }
+            }
+            tempProduct.OpeningHours = tempTime;
+
+            #endregion
+
+            tempProduct.Cities = new City();
+            tempProduct.Cities.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_CityID.SelectedItem).Key;
+            tempProduct.MainCategories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_MainCategory.SelectedItem).Key;
+            tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
+            tempProduct.Availability = rbtn_Product_Edit_Availability_True.IsChecked == true;
 
             DBUpdateLogic.UpdateFiles(tempProduct);
 
@@ -342,14 +322,53 @@ namespace Foxtrot.GUI.Product
             {
                 DBUpdateLogic.UpdateOpeningHours(tempTime);
             }
-            else if (tempTime.StartDate != null && tempTime.EndDate != null && tempProduct.OpeningHours.ID == null)
+            else if (tempTime.StartDate != null && tempTime.EndDate != null && tempProduct.OpeningHours.ID == null || (checkBox_Product_Edit_Monday.IsChecked == true || checkBox_Product_Edit_Tuesday.IsChecked == true || checkBox_Product_Edit_Wednesday.IsChecked == true || checkBox_Product_Edit_Thursday.IsChecked == true || checkBox_Product_Edit_Friday.IsChecked == true || checkBox_Product_Edit_Saturday.IsChecked == true || checkBox_Product_Edit_Sunday.IsChecked == true) && tempTime.ID == null)
             {
                 tempProduct.OpeningHours.ID = DBWriteLogic.WriteOpeningHours(tempProduct);
             }
 
+
+
             DBUpdateLogic.UpdateProduct(tempProduct);
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
+        }
+
+        public void MakeFieldsEditable(bool input)
+        {
+            textBox_Product_Edit_Name.IsEnabled = input;
+            textBox_Product_Edit_Adress.IsEnabled = input;
+            textBox_Product_Edit_Longtitude.IsEnabled = input;
+            textBox_Product_Edit_Latitude.IsEnabled = input;
+            textBox_Product_Edit_ContactPhone.IsEnabled = input;
+            textBox_Product_Edit_ContactEmail.IsEnabled = input;
+            textBox_Product_Edit_ContactFax.IsEnabled = input;
+            textBox_Product_Edit_ContactFax.IsEnabled = input;
+            textBox_Product_Edit_Príce.IsEnabled = input;
+            textBox_Product_Edit_Description.IsEnabled = input;
+            textBox_Product_Edit_ExtraDescription.IsEnabled = input;
+            rbtn_Product_Edit_Availability_True.IsEnabled = input;
+            rbtn_Product_Edit_Availability_False.IsEnabled = input;
+            textBox_Product_Edit_Website.IsEnabled = input;
+            textBox_Product_Edit_CanonicalUrl.IsEnabled = input;
+            comboBox_Product_Edit_CityID.IsEnabled = input;
+            comboBox_Product_Edit_MainCategory.IsEnabled = input;
+            comboBox_Product_Edit_Category.IsEnabled = input;
+            datePicker_Product_Edit_DateFrom.IsEnabled = input;
+            datePicker_Product_Edit_DateTo.IsEnabled = input;
+            textBox_Product_Edit_Url1.IsEnabled = input;
+            textBox_Product_Edit_Url2.IsEnabled = input;
+            textBox_Product_Edit_Url3.IsEnabled = input;
+            textBox_Product_Edit_Url4.IsEnabled = input;
+            checkBox_Product_Edit_Monday.IsEnabled = input;
+            checkBox_Product_Edit_Tuesday.IsEnabled = input;
+            checkBox_Product_Edit_Wednesday.IsEnabled = input;
+            checkBox_Product_Edit_Thursday.IsEnabled = input;
+            checkBox_Product_Edit_Friday.IsEnabled = input;
+            checkBox_Product_Edit_Saturday.IsEnabled = input;
+            checkBox_Product_Edit_Sunday.IsEnabled = input;
+            button_Product_Edit_Edit.IsEnabled = input;
+            button_Product_Edit_Delete.IsEnabled = input;
         }
 
         private void btb_Product_Search_Click(object sender, RoutedEventArgs e)
@@ -417,6 +436,28 @@ namespace Foxtrot.GUI.Product
 
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
 
+        }
+
+        private void Button_GoogleWeb_OnClick(object sender, RoutedEventArgs e)
+        {
+            button_GoogleWebClose.Visibility = Visibility.Visible;
+            GoogleWeb.Visibility = Visibility.Visible;
+
+            string tal1, tal2;
+            tal1 = textBox_Product_Edit_Longtitude.Text;
+            tal2 = textBox_Product_Edit_Latitude.Text;
+            this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + tal2+","+tal1);
+        }
+
+        private void Product_Edit_Delete_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            tempWebLogic.SetBrowserFeatureControl();
+            GoogleWeb.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_GoogleWebClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

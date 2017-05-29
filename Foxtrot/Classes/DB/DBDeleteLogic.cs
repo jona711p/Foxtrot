@@ -6,6 +6,9 @@ namespace Foxtrot.Classes.DB
 {
     class DBDeleteLogic
     {
+        /// <summary>
+        /// Jonas Lykke og Thomas Nielsen
+        /// </summary>
         public static void DeleteAdmin(Administrator inputAdmin)
         {
             SqlConnection connection = null;

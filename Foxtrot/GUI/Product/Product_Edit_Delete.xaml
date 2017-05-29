@@ -1,4 +1,5 @@
-﻿<Page x:Class="Foxtrot.GUI.Product.Product_Edit_Delete"
+﻿<!-- Mikael Paaske og Thomas Nielsen -->
+<Page x:Class="Foxtrot.GUI.Product.Product_Edit_Delete"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,6 +7,8 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d"
+          Background="White"
+      Loaded="Product_Edit_Delete_OnLoaded"
       d:DesignHeight="1000" d:DesignWidth="1310"
       Title="Se Alle Produkter, Rediger, Slet">
 
@@ -92,7 +95,7 @@
             <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="412,312,0,-73" VerticalAlignment="Top" />
         </Grid>
 
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="586" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="501" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
 
         <Grid x:Name="grid_timeInputs" Margin="498,466,472,321">
             <CheckBox x:Name="checkBox_Product_Edit_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top" IsChecked="True"/>
@@ -159,6 +162,11 @@
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
         </Grid>
+
+        <WebBrowser Name="GoogleWeb" HorizontalAlignment="Left" Height="499" Margin="27,406,0,0" VerticalAlignment="Top" Width="1270" Visibility="Collapsed"/>
+        <Button x:Name="button_GoogleWeb" Content="Vis produkt på kort" Click="Button_GoogleWeb_OnClick" HorizontalAlignment="Left" Margin="398,831,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="button_GoogleWebClose" Content="Luk" Click="Button_GoogleWebClose_OnClick" HorizontalAlignment="Left" Margin="1207,422,0,0" VerticalAlignment="Top" Width="75" Visibility="Collapsed"/>
+
         <!-- Rediger Produkt Slut -->
     </Grid>
 </Page>

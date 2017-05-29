@@ -6,6 +6,9 @@ namespace Foxtrot.Classes.DB
 {
     class DBUpdateLogic
     {
+        /// <summary>
+        /// Jonas Lykke og Thomas Nielsen
+        /// </summary>
         public static void UpdateAdmin(Administrator inputAdmin)
         {
             SqlConnection connection = null;
@@ -107,7 +110,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            //try
             {
                 SqlCommand command = new SqlCommand("spUpdateOpeningHours", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -115,8 +118,14 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@ID", SqlDbType.Int).Value = inputTimes.ID;
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputTimes.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputTimes.EndDate;
-                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = inputTimes.StartTime.Value.TimeOfDay;
-                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = inputTimes.EndTime.Value.TimeOfDay;
+                if (inputTimes.StartTime != null)
+                {
+                    command.Parameters.Add("@StartTime", SqlDbType.Time).Value = inputTimes.StartTime.Value.TimeOfDay;
+                }
+                if (inputTimes.EndTime != null)
+                {
+                    command.Parameters.Add("@EndTime", SqlDbType.Time).Value = inputTimes.EndTime.Value.TimeOfDay;
+                }
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputTimes.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputTimes.Tuesday;
                 command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputTimes.Wednesday;
@@ -126,10 +135,10 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputTimes.Sunday;
                 command.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 

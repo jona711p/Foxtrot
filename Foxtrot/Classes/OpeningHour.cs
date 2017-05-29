@@ -2,6 +2,9 @@
 
 namespace Foxtrot.Classes
 {
+    /// <summary>
+    /// Jonas Lykke
+    /// </summary>
     public class OpeningHour
     {
         public int? ID { get; set; }
