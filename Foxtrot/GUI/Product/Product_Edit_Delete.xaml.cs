@@ -442,11 +442,12 @@ namespace Foxtrot.GUI.Product
         {
             button_GoogleWebClose.Visibility = Visibility.Visible;
             GoogleWeb.Visibility = Visibility.Visible;
+            button_GoogleWebClose.Visibility = Visibility.Visible;
 
-            string tal1, tal2;
-            tal1 = textBox_Product_Edit_Longtitude.Text.Replace(",", ".");
-            tal2 = textBox_Product_Edit_Latitude.Text.Replace(",",".");
-            this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + tal2+","+tal1);
+            string number1, number2;
+            number1 = textBox_Product_Edit_Longtitude.Text.Replace(",", "."); 
+            number2 = textBox_Product_Edit_Latitude.Text.Replace(",",".");
+            this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + number2 + ","+ number1);
         }
 
         private void Product_Edit_Delete_OnLoaded(object sender, RoutedEventArgs e)
