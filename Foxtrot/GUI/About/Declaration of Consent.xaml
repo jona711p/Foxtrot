@@ -1,0 +1,17 @@
+﻿<Window x:Class="Foxtrot.GUI.About.Declaration_of_Consent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Foxtrot.GUI.About"
+        mc:Ignorable="d"
+        Title="Declaration_of_Consent" Height="300" Width="300">
+    <Grid>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="47,228,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="178,236,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="textBox" Height="134" TextWrapping="Wrap" Text="TextBox" Width="244"/>
+        <WebBrowser HorizontalAlignment="Left" Height="100" Margin="68,35,0,0" VerticalAlignment="Top" Width="100"/>
+
+
+    </Grid>
+</Window>
