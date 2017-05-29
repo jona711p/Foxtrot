@@ -99,10 +99,10 @@ namespace Foxtrot
 
                 MainFrame.Content = new Frontpage(tempUser);
             }
+
             catch (Exception)
             {
-                GUISortingLogic.Message("Vælg venligst en bruger");
-                return;
+                GUISortingLogic.Message("Vælg Venligst en Bruger!");
             } 
         }
 
