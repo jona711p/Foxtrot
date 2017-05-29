@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Foxtrot.Classes
 {
+    /// <summary>
+    /// Jonas Lykke og Thomas Nielsen
+    /// </summary>
     public class Category : IEquatable<Category> // Used by "Distinct()" to find dupes in the list
     {
         public int? ID { get; set; }

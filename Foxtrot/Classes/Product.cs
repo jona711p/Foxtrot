@@ -4,6 +4,9 @@ using System.Data;
 
 namespace Foxtrot.Classes
 {
+    /// <summary>
+    /// Jonas Lykke
+    /// </summary>
     public class Product 
     {
         public int? ID { get; set;  }

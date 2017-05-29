@@ -4,6 +4,9 @@ using System.Data;
 
 namespace Foxtrot.Classes
 {
+    /// <summary>
+    /// Jonas Lykke, Thomas Nielsen og Mikael Paaske
+    /// </summary>
     public class CombiProduct
     {
         public int? ID { get; set; }//auto

@@ -7,12 +7,23 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using MessageBox = System.Windows.MessageBox;
+
+using System.Linq;
+using System.Text;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace Foxtrot.GUI.Product
 {
     /// <summary>
-    /// Interaction logic for Product_Edit_Delete.xaml
+    /// Mikael Paaske og Thomas Nielsen
     /// </summary>
     public partial class Product_Edit_Delete : Page
     {
@@ -25,6 +36,7 @@ namespace Foxtrot.GUI.Product
         OpeningHour tempTime = new OpeningHour();
         Category tempCategory = new Category();
         MainCategory tempMainCategory = new MainCategory();
+        WebbrowserLogic tempWebLogic = new WebbrowserLogic();
 
         public Product_Edit_Delete(Classes.User inputUser) 
         {
@@ -424,6 +436,29 @@ namespace Foxtrot.GUI.Product
 
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
 
+        }
+
+        private void Button_GoogleWeb_OnClick(object sender, RoutedEventArgs e)
+        {
+            button_GoogleWebClose.Visibility = Visibility.Visible;
+            GoogleWeb.Visibility = Visibility.Visible;
+
+            string tal1, tal2;
+            tal1 = textBox_Product_Edit_Longtitude.Text.Replace(",", ".");
+            tal2 = textBox_Product_Edit_Latitude.Text.Replace(",",".");
+            this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + tal2+","+tal1);
+        }
+
+        private void Product_Edit_Delete_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            tempWebLogic.SetBrowserFeatureControl();
+            GoogleWeb.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_GoogleWebClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            GoogleWeb.Visibility = Visibility.Collapsed;
+            button_GoogleWebClose.Visibility = Visibility.Collapsed;
         }
     }
 }
