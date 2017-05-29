@@ -442,9 +442,10 @@ namespace Foxtrot.GUI.Product
         {
             button_GoogleWebClose.Visibility = Visibility.Visible;
             GoogleWeb.Visibility = Visibility.Visible;
+            button_GoogleWebClose.Visibility = Visibility.Visible;
 
             string number1, number2;
-            number1 = textBox_Product_Edit_Longtitude.Text.Replace(",", ".");
+            number1 = textBox_Product_Edit_Longtitude.Text.Replace(",", "."); 
             number2 = textBox_Product_Edit_Latitude.Text.Replace(",",".");
             this.GoogleWeb.Navigate(" https://www.google.com/maps?q=" + number2 + ","+ number1);
         }

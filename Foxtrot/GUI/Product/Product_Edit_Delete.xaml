@@ -165,7 +165,7 @@
 
         <WebBrowser Name="GoogleWeb" HorizontalAlignment="Left" Height="499" Margin="27,406,0,0" VerticalAlignment="Top" Width="1270" Visibility="Collapsed"/>
         <Button x:Name="button_GoogleWeb" Content="Vis produkt på kort" Click="Button_GoogleWeb_OnClick" HorizontalAlignment="Left" Margin="398,831,0,0" VerticalAlignment="Top" Width="110"/>
-        <Button x:Name="button_GoogleWebClose" Content="Luk" Click="Button_GoogleWebClose_OnClick" HorizontalAlignment="Left" Margin="1067,912,0,0" VerticalAlignment="Top" Width="169" Height="44" Visibility="Collapsed"/>
+        <Button x:Name="button_GoogleWebClose" Content="Luk" Click="Button_GoogleWebClose_OnClick" HorizontalAlignment="Left" Margin="888,918,0,0" VerticalAlignment="Top" Width="169" Height="44" RenderTransformOrigin="-0.492,0.607" Visibility="Collapsed"/>
 
         <!-- Rediger Produkt Slut -->
     </Grid>
