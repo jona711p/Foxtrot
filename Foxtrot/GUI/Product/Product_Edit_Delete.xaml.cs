@@ -5,19 +5,8 @@ using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using MessageBox = System.Windows.MessageBox;
-
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using Microsoft.Win32;
 using System.Diagnostics;
 
 namespace Foxtrot.GUI.Product

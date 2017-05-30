@@ -7,7 +7,7 @@ namespace Foxtrot.Classes.DB
     class DBUpdateLogic
     {
         /// <summary>
-        /// Jonas Lykke og Thomas Nielsen
+        /// Jonas Lykke & Thomas Nielsen
         /// </summary>
         public static void UpdateAdmin(Administrator inputAdmin)
         {

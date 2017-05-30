@@ -389,7 +389,10 @@ namespace Foxtrot.GUI.XMLImport
 
             for (int i = 0; i < e.ProgressPercentage; i++)
             {
-                this.Dispatcher.Invoke(() => { ProgressPercentage++; }); // This is needed, so that another Thread can write to this varible
+                this.Dispatcher.Invoke(() =>
+                {
+                    ProgressPercentage++;
+                }); // This is needed, so that another Thread can write to this varible
             }
 
             readerWriterLockSlim.ExitWriteLock();
