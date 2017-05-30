@@ -77,7 +77,6 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Saturday;
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
                 inputProducts.ID=(int)command.ExecuteScalar();
-            }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
@@ -130,6 +129,7 @@ namespace Foxtrot.Classes.DB
                     inputFiles[i].ID = ((int)command.ExecuteScalar());
                 }
             }
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputFiles;
@@ -144,6 +144,7 @@ namespace Foxtrot.Classes.DB
                         select CAST(SCOPE_IDENTITY() AS INT )", inputFile.URI), connection);
 
             inputFile.ID = (int)command.ExecuteScalar();
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
             return inputFile;
