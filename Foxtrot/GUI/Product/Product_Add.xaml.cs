@@ -21,9 +21,8 @@ namespace Foxtrot.GUI.Product
         OpeningHour tempTime = new OpeningHour();
         Category tempCategory = new Category();
         MainCategory tempMainCategory = new MainCategory();
-        Declaration_of_Consent DOC = new Declaration_of_Consent();
-
-
+        static Declaration_of_Consent DOC = new Declaration_of_Consent();
+        
         public Product_Add(Classes.User inputUser)
         {
             InitializeComponent();

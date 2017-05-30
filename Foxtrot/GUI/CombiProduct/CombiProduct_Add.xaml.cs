@@ -15,10 +15,8 @@ namespace Foxtrot.GUI.CombiProduct
         Classes.User tempUser = new Classes.User();
         Classes.Product tempProduct = new Classes.Product();
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
-        Declaration_of_Consent DOC = new Declaration_of_Consent();
-
-
-
+        static Declaration_of_Consent DOC = new Declaration_of_Consent();
+        
         public CombiProduct_Add(Classes.User inputUser)
         {
             tempUser = inputUser;
