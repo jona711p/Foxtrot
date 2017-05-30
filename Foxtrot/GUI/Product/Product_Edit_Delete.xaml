@@ -183,7 +183,6 @@
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>
         </Button>
-
         <!-- Rediger Produkt Slut -->
     </Grid>
 </Page>

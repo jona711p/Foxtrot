@@ -107,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Product\Product_DisplayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Product\Product_Edit_Delete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +169,9 @@
     <Compile Include="GUI\GUISortingLogic.cs" />
     <Compile Include="GUI\Product\Product_Add.xaml.cs">
       <DependentUpon>Product_Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Product\Product_DisplayWindow.xaml.cs">
+      <DependentUpon>Product_DisplayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Product\Product_Edit_Delete.xaml.cs">
       <DependentUpon>Product_Edit_Delete.xaml</DependentUpon>
