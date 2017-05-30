@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
@@ -20,13 +19,24 @@ namespace Foxtrot
 {
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// This block of code is used for removeing the "Escape Hatch". Use the "Afslut" in the Menu instead
+        /// </summary>
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x80000;
+        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        public bool accept;
+
         XMLImport xmlImport = new XMLImport();
         private static User tempUser = new User();
         public MainWindow()
         {
+            Loaded += ToolWindow_Loaded;
             ResizeMode = ResizeMode.NoResize; //locks the window to its inital size (1350x735) and disables the ability to minimize
             InitializeComponent();
-            this.Closing += WindowClosing;
 
             HideAll();
             FillComboBoxWithAdminsAndActors();
@@ -41,15 +51,13 @@ namespace Foxtrot
                 "\nFredag kl. 09.00 - 14.00";
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        /// <summary>
+        /// This block of code is used for removeing the "Escape Hatch". Use the "Afslut" in the Menu instead
+        /// </summary>
+        void ToolWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
-        }
-
-        void WindowClosing(object sender, CancelEventArgs e)
-        {
-            Application.Current.Shutdown();
+            IntPtr hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
 
         private void MenuItem_Menu_Exit_OnClick(object sender, RoutedEventArgs e)
