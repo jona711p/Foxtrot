@@ -50,11 +50,6 @@ namespace Foxtrot
             textBox_RightFooter.Text = "Åbningstider:" +
                 "\nMandag – Torsdag kl. 09.00 - 15.00" +
                 "\nFredag kl. 09.00 - 14.00";
-
-
-            //BrushConverter bc = new BrushConverter();
-            //Brush hest = (Brush)bc.ConvertFrom("4d4d4c");
-            //GridSplitter_Top.Background = hest;
         }
 
         /// <summary>
