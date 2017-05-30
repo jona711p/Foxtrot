@@ -17,14 +17,14 @@ namespace Foxtrot.GUI.About
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-        public bool accept; //kan måske lave fejl hvis man skal bruge den flere gange
+        public bool accept; 
 
         public Declaration_of_Consent()
         {
             InitializeComponent();
             Loaded += ToolWindow_Loaded;
 
-            //Læser filen, binder den til tekstboksen og aktivere scrollbars
+            // Read the file, bind it to the textbox and activate the scrollbar
             FileStream fileStream = File.Open("Samtykkeerklæring.rtf", FileMode.Open);
             richTextBox_DOC_AgreementBox.Selection.Load(fileStream, System.Windows.DataFormats.Rtf);
             richTextBox_DOC_AgreementBox.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
