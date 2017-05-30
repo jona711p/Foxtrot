@@ -409,12 +409,20 @@ namespace Foxtrot.GUI.Product
                     datePicker_Product_Search_Date_To.SelectedDate = null;
                     datePicker__Product_Search_Date_From.SelectedDate = null;
                 }
-                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                else
                 {
-                    if (row.RowState != DataRowState.Deleted)
-                        if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
-                            row.Delete();
+                    foreach (DataRow row in tempProduct.ProductTable.Rows)
+                    {
+                        if (row.RowState != DataRowState.Deleted)
+                            if (string.IsNullOrEmpty(row["Start Dato"].ToString()) || string.IsNullOrEmpty(row["Slut Dato"].ToString()))
+                            {
+                                row.Delete();
+                            }
+                            else if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
+                                row.Delete();
+                    }
                 }
+               
             }            
         }
 
