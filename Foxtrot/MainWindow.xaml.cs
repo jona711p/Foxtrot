@@ -33,7 +33,7 @@ namespace Foxtrot
             MainFrame.Content = new Frontpage(tempUser);
             DataContext = tempUser;
 
-            textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" + // skal opdateres med relevant information og hyperlink og sæættes ind i xamlkoden 
+            textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
                 "\nØsterbro 7, 7800 Skive" +
                 "\nTlf: +45 9614 7677 | info@skiveet.dk";
             textBox_RightFooter.Text = "Åbningstider:" +

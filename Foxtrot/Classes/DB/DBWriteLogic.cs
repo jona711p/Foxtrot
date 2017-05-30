@@ -11,58 +11,6 @@ namespace Foxtrot.Classes.DB
     /// </summary>
     public class DBWriteLogic
     {
-        //public static void WriteNewProduct(Product inputProducts)
-        //{
-        //    SqlConnection connection = null;
-        //    connection = DBConnectionLogic.ConnectToDB(connection);
-
-        //    try
-        //    {
-        //        SqlCommand command = new SqlCommand("spWriteNewProducts", connection);
-        //        command.CommandType = CommandType.StoredProcedure;
-
-        //        command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = inputProducts.Name;
-        //        command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = inputProducts.Address;
-        //        command.Parameters.Add("@Latitude", SqlDbType.Float).Value = inputProducts.Latitude;
-        //        command.Parameters.Add("@Longitude", SqlDbType.Float).Value = inputProducts.Longitude;
-        //        command.Parameters.Add("@ContactPhone", SqlDbType.Int).Value =
-        //            inputProducts.ContactPhone == null
-        //            || inputProducts.ContactPhone.Count == 0
-        //                ? null
-        //                : (int?)inputProducts.ContactPhone[0].Value;
-
-        //        command.Parameters.Add("@ContactEmail", SqlDbType.NVarChar).Value = inputProducts.ContactEmail == null
-        //            ? null
-        //            : inputProducts.ContactEmail[0];
-
-        //        command.Parameters.Add("@ContactFax", SqlDbType.Int).Value = inputProducts.ContactFax == null
-        //            ? null
-        //            : (int?)inputProducts.ContactFax[0].Value;
-
-        //        command.Parameters.Add("@Price", SqlDbType.Float).Value = inputProducts.Price;
-        //        command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = inputProducts.Description;
-        //        command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
-        //            XMLSortingLogic.TryToConvertNodeValueToStringBuilder(inputProducts.ExtraDescription);
-
-        //        command.Parameters.Add("@Availability", SqlDbType.Bit).Value = inputProducts.Availability;
-        //        command.Parameters.Add("@Website", SqlDbType.NVarChar).Value = inputProducts.Website;
-        //        command.Parameters.Add("@CanonicalUrl", SqlDbType.NVarChar).Value = inputProducts.CanonicalUrl;
-        //        command.Parameters.Add("@FK_CityID", SqlDbType.Int).Value = inputProducts.Cities.ID;
-        //        command.Parameters.Add("@FK_UserID", SqlDbType.Int).Value = inputProducts.UserID;
-
-        //        // MANGLER FLERE PARAMETER!
-
-        //        command.ExecuteNonQuery();
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //    connection = DBConnectionLogic.DisconnectFromDB(connection);
-        //}
-
         public static int? WriteNewProduct(Product inputProducts)
         {
             SqlConnection connection = null;
@@ -115,11 +63,11 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
                 if (!string.IsNullOrEmpty(inputProducts.OpeningHours.StartTime.ToString()))
                 {
-                    command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
+                    command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);
                 }
                 if (!string.IsNullOrEmpty(inputProducts.OpeningHours.EndTime.ToString()))
                 {
-                    command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
+                    command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); 
                 }
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
@@ -151,8 +99,8 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
-                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
-                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
+                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);
+                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value);
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
                 command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Wednesday;
@@ -162,9 +110,9 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
 
 
-                var hest = command.ExecuteScalar();
+                var tempData = command.ExecuteScalar();
 
-                inputProducts.OpeningHours.ID = Convert.ToInt32(hest);
+                inputProducts.OpeningHours.ID = Convert.ToInt32(tempData);
             }
 
             //catch (Exception ex)

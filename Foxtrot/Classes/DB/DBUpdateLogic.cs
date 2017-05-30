@@ -202,7 +202,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Availability", SqlDbType.Bit).Value = inputCombiProduct.Availability;
 
                 command.ExecuteNonQuery();
-            }
+        }
 
             catch (Exception)
             {
@@ -213,6 +213,6 @@ namespace Foxtrot.Classes.DB
             {
                 connection = DBConnectionLogic.DisconnectFromDB(connection);
             }
-        }
+}
     }
 }
