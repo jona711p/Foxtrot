@@ -14,19 +14,11 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("DELETE FROM Administrators WHERE FK_UserID = @UserID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM Administrators WHERE FK_UserID = @UserID", connection);
 
-                command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputAdmin.UserID;
+            command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputAdmin.UserID;
 
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            command.ExecuteNonQuery();
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
@@ -36,19 +28,11 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("DELETE FROM Actors WHERE FK_UserID = @UserID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM Actors WHERE FK_UserID = @UserID", connection);
 
-                command.Parameters.Add("@userID", SqlDbType.Int).Value = inputActor.UserID;
+            command.Parameters.Add("@userID", SqlDbType.Int).Value = inputActor.UserID;
 
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            command.ExecuteNonQuery();
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
@@ -57,19 +41,12 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                    SqlCommand command = new SqlCommand("DELETE FROM Files WHERE ID = @FileID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM Files WHERE ID = @FileID", connection);
 
-                    command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputFile.ID;
+            command.Parameters.Add("@FileID", SqlDbType.Int).Value = inputFile.ID;
 
-                    command.ExecuteNonQuery();
-            }
+            command.ExecuteNonQuery();
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
@@ -78,19 +55,11 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("DELETE FROM Products WHERE ID = @ProductID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM Products WHERE ID = @ProductID", connection);
 
-                command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
+            command.Parameters.Add("@ProductID", SqlDbType.Int).Value = inputProduct.ID;
 
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            command.ExecuteNonQuery();
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
@@ -99,19 +68,11 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("DELETE FROM OpeningHours WHERE ID = @OpeningHourID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM OpeningHours WHERE ID = @OpeningHourID", connection);
 
-                command.Parameters.Add("@OpeningHourID", SqlDbType.Int).Value = inputTimes.ID;
+            command.Parameters.Add("@OpeningHourID", SqlDbType.Int).Value = inputTimes.ID;
 
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            command.ExecuteNonQuery();
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
@@ -121,19 +82,11 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("DELETE FROM rel_CombiProducts WHERE FK_CombiProductID = @CombiProductID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM rel_CombiProducts WHERE FK_CombiProductID = @CombiProductID", connection);
 
-                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+            command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
 
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            command.ExecuteNonQuery();
         }
 
         public static void DeleteCombiProducts(CombiProduct inputCombiProduct)
@@ -141,19 +94,11 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
-            {
-                SqlCommand command = new SqlCommand("DELETE FROM CombiProducts WHERE ID = @CombiProductID", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM CombiProducts WHERE ID = @CombiProductID", connection);
 
-                command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
+            command.Parameters.Add("@CombiProductID", SqlDbType.Int).Value = inputCombiProduct.ID;
 
-                command.ExecuteNonQuery();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            command.ExecuteNonQuery();
         }
     }
 }
