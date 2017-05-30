@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms.VisualStyles;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 
@@ -32,7 +33,7 @@ namespace Foxtrot.GUI.User
             //the new information is stored in the object 'tempAdministrator' or 'tempAdctor' depending on the usertype and displayed in the relavant inputfields in the GUI 
             if (dataGrid_User_Edit.SelectedItem != null)
             {
-                if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator") //If the selected row is an administrator
+                if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator") //If the selected row is an administrator
                 {
                     {
                         tempAdministrator.UserID =
@@ -54,7 +55,7 @@ namespace Foxtrot.GUI.User
                     }
                 }
 
-                if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør") //If the selected row is an actor
+                if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør") //If the selected row is an actor
                 {
                     {
                         tempActor.UserID =
@@ -81,7 +82,7 @@ namespace Foxtrot.GUI.User
 
         private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
+            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 tempAdministrator.FirstName = GUISortingLogic.Name(textBox_User_Edit_FirstName);
 
@@ -142,7 +143,7 @@ namespace Foxtrot.GUI.User
                 }
             }
 
-            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
+            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
             {
                 tempActor.FirstName = GUISortingLogic.Name(textBox_User_Edit_FirstName);
 
@@ -217,7 +218,7 @@ namespace Foxtrot.GUI.User
 
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
+            if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Slette '" + tempAdministrator.FirstName + " " + tempAdministrator.LastName + "'?", "Slet?",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -228,8 +229,6 @@ namespace Foxtrot.GUI.User
 
                     GUISortingLogic.Message(tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Slettet!");
                 }
-
-
             } //If the selected row is an administrator
 
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
