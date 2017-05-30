@@ -40,11 +40,13 @@ namespace Foxtrot.Classes.DB
 
             command.Parameters.Add("@Price", SqlDbType.Float).Value = inputProducts.Price;
             command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = inputProducts.Description;
+
             if (inputProducts.ExtraDescription != null)
             {
                 command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value =
                     XMLSortingLogic.TryToConvertNodeValueToStringBuilder(inputProducts.ExtraDescription);
             }
+
             else
             {
                 command.Parameters.Add("@ExtraDescription", SqlDbType.NVarChar).Value = "";
@@ -60,14 +62,17 @@ namespace Foxtrot.Classes.DB
 
             command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
             command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
+
             if (!string.IsNullOrEmpty(inputProducts.OpeningHours.StartTime.ToString()))
             {
                 command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);//todo sammenlign med upadteopeningHours
             }
+
             if (!string.IsNullOrEmpty(inputProducts.OpeningHours.EndTime.ToString()))
             {
                 command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value); //usikker
             }
+
             command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
             command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
             command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Wednesday;
