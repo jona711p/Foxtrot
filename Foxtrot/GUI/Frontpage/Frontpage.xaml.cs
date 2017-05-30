@@ -1,9 +1,8 @@
-﻿using System.Drawing.Text;
+﻿using System.Windows.Controls;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
-using System.Windows.Controls;
 
-namespace Foxtrot.GUI
+namespace Foxtrot.GUI.Frontpage
 {
     /// <summary>
     /// Mikael Paaske
@@ -11,7 +10,7 @@ namespace Foxtrot.GUI
     public partial class Frontpage : Page
     {
         private static Actor tempActor = new Actor();
-        private  static Administrator tempAdmin = new Administrator();
+        private static Administrator tempAdmin = new Administrator();
         private static Classes.User tempUser = new Classes.User();
         public string User { get; set; }
         public Frontpage(Classes.User inputUser)
@@ -24,8 +23,8 @@ namespace Foxtrot.GUI
             if (inputUser.Permission == 2)
             {
                 tempActor.UserID = inputUser.ID;
-            }            
-            
+            }
+
 
             if (tempAdmin.UserID != null && inputUser.Permission == 1)
             {

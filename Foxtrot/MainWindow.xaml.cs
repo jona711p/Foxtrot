@@ -12,6 +12,7 @@ using Foxtrot.GUI.CombiProduct;
 using System.Diagnostics;
 using System.Windows.Navigation;
 using Foxtrot.GUI.About;
+using Foxtrot.GUI.Frontpage;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
