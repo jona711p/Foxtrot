@@ -64,12 +64,16 @@ namespace Foxtrot.Classes.DB
 
             if (!string.IsNullOrEmpty(inputProducts.OpeningHours.StartTime.ToString()))
             {
-                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);
+                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = inputProducts.OpeningHours.StartTime.Value.TimeOfDay;
+
+                //command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);
             }
 
             if (!string.IsNullOrEmpty(inputProducts.OpeningHours.EndTime.ToString()))
             {
-                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value);
+                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = inputProducts.OpeningHours.EndTime.Value.TimeOfDay;
+
+                //command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value);
             }
 
             command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
