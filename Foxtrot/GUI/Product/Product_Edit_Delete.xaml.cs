@@ -397,13 +397,15 @@ namespace Foxtrot.GUI.Product
                     GUISortingLogic.Message("Du kan ikke vælge en start dato der er efter slut datoen.");
                     datePicker_Product_Search_Date_To.SelectedDate = null;
                     datePicker__Product_Search_Date_From.SelectedDate = null;
+
+                    foreach (DataRow row in tempProduct.ProductTable.Rows)
+                    {
+                        if (row.RowState != DataRowState.Deleted)
+                            if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
+                                row.Delete();
+                    }
                 }
-                foreach (DataRow row in tempProduct.ProductTable.Rows)
-                {
-                    if (row.RowState != DataRowState.Deleted)
-                        if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
-                            row.Delete();
-                }
+               
             }            
         }
 
