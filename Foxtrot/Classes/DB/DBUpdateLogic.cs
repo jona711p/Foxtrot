@@ -110,7 +110,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            //try
+    
             {
                 SqlCommand command = new SqlCommand("spUpdateOpeningHours", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -135,10 +135,7 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputTimes.Sunday;
                 command.ExecuteNonQuery();
             }
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 
@@ -147,7 +144,6 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            //try
             {
                 for (int i = 0; i < inputProduct.Files.Count; i++)
                 {
@@ -179,10 +175,7 @@ namespace Foxtrot.Classes.DB
                     }
                 }
             }
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+
             connection = DBConnectionLogic.DisconnectFromDB(connection);
         }
 

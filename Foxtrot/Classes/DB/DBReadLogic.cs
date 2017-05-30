@@ -416,7 +416,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            //try
+  
             {
                 SqlCommand command = new SqlCommand("spGetFullProductInfo", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -522,11 +522,6 @@ namespace Foxtrot.Classes.DB
                     inputProduct.OpeningHours.ID = int.Parse(reader["OpeningHoursID"].ToString());
                 }
             }
-
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
