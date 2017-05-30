@@ -11,7 +11,7 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Add : Page
     {
-        Declaration_of_Consent DOC = new Declaration_of_Consent();
+        static Declaration_of_Consent DOC = new Declaration_of_Consent();
 
         public User_Add()
         {
