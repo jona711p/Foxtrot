@@ -41,7 +41,13 @@
     <Grid>
         <!-- Liste over produkt start -->
         <Grid HorizontalAlignment="Left" Height="334" Margin="347,48,0,0" VerticalAlignment="Top" Width="942">
-            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged"/>
+            <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged">
+                <DataGrid.ContextMenu>
+                <ContextMenu>
+                        <MenuItem Header="Se Produkt Information" Click="MenuItem_ViewProductDetails"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            </DataGrid>
             <Label x:Name="label_Product_List" Content="Liste over Produkter:" HorizontalAlignment="Center" Margin="0,-17,-1,307" VerticalAlignment="Center" Height="44" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="356" Margin="337,34,0,0" VerticalAlignment="Top" Width="966"/>

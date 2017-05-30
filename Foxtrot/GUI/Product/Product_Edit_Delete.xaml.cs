@@ -41,6 +41,24 @@ namespace Foxtrot.GUI.Product
 
         }
 
+        private void MenuItem_ViewProductDetails(object sender, RoutedEventArgs e)
+        {
+            //Runs when the user selects any item on the datagrid
+            //finds the selected products ID and retrieves all information about it from the database
+            //the new information is stored in the object 'tempProduct' and displayed in the relavant inputfields in the GUI 
+            if (dataGrid_Product_List.SelectedItem != null)
+            {
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_Product_List.Columns[0].GetCellContent(
+                                dataGrid_Product_List.SelectedItem))
+                        .Text);
+
+                MessageBox.Show(tempProduct.ID.ToString());
+            }
+        }
+
         private void DataGrid_Product_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Runs when the user selects any item on the datagrid
@@ -105,6 +123,7 @@ namespace Foxtrot.GUI.Product
                 {
                     textBox_Product_Edit_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
                 }
+
                 for (int i = 0; i <  4; i++) //Resets all images
                 {
                     ((System.Windows.Controls.Image)product_imageGrid.Children[i]).Source = null;
@@ -121,6 +140,7 @@ namespace Foxtrot.GUI.Product
                         ((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                     }
                 }
+
                 checkBox_Product_Edit_Monday.IsChecked = tempProduct.OpeningHours.Monday;
                 checkBox_Product_Edit_Tuesday.IsChecked = tempProduct.OpeningHours.Tuesday;
                 checkBox_Product_Edit_Wednesday.IsChecked = tempProduct.OpeningHours.Wednesday;
@@ -152,7 +172,7 @@ namespace Foxtrot.GUI.Product
             }
         }
 
-        private void button_Product_Edit_Edit_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void button_Product_Edit_Edit_Click(object sender, RoutedEventArgs e)
         {
             int tempint;
 
