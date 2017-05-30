@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -15,29 +14,21 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            SqlCommand command = new SqlCommand("SELECT UserID FROM viewActors WHERE CompanyName = @CompanyName", connection);
+
+            command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
             {
-                SqlCommand command = new SqlCommand("SELECT UserID FROM viewActors WHERE CompanyName = @CompanyName", connection);
-
-                command.Parameters.Add("@CompanyName", SqlDbType.NVarChar).Value = inputActor.CompanyName;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    return int.Parse(reader[0].ToString());
-                }
-
-                connection = DBConnectionLogic.DisconnectFromDB(connection);
-
-                return int.Parse(XMLDBWriteLogic.WriteActors(inputActor).ToString());
+                reader.Read();
+                return int.Parse(reader[0].ToString());
             }
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return int.Parse(XMLDBWriteLogic.WriteActors(inputActor).ToString());
         }
 
         public static List<int> DupeCheckList(string idName, string tableName)
@@ -48,21 +39,13 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            try
+            SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName + " WHERE " + idName + " IS NOT NULL", connection);
+
+            dt.Load(command.ExecuteReader());
+
+            foreach (DataRow row in dt.Rows)
             {
-                SqlCommand command = new SqlCommand("SELECT " + idName + " FROM " + tableName + " WHERE " + idName + " IS NOT NULL", connection);
-
-                dt.Load(command.ExecuteReader());
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    dupeCheckList.Add(int.Parse(row[0].ToString()));
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
+                dupeCheckList.Add(int.Parse(row[0].ToString()));
             }
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);

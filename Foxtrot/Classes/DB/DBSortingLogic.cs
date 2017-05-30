@@ -1,5 +1,4 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using Foxtrot.GUI;
 
 namespace Foxtrot.Classes.DB

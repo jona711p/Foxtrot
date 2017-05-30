@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Foxtrot.Classes.DB
 {
@@ -19,9 +20,9 @@ namespace Foxtrot.Classes.DB
                 connection.Open();
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                MessageBox.Show("Der Kunne ikke Oprettes Forbindelse til Databaseserveren!");
             }
 
             return connection;
@@ -38,9 +39,9 @@ namespace Foxtrot.Classes.DB
                 }
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                MessageBox.Show("Der Kunne ikke Oprettes Forbindelse til Databaseserveren!");
             }
 
             return connection;
