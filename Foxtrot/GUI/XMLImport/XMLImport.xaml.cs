@@ -72,7 +72,6 @@ namespace Foxtrot.GUI.XMLImport
 
         private void ReadLoadedXMLFile(object sender, FileSystemEventArgs args)
         {
-            Thread.Sleep(60000); // Waits a minut before starting the XML Import, if the uplaod is a large file, and or the system is on a slow internet connection.
             FullPathAndFileName = args.FullPath;
             ReadFromXML();
         }

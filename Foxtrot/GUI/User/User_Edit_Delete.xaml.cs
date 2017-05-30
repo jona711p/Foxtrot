@@ -131,9 +131,15 @@ namespace Foxtrot.GUI.User
                     tempAdministrator.WorkFax = null;
                 }
 
-                DBUpdateLogic.UpdateAdmin(tempAdministrator);
+                MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Ændre '" + tempAdministrator.FirstName + " " + tempAdministrator.LastName + "'?", "Ændre?",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                GUISortingLogic.Message("Brugeroplysninger til: " + tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Ændret!");
+                if (response == MessageBoxResult.Yes)
+                {
+                    DBUpdateLogic.UpdateAdmin(tempAdministrator);
+
+                    GUISortingLogic.Message("Brugeroplysninger til: " + tempAdministrator.FirstName + " " + tempAdministrator.LastName + " er blevet Ændret!");
+                }
             }
 
             if (((TextBlock) dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør")
