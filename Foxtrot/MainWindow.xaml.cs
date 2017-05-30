@@ -20,6 +20,7 @@ namespace Foxtrot
     public partial class MainWindow : Window
     {
         /// <summary>
+        /// Jonas Lykke, Thoms Nielsen og Mikael Paaske
         /// This block of code is used for removeing the "Escape Hatch". Use the "Afslut" in the Menu instead
         /// </summary>
         private const int GWL_STYLE = -16;
