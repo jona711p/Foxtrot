@@ -80,6 +80,17 @@ namespace Foxtrot.GUI.Product
                 comboBox_Product_Edit_MainCategory.Text = tempProduct.MainCategories.Name;
                 comboBox_Product_Edit_Category.Text = tempProduct.Categories.Name;
 
+                if (!string.IsNullOrEmpty(tempProduct.Latitude.ToString()) && !string.IsNullOrEmpty(tempProduct.Longitude.ToString()))
+                {
+                    button_GoogleWebOpen.IsEnabled = true;
+                }
+                else
+                {
+                    button_GoogleWebOpen.IsEnabled = false;
+                }
+
+
+
                 if (tempProduct.ContactPhone.Count != 0)
                 {
                     textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone[0].ToString();

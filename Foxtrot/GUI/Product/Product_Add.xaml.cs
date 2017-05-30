@@ -142,9 +142,10 @@ namespace Foxtrot.GUI.Product
                 tempProduct.Website = GUISortingLogic.Name(textBox_Product_Add_Website);
             }
 
-            if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateFrom != null)
+            if (datePicker_Product_Add_DateFrom.Value != null && datePicker_Product_Add_DateTo.Value != null)
             {
-
+                if (datePicker_Product_Add_DateFrom.Value < datePicker_Product_Add_DateTo.Value)
+                {
                 tempTimeFrom = datePicker_Product_Add_DateFrom.Value;
                 tempTimeTo = datePicker_Product_Add_DateTo.Value;
 
@@ -153,6 +154,17 @@ namespace Foxtrot.GUI.Product
                 tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
                 tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
                 tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
+                }
+            }
+            if (checkBox_Product_Add_Monday.IsChecked == true || checkBox_Product_Add_Tuesday.IsChecked == true || checkBox_Product_Add_Wednesday.IsChecked == true || checkBox_Product_Add_Thursday.IsChecked == true || checkBox_Product_Add_Friday.IsChecked == true || checkBox_Product_Add_Saturday.IsChecked == true || checkBox_Product_Add_Sunday.IsChecked == true)
+            {
+                tempTime.Monday = checkBox_Product_Add_Monday.IsChecked == true;
+                tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked == true;
+                tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked == true;
+                tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked == true;
+                tempTime.Friday = checkBox_Product_Add_Friday.IsChecked == true;
+                tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked == true;
+                tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked == true;
             }
 
             tempProduct.Files = new List<File>();
