@@ -83,7 +83,6 @@
     <Compile Include="GUI\About\Declaration of Consent.xaml.cs">
       <DependentUpon>Declaration of Consent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\WebbrowserLogic.cs" />
     <Page Include="GUI\About\AboutUs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Frontpage.xaml">
+    <Page Include="GUI\Frontpage\Frontpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,7 +159,7 @@
     <Compile Include="GUI\CombiProduct\CombiProduct_Edit_Delete.xaml.cs">
       <DependentUpon>CombiProduct_Edit_Delete.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Frontpage.xaml.cs">
+    <Compile Include="GUI\Frontpage\Frontpage.xaml.cs">
       <DependentUpon>Frontpage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\GUISortingLogic.cs" />

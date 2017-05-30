@@ -12,6 +12,7 @@ using Foxtrot.GUI.CombiProduct;
 using System.Diagnostics;
 using System.Windows.Navigation;
 using Foxtrot.GUI.About;
+using Foxtrot.GUI.Frontpage;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -167,17 +168,17 @@ namespace Foxtrot
 
         private void Btn_ShowWeb_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.skiveet.dk/");
+            Process.Start("http://www.skiveet.dk/");
         }
 
         private void Btn_ShowFacebook_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.facebook.com/skiveet/");
+            Process.Start("https://www.facebook.com/skiveet/");
         }
 
         private void Btn_ShowLinkedIn_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.linkedin.com/company-beta/2910577/");
+            Process.Start("https://www.linkedin.com/company-beta/2910577/");
         }
     }
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 
 namespace Foxtrot.GUI.About
 {
     /// <summary>
-    /// Interaction logic for Declaration_of_Consent.xaml
+    /// Thomas Nielsen
     /// </summary>
     public partial class Declaration_of_Consent : Window
     {

@@ -8,7 +8,6 @@
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d"
           Background="White"
-      Loaded="Product_Edit_Delete_OnLoaded"
       d:DesignHeight="1000" d:DesignWidth="1310"
       Title="Se Alle Produkter, Rediger, Slet">
 
@@ -162,10 +161,7 @@
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
         </Grid>
-
-        <WebBrowser Name="GoogleWeb" HorizontalAlignment="Left" Height="499" Margin="27,406,0,0" VerticalAlignment="Top" Width="1270" Visibility="Collapsed"/>
-        <Button x:Name="button_GoogleWeb" Content="Vis produkt på kort" Click="Button_GoogleWeb_OnClick" HorizontalAlignment="Left" Margin="398,831,0,0" VerticalAlignment="Top" Width="110"/>
-        <Button x:Name="button_GoogleWebClose" Content="Luk" Click="Button_GoogleWebClose_OnClick" HorizontalAlignment="Left" Margin="888,918,0,0" VerticalAlignment="Top" Width="169" Height="44" RenderTransformOrigin="-0.492,0.607" Visibility="Collapsed"/>
+        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis produkt på kort" HorizontalAlignment="Left" Margin="392,830,0,0" VerticalAlignment="Top" Width="110"/>
 
         <!-- Rediger Produkt Slut -->
     </Grid>
