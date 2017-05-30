@@ -80,6 +80,17 @@ namespace Foxtrot.GUI.Product
                 comboBox_Product_Edit_MainCategory.Text = tempProduct.MainCategories.Name;
                 comboBox_Product_Edit_Category.Text = tempProduct.Categories.Name;
 
+                if (!string.IsNullOrEmpty(tempProduct.Latitude.ToString()) && !string.IsNullOrEmpty(tempProduct.Longitude.ToString()))
+                {
+                    button_GoogleWebOpen.IsEnabled = true;
+                }
+                else
+                {
+                    button_GoogleWebOpen.IsEnabled = false;
+                }
+
+
+
                 if (tempProduct.ContactPhone.Count != 0)
                 {
                     textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone[0].ToString();
@@ -398,12 +409,20 @@ namespace Foxtrot.GUI.Product
                     datePicker_Product_Search_Date_To.SelectedDate = null;
                     datePicker__Product_Search_Date_From.SelectedDate = null;
                 }
-                foreach (DataRow row in tempProduct.ProductTable.Rows)
+                else
                 {
-                    if (row.RowState != DataRowState.Deleted)
-                        if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
-                            row.Delete();
+                    foreach (DataRow row in tempProduct.ProductTable.Rows)
+                    {
+                        if (row.RowState != DataRowState.Deleted)
+                            if (string.IsNullOrEmpty(row["Start Dato"].ToString()) || string.IsNullOrEmpty(row["Slut Dato"].ToString()))
+                            {
+                                row.Delete();
+                            }
+                            else if (Convert.ToDateTime(row["Start Dato"]) < datePicker__Product_Search_Date_From.SelectedDate || Convert.ToDateTime(row["Slut Dato"]) > datePicker_Product_Search_Date_To.SelectedDate)
+                                row.Delete();
+                    }
                 }
+               
             }            
         }
 

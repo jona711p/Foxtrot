@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Foxtrot.GUI.User"
       mc:Ignorable="d" 
+      Background="White"
       d:DesignHeight="470" d:DesignWidth="1310"
       Title="Se Alle Bruger, Rediger, Slet">
 
@@ -39,7 +40,7 @@
 
     <Grid>
         <Grid HorizontalAlignment="Center" Height="450" Margin="10,10,1040,10" VerticalAlignment="Center" Width="260">
-            <Label x:Name="label_User_Search" Content="Søg Efter Brugere:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="-24,14,-18,402" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label x:Name="label_User_Search" Content="Brugere:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="-24,14,-18,402" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             <TextBox x:Name="textBox_User_Edit_FirstName" HorizontalAlignment="Left" Height="24" Margin="13,72,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Fornavn *"/>
             <TextBox x:Name="textBox_User_Edit_LastName" HorizontalAlignment="Left" Height="24" Margin="14,117,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Efternavn *"/>
             <TextBox x:Name="textBox_User_Edit_Phone" HorizontalAlignment="Left" Height="24" Margin="14,163,0,0" TextWrapping="Wrap" Text="{Binding WorkPhone}" VerticalAlignment="Top" Width="235" FontFamily="Arial" Style="{StaticResource WaterMarkStyle}" Tag="Arbejds Telefon *"/>
