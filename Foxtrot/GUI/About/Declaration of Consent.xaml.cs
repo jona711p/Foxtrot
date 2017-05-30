@@ -41,9 +41,10 @@ namespace Foxtrot.GUI.About
             accept = false;
             this.Hide();
         }
+
         void ToolWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
+            IntPtr hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
     }
