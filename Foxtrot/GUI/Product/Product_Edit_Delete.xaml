@@ -20,7 +20,7 @@
                             <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
                             <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
                             <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
-                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                                   Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <MultiTrigger>
@@ -56,7 +56,11 @@
             <TextBox x:Name="textBox_Product_SearchCategory" HorizontalAlignment="Left" Height="35" Margin="25,186,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="260" Tag="Kategori"/>
             <DatePicker x:Name="datePicker__Product_Search_Date_From" HorizontalAlignment="Left" Margin="27,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
             <DatePicker x:Name="datePicker_Product_Search_Date_To" HorizontalAlignment="Left" Margin="174,267,0,0" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="112"/>
-            <Button x:Name="btb_Product_Search" Content="Søg" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="76" Click="btb_Product_Search_Click"/>
+            <Button x:Name="btb_Product_Search" Content="Søg" HorizontalAlignment="Center" Margin="199,325,48,9" VerticalAlignment="Center" Width="75" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="29" Click="btb_Product_Search_Click">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Button.Effect>
+            </Button>
             <Label x:Name="label_Product_Search_Date_From" Content="Vælg startdato" HorizontalAlignment="Left" Margin="31,233,0,0" VerticalAlignment="Top" Width="100" />
             <Label x:Name="label_Product_Search_Date_To" Content="Vælg slut dato" HorizontalAlignment="Left" Margin="183,234,0,0" VerticalAlignment="Top" Width="100"/>
             <Border BorderBrush="Black" BorderThickness="1" Height="357" Margin="-4,6,15,0" VerticalAlignment="Top"/>
@@ -78,8 +82,16 @@
             <TextBox x:Name="textBox_Product_Edit_ExtraDescription" HorizontalAlignment="Left" Height="142" Margin="170,238,0,-126" TextWrapping="Wrap" Text="{Binding ExtraDescription}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Ekstra beskrivelse"/>
             <TextBox x:Name="textBox_Product_Edit_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="30,397,0,-166" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="URL" />
             <TextBox x:Name="textBox_Product_Edit_Website" HorizontalAlignment="Left" Height="23" Margin="170,397,0,-166" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
-            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Margin="659,405,0,-171" VerticalAlignment="Top" Width="114" Click="button_Product_Edit_Edit_Click"/>
-            <Button x:Name="button_Product_Edit_Delete" Content="Slet Produkt" HorizontalAlignment="Left" Margin="522,405,0,-171" VerticalAlignment="Top" Width="114" Click="Button_Product_Edit_Delete_OnClick"/>
+            <Button x:Name="button_Product_Edit_Edit" Content="Rediger Produkt" HorizontalAlignment="Left" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="29" Margin="665,399,0,-174" VerticalAlignment="Top" Width="114" Click="button_Product_Edit_Edit_Click">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="button_Product_Edit_Delete" Content="Slet Produkt" HorizontalAlignment="Left" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="29" Margin="518,398,0,-173" VerticalAlignment="Top" Width="114" Click="Button_Product_Edit_Delete_OnClick">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="3"/>
+                </Button.Effect>
+            </Button>
 
             <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="334,65,0,0" VerticalAlignment="Top" Width="114" ItemsSource="{Binding CityList}" Height="20"  DisplayMemberPath="Value" />
             <ComboBox x:Name="comboBox_Product_Edit_MainCategory" HorizontalAlignment="Left" Margin="334,153,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
@@ -161,7 +173,11 @@
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
         </Grid>
-        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis produkt på kort" HorizontalAlignment="Left" Margin="392,830,0,0" VerticalAlignment="Top" Width="110" IsEnabled="False"/>
+        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis produkt på kort" HorizontalAlignment="Center" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="29" Margin="386,822,788.4,0" VerticalAlignment="Top" Width="136" IsEnabled="False">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
 
         <!-- Rediger Produkt Slut -->
     </Grid>
