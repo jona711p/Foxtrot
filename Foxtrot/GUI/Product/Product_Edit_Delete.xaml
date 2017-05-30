@@ -161,7 +161,7 @@
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
         </Grid>
-        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis produkt på kort" HorizontalAlignment="Left" Margin="392,830,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis produkt på kort" HorizontalAlignment="Left" Margin="392,830,0,0" VerticalAlignment="Top" Width="110" IsEnabled="False"/>
 
         <!-- Rediger Produkt Slut -->
     </Grid>
