@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Controls;
 using Foxtrot.Classes.DB;
 using System.Windows;
+using Foxtrot.GUI.About;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -14,6 +15,8 @@ namespace Foxtrot.GUI.CombiProduct
         Classes.User tempUser = new Classes.User();
         Classes.Product tempProduct = new Classes.Product();
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
+        Declaration_of_Consent DOC = new Declaration_of_Consent();
+
 
 
         public CombiProduct_Add(Classes.User inputUser)
@@ -135,12 +138,15 @@ namespace Foxtrot.GUI.CombiProduct
 
             if (!dupe)
             {
-                DBWriteLogic.WriteCombiProduct(tempCombiProduct);
-                DBWriteLogic.WriteRelCombiProducts(tempCombiProduct);
+                DOC.ShowDialog();
+                if (DOC.accept)
+                {
+                    DBWriteLogic.WriteCombiProduct(tempCombiProduct);
+                    DBWriteLogic.WriteRelCombiProducts(tempCombiProduct);
 
-                GUISortingLogic.Message("Et nyt Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' er blevet oprettet i systemet!");
+                    GUISortingLogic.Message("Et nyt Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' er blevet oprettet i systemet!");
+                }
             }
-
             else
             {
                 GUISortingLogic.Message("Der Findes Allerede et Combi Produkt med Navnet: '" + tempCombiProduct.Name + "' i systemet!");

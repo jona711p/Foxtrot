@@ -198,6 +198,7 @@ namespace Foxtrot.GUI.User
 
                     GUISortingLogic.Message("En Aktør med firmanavnet: '" + tempActor.CompanyName + "' er blevet oprettet i systemet!");
                 }
+              
                 else
                 {
                     MessageBox.Show("Du kan ikke oprette en bruger uden at acceptere samtykkeerklæringen.");

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
+using Foxtrot.GUI.About;
 
 namespace Foxtrot.GUI.Product
 {
@@ -20,6 +21,8 @@ namespace Foxtrot.GUI.Product
         OpeningHour tempTime = new OpeningHour();
         Category tempCategory = new Category();
         MainCategory tempMainCategory = new MainCategory();
+        Declaration_of_Consent DOC = new Declaration_of_Consent();
+
 
         public Product_Add(Classes.User inputUser)
         {
@@ -150,14 +153,6 @@ namespace Foxtrot.GUI.Product
                 tempTime.EndDate = Convert.ToDateTime(tempTimeTo.Value.ToString("yyyy-MM-dd"));
                 tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
                 tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
-
-                //tempTime.Monday = checkBox_Product_Add_Monday.IsChecked == true;
-                //tempTime.Tuesday = checkBox_Product_Add_Tuesday.IsChecked == true;
-                //tempTime.Wednesday = checkBox_Product_Add_Wednesday.IsChecked == true;
-                //tempTime.Thursday = checkBox_Product_Add_Thursday.IsChecked == true;
-                //tempTime.Friday = checkBox_Product_Add_Friday.IsChecked == true;
-                //tempTime.Saturday = checkBox_Product_Add_Saturday.IsChecked == true;
-                //tempTime.Sunday = checkBox_Product_Add_Sunday.IsChecked == true;
             }
 
             tempProduct.Files = new List<File>();
@@ -226,11 +221,20 @@ namespace Foxtrot.GUI.Product
             tempProduct.OpeningHours = tempTime;
             tempProduct.UserID = tempUser.ID;
 
-            tempProduct.Files = DBWriteLogic.WriteNewFiles(tempProduct.Files);
-            tempProduct.ID = DBWriteLogic.WriteNewProduct(tempProduct);
-            DBWriteLogic.WriteNewRelFiles(tempProduct);
+            DOC.ShowDialog();
+            if (DOC.accept)
+            {
+                tempProduct.Files = DBWriteLogic.WriteNewFiles(tempProduct.Files);
+                tempProduct.ID = DBWriteLogic.WriteNewProduct(tempProduct);
+                DBWriteLogic.WriteNewRelFiles(tempProduct);
 
-            MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet oprettet i systemet!");
+                MessageBox.Show("Et produkt med navnet: '" + tempProduct.Name + "' " + "er blevet oprettet i systemet!");
+            }
+            else
+            {
+                return;
+            }
+
         }
 
         private void Rbtn_Product_Add_Availability_True_OnClick(object sender, RoutedEventArgs e)

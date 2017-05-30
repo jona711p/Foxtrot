@@ -13,8 +13,7 @@ namespace Foxtrot.GUI.About
         public Declaration_of_Consent() //accept skal sættes til false hvis vinduet lukkes oppe i hjørnet
         {
             InitializeComponent();
-
-            //Læser filen, binder den til tekstboksen og aktivere scrollbars
+            // Read the file and bind it to textbox and activate the scrollbar
             FileStream fileStream = File.Open("Samtykkeerklæring.rtf", FileMode.Open);
             richTextBox_DOC_AgreementBox.Selection.Load(fileStream, System.Windows.DataFormats.Rtf);
             richTextBox_DOC_AgreementBox.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
