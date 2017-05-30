@@ -15,7 +15,6 @@ namespace Foxtrot.GUI.CombiProduct
         Classes.User tempUser = new Classes.User();
         Classes.Product tempProduct = new Classes.Product();
         Classes.CombiProduct tempCombiProduct = new Classes.CombiProduct();
-        static Declaration_of_Consent DOC = new Declaration_of_Consent();
         
         public CombiProduct_Add(Classes.User inputUser)
         {
@@ -136,8 +135,10 @@ namespace Foxtrot.GUI.CombiProduct
 
             if (!dupe)
             {
+                Declaration_of_Consent DOC = new Declaration_of_Consent();
                 DOC.ShowDialog();
-                if (DOC.accept)
+
+                if (DOC.Accept)
                 {
                     DBWriteLogic.WriteCombiProduct(tempCombiProduct);
                     DBWriteLogic.WriteRelCombiProducts(tempCombiProduct);

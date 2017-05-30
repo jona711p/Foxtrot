@@ -11,8 +11,6 @@ namespace Foxtrot.GUI.User
     /// </summary>
     public partial class User_Add : Page
     {
-        static Declaration_of_Consent DOC = new Declaration_of_Consent();
-
         public User_Add()
         {
             InitializeComponent();
@@ -106,8 +104,10 @@ namespace Foxtrot.GUI.User
 
             if (!dupe)
             {
+                Declaration_of_Consent DOC = new Declaration_of_Consent();
                 DOC.ShowDialog();
-                if (DOC.accept == true)
+
+                if (DOC.Accept)
                 {
                     XMLDBWriteLogic.WriteAdministrators(tempAdministrator);
 
@@ -191,8 +191,10 @@ namespace Foxtrot.GUI.User
 
             if (!dupe)
             {
+                Declaration_of_Consent DOC = new Declaration_of_Consent();
                 DOC.ShowDialog();
-                if (DOC.accept == true)
+
+                if (DOC.Accept)
                 {
                     XMLDBWriteLogic.WriteActors(tempActor);
 
