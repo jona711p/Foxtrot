@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.Product"
         mc:Ignorable="d"
-        Title="Product_DisplayWindow" Height="600" Width="600">
+        Title="Product_DisplayWindow" Height="800" Width="700">
     <Grid>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,14,0,0"/>
+        <!--<TextBox x:Name="textBox_Product_DisplayWindow_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,14,0,0"/>
         <TextBox x:Name="textBox_Product_DisplayWindow_Adress" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,37,0,0"/>
         <TextBox x:Name="textBox_Product_DisplayWindow_Longitude" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,60,0,0"/>
         <TextBox x:Name="textBox_Product_DisplayWindow_Latitude" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,83,0,0"/>
@@ -22,49 +22,94 @@
         <TextBox x:Name="textBox_Product_DisplayWindow_City" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,310,0,0"/>
         <TextBox x:Name="textBox_Product_DisplayWindow_MainCategory" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,333,0,0"/>
         <TextBox x:Name="textBox_Product_DisplayWindow_Category" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,356,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Availablity" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,379,0,0"/>
+        <TextBox x:Name="textBox_Product_DisplayWindow_Availablity" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,379,0,0"/>-->
 
-        <Image x:Name="image_Product_DisplayWindow_1" HorizontalAlignment="Left" Height="110" Margin="472,0,0,0" VerticalAlignment="Top" Width="110">
-            <Image.ToolTip>
-                <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                        <Image Source="{Binding Source}" Stretch="None" />
-                    </Border>
-                </ToolTip>
-            </Image.ToolTip>
-        </Image>
-        <Image x:Name="image_Product_DisplayWindow_2" HorizontalAlignment="Left" Height="110" Margin="472,115,0,0" VerticalAlignment="Top" Width="110">
-            <Image.ToolTip>
-                <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                        <Image Source="{Binding Source}" Stretch="None" />
-                    </Border>
-                </ToolTip>
-            </Image.ToolTip>
-        </Image>
-        <Image x:Name="image_Product_DisplayWindow_3" HorizontalAlignment="Left" Height="110" Margin="472,244,0,0" VerticalAlignment="Top" Width="110">
-            <Image.ToolTip>
-                <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                        <Image Source="{Binding Source}" Stretch="None" />
-                    </Border>
-                </ToolTip>
-            </Image.ToolTip>
-        </Image>
-        <Image x:Name="image_Product_DisplayWindow_4" HorizontalAlignment="Left" Height="110" Margin="472,379,0,0" VerticalAlignment="Top" Width="110">
-            <Image.ToolTip>
-                <ToolTip DataContext="{Binding PlacementTarget, 
-            RelativeSource={RelativeSource Self}}">
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                        <Image Source="{Binding Source}" Stretch="None" />
-                    </Border>
-                </ToolTip>
-            </Image.ToolTip>
-        </Image>
+        <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="10,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Label x:Name="label_Product_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
 
+        <Label x:Name="label_Product_DisplayWindow_Adress" Content="Adress" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,65,0,0" Width="210" FontSize="14"/>
+        <Label x:Name="label_Product_DisplayWindow_Longitude" Content="Longitude" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,383,0,0" Width="120"/>
+        <Label x:Name="label_Product_DisplayWindow_Latitude" Content="Latitude" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,411,0,0" Width="120"/>
+
+        <Label x:Name="label_Product_DisplayWindowInfo_Phone" Content="Tlf nr.:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="428,68,0,0" FontWeight="Bold"/>
+        <Label x:Name="label_Product_DisplayWindow_Phone" Content="Phone" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,68,0,0" Width="176"/>
+
+        <Label x:Name="label_Product_DisplayWindowInfo_Email" Content="E-Mail:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="428,94,0,0" FontWeight="Bold"/>
+        <Label x:Name="label_Product_DisplayWindow_Email" Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,94,0,0" Width="176"/>
+
+        <Label x:Name="label_Product_DisplayWindow_Fax" Content="Fax" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,120,0,0" Width="176"/>
+        <Label x:Name="label_Product_DisplayWindowInfo_Fax" Content="Fax nr.:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="428,120,0,0" FontWeight="Bold"/>
+
+        <Label x:Name="label_Product_DisplayWindowInfo_Price" Content="Pris:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,120,0,0" FontWeight="Bold"/>
+        <Label x:Name="label_Product_DisplayWindow_Price" Content="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,120,0,0" Width="92"/>
+
+
+        <TextBlock x:Name="textBlock_Product_DisplayWindow_Description" HorizontalAlignment="Left" Margin="35,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="98" Width="345"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="98" Margin="35,331,0,0" VerticalAlignment="Top" Width="345"/>
+
+
+
+
+
+        <TextBlock x:Name="textBlock_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" Margin="35,464,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="106" Width="345"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="35,464,0,0" VerticalAlignment="Top" Width="345"/>
+
+        <!--<Label x:Name="label_Product_DisplayWindow_Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,340,0,0" Width="466" Height="140" FontSize="14">
+            <Border BorderBrush="Black" BorderThickness="1" Height="130" Width="456"/>
+        </Label>-->
+
+        <!--<Label x:Name="label_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,488,0,0" Width="466" Height="71" FontSize="14">
+            <Border BorderBrush="Black" BorderThickness="1" Height="61" Width="456"/>
+        </Label>-->
+
+        <Label x:Name="label_Product_DisplayWindow_CanonicalURL" Content="CanonicalURL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,331,0,0" Width="258"/>
+        <Label x:Name="label_Product_DisplayWindow_Website" Content="Website" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,357,0,0" Width="258"/>
+        <Label x:Name="label_Product_DisplayWindow_Category" Content="Category" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,94,0,0" Width="151"/>
+
+        <Grid x:Name="grid_Images" Margin="35,161,27,443">
+            <Image x:Name="image_Product_DisplayWindow_1" HorizontalAlignment="Left" Height="150" Margin="10,0,0,0" VerticalAlignment="Top" Width="150">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Image x:Name="image_Product_DisplayWindow_2" HorizontalAlignment="Left" Height="150" Margin="165,0,0,0" VerticalAlignment="Top" Width="150">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Image x:Name="image_Product_DisplayWindow_3" HorizontalAlignment="Left" Height="150" Margin="320,0,0,0" VerticalAlignment="Top" Width="150">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Image x:Name="image_Product_DisplayWindow_4" HorizontalAlignment="Left" Height="150" Margin="475,0,0,0" VerticalAlignment="Top" Width="150">
+                <Image.ToolTip>
+                    <ToolTip DataContext="{Binding PlacementTarget, 
+            RelativeSource={RelativeSource Self}}">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                            <Image Source="{Binding Source}" Stretch="None" />
+                        </Border>
+                    </ToolTip>
+                </Image.ToolTip>
+            </Image>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="166" VerticalAlignment="Top" Width="620" Margin="0,-11,0,0"/>
+
+        </Grid>
 
 
 

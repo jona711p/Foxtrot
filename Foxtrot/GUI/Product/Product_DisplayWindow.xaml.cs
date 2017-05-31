@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.Product
 {
@@ -19,9 +20,120 @@ namespace Foxtrot.GUI.Product
     /// </summary>
     public partial class Product_DisplayWindow : Window
     {
-        public Product_DisplayWindow()
+        Classes.Product tempProduct = new Classes.Product();
+        public Product_DisplayWindow(Classes.Product inputProduct)
         {
             InitializeComponent();
+            tempProduct = inputProduct;
+            ResizeMode = ResizeMode.NoResize;
+            FillFieldsWithInfo();
+        }
+        public void FillFieldsWithInfo()
+        {
+            //tomme felter skal skiftes ud med "ingen oplysninger"
+            //extra/description skal kunne vises i fuld længde
+            //canonicalURL og website skal automatisk lave om til hyperlinks
+            //længde og breddegrad skal vises i googlemaps i vinduet
+            
+
+
+            label_Product_DisplayWindow_Name.Content = tempProduct.Name;
+            string Categories = tempProduct.MainCategories.Name + " - " + tempProduct.Categories.Name;
+            label_Product_DisplayWindow_Category.Content = Categories;
+
+            if (tempProduct.Price == 0 || string.IsNullOrEmpty(tempProduct.Price.ToString()))
+            {
+                label_Product_DisplayWindow_Price.Content = "GRATIS";
+            }
+            else
+            {
+                label_Product_DisplayWindow_Price.Content = tempProduct.Price.ToString();
+            }
+
+
+            string tempAdress = "Ingen oplysninger";
+            if (string.IsNullOrEmpty(tempProduct.Address))
+            {
+                tempAdress = tempProduct.Cities.Name;
+            }
+            if (!string.IsNullOrEmpty(tempProduct.Address) && !string.IsNullOrEmpty(tempProduct.Cities.Name))
+            {
+                tempAdress = tempProduct.Address + ", " + tempProduct.Cities.Name;
+            }
+            label_Product_DisplayWindow_Adress.Content = tempAdress;
+
+
+
+            label_Product_DisplayWindow_Longitude.Content = tempProduct.Longitude.ToString();
+            label_Product_DisplayWindow_Latitude.Content = tempProduct.Latitude.ToString();
+
+
+            if (tempProduct.ContactPhone.Count != 0)
+            {
+                label_Product_DisplayWindow_Phone.Content = tempProduct.ContactPhone[0].ToString();
+            }
+            if (tempProduct.ContactFax.Count != 0)
+            {
+                label_Product_DisplayWindow_Fax.Content = tempProduct.ContactFax[0].ToString();
+            }
+
+            label_Product_DisplayWindow_Email.Content = tempProduct.ContactEmail[0];
+
+
+
+
+
+
+            textBlock_Product_DisplayWindow_Description.Text = tempProduct.Description;
+
+            //textBlock_Product_DisplayWindow_ExtraDescription.Text = tempProduct.Description;
+            if (tempProduct.ExtraDescription.Count != 0)
+            {
+                textBlock_Product_DisplayWindow_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
+            }
+
+
+ 
+
+            label_Product_DisplayWindow_CanonicalURL.Content = tempProduct.CanonicalUrl;
+            label_Product_DisplayWindow_Website.Content = tempProduct.Website;
+
+
+            //label_Product_DisplayWindow_MainCategory.Content = tempProduct.MainCategories.Name;
+            //label_Product_DisplayWindow_Category.Content = tempProduct.Categories.Name;
+
+
+
+            //Ændre cirklen der angiver 'availibity'
+            if (tempProduct.Availability == true)
+            {
+                AvailabilityIndicator.Fill = Brushes.Green;
+            }
+            else
+            {
+                AvailabilityIndicator.Fill = Brushes.Red;
+            }
+
+            ShowImages();
+        }
+
+        public void ShowImages()
+        {
+            for (int i = 0; i < 4; i++) //Resets all images
+            {
+                ((System.Windows.Controls.Image)grid_Images.Children[i]).Source = null;
+            }
+
+            for (int i = 0; i < tempProduct.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
+            {
+                if (!string.IsNullOrEmpty(tempProduct.Files[i].URI))
+                {
+                    ((System.Windows.Controls.Image)grid_Images.Children[i]).Source =
+                        new BitmapImage(new Uri(tempProduct.Files[i].URI));
+
+                    //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
+                }
+            }
         }
     }
 }

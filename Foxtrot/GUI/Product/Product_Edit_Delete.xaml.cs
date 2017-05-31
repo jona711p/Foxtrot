@@ -55,7 +55,10 @@ namespace Foxtrot.GUI.Product
                                 dataGrid_Product_List.SelectedItem))
                         .Text);
 
-                MessageBox.Show(tempProduct.ID.ToString());
+                tempProduct = DBReadLogic.GetProductInfo(tempProduct);
+                tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
+                Product_DisplayWindow newProductDisplayWindow = new Product_DisplayWindow(tempProduct);
+                newProductDisplayWindow.Show();
             }
         }
 
@@ -461,6 +464,7 @@ namespace Foxtrot.GUI.Product
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
 
         }
+
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
         {
             string number1, number2;
