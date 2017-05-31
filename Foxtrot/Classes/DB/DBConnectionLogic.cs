@@ -11,6 +11,7 @@ namespace Foxtrot.Classes.DB
     /// </summary>
     class DBConnectionLogic
     {
+        // Class used to Connect to the databse
         public static SqlConnection ConnectToDB(SqlConnection connection)
         {
             try

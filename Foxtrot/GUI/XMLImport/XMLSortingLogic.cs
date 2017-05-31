@@ -10,6 +10,7 @@ namespace Foxtrot.GUI.XMLImport
     /// <summary>
     /// Jonas Lykke
     /// </summary>
+    // Class to sort different datas from a XML file
     public class XMLSortingLogic
     {
         public static DateTime? TryToConvertNodeValueToDateTime(XElement node) // If the output from the XML is "Empty" or "NULL" it returns NULL, else it returns the right value in the right format

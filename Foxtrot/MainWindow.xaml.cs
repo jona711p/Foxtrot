@@ -44,6 +44,7 @@ namespace Foxtrot
             MainFrame.Content = new Frontpage(tempUser);
             DataContext = tempUser;
 
+            // The footer at the bottem of the window. 
             textBox_LeftFooter.Text = "Skiveegnens Erhvervs - og Turistcenter" +
                 "\nØsterbro 7, 7800 Skive" +
                 "\nTlf: +45 9614 7677 | info@skiveet.dk";
@@ -74,6 +75,7 @@ namespace Foxtrot
 
         public static void FillComboBoxWithAdminsAndActors()
         {
+            // Fill the combobox in the upperright corner with all the actors and administrators from the database
             tempUser.AdminActorList = DBReadLogic.FillAdminActorList(tempUser.AdminActorList);
         }
 
@@ -177,16 +179,19 @@ namespace Foxtrot
 
         private void Btn_ShowWeb_OnClick(object sender, RoutedEventArgs e)
         {
+            // Open a webbrowser with a website
             Process.Start("http://www.skiveet.dk/");
         }
 
         private void Btn_ShowFacebook_OnClick(object sender, RoutedEventArgs e)
         {
+            // Open a webbrowser with a website
             Process.Start("https://www.facebook.com/skiveet/");
         }
 
         private void Btn_ShowLinkedIn_OnClick(object sender, RoutedEventArgs e)
         {
+            // Open a webbrowser with a website
             Process.Start("https://www.linkedin.com/company-beta/2910577/");
         }
     }

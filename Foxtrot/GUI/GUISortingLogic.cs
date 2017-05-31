@@ -7,6 +7,7 @@ namespace Foxtrot.GUI
     /// <summary>
     /// Jonas Lykke
     /// </summary>
+    // Class to sort data
     class GUISortingLogic
     {
         public static void Message(string inputMessage)

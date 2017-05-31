@@ -9,6 +9,7 @@ namespace Foxtrot.GUI.User
     /// <summary>
     /// Jonas Lykke
     /// </summary>
+    // Add a new user to the database
     public partial class User_Add : Page
     {
         public User_Add()
@@ -19,6 +20,7 @@ namespace Foxtrot.GUI.User
 
         private void Rbtn_Administrator_OnClick(object sender, RoutedEventArgs e)
         {
+            // Doesnt show Company Name since a Administrator doenst have company name
             Grid_CompanyName.Visibility = Visibility.Collapsed;
         }
 
@@ -29,6 +31,7 @@ namespace Foxtrot.GUI.User
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
+            // Adds a user to the database
             if (rbtn_Administrator.IsChecked == false && rbtn_Actor.IsChecked == false)
             {
                 GUISortingLogic.Message("Vælg enten en Administrator eller en Aktør!");

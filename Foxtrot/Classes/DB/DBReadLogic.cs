@@ -8,6 +8,7 @@ namespace Foxtrot.Classes.DB
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
     /// </summary>
+    // Class to read data from the databse
     class DBReadLogic
     {
         public static bool DupeCheckAdmin(Administrator inputAdministrator)

@@ -9,6 +9,7 @@ namespace Foxtrot.Classes.DB
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
     /// </summary>
+    // Class to write new info to the database
     public class DBWriteLogic
     {
         public static int? WriteNewProduct(Product inputProducts)

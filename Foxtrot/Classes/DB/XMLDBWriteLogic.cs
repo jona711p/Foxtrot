@@ -8,6 +8,7 @@ namespace Foxtrot.Classes.DB
     /// <summary>
     /// Jonas Lykke, Mikael Paaske & Thomas Nielsen
     /// </summary>
+    // Class to write new data to the database
     public class XMLDBWriteLogic
     {
         public static void WriteAdministrators(Administrator inputAdministrator)
