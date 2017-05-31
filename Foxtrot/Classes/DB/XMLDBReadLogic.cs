@@ -7,6 +7,7 @@ namespace Foxtrot.Classes.DB
     /// <summary>
     /// Jonas Lykke
     /// </summary>
+    // Class to see if a data is allready in the database
     class XMLDBReadLogic
     {
         public static int DupeCheckActors(Actor inputActor)

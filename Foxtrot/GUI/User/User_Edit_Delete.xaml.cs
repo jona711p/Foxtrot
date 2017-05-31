@@ -10,6 +10,7 @@ namespace Foxtrot.GUI.User
     /// <summary>
     /// Jonas Lykke & Thomas Nielsen
     /// </summary>
+    // Class to edit and/or delete a user in the database
     public partial class User_Edit_Delete : Page
     {
         private Classes.User tempUser = new Classes.User();
@@ -82,6 +83,7 @@ namespace Foxtrot.GUI.User
 
         private void Button_User_Edit_Edit_OnClick(object sender, RoutedEventArgs e)
         {
+            // Edit a administrator or actor in the database
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 tempAdministrator.FirstName = GUISortingLogic.Name(textBox_User_Edit_FirstName);
@@ -218,6 +220,7 @@ namespace Foxtrot.GUI.User
 
         private void Button_User_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
+            // Delete a administrator or actor in the database
             if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator")
             {
                 MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil Slette '" + tempAdministrator.FirstName + " " + tempAdministrator.LastName + "'?", "Slet?",

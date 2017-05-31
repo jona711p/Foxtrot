@@ -8,6 +8,7 @@ namespace Foxtrot.Classes.DB
         /// <summary>
         /// Jonas Lykke & Thomas Nielsen
         /// </summary>
+        // Class to update data in the database
         public static void UpdateAdmin(Administrator inputAdmin)
         {
             SqlConnection connection = null;

@@ -8,6 +8,7 @@ namespace Foxtrot.GUI.User
     /// <summary>
     /// Jonas Lykke
     /// </summary>
+    // Edit a actor in the database
     public partial class User_Modify : Page
     {
         private static Actor tempActor = new Actor();
@@ -22,6 +23,7 @@ namespace Foxtrot.GUI.User
         }
         private void Btn_ModifyUser_OnClick(object sender, RoutedEventArgs e)
         {
+            // Edit your actor
             tempActor.CompanyName = GUISortingLogic.Name(txtbox_Modify_CompanyName);
 
             if (tempActor.CompanyName == null)

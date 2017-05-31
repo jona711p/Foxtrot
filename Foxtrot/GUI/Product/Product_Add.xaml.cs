@@ -11,6 +11,7 @@ namespace Foxtrot.GUI.Product
     /// <summary>
     /// Mikael Paaske og Thomas Nielsen
     /// </summary>
+    // Class to add a new product to the database
     public partial class Product_Add : Page
     {
         City tempCity = new City();
@@ -34,6 +35,7 @@ namespace Foxtrot.GUI.Product
 
         private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            // Add a new product to the database
             int tempInt;
 
             if (textBox_Product_Add_Name.Text.Length != 0)

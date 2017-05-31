@@ -17,6 +17,7 @@ namespace Foxtrot.GUI.XMLImport
     /// <summary>
     /// Jonas Lykke
     /// </summary>
+    // Class to write a new XML fil to the database
     public partial class XMLImport : Window, INotifyPropertyChanged
     {
         private FileSystemWatcher fileSystemWatcher;

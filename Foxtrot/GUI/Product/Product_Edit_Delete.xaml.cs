@@ -14,6 +14,7 @@ namespace Foxtrot.GUI.Product
     /// <summary>
     /// Mikael Paaske og Thomas Nielsen
     /// </summary>
+    // Class to edit and/or delete a product from the database
     public partial class Product_Edit_Delete : Page
     {
         public  Classes.User tempUser = new Classes.User();
@@ -389,6 +390,7 @@ namespace Foxtrot.GUI.Product
 
         private void btb_Product_Search_Click(object sender, RoutedEventArgs e)
         {
+            // Search for a product in the database
             DBReadLogic.FillProductTable(tempProduct.ProductTable);
             if (textBox_Product_SearchName.Text != "")
             {
@@ -448,6 +450,7 @@ namespace Foxtrot.GUI.Product
 
         private void Button_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
+            // Delete a product from the database
             DBDeleteLogic.DeleteProduct(tempProduct);
 
             for (int i = 0; i < tempProduct.Files.Count; i++)
@@ -463,6 +466,7 @@ namespace Foxtrot.GUI.Product
         }
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
         {
+            // Open a webbrowser with coordinates equaling to longtitude and latitude for a product which will be shown on Google Maps
             string number1, number2;
             number1 = textBox_Product_Edit_Longtitude.Text.Replace(",", ".");
             number2 = textBox_Product_Edit_Latitude.Text.Replace(",", ".");

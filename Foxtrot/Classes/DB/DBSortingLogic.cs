@@ -6,6 +6,7 @@ namespace Foxtrot.Classes.DB
     /// <summary>
     /// Jonas Lykke & Thomas Nielsen
     /// </summary>
+    // Class to sort data
     class DBSortingLogic
     {
         public static int? ConvertToNullableInt(object objectFromReader)

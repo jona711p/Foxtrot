@@ -9,6 +9,7 @@ namespace Foxtrot.GUI.CombiProduct
     /// <summary>
     /// Jonas Lykke & Mikael Paaske
     /// </summary>
+    // Class to edit data in Combi Product
     public partial class CombiProduct_Edit_Delete : Page
     {
         public Classes.User tempUser = new Classes.User();
@@ -37,6 +38,7 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void DataGrid_CombiProduct_List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Update the datagrid
             if (dataGrid_CombiProduct_List.SelectedItem != null)
             {
                 tempOldCombiProduct.ID =
@@ -74,6 +76,7 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void Btb_CombiProduct_Search_OnClick(object sender, RoutedEventArgs e)
         {
+            // The button search "Navn" which allow you to search for a CombiProduct 
             DBReadLogic.FillCombiProductTable(tempOldCombiProduct.CombiProductTable);
 
             if (TextBox_CombiProduct_Search_CombiProductName.Text != null)
@@ -90,6 +93,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             if (TextBox_CombiProduct_Search_FirstName_And_LastName.Text != null)
             {
+                // The button search "Fornavn" and "Efternavn" which allow you to search for a CombiProduct 
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
@@ -104,6 +108,7 @@ namespace Foxtrot.GUI.CombiProduct
 
             if (TextBox_CombiProduct_Search_CompanyName.Text != null)
             {
+                //  // The button search "Firmanavn" which allow you to search for a CombiProduct 
                 foreach (DataRow row in tempOldCombiProduct.CombiProductTable.Rows)
                 {
                     if (row.RowState != DataRowState.Deleted)
@@ -172,6 +177,7 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void CombiProduct_Edit_Delete_Delete_OnClick(object sender, RoutedEventArgs e)
         {
+            // Delete a Product from a CombiProduct
             if (dataGrid_CombiProduct_List.SelectedItem == null)
             {
                 GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");

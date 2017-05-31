@@ -10,6 +10,7 @@ namespace Foxtrot.GUI.CombiProduct
     /// <summary>
     /// Jonas Lykke & Mikael Paaske
     /// </summary>
+    // Add a new combi product to the database
     public partial class CombiProduct_Add : Page
     {
         Classes.User tempUser = new Classes.User();
@@ -32,6 +33,7 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void CombiProduct_Add_Add_OnClick(object sender, RoutedEventArgs e)
         {
+            // The button "Tilføj" which add a product to the CombiProduct list
             if (dataGrid_Product_List.SelectedItem == null)
             {
                 GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
@@ -55,6 +57,7 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void CombiProduct_Add_Delete_OnClick(object sender, RoutedEventArgs e)
         {
+            // The button "Tilføj" which delete a product from the CombiProduct list
             if (dataGrid_CombiProduct_List.SelectedItem == null)
             {
                 GUISortingLogic.Message("Du skal Først Vælge et Produkt fra Listen!");
@@ -88,6 +91,7 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void btn_Combi_Add_Add_OnClick(object sender, RoutedEventArgs e)
         {
+            // The button "Tilføj" which add a product to the database
             tempCombiProduct.UserID = tempUser.ID;
 
             tempCombiProduct.ProductID = new List<int?>();
