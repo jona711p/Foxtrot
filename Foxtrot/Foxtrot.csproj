@@ -245,6 +245,9 @@
     <Resource Include="IMG\LinkedIn icon.png" />
     <Resource Include="IMG\web icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\0_230412_5264%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
