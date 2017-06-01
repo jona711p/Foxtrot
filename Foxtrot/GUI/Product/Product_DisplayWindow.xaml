@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.Product"
         mc:Ignorable="d"
-        Title="Product_DisplayWindow" Height="800" Width="700">
+        Title="{Binding Name}" Height="800" Width="700">
     <Grid>
         <!--<TextBox x:Name="textBox_Product_DisplayWindow_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,14,0,0"/>
         <TextBox x:Name="textBox_Product_DisplayWindow_Adress" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,37,0,0"/>
