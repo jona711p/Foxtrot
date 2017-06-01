@@ -15,7 +15,15 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="btn_DOC_Accept" Content="Godkend" HorizontalAlignment="Left" Margin="357,439,0,0" VerticalAlignment="Top" Width="75" Click="Btn_DOC_Accept_OnClick"/>
-        <Button x:Name="btn_DOC_Decline" Content="Anuller" HorizontalAlignment="Left" Margin="277,439,0,0" VerticalAlignment="Top" Width="75" Click="Btn_DOC_Decline_OnClick"/>
+        <Button x:Name="btn_DOC_Accept" Content="Godkend" HorizontalAlignment="Left" Margin="357,439,0,0" VerticalAlignment="Top" Width="75" Click="Btn_DOC_Accept_OnClick" FontFamily="Arial" Background="White" BorderBrush="Black">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="btn_DOC_Decline" Content="Anuller" HorizontalAlignment="Left" Margin="277,439,0,0" VerticalAlignment="Top" Width="75" Click="Btn_DOC_Decline_OnClick" FontFamily="Arial" Background="White" BorderBrush="Black">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>
