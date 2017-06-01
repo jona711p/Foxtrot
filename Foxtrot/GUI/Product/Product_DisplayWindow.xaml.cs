@@ -197,7 +197,6 @@ namespace Foxtrot.GUI.Product
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
             }
-        }
 
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
         {
