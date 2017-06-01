@@ -72,6 +72,8 @@ namespace Foxtrot.GUI.Product
             }
             label_Product_DisplayWindow_Adress.Content = tempAdress;
 
+
+
             string tempEmail = "Ingen Oplysninger";
             if (string.IsNullOrEmpty(tempProduct.ContactEmail[0]))
             {
@@ -190,7 +192,6 @@ namespace Foxtrot.GUI.Product
                     //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                 }
             }
-        }
 
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
         {

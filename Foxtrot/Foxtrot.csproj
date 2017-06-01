@@ -99,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\CombiProduct\WindoCombiProduct_DisplayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Frontpage\Frontpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +166,9 @@
     </Compile>
     <Compile Include="GUI\CombiProduct\CombiProduct_Edit_Delete.xaml.cs">
       <DependentUpon>CombiProduct_Edit_Delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\CombiProduct\WindoCombiProduct_DisplayWindow.xaml.cs">
+      <DependentUpon>WindoCombiProduct_DisplayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Frontpage\Frontpage.xaml.cs">
       <DependentUpon>Frontpage.xaml</DependentUpon>
