@@ -5,26 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.Product"
         mc:Ignorable="d"
-        Title="Product_DisplayWindow" Height="800" Width="700">
+        Title="Product_DisplayWindow" Height="700" Width="700">
     <Grid>
-        <!--<TextBox x:Name="textBox_Product_DisplayWindow_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,14,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Adress" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,37,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Longitude" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,60,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Latitude" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,83,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Phone" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,106,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Email" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,129,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Fax" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,152,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Price" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,175,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Description" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,198,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,221,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_CanonicalURL" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,244,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Website" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,267,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_City" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,310,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_MainCategory" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,333,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Category" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,356,0,0"/>
-        <TextBox x:Name="textBox_Product_DisplayWindow_Availablity" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="28,379,0,0"/>-->
-
-        <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="10,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="11,33,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
         <Label x:Name="label_Product_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
 
         <Label x:Name="label_Product_DisplayWindow_Adress" Content="Adress" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,65,0,0" Width="210" FontSize="14"/>
@@ -44,27 +27,42 @@
         <Label x:Name="label_Product_DisplayWindow_Price" Content="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,120,0,0" Width="92"/>
 
 
-        <TextBlock x:Name="textBlock_Product_DisplayWindow_Description" HorizontalAlignment="Left" Margin="35,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="98" Width="345"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="98" Margin="35,331,0,0" VerticalAlignment="Top" Width="345"/>
 
 
+        <TextBox x:Name="textBox_Product_DisplayWindow_Description" HorizontalAlignment="Left" Height="106" Margin="35,331,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="345" VerticalScrollBarVisibility="Visible"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="35,331,0,0" VerticalAlignment="Top" Width="345"/>
 
-
-
-        <TextBlock x:Name="textBlock_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" Margin="35,464,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="106" Width="345"/>
+        <TextBox x:Name="textBox_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" Height="106" Margin="35,464,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="345" VerticalScrollBarVisibility="Visible"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="35,464,0,0" VerticalAlignment="Top" Width="345"/>
 
-        <!--<Label x:Name="label_Product_DisplayWindow_Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,340,0,0" Width="466" Height="140" FontSize="14">
-            <Border BorderBrush="Black" BorderThickness="1" Height="130" Width="456"/>
-        </Label>-->
 
-        <!--<Label x:Name="label_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,488,0,0" Width="466" Height="71" FontSize="14">
-            <Border BorderBrush="Black" BorderThickness="1" Height="61" Width="456"/>
-        </Label>-->
+        <TextBlock Margin="428,466,170,183">
+    <Hyperlink x:Name="Hyper_Website" RequestNavigate="Hyper_Website_OnRequestNavigate">Hjemmeside</Hyperlink>
+        </TextBlock>
+
+        <TextBlock Margin="428,491,170,158">
+    <Hyperlink x:Name="Hyper_CanonicalURL" NavigateUri="{Binding CanonicalURL}" RequestNavigate="Hyper_CanonicalURL_OnRequestNavigate">ByPortal</Hyperlink>
+        </TextBlock>
+
+
+
+
+
 
         <Label x:Name="label_Product_DisplayWindow_CanonicalURL" Content="CanonicalURL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,331,0,0" Width="258"/>
         <Label x:Name="label_Product_DisplayWindow_Website" Content="Website" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,357,0,0" Width="258"/>
         <Label x:Name="label_Product_DisplayWindow_Category" Content="Category" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,94,0,0" Width="151"/>
+
+
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="594,325,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="594,345,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="594,365,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Thursday" Content="Torsdag" HorizontalAlignment="Left" Margin="594,385,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Friday" Content="Fredag" HorizontalAlignment="Left" Margin="594,405,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Saturday" Content="Lørdag" HorizontalAlignment="Left" Margin="594,425,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Sunday" Content="Søndag" HorizontalAlignment="Left" Margin="594,445,0,0" VerticalAlignment="Top"/>
+
+
 
         <Grid x:Name="grid_Images" Margin="35,161,27,443">
             <Image x:Name="image_Product_DisplayWindow_1" HorizontalAlignment="Left" Height="150" Margin="10,0,0,0" VerticalAlignment="Top" Width="150">
@@ -82,7 +80,7 @@
                     <ToolTip DataContext="{Binding PlacementTarget, 
             RelativeSource={RelativeSource Self}}">
                         <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
-                            <Image Source="{Binding Source}" Stretch="None" />
+                            <Image Source="{Binding Source}" Stretch="UniformToFill" />
                         </Border>
                     </ToolTip>
                 </Image.ToolTip>
@@ -107,11 +105,9 @@
                     </ToolTip>
                 </Image.ToolTip>
             </Image>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="166" VerticalAlignment="Top" Width="620" Margin="0,-11,0,0"/>
-
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="161" VerticalAlignment="Top" Width="620" Margin="0,-11,0,-85"/>
         </Grid>
-
-
-
+        <Label x:Name="label_Product_DisplayWindow_StartDate" Content="Startdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="512,0,0,0"/>
+        <Label x:Name="label_Product_DisplayWindow_EndDate" Content="Slutdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="599,0,0,0"/>
     </Grid>
 </Window>

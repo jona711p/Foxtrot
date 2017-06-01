@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 
 namespace Foxtrot.GUI.Product
@@ -27,6 +30,7 @@ namespace Foxtrot.GUI.Product
             tempProduct = inputProduct;
             ResizeMode = ResizeMode.NoResize;
             FillFieldsWithInfo();
+            DataContext = tempProduct;
         }
         public void FillFieldsWithInfo()
         {
@@ -63,7 +67,7 @@ namespace Foxtrot.GUI.Product
             label_Product_DisplayWindow_Adress.Content = tempAdress;
 
 
-
+            
             label_Product_DisplayWindow_Longitude.Content = tempProduct.Longitude.ToString();
             label_Product_DisplayWindow_Latitude.Content = tempProduct.Latitude.ToString();
 
@@ -81,26 +85,51 @@ namespace Foxtrot.GUI.Product
 
 
 
+            textBox_Product_DisplayWindow_Description.Text = tempProduct.Description;
+            textBox_Product_DisplayWindow_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
 
 
 
-            textBlock_Product_DisplayWindow_Description.Text = tempProduct.Description;
-
-            //textBlock_Product_DisplayWindow_ExtraDescription.Text = tempProduct.Description;
             if (tempProduct.ExtraDescription.Count != 0)
             {
-                textBlock_Product_DisplayWindow_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
+                textBox_Product_DisplayWindow_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
             }
 
 
- 
+            //Hyper_CanonicalURL.re = tempProduct.CanonicalUrl
 
             label_Product_DisplayWindow_CanonicalURL.Content = tempProduct.CanonicalUrl;
             label_Product_DisplayWindow_Website.Content = tempProduct.Website;
 
 
-            //label_Product_DisplayWindow_MainCategory.Content = tempProduct.MainCategories.Name;
-            //label_Product_DisplayWindow_Category.Content = tempProduct.Categories.Name;
+
+            label_Product_DisplayWindow_StartDate.Content = tempProduct.OpeningHours.StartDate;
+            label_Product_DisplayWindow_EndDate.Content = tempProduct.OpeningHours.EndDate;
+
+
+            if (tempProduct.OpeningHours.Monday || tempProduct.OpeningHours.Tuesday ||
+                tempProduct.OpeningHours.Wednesday || tempProduct.OpeningHours.Thursday ||
+                tempProduct.OpeningHours.Friday || tempProduct.OpeningHours.Saturday || tempProduct.OpeningHours.Sunday)
+            {
+                checkBox_Product_DisplayWindow_Monday.IsChecked = tempProduct.OpeningHours.Monday;
+                checkBox_Product_DisplayWindow_Tuesday.IsChecked = tempProduct.OpeningHours.Tuesday;
+                checkBox_Product_DisplayWindow_Wednesday.IsChecked = tempProduct.OpeningHours.Wednesday;
+                checkBox_Product_DisplayWindow_Thursday.IsChecked = tempProduct.OpeningHours.Thursday;
+                checkBox_Product_DisplayWindow_Friday.IsChecked = tempProduct.OpeningHours.Friday;
+                checkBox_Product_DisplayWindow_Saturday.IsChecked = tempProduct.OpeningHours.Saturday;
+                checkBox_Product_DisplayWindow_Sunday.IsChecked = tempProduct.OpeningHours.Sunday;
+            }
+            else
+            {
+                checkBox_Product_DisplayWindow_Monday.Visibility = Visibility.Hidden;
+                checkBox_Product_DisplayWindow_Tuesday.Visibility = Visibility.Hidden;
+                checkBox_Product_DisplayWindow_Wednesday.Visibility = Visibility.Hidden;
+                checkBox_Product_DisplayWindow_Thursday.Visibility = Visibility.Hidden;
+                checkBox_Product_DisplayWindow_Friday.Visibility = Visibility.Hidden;
+                checkBox_Product_DisplayWindow_Saturday.Visibility = Visibility.Hidden;
+                checkBox_Product_DisplayWindow_Sunday.Visibility = Visibility.Hidden;
+            }
+
 
 
 
@@ -134,6 +163,18 @@ namespace Foxtrot.GUI.Product
                     //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                 }
             }
+        }
+
+        private void Hyper_CanonicalURL_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(tempProduct.Website);
+            e.Handled = true;
+        }
+
+        private void Hyper_Website_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }
