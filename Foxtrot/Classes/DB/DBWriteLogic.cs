@@ -99,7 +99,7 @@ namespace Foxtrot.Classes.DB
             SqlConnection connection = null;
             connection = DBConnectionLogic.ConnectToDB(connection);
 
-            {
+            
                 SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
@@ -120,16 +120,17 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Friday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Friday;
                 command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Saturday;
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
+                SqlParameter OpeningHourID = new SqlParameter("@OpeningHourID", SqlDbType.Int);
 
+                command.Parameters.Add(OpeningHourID);
+                OpeningHourID.Direction = ParameterDirection.Output;
 
-                var tempData = command.ExecuteScalar();
-
-                inputProducts.OpeningHours.ID = Convert.ToInt32(tempData);
-            }
+                command.ExecuteNonQuery();
+            
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return inputProducts.OpeningHours.ID;
+            return int.Parse(OpeningHourID .Value.ToString());
         }
 
         public static List<File> WriteNewFiles(List<File> inputFiles)
