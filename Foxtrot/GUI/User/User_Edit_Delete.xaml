@@ -66,7 +66,13 @@
         </Grid>
 
         <Grid HorizontalAlignment="Center" Height="401" Margin="283,59,10.4,10.4" VerticalAlignment="Center" Width="1017">
-            <DataGrid x:Name="dataGrid_User_Edit" ItemsSource="{Binding UserTable, Mode=TwoWay}" SelectionMode="Single" IsReadOnly="True" Background="White" AlternationCount="2" AlternatingRowBackground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Top" Height="366" Width="1006" SelectionChanged="DataGrid_User_Edit_OnSelectionChanged" Margin="7,6,0,0"/>
+            <DataGrid x:Name="dataGrid_User_Edit" ItemsSource="{Binding UserTable, Mode=TwoWay}" SelectionMode="Single" IsReadOnly="True" Background="White" AlternationCount="2" AlternatingRowBackground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Top" Height="366" Width="1006" SelectionChanged="DataGrid_User_Edit_OnSelectionChanged" Margin="7,6,0,0">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Se Bruger Information" Click="MenuItem_ViewUserDetails"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
         </Grid>
         <Label x:Name="label_User_List" Content="Liste over Brugere:" HorizontalAlignment="Center" Margin="303,26,64.4,408.4" VerticalAlignment="Center" Height="36" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="448" VerticalAlignment="Top" Width="1029" Margin="275,14,0,0">

@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms.VisualStyles;
 using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 
@@ -25,6 +24,48 @@ namespace Foxtrot.GUI.User
             InitializeComponent();
 
             DataContext = tempUser;
+        }
+
+        private void MenuItem_ViewUserDetails(object sender, RoutedEventArgs e)
+        {
+            //Runs when the user selects any item on the datagrid
+            //Checks the selected users permission/usertype and and ID then runs the corresponding method to retrieves all information about it from the database
+            //the new information is stored in the object 'tempAdministrator' or 'tempAdctor' depending on the usertype and displayed in the relavant inputfields in the GUI 
+            if (dataGrid_User_Edit.SelectedItem != null)
+            {
+                if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Administrator") //If the selected row is an administrator
+                {
+                    {
+                        tempAdministrator.UserID =
+                            int.Parse(
+                                ((TextBlock)
+                                    dataGrid_User_Edit.Columns[0].GetCellContent(
+                                        dataGrid_User_Edit.SelectedItem))
+                                .Text);
+
+                        tempUser.Permission = 1;
+                        tempUser.ID = tempAdministrator.UserID;
+                    }
+                }
+
+                if (((TextBlock)dataGrid_User_Edit.Columns[1].GetCellContent(dataGrid_User_Edit.SelectedItem)).Text == "Aktør") //If the selected row is an actor
+                {
+                    {
+                        tempActor.UserID =
+                            int.Parse(
+                                ((TextBlock)
+                                    dataGrid_User_Edit.Columns[0].GetCellContent(
+                                        dataGrid_User_Edit.SelectedItem))
+                                .Text);
+
+                        tempUser.Permission = 2;
+                        tempUser.ID = tempActor.UserID;
+                    }
+                }
+
+                User_DisplayWindow newProductDisplayWindow = new User_DisplayWindow(tempUser);
+                newProductDisplayWindow.Show();
+            }
         }
 
         private void DataGrid_User_Edit_OnSelectionChanged(object sender, SelectionChangedEventArgs e) //griddet bliver tømt efter man vælger en (mulighedvis pga. datacontexten bliver ændret)

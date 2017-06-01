@@ -590,5 +590,24 @@ namespace Foxtrot.Classes.DB
 
             return inputCombiProduct;
         }
+
+        public static DataTable FillUserProductTable(Product inputProduct)
+        {
+            inputProduct.ProductTable = new DataTable();
+
+            SqlConnection connection = null;
+            connection = DBConnectionLogic.ConnectToDB(connection);
+            
+            SqlCommand command = new SqlCommand("spFillUserProductTable", connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.Add("@UserID", SqlDbType.Int).Value = inputProduct.UserID;
+
+            inputProduct.ProductTable.Load(command.ExecuteReader());
+
+            connection = DBConnectionLogic.DisconnectFromDB(connection);
+
+            return inputProduct.ProductTable;
+        }
     }
 }
