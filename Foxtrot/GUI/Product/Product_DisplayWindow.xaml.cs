@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace Foxtrot.GUI.Product
             string Categories = tempProduct.MainCategories.Name + " - " + tempProduct.Categories.Name;
             label_Product_DisplayWindow_Category.Content = Categories;
 
+
             if (tempProduct.Price == 0 || string.IsNullOrEmpty(tempProduct.Price.ToString()))
             {
                 label_Product_DisplayWindow_Price.Content = "GRATIS";
@@ -48,6 +50,15 @@ namespace Foxtrot.GUI.Product
             else
             {
                 label_Product_DisplayWindow_Price.Content = tempProduct.Price.ToString();
+            }
+
+            if (tempProduct.ContactFax[0] == null && string.IsNullOrEmpty(tempProduct.ContactFax[0].ToString()))
+            {
+                label_Product_DisplayWindow_Fax.Content = "Ingen oplysninger";
+            }
+            else
+            {
+                label_Product_DisplayWindow_Fax.Content = tempProduct.ContactFax.ToString();
             }
 
 
@@ -62,23 +73,33 @@ namespace Foxtrot.GUI.Product
             }
             label_Product_DisplayWindow_Adress.Content = tempAdress;
 
+            string tempEmail = "Ingen Oplysninger";
+            if (string.IsNullOrEmpty(tempProduct.ContactEmail[0]))
+            {
+                tempEmail = tempProduct.ContactEmail[0];
+            }
+            label_Product_DisplayWindow_Email.Content = tempEmail;
+            
+
+
 
 
             label_Product_DisplayWindow_Longitude.Content = tempProduct.Longitude.ToString();
             label_Product_DisplayWindow_Latitude.Content = tempProduct.Latitude.ToString();
 
 
-            if (tempProduct.ContactPhone.Count != 0)
+            if (tempProduct.ContactPhone[0] == null && string.IsNullOrEmpty(tempProduct.ContactPhone[0].ToString()))
             {
-                label_Product_DisplayWindow_Phone.Content = tempProduct.ContactPhone[0].ToString();
+                label_Product_DisplayWindow_Phone.Content = "Ingen oplysninger";
             }
-            if (tempProduct.ContactFax.Count != 0)
+            else
             {
-                label_Product_DisplayWindow_Fax.Content = tempProduct.ContactFax[0].ToString();
+                label_Product_DisplayWindow_Phone.Content = tempProduct.ContactPhone.ToString();
             }
 
-            label_Product_DisplayWindow_Email.Content = tempProduct.ContactEmail[0];
+            
 
+           
 
 
 
@@ -134,6 +155,15 @@ namespace Foxtrot.GUI.Product
                     //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                 }
             }
+        }
+
+        private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Open a webbrowser with coordinates equaling to longtitude and latitude for a product which will be shown on Google Maps
+            string number1, number2;
+            number1 = tempProduct.Longitude.ToString().Replace(",", ".");
+            number2 = tempProduct.Latitude.ToString().Replace(",", ".");
+            Process.Start("https://www.google.com/maps?q=" + number2 + "," + number1);
         }
     }
 }
