@@ -17,6 +17,7 @@ using Foxtrot.Classes;
 using Foxtrot.Classes.DB;
 using Foxtrot.GUI.Product;
 
+
 namespace Foxtrot.GUI.CombiProduct
 {
     /// <summary>
@@ -53,12 +54,7 @@ namespace Foxtrot.GUI.CombiProduct
                 label_CombiProduct_DisplayWindow_PackagePrice.Content = tempNewCombiProduct.PackagePrice.ToString();
             }
 
-
-
-            label_CombiProduct_DisplayWindow_CreationDate.Content = tempNewCombiProduct.CreationDate;
-
-
-
+           
             if (tempNewCombiProduct.Availability)
             {
                 AvailabilityIndicator.Fill = Brushes.Green;

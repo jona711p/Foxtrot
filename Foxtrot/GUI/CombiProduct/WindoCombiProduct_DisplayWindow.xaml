@@ -5,18 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.CombiProduct"
         mc:Ignorable="d"
-        Title="{Binding Name}" Height="400" Width="700">
+        Title="{Binding Name}" Height="350" Width="700" Icon="../../IMG/set icon.ico">
     <Grid>
         <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="11,33,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
         <Label x:Name="label_CombiProduct_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
 
         <Label x:Name="label_Combi_DisplayWindowInfo_Price" Content="Samlet pris:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,65,0,0" FontWeight="Bold" Height="25"/>
-        <Label x:Name="label_Combi_DisplayWindowInfo_CreationDate" Content="Oprettelsesdato:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,95,0,0" FontWeight="Bold" Height="25"/>
-
         <Label x:Name="label_CombiProduct_DisplayWindow_PackagePrice" Content="Pris: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="116,65,0,0" Width="100" FontSize="14" Height="25"/>
-        <Label x:Name="label_CombiProduct_DisplayWindow_CreationDate" Content="Oprettelsesdato: " HorizontalAlignment="Left" Margin="143,95,0,0" VerticalAlignment="Top" Width="206" Height="25"/>
 
-        <DataGrid x:Name="dataGrid_CombiProduct_ProductList" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="175" Background="White" Width="624" AlternationCount="2" AlternatingRowBackground="LightGray" Margin="35,149,0,0">
+        <DataGrid x:Name="dataGrid_CombiProduct_ProductList" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="175" Background="White" Width="624" AlternationCount="2" AlternatingRowBackground="LightGray" Margin="35,109,0,0">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Se Produkt Information" Click="MenuItem_OnClick"/>
