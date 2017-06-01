@@ -335,22 +335,32 @@ namespace Foxtrot.GUI.Product
             tempProduct.Categories.ID = ((KeyValuePair<int, string>)comboBox_Product_Edit_Category.SelectedItem).Key;
             tempProduct.Availability = rbtn_Product_Edit_Availability_True.IsChecked == true;
 
-            DBUpdateLogic.UpdateFiles(tempProduct);
 
-            if (tempTime.ID != null)
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil redigere " + tempProduct.Name + "?", "Rediger?",
+  MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (response == MessageBoxResult.Yes)
             {
-                DBUpdateLogic.UpdateOpeningHours(tempTime);
+                DBUpdateLogic.UpdateFiles(tempProduct);
+
+                if (tempTime.ID != null)
+                {
+                    DBUpdateLogic.UpdateOpeningHours(tempTime);
+                }
+                else if (tempTime.StartDate != null && tempTime.EndDate != null && tempProduct.OpeningHours.ID == null ||
+                         (checkBox_Product_Edit_Monday.IsChecked == true || checkBox_Product_Edit_Tuesday.IsChecked == true ||
+                          checkBox_Product_Edit_Wednesday.IsChecked == true ||
+                          checkBox_Product_Edit_Thursday.IsChecked == true || checkBox_Product_Edit_Friday.IsChecked == true ||
+                          checkBox_Product_Edit_Saturday.IsChecked == true || checkBox_Product_Edit_Sunday.IsChecked == true) &&
+                         tempTime.ID == null)
+                {
+                    tempProduct.OpeningHours.ID = DBWriteLogic.WriteOpeningHours(tempProduct);
+                }
+
+                DBUpdateLogic.UpdateProduct(tempProduct);
+                DBReadLogic.FillProductTable(tempProduct.ProductTable);
+                MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
             }
-            else if (tempTime.StartDate != null && tempTime.EndDate != null && tempProduct.OpeningHours.ID == null || (checkBox_Product_Edit_Monday.IsChecked == true || checkBox_Product_Edit_Tuesday.IsChecked == true || checkBox_Product_Edit_Wednesday.IsChecked == true || checkBox_Product_Edit_Thursday.IsChecked == true || checkBox_Product_Edit_Friday.IsChecked == true || checkBox_Product_Edit_Saturday.IsChecked == true || checkBox_Product_Edit_Sunday.IsChecked == true) && tempTime.ID == null)
-            {
-                tempProduct.OpeningHours.ID = DBWriteLogic.WriteOpeningHours(tempProduct);
-            }
-
-
-
-            DBUpdateLogic.UpdateProduct(tempProduct);
-            DBReadLogic.FillProductTable(tempProduct.ProductTable);
-            MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
 
         private void MakeFieldsEditable(bool input)
@@ -452,19 +462,27 @@ namespace Foxtrot.GUI.Product
 
         private void Button_Product_Edit_Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            // Delete a product from the database
-            DBDeleteLogic.DeleteProduct(tempProduct);
+            MessageBoxResult response = MessageBox.Show("Er du Sikker på du vil slette " + tempProduct.Name + "?", "Slet?",
+              MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            for (int i = 0; i < tempProduct.Files.Count; i++)
+            if (response == MessageBoxResult.Yes)
             {
-                DBDeleteLogic.DeleteFile(tempProduct.Files[i]);
+                // Delete a product from the database
+                DBDeleteLogic.DeleteProduct(tempProduct);
+
+                for (int i = 0; i < tempProduct.Files.Count; i++)
+                {
+                    DBDeleteLogic.DeleteFile(tempProduct.Files[i]);
+                }
+                if (!string.IsNullOrEmpty(tempProduct.OpeningHours.ID.ToString()))
+                {
+                    DBDeleteLogic.DeleteOpeningHour(tempProduct.OpeningHours);
+                }
+                DBReadLogic.FillProductTable(tempProduct.ProductTable);
+
+
+                MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
             }
-            DBDeleteLogic.DeleteOpeningHour(tempProduct.OpeningHours);
-            DBReadLogic.FillProductTable(tempProduct.ProductTable);
-            
-
-            MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet slettet fra systemet!");
-
         }
 
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)

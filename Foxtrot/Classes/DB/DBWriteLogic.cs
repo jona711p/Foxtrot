@@ -105,8 +105,14 @@ namespace Foxtrot.Classes.DB
 
                 command.Parameters.Add("@StartDate", SqlDbType.Date).Value = inputProducts.OpeningHours.StartDate;
                 command.Parameters.Add("@EndDate", SqlDbType.Date).Value = inputProducts.OpeningHours.EndDate;
-                command.Parameters.Add("@StartTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.StartTime.Value);
-                command.Parameters.Add("@EndTime", SqlDbType.Time).Value = DateTime.Now.Subtract(inputProducts.OpeningHours.EndTime.Value);
+                if (!string.IsNullOrEmpty(inputProducts.OpeningHours.StartTime.ToString()))
+                {
+                    command.Parameters.Add("@StartTime", SqlDbType.Time).Value = inputProducts.OpeningHours.StartTime.Value.TimeOfDay;
+                }
+                if (!string.IsNullOrEmpty(inputProducts.OpeningHours.EndTime.ToString()))
+                {
+                    command.Parameters.Add("@EndTime", SqlDbType.Time).Value = inputProducts.OpeningHours.EndTime.Value.TimeOfDay;
+                }
                 command.Parameters.Add("@Monday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Monday;
                 command.Parameters.Add("@Tuesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Tuesday;
                 command.Parameters.Add("@Wednesday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Wednesday;
