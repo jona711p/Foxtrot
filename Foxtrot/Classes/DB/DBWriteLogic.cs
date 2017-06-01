@@ -120,17 +120,17 @@ namespace Foxtrot.Classes.DB
                 command.Parameters.Add("@Friday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Friday;
                 command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Saturday;
                 command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputProducts.OpeningHours.Sunday;
-                SqlParameter OpeningHourID = new SqlParameter("@OpeningHourID", SqlDbType.Int);
+                //SqlParameter OpeningHourID = new SqlParameter("@OpeningHourID", SqlDbType.Int);
 
-                command.Parameters.Add(OpeningHourID);
-                OpeningHourID.Direction = ParameterDirection.Output;
+                //command.Parameters.Add(OpeningHourID);
+                //OpeningHourID.Direction = ParameterDirection.Output;
 
-                command.ExecuteNonQuery();
+               var tempData =  command.ExecuteScalar();
             
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return int.Parse(OpeningHourID .Value.ToString());
+            return int.Parse(tempData.ToString());
         }
 
         public static List<File> WriteNewFiles(List<File> inputFiles)
