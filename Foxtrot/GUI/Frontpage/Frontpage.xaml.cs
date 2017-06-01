@@ -9,16 +9,16 @@ namespace Foxtrot.GUI.Frontpage
     /// </summary>
     public partial class Frontpage : Page
     {
+        private static Administrator tempAdministrator = new Administrator();
         private static Actor tempActor = new Actor();
-        private static Administrator tempAdmin = new Administrator();
-        private static Classes.User tempUser = new Classes.User();
         public string User { get; set; }
+
         public Frontpage(Classes.User inputUser)
         {
 
             if (inputUser.Permission == 1)
             {
-                tempAdmin.UserID = inputUser.ID;
+                tempAdministrator.UserID = inputUser.ID;
             }
             if (inputUser.Permission == 2)
             {
@@ -26,10 +26,10 @@ namespace Foxtrot.GUI.Frontpage
             }
 
 
-            if (tempAdmin.UserID != null && inputUser.Permission == 1)
+            if (tempAdministrator.UserID != null && inputUser.Permission == 1)
             {
-                DBReadLogic.GetAdminInfo(tempAdmin);
-                User = tempAdmin.FirstName + " " + tempAdmin.LastName;
+                DBReadLogic.GetAdminInfo(tempAdministrator);
+                User = tempAdministrator.FirstName + " " + tempAdministrator.LastName;
                 tempActor.UserID = null;
             }
 
@@ -37,7 +37,7 @@ namespace Foxtrot.GUI.Frontpage
             {
                 DBReadLogic.GetActorInfo(tempActor);
                 User = tempActor.CompanyName;
-                tempAdmin.UserID = null;
+                tempAdministrator.UserID = null;
             }
 
             InitializeComponent();

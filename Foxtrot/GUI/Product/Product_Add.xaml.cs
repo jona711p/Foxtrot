@@ -33,7 +33,7 @@ namespace Foxtrot.GUI.Product
             DataContext = tempProduct;
         }
 
-        private void button_Product_Add_Create_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void button_Product_Add_Create_Click(object sender, RoutedEventArgs e)
         {
             // Add a new product to the database
             int tempInt;

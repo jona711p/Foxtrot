@@ -353,7 +353,7 @@ namespace Foxtrot.GUI.Product
             MessageBox.Show("Produktet: '" + tempProduct.Name + "' " + "er blevet redigeret i systemet!");
         }
 
-        public void MakeFieldsEditable(bool input)
+        private void MakeFieldsEditable(bool input)
         {
             textBox_Product_Edit_Name.IsEnabled = input;
             textBox_Product_Edit_Adress.IsEnabled = input;

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Foxtrot.Classes.DB;
+using System.Windows.Navigation;
 
 namespace Foxtrot.GUI.Product
 {
@@ -27,7 +25,8 @@ namespace Foxtrot.GUI.Product
             FillFieldsWithInfo();
             DataContext = tempProduct;
         }
-        public void FillFieldsWithInfo()
+
+        private void FillFieldsWithInfo()
         {
                 //ikoner skal tilføjes
                 //start og slutid skal formateres til dd/mm/yy(yy)           
@@ -166,7 +165,7 @@ namespace Foxtrot.GUI.Product
             ShowImages();
         }
 
-        public void ShowImages()
+        private void ShowImages()
         {
             for (int i = 0; i < 4; i++) //Resets all images
             {

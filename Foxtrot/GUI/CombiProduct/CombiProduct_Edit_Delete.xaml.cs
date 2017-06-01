@@ -60,7 +60,7 @@ namespace Foxtrot.GUI.CombiProduct
             }
         }
 
-        public void MakeFieldsEditable(bool input)
+        private void MakeFieldsEditable(bool input)
         {
             CombiProduct_Edit_Delete_Add.IsEnabled = input;
             dataGrid_Product_List.IsEnabled = input;

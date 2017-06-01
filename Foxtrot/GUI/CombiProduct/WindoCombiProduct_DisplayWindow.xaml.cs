@@ -14,8 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Foxtrot.Classes;
-using Foxtrot.Classes.DB;
-using Foxtrot.GUI.Product;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -39,7 +37,7 @@ namespace Foxtrot.GUI.CombiProduct
             dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
         }
 
-        public void FillFieldWithInfo()
+        private void FillFieldWithInfo()
         {
             label_CombiProduct_DisplayWindow_Name.Content = tempNewCombiProduct.Name;
 
