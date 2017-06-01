@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.CombiProduct"
         mc:Ignorable="d"
-        Title="WindoCombiProduct_DisplayWindow" Height="300" Width="300">
+        Title="{Binding Name}" Height="800" Width="700">
     <Grid>
-        
+        <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="11,33,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Label x:Name="label_CombiProduct_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
+        <Label x:Name="label_CombiProduct_DisplayWindow_PackagePrice" Content="Pris: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,121,0,0" Width="210" FontSize="14"/>
+        <Label x:Name="label_CombiProduct_DisplayWindow_CreationDate" Content="Oprettelsesdato: " HorizontalAlignment="Left" Margin="57,169,0,0" VerticalAlignment="Top"/>
+
+
+
+
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="247" Margin="36,100,0,0" VerticalAlignment="Top" Width="625"/>
     </Grid>
 </Window>
