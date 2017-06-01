@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.User"
         mc:Ignorable="d"
-        Title="{Binding CompanyName}" Height="500" Width="700">
+        Title="{Binding CompanyName}" Height="500" Width="700" Icon="../../IMG/set icon.ico">
     <Grid>
         <Label x:Name="label_User_DisplayWindow_CompanyName" Content="{Binding CompanyName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20" FontFamily="Arial" Height="40"/>
         <Label x:Name="label_User_DisplayWindowInfo_FirstName" Content="Fornavn:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,68,0,0" Width="75" FontSize="14" FontFamily="Arial" Height="25" FontWeight="Bold"/>

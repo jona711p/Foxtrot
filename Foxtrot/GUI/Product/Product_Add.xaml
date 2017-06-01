@@ -39,16 +39,16 @@
         </Style>
     </Page.Resources>
 
-    <Grid Margin="0,0,-150,0">
+    <Grid Margin="0,0,-154.6,0.4">
         <!-- Opret Produkt Start -->
-        <Label x:Name="label_Product_Add" Content="Tilføj Produkt" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="608,33,550,404" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="416" VerticalAlignment="Center" Width="621" Margin="396,30,443,24">
+        <Label x:Name="label_Product_Add" Content="Tilføj Produkt" HorizontalAlignment="Center" VerticalAlignment="Center" Width="302" Margin="510,35,648.4,403.4" FontSize="20" FontFamily="Arial" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="416" VerticalAlignment="Center" Width="621" Margin="348,29,491.4,25.4">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Border.Effect>
         </Border>
-        <Grid HorizontalAlignment="Left" Height="416" Margin="494,30,0,0" VerticalAlignment="Top" Width="665"/>
-        <Grid x:Name="grid_urlInputs" Margin="816,287,353,32">
+        <Grid HorizontalAlignment="Left" Height="416" Margin="338,31,0,0" VerticalAlignment="Top" Width="665"/>
+        <Grid x:Name="grid_urlInputs" Margin="766,285,531.4,33.4">
             <TextBox x:Name="textBox_Product_Add_Url1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 1" Margin="10,10,0,0"/>
             <TextBox x:Name="textBox_Product_Add_Url2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 2" Margin="10,37,0,0"/>
             <TextBox x:Name="textBox_Product_Add_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
@@ -59,7 +59,7 @@
                 </Button.Effect>
             </Button>
         </Grid>
-        <Grid x:Name="grid_selectionInputs" Margin="801,66,301,150">
+        <Grid x:Name="grid_selectionInputs" Margin="751,64,519.4,151.4">
             <Label x:Name="label_Product_Add_CityID" Content="Vælg by:" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="62"/>
             <Label x:Name="label_Product_Add_MainCategory" Content="Vælg hovedkategori:" HorizontalAlignment="Left" Margin="19,65,0,0" VerticalAlignment="Top" Width="125"/>
             <Label x:Name="label_Product_Add_Category" Content="Vælg kategori:" HorizontalAlignment="Left" Margin="19,119,0,0" VerticalAlignment="Top" Width="106"/>
@@ -73,7 +73,7 @@
 
 
         </Grid>
-        <Grid x:Name="grid_textInputs" Margin="442,71,714,217">
+        <Grid x:Name="grid_textInputs" Margin="392,69,762.4,218.4">
             <TextBox x:Name="textBox_Product_Add_Name" HorizontalAlignment="Left" Height="23" Margin="12,7,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Navn"/>
             <TextBox x:Name="textBox_Product_Add_Adress" HorizontalAlignment="Left" Height="23" Margin="174,7,0,0" TextWrapping="Wrap" Text="{Binding Adress}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Adresse"/>
             <TextBox x:Name="textBox_Product_Add_Longtitude"  HorizontalAlignment="Left" Height="23" Margin="12,35,0,0" TextWrapping="Wrap" Text="{Binding Longtitude}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Længdegrad"/>
@@ -87,7 +87,7 @@
             <TextBox x:Name="textBox_Product_Add_CanonicalUrl" HorizontalAlignment="Left" Height="23" Margin="12,147,0,0" TextWrapping="Wrap" Text="{Binding CanonicalUrl}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="By portal" />
             <TextBox x:Name="textBox_Product_Add_Website" HorizontalAlignment="Left" Height="23" Margin="174,147,0,0" TextWrapping="Wrap" Text="{Binding Website}" VerticalAlignment="Top" Style="{StaticResource WaterMarkStyle}" Width="120" Tag="Hjemmeside" />
         </Grid>
-        <Grid x:Name="grid_timeInputs" Margin="425,253,684,21">
+        <Grid x:Name="grid_timeInputs" Margin="375,251,732.4,22.4">
             <CheckBox x:Name="checkBox_Product_Add_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="43,45,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="checkBox_Product_Add_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="43,65,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="checkBox_Product_Add_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top"/>
