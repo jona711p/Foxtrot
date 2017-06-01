@@ -206,8 +206,6 @@ namespace Foxtrot.Classes.DB
             SqlCommand command = new SqlCommand("spWriteOpeningHours", connection);
             command.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter outputID = new SqlParameter("@OpeningHourID", SqlDbType.Int);
-
             command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = inputOpeningHours.StartDate;
             command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = inputOpeningHours.EndDate;
             command.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = inputOpeningHours.StartTime;
@@ -220,14 +218,11 @@ namespace Foxtrot.Classes.DB
             command.Parameters.Add("@Saturday", SqlDbType.Bit).Value = inputOpeningHours.Saturday;
             command.Parameters.Add("@Sunday", SqlDbType.Bit).Value = inputOpeningHours.Sunday;
 
-            command.Parameters.Add(outputID);
-            outputID.Direction = ParameterDirection.Output;
-
-            command.ExecuteNonQuery();
+            var tempData = command.ExecuteScalar();
 
             connection = DBConnectionLogic.DisconnectFromDB(connection);
 
-            return int.Parse(outputID.Value.ToString());
+            return int.Parse(tempData.ToString());
         }
 
         public static void WriteRelFiles(List<Product> inputProducts)
