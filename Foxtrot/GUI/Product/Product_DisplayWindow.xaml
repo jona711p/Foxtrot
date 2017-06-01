@@ -10,12 +10,10 @@
         <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="11,33,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
         <Label x:Name="label_Product_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
 
-        <Label x:Name="label_Product_DisplayWindow_StartDate" Content="Startdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="527,390,0,0"/>
-        <Label x:Name="label_Product_DisplayWindow_EndDate" Content="Slutdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="600,391,0,0"/>
+        <Label x:Name="label_Product_DisplayWindow_StartDate" Content="Startdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,422,0,0"/>
+        <Label x:Name="label_Product_DisplayWindow_EndDate" Content="Slutdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,448,0,0"/>
 
         <Label x:Name="label_Product_DisplayWindow_Adress" Content="Adress" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,65,0,0" Width="210" FontSize="14"/>
-        <!--<Label x:Name="label_Product_DisplayWindow_Longitude" Content="Longitude" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="284,123,0,0" Width="120"/>
-        <Label x:Name="label_Product_DisplayWindow_Latitude" Content="Latitude" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="159,120,0,0" Width="120"/>-->
 
         <Label x:Name="label_Product_DisplayWindowInfo_Phone" Content="Tlf nr.:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="428,68,0,0" FontWeight="Bold"/>
         <Label x:Name="label_Product_DisplayWindow_Phone" Content="Phone" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,68,0,0" Width="176"/>
@@ -32,10 +30,10 @@
 
 
 
-        <TextBox x:Name="textBox_Product_DisplayWindow_Description" HorizontalAlignment="Left" Height="155" Margin="35,331,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="430" VerticalScrollBarVisibility="Visible"/>
+        <TextBox x:Name="textBox_Product_DisplayWindow_Description" HorizontalAlignment="Left" Height="155" Margin="35,331,0,0" TextWrapping="Wrap" Text="Beskrivelse" VerticalAlignment="Top" Width="430" VerticalScrollBarVisibility="Visible"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="155" Margin="35,331,0,0" VerticalAlignment="Top" Width="430"  IsEnabled="False"/>
 
-        <TextBox x:Name="textBox_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" Height="106" Margin="35,511,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="430" VerticalScrollBarVisibility="Visible"/>
+        <TextBox x:Name="textBox_Product_DisplayWindow_ExtraDescription" HorizontalAlignment="Left" Height="106" Margin="35,511,0,0" TextWrapping="Wrap" Text="ExtraBeskrivelse" VerticalAlignment="Top" Width="430" VerticalScrollBarVisibility="Visible"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="35,511,0,0" VerticalAlignment="Top" Width="430" IsEnabled="False"/>
 
 
@@ -53,13 +51,13 @@
 
         <Label x:Name="label_Product_DisplayWindow_DaysOpen" Content="Åbent:" HorizontalAlignment="Left" Margin="477,391,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.089,0.731" FontWeight="Bold"/>
 
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="477,425,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="477,445,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="477,465,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Thursday" Content="Torsdag" HorizontalAlignment="Left" Margin="477,485,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Friday" Content="Fredag" HorizontalAlignment="Left" Margin="477,505,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Saturday" Content="Lørdag" HorizontalAlignment="Left" Margin="477,525,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="checkBox_Product_DisplayWindow_Sunday" Content="Søndag" HorizontalAlignment="Left" Margin="477,545,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="477,482,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Tuesday" Content="Tirsdag" HorizontalAlignment="Left" Margin="477,502,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Wednesday" Content="Onsdag" HorizontalAlignment="Left" Margin="477,522,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Thursday" Content="Torsdag" HorizontalAlignment="Left" Margin="477,542,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Friday" Content="Fredag" HorizontalAlignment="Left" Margin="477,562,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Saturday" Content="Lørdag" HorizontalAlignment="Left" Margin="477,582,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="checkBox_Product_DisplayWindow_Sunday" Content="Søndag" HorizontalAlignment="Left" Margin="477,602,0,0" VerticalAlignment="Top" IsEnabled="False"/>
 
 
 
@@ -108,7 +106,11 @@
 
 
 
-        <Button x:Name="button_GoogleWebOpen" Content="Vis på kort" Click="Button_GoogleWebOpen_OnClick" HorizontalAlignment="Left" Margin="600,333,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="button_GoogleWebOpen" Content="Vis på kort" Click="Button_GoogleWebOpen_OnClick" HorizontalAlignment="Left" Margin="592,331,0,0" VerticalAlignment="Top" Width="86" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="27" >
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
 
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="4" Margin="-1,152,-3,0" VerticalAlignment="Top" Width="696" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.RenderTransform>

@@ -21,7 +21,7 @@ namespace Foxtrot.GUI.Product
         private bool availibility;
         public City tempCity = new City();
         Classes.Product tempProduct = new Classes.Product();
-        DateTime? tempTimeFrom = new DateTime?(); // kan ændres til product.openingHours
+        DateTime? tempTimeFrom = new DateTime?();
         DateTime? tempTimeTo = new DateTime?();
         OpeningHour tempTime = new OpeningHour();
         Category tempCategory = new Category();

@@ -9,8 +9,6 @@ using Foxtrot.GUI.User;
 using Foxtrot.GUI.XMLImport;
 using Foxtrot.GUI.CombiProduct;
 using System.Diagnostics;
-using System.Windows.Media;
-using System.Windows.Navigation;
 using Foxtrot.GUI.About;
 using Foxtrot.GUI.Frontpage;
 using Application = System.Windows.Application;

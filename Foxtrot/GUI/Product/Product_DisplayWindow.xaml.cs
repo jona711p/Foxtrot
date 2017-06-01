@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 
 namespace Foxtrot.GUI.Product
 {
@@ -29,11 +24,6 @@ namespace Foxtrot.GUI.Product
 
         private void FillFieldsWithInfo()
         {
-                //ikoner skal tilføjes
-                //start og slutid skal formateres til dd/mm/yy(yy)           
-
-
-
             label_Product_DisplayWindow_Name.Content = tempProduct.Name;
             string Categories = tempProduct.MainCategories.Name + " - " + tempProduct.Categories.Name;
             label_Product_DisplayWindow_Category.Content = Categories;
@@ -41,7 +31,7 @@ namespace Foxtrot.GUI.Product
 
             if (tempProduct.Price == 0 || string.IsNullOrEmpty(tempProduct.Price.ToString()))
             {
-                label_Product_DisplayWindow_Price.Content = "GRATIS";
+                label_Product_DisplayWindow_Price.Content = "Gratis";
             }
             else
             {
@@ -74,14 +64,13 @@ namespace Foxtrot.GUI.Product
             string tempEmail = "Ingen Oplysninger";
             if (string.IsNullOrEmpty(tempProduct.ContactEmail[0]))
             {
-                label_Product_DisplayWindowInfo_Email.Content = tempEmail;
+                label_Product_DisplayWindow_Email.Content = tempEmail;
             }
             else
             {
                 label_Product_DisplayWindow_Email.Content = tempProduct.ContactEmail[0];
             }
            
-
 
             if (string.IsNullOrEmpty(tempProduct.ContactPhone[0].ToString()))
             {
@@ -92,15 +81,8 @@ namespace Foxtrot.GUI.Product
                 label_Product_DisplayWindow_Phone.Content = tempProduct.ContactPhone[0].ToString();
             }
 
-            
-
-           
-
-
             textBox_Product_DisplayWindow_Description.Text = tempProduct.Description;
             textBox_Product_DisplayWindow_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
-
-
 
             if (tempProduct.ExtraDescription.Count != 0)
             {
@@ -112,9 +94,16 @@ namespace Foxtrot.GUI.Product
                 label_Product_DisplayWindow_StartDate.Visibility = Visibility.Hidden;
                 label_Product_DisplayWindow_EndDate.Visibility = Visibility.Hidden;
             }
-            label_Product_DisplayWindow_StartDate.Content = tempProduct.OpeningHours.StartDate;
-            label_Product_DisplayWindow_EndDate.Content = tempProduct.OpeningHours.EndDate;
+     
 
+            string tempDateFrom, tempDateTo, hest;
+
+            tempDateFrom = "Fra: " + tempProduct.OpeningHours.StartDate.GetValueOrDefault().ToString("dd/MM/yyyy");
+            tempDateTo = "Til: " + tempProduct.OpeningHours.EndDate.GetValueOrDefault().ToString("dd/MM/yyyy");
+
+
+            label_Product_DisplayWindow_StartDate.Content = tempDateFrom;
+            label_Product_DisplayWindow_EndDate.Content = tempDateTo;
 
             if (tempProduct.OpeningHours.Monday || tempProduct.OpeningHours.Tuesday ||
                 tempProduct.OpeningHours.Wednesday || tempProduct.OpeningHours.Thursday ||
@@ -153,7 +142,6 @@ namespace Foxtrot.GUI.Product
             {
                 button_GoogleWebOpen.IsEnabled = false;
             }
-            //Ændre cirklen der angiver 'availibity'
             if (tempProduct.Availability == true)
             {
                 AvailabilityIndicator.Fill = Brushes.Green;
@@ -181,7 +169,6 @@ namespace Foxtrot.GUI.Product
                     ((System.Windows.Controls.Image) grid_Images.Children[i]).Source =
                         new BitmapImage(new Uri(tempProduct.Files[i].URI));
 
-                    //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                 }
             }
         }

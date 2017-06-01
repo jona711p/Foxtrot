@@ -47,7 +47,7 @@
         <GridSplitter x:Name="GridSplitter_Left" HorizontalAlignment="Left" Height="476" Margin="0,137,0,0" VerticalAlignment="Top" Width="10"/>
 
         <Image x:Name="image_Frontpage_Logo" HorizontalAlignment="Center"   Height="110" Margin="573,27,546,567"  Width="223" Source="IMG/SET Logo Front Trans.png"/>
-        <TextBox x:Name="textBox_LeftFooter" Text="" Margin="332,627,668,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Right" />
+        <TextBox x:Name="textBox_LeftFooter" Text="" Margin="410,627,668,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Right" />
         <TextBox x:Name="textBox_RightFooter" Text="" Margin="674,627,420,10" IsReadOnly="True" HorizontalContentAlignment="Center" TextAlignment="Left"/>
 
         <Label x:Name="label_Main_Usertype" Content="Vælg Bruger:" HorizontalAlignment="Center" Margin="1106,40,146,643" VerticalAlignment="Center" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontWeight="Bold" Height="25"/>
