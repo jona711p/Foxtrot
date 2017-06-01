@@ -65,6 +65,8 @@ namespace Foxtrot.GUI.User
                                 dataGrid_UserProduct_DisplayWindow.SelectedItem))
                         .Text);
 
+                tempProduct.MainCategories = new MainCategory();
+                tempProduct.Categories = new MainCategory();
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
                 tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
                 Product_DisplayWindow newProductDisplayWindow = new Product_DisplayWindow(tempProduct);
