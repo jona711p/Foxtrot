@@ -283,5 +283,22 @@ namespace Foxtrot.GUI.CombiProduct
                 GUISortingLogic.Message("Combi Produktet: '" + tempOldCombiProduct.Name + "' er blevet slettet i systemet!");
             }
         }
+
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_CombiProduct_List.SelectedItem != null)
+            {
+                tempOldCombiProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_CombiProduct_List.Columns[0].GetCellContent(
+                                dataGrid_CombiProduct_List.SelectedItem))
+                        .Text);
+
+                tempNewCombiProduct = DBReadLogic.GetCombiProductInfo(tempNewCombiProduct);
+                WindoCombiProduct_DisplayWindow newProductDisplayWindow = new WindoCombiProduct_DisplayWindow(tempNewCombiProduct);
+                newProductDisplayWindow.Show();
+            }
+        }
     }
 }

@@ -42,7 +42,13 @@
     <Grid>
         <!-- Liste over Combiprodukt start -->
         <Grid HorizontalAlignment="Left" Height="363" Margin="337,10,0,0" VerticalAlignment="Top" Width="963">
-            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="317" Background="White" Width="963" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged"/>
+            <DataGrid x:Name="dataGrid_CombiProduct_List" ItemsSource="{Binding CombiProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Height="317" Background="White" Width="963" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_CombiProduct_List_OnSelectionChanged">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Se CombiProdukt Information" Click="MenuItem_OnClick" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
             <Label x:Name="label_CombiProduct_List" Content="Liste over Combi Produkter:" HorizontalAlignment="Center" Margin="10,10,10,322" VerticalAlignment="Center" Height="31" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="41" Margin="337,10,0,0" VerticalAlignment="Top" Width="963">
@@ -149,3 +155,4 @@
     </Grid>
 
 </Page>
+

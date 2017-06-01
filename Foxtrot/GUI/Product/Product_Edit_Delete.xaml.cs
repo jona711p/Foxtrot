@@ -112,7 +112,6 @@ namespace Foxtrot.GUI.Product
                 }
 
 
-
                 if (tempProduct.ContactPhone.Count != 0)
                 {
                     textBox_Product_Edit_ContactPhone.Text = tempProduct.ContactPhone[0].ToString();
