@@ -26,6 +26,7 @@ namespace Foxtrot.GUI.Product
             InitializeComponent();
             tempProduct = inputProduct;
             ResizeMode = ResizeMode.NoResize;
+            DataContext = tempProduct;
             FillFieldsWithInfo();
         }
         public void FillFieldsWithInfo()
