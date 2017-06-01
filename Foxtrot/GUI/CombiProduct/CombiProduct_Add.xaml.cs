@@ -101,6 +101,12 @@ namespace Foxtrot.GUI.CombiProduct
                 tempCombiProduct.ProductID.Add(int.Parse(row[0].ToString()));
             }
 
+            if (tempCombiProduct.ProductID.Count == 0)
+            {
+                GUISortingLogic.Message("Du SKAL vælge mindst 1 Produkt til et Kombi Produkt!");
+                return;
+            }
+
             tempCombiProduct.Name = GUISortingLogic.Name(textBox_Combi_Add_Name);
 
             if (tempCombiProduct.Name == null)
