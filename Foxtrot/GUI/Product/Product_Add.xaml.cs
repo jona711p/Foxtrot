@@ -161,6 +161,11 @@ namespace Foxtrot.GUI.Product
                 tempTime.StartTime = Convert.ToDateTime(tempTimeFrom.Value.ToString("HH:mm:ss"));
                 tempTime.EndTime = Convert.ToDateTime(tempTimeTo.Value.ToString("HH:mm:ss"));
                 }
+                else
+                {
+                    MessageBox.Show("Du kan ikke vælge en startdato der ligger efter slutdatoen!");
+                    return;
+                }
             }
 
             if (checkBox_Product_Add_Monday.IsChecked == true || checkBox_Product_Add_Tuesday.IsChecked == true || checkBox_Product_Add_Wednesday.IsChecked == true || checkBox_Product_Add_Thursday.IsChecked == true || checkBox_Product_Add_Friday.IsChecked == true || checkBox_Product_Add_Saturday.IsChecked == true || checkBox_Product_Add_Sunday.IsChecked == true)
