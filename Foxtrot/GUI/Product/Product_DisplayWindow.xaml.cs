@@ -29,8 +29,11 @@ namespace Foxtrot.GUI.Product
         }
         public void FillFieldsWithInfo()
         {
-            //tomme felter skal skiftes ud med "ingen oplysninger"
-           
+                //ikoner skal tilføjes
+                //start og slutid skal formateres til dd/mm/yy(yy)           
+
+
+
             label_Product_DisplayWindow_Name.Content = tempProduct.Name;
             string Categories = tempProduct.MainCategories.Name + " - " + tempProduct.Categories.Name;
             label_Product_DisplayWindow_Category.Content = Categories;
@@ -77,13 +80,7 @@ namespace Foxtrot.GUI.Product
             {
                 label_Product_DisplayWindow_Email.Content = tempProduct.ContactEmail[0];
             }
-
-
-
-
-
-            //label_Product_DisplayWindow_Longitude.Content = tempProduct.Longitude.ToString();
-            //label_Product_DisplayWindow_Latitude.Content = tempProduct.Latitude.ToString();
+           
 
 
             if (string.IsNullOrEmpty(tempProduct.ContactPhone[0].ToString()))

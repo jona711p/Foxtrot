@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -32,8 +34,9 @@ namespace Foxtrot.GUI.CombiProduct
             ResizeMode = ResizeMode.NoResize;
             DataContext = tempNewCombiProduct;
             FillFieldWithInfo();
-            //DBReadLogic.FillProductTable(tempProduct.ProductTable);
-            //dataGrid_Product_List.DataContext = tempProduct.ProductTable;
+
+            DBReadLogic.FillCombiProductProductList(tempNewCombiProduct);
+            dataGrid_CombiProduct_ProductList.ItemsSource = tempNewCombiProduct.CombiProductTable.AsDataView();
         }
 
         public void FillFieldWithInfo()
@@ -56,7 +59,7 @@ namespace Foxtrot.GUI.CombiProduct
 
 
 
-            if (tempNewCombiProduct.Availability == true)
+            if (tempNewCombiProduct.Availability)
             {
                 AvailabilityIndicator.Fill = Brushes.Green;
             }
@@ -68,15 +71,17 @@ namespace Foxtrot.GUI.CombiProduct
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (dataGrid_Product_List.SelectedItem != null)
+            if (dataGrid_CombiProduct_ProductList.SelectedItem != null)
             {
                 tempProduct.ID =
                     int.Parse(
                         ((TextBlock)
-                            dataGrid_Product_List.Columns[0].GetCellContent(
-                                dataGrid_Product_List.SelectedItem))
+                            dataGrid_CombiProduct_ProductList.Columns[0].GetCellContent(
+                                dataGrid_CombiProduct_ProductList.SelectedItem))
                         .Text);
 
+                tempProduct.MainCategories = new MainCategory();
+                tempProduct.Categories = new MainCategory();
                 tempProduct = DBReadLogic.GetProductInfo(tempProduct);
                 tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
                 Product_DisplayWindow newProductDisplayWindow = new Product_DisplayWindow(tempProduct);
