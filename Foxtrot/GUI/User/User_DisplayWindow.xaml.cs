@@ -20,7 +20,7 @@ namespace Foxtrot.GUI.User
         public User_DisplayWindow(Classes.User inputUser)
         {
             tempUser = inputUser;
-            
+
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize;
 
@@ -33,16 +33,66 @@ namespace Foxtrot.GUI.User
             {
                 tempAdministrator.UserID = tempUser.ID;
                 tempAdministrator = DBReadLogic.GetAdminInfo(tempAdministrator);
-                
+
                 DataContext = tempAdministrator;
+
+                if (tempAdministrator.FirstName == null)
+                {
+                    label_User_DisplayWindow_FirstName.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.LastName == null)
+                {
+                    label_User_DisplayWindow_LastName.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.WorkPhone == null)
+                {
+                    label_User_DisplayWindow_WorkPhone.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.WorkEmail == null)
+                {
+                    label_User_DisplayWindow_WorkEmail.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.WorkFax == null)
+                {
+                    label_User_DisplayWindow_WorkFax.Content = "Ingen Oplysning";
+                }
             }
 
             if (tempUser.Permission == 2)
             {
                 tempActor.UserID = tempUser.ID;
                 tempActor = DBReadLogic.GetActorInfo(tempActor);
-                
+
                 DataContext = tempActor;
+
+                if (tempAdministrator.FirstName == null)
+                {
+                    label_User_DisplayWindow_FirstName.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.LastName == null)
+                {
+                    label_User_DisplayWindow_LastName.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.WorkPhone == null)
+                {
+                    label_User_DisplayWindow_WorkPhone.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.WorkEmail == null)
+                {
+                    label_User_DisplayWindow_WorkEmail.Content = "Ingen Oplysning";
+                }
+
+                if (tempAdministrator.WorkFax == null)
+                {
+                    label_User_DisplayWindow_WorkFax.Content = "Ingen Oplysning";
+                }
             }
 
             tempProduct.UserID = tempUser.ID;

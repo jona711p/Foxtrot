@@ -10,9 +10,9 @@
     <Grid>
         <Label x:Name="label_User_DisplayWindow_CompanyName" Content="{Binding CompanyName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20" FontFamily="Arial" Height="40"/>
         <Label x:Name="label_User_DisplayWindowInfo_FirstName" Content="Fornavn:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,68,0,0" Width="75" FontSize="14" FontFamily="Arial" Height="25" FontWeight="Bold"/>
-        <Label x:Name="label_User_DisplayWindow_FirstName" Content="{Binding FirstName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,68,0,0" Width="210" FontSize="14" FontFamily="Arial" Height="25"/>
+        <Label x:Name="label_User_DisplayWindow_FirstName" Content="{Binding FirstName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,68,0,0" Width="210" FontSize="14" FontFamily="Arial" Height="30"/>
         <Label x:Name="label_User_DisplayWindowInfo_LastName" Content="Efternavn:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,98,0,0" Width="90" FontSize="14" FontFamily="Arial" Height="25" FontWeight="Bold"/>
-        <Label x:Name="label_User_DisplayWindow_LastName" Content="{Binding LastName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,98,0,0" FontSize="14" FontFamily="Arial" Width="210" Height="25"/>
+        <Label x:Name="label_User_DisplayWindow_LastName" Content="{Binding LastName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,98,0,0" FontSize="14" FontFamily="Arial" Width="210" Height="30"/>
         <Label x:Name="label_User_DisplayWindowInfo_WorkPhone" Content="Arbejds Telefon:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="340,68,0,0" FontWeight="Bold" FontFamily="Arial"/>
         <Label x:Name="label_User_DisplayWindow_WorkPhone" Content="{Binding WorkPhone}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="477,68,0,0" Width="200" FontFamily="Arial" Height="25"/>
         <Label x:Name="label_User_DisplayWindowInfo_WorkEmail" Content="Arbejds Email:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="340,94,0,0" FontWeight="Bold" FontFamily="Arial"/>
