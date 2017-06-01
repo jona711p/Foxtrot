@@ -7,6 +7,7 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
       xmlns:local="clr-namespace:Foxtrot.GUI.Product"
       mc:Ignorable="d"
+      Background="White"
       d:DesignHeight="1000" d:DesignWidth="1310"
       Title="Se Alle Produkter, Rediger, Slet">
 
@@ -43,10 +44,10 @@
         <Grid HorizontalAlignment="Left" Height="334" Margin="347,48,0,0" VerticalAlignment="Top" Width="942">
             <DataGrid x:Name="dataGrid_Product_List" ItemsSource="{Binding ProductTable, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="306" Background="White" Width="925" Grid.ColumnSpan="2" AlternationCount="2" AlternatingRowBackground="LightGray" SelectionChanged="DataGrid_Product_List_OnSelectionChanged">
                 <DataGrid.ContextMenu>
-                <ContextMenu>
+                    <ContextMenu>
                         <MenuItem Header="Se Produkt Information" Click="MenuItem_ViewProductDetails"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
             <Label x:Name="label_Product_List" Content="Liste over Produkter:" HorizontalAlignment="Center" Margin="0,-17,-1,307" VerticalAlignment="Center" Height="44" Width="943" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Arial" FontWeight="Bold"/>
         </Grid>
@@ -98,17 +99,17 @@
                 </Button.Effect>
             </Button>
 
-            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="334,65,0,0" VerticalAlignment="Top" Width="114" ItemsSource="{Binding CityList}" Height="20"  DisplayMemberPath="Value" />
-            <ComboBox x:Name="comboBox_Product_Edit_MainCategory" HorizontalAlignment="Left" Margin="334,153,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
-            <ComboBox x:Name="comboBox_Product_Edit_Category" HorizontalAlignment="Left" Margin="334,238,0,-7" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+            <ComboBox x:Name="comboBox_Product_Edit_CityID" HorizontalAlignment="Left" Margin="347,155,0,0" VerticalAlignment="Top" Width="112" ItemsSource="{Binding CityList}" Height="23"  DisplayMemberPath="Value" />
+            <ComboBox x:Name="comboBox_Product_Edit_MainCategory" HorizontalAlignment="Left" Margin="346,223,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
+            <ComboBox x:Name="comboBox_Product_Edit_Category" HorizontalAlignment="Left" Margin="346,286,0,-55" VerticalAlignment="Top" Width="110" ItemsSource="{Binding CityList}" Height="23" DisplayMemberPath="Value"/>
 
-            <Label x:Name="label_Product_Edit_CityID" Content="Vælg by:" HorizontalAlignment="Left" Margin="328,39,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_Product_Edit_MainCategory" Content="Vælg hovedkategori:" HorizontalAlignment="Left" Margin="325,127,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_Product_Edit_Category" Content="Vælg kategori:" HorizontalAlignment="Left" Margin="325,213,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_CityID" Content="Vælg by:" HorizontalAlignment="Left" Margin="371,122,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_MainCategory" Content="Vælg hovedkategori:" HorizontalAlignment="Left" Margin="346,188,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_Product_Edit_Category" Content="Vælg kategori:" HorizontalAlignment="Left" Margin="352,257,0,-28" VerticalAlignment="Top"/>
 
-            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="328,276,0,-48" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="334,312,0,-74" VerticalAlignment="Top" />
-            <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="412,312,0,-73" VerticalAlignment="Top" />
+            <Label x:Name="label_Product_Edit_Availability" Content="Tilgængelighed" HorizontalAlignment="Left" Margin="347,316,0,-88" VerticalAlignment="Top"/>
+            <RadioButton x:Name="rbtn_Product_Edit_Availability_True" Content="Synlig" HorizontalAlignment="Left" Margin="334,343,0,-104" VerticalAlignment="Top" />
+            <RadioButton x:Name="rbtn_Product_Edit_Availability_False" Content="Usynlig" HorizontalAlignment="Left" Margin="401,343,0,-104" VerticalAlignment="Top" />
         </Grid>
 
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="501" Margin="22,404,0,0" VerticalAlignment="Top" Width="1280"/>
@@ -178,7 +179,7 @@
             <TextBox x:Name="textBox_Product_Edit_Url3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 3" Margin="10,65,0,0"/>
             <TextBox x:Name="textBox_Product_Edit_Url4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Style="{StaticResource WaterMarkStyle}" Tag="Link til billede 4" Margin="10,93,0,0"/>
         </Grid>
-        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis produkt på kort" HorizontalAlignment="Center" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="29" Margin="386,822,788.4,0" VerticalAlignment="Top" Width="136" IsEnabled="False">
+        <Button x:Name="button_GoogleWebOpen" Click="Button_GoogleWebOpen_OnClick" Content="Vis på på kort" HorizontalAlignment="Center" Background="White" BorderBrush="Black" FontSize="14" FontWeight="Bold" FontFamily="Arial" BorderThickness="1,1,1,1" AllowDrop="True" Height="27" Margin="381,509,812.4,0" VerticalAlignment="Top" Width="117" IsEnabled="False">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="3"/>
             </Button.Effect>
