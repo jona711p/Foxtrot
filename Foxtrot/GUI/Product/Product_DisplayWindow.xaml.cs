@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 namespace Foxtrot.GUI.Product
 {
     /// <summary>
+    ///Thomas
     /// Interaction logic for Product_DisplayWindow.xaml
     /// </summary>
     public partial class Product_DisplayWindow : Window

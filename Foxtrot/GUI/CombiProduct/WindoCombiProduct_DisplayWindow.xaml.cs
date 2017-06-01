@@ -10,6 +10,7 @@ using Foxtrot.GUI.Product;
 namespace Foxtrot.GUI.CombiProduct
 {
     /// <summary>
+    /// Mikael og Thomas
     /// Interaction logic for WindoCombiProduct_DisplayWindow.xaml
     /// </summary>
     public partial class WindoCombiProduct_DisplayWindow : Window

@@ -37,11 +37,11 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="35,511,0,0" VerticalAlignment="Top" Width="430" IsEnabled="False"/>
 
 
-        <TextBlock x:Name="textBlock_Website" Margin="477,333,121,311">
+        <TextBlock x:Name="textBlock_Website" Margin="477,358,121,286">
             <Hyperlink x:Name="Hyper_Website" Click="Hyper_Website_OnClick">Hjemmeside</Hyperlink>
         </TextBlock>
 
-        <TextBlock x:Name="textBlock_CanonicalURL" Margin="477,358,121,286" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="textBlock_CanonicalURL" Margin="477,333,121,311" RenderTransformOrigin="0.5,0.5">
             <Hyperlink x:Name="Hyper_CanonicalURL" Click="Hyper_CanonicalURL_OnClick">ByPortal</Hyperlink>
         </TextBlock>
 
