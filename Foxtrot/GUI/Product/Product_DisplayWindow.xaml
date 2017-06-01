@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Foxtrot.GUI.Product"
         mc:Ignorable="d"
-        Title="Product_DisplayWindow" Height="700" Width="700">
+        Title="{Binding Name}" Height="800" Width="700">
     <Grid>
         <Ellipse  x:Name="AvailabilityIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="11,33,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
         <Label x:Name="label_Product_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
@@ -51,7 +51,7 @@
 
         <Label x:Name="label_Product_DisplayWindow_CanonicalURL" Content="CanonicalURL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,331,0,0" Width="258"/>
         <Label x:Name="label_Product_DisplayWindow_Website" Content="Website" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="395,357,0,0" Width="258"/>
-        <Label x:Name="label_Product_DisplayWindow_Category" Content="Category" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,94,0,0" Width="151"/>
+        <Label x:Name="label_Product_DisplayWindow_Category" Content="Category" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,92,0,0" Width="178" Height="28"/>
 
 
         <CheckBox x:Name="checkBox_Product_DisplayWindow_Monday" Content="Mandag" HorizontalAlignment="Left" Margin="594,325,0,0" VerticalAlignment="Top"/>
@@ -107,6 +107,10 @@
             </Image>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="161" VerticalAlignment="Top" Width="620" Margin="0,-11,0,-85"/>
         </Grid>
+        <Button x:Name="button_GoogleWebOpen" Content="Vis produkt på kort" Click="Button_GoogleWebOpen_OnClick" HorizontalAlignment="Left" Margin="587,725,0,0" VerticalAlignment="Top" Width="75"/>
+
+
+
         <Label x:Name="label_Product_DisplayWindow_StartDate" Content="Startdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="512,0,0,0"/>
         <Label x:Name="label_Product_DisplayWindow_EndDate" Content="Slutdato" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="599,0,0,0"/>
     </Grid>
