@@ -51,7 +51,7 @@ namespace Foxtrot.GUI.User
             MainWindow.FillComboBoxWithAdminsAndActors();
         }
 
-        void Administrator()
+        private void Administrator()
         {
             Administrator tempAdministrator = new Administrator();
 
@@ -130,7 +130,7 @@ namespace Foxtrot.GUI.User
             }
         }
 
-        void Actor()
+        private void Actor()
         {
             Actor tempActor = new Actor();
 
