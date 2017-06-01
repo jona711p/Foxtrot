@@ -62,7 +62,7 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
-                label_Product_DisplayWindow_Fax.Content = tempProduct.ContactFax.ToString();
+                label_Product_DisplayWindow_Fax.Content = tempProduct.ContactFax[0].ToString();
             }
 
 
@@ -76,6 +76,8 @@ namespace Foxtrot.GUI.Product
                 tempAdress = tempProduct.Address + ", " + tempProduct.Cities.Name;
             }
             label_Product_DisplayWindow_Adress.Content = tempAdress;
+
+
 
             string tempEmail = "Ingen Oplysninger";
             if (string.IsNullOrEmpty(tempProduct.ContactEmail[0]))
