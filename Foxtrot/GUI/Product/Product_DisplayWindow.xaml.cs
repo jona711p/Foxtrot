@@ -1,5 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -26,12 +29,7 @@ namespace Foxtrot.GUI.Product
         private void FillFieldsWithInfo()
         {
             //tomme felter skal skiftes ud med "ingen oplysninger"
-            //extra/description skal kunne vises i fuld længde
-            //canonicalURL og website skal automatisk lave om til hyperlinks
-            //længde og breddegrad skal vises i googlemaps i vinduet
-            
-
-
+           
             label_Product_DisplayWindow_Name.Content = tempProduct.Name;
             string Categories = tempProduct.MainCategories.Name + " - " + tempProduct.Categories.Name;
             label_Product_DisplayWindow_Category.Content = Categories;
@@ -46,7 +44,7 @@ namespace Foxtrot.GUI.Product
                 label_Product_DisplayWindow_Price.Content = tempProduct.Price.ToString();
             }
 
-            if (tempProduct.ContactFax[0] == null && string.IsNullOrEmpty(tempProduct.ContactFax[0].ToString()))
+            if (string.IsNullOrEmpty(tempProduct.ContactFax[0].ToString()))
             {
                 label_Product_DisplayWindow_Fax.Content = "Ingen oplysninger";
             }
@@ -72,25 +70,28 @@ namespace Foxtrot.GUI.Product
             string tempEmail = "Ingen Oplysninger";
             if (string.IsNullOrEmpty(tempProduct.ContactEmail[0]))
             {
-                tempEmail = tempProduct.ContactEmail[0];
+                label_Product_DisplayWindowInfo_Email.Content = tempEmail;
             }
-            label_Product_DisplayWindow_Email.Content = tempEmail;
-            
+            else
+            {
+                label_Product_DisplayWindow_Email.Content = tempProduct.ContactEmail[0];
+            }
 
 
 
-            
-            label_Product_DisplayWindow_Longitude.Content = tempProduct.Longitude.ToString();
-            label_Product_DisplayWindow_Latitude.Content = tempProduct.Latitude.ToString();
 
 
-            if (tempProduct.ContactPhone[0] == null && string.IsNullOrEmpty(tempProduct.ContactPhone[0].ToString()))
+            //label_Product_DisplayWindow_Longitude.Content = tempProduct.Longitude.ToString();
+            //label_Product_DisplayWindow_Latitude.Content = tempProduct.Latitude.ToString();
+
+
+            if (string.IsNullOrEmpty(tempProduct.ContactPhone[0].ToString()))
             {
                 label_Product_DisplayWindow_Phone.Content = "Ingen oplysninger";
             }
             else
             {
-                label_Product_DisplayWindow_Phone.Content = tempProduct.ContactPhone.ToString();
+                label_Product_DisplayWindow_Phone.Content = tempProduct.ContactPhone[0].ToString();
             }
 
             
@@ -108,14 +109,11 @@ namespace Foxtrot.GUI.Product
                 textBox_Product_DisplayWindow_ExtraDescription.Text = tempProduct.ExtraDescription[0].Description;
             }
 
-
-            //Hyper_CanonicalURL.re = tempProduct.CanonicalUrl
-
-            label_Product_DisplayWindow_CanonicalURL.Content = tempProduct.CanonicalUrl;
-            label_Product_DisplayWindow_Website.Content = tempProduct.Website;
-
-
-
+            if (string.IsNullOrEmpty(tempProduct.OpeningHours.StartDate.ToString()) || string.IsNullOrEmpty(tempProduct.OpeningHours.EndDate.ToString()))
+            {
+                label_Product_DisplayWindow_StartDate.Visibility = Visibility.Hidden;
+                label_Product_DisplayWindow_EndDate.Visibility = Visibility.Hidden;
+            }
             label_Product_DisplayWindow_StartDate.Content = tempProduct.OpeningHours.StartDate;
             label_Product_DisplayWindow_EndDate.Content = tempProduct.OpeningHours.EndDate;
 
@@ -134,6 +132,7 @@ namespace Foxtrot.GUI.Product
             }
             else
             {
+                label_Product_DisplayWindow_DaysOpen.Visibility = Visibility.Hidden;
                 checkBox_Product_DisplayWindow_Monday.Visibility = Visibility.Hidden;
                 checkBox_Product_DisplayWindow_Tuesday.Visibility = Visibility.Hidden;
                 checkBox_Product_DisplayWindow_Wednesday.Visibility = Visibility.Hidden;
@@ -143,9 +142,19 @@ namespace Foxtrot.GUI.Product
                 checkBox_Product_DisplayWindow_Sunday.Visibility = Visibility.Hidden;
             }
 
+            if (string.IsNullOrEmpty(tempProduct.Website))
+            {
+                textBlock_Website.Visibility = Visibility.Hidden;
+            }
+            if (string.IsNullOrEmpty(tempProduct.CanonicalUrl))
+            {
+                textBlock_CanonicalURL.Visibility = Visibility.Hidden;
+            }
 
-
-
+            if (string.IsNullOrEmpty(tempProduct.Longitude.ToString()) || string.IsNullOrEmpty(tempProduct.Latitude.ToString()) || tempProduct.Latitude == 0 || tempProduct.Longitude == 0)
+            {
+                button_GoogleWebOpen.IsEnabled = false;
+            }
             //Ændre cirklen der angiver 'availibity'
             if (tempProduct.Availability == true)
             {
@@ -163,32 +172,21 @@ namespace Foxtrot.GUI.Product
         {
             for (int i = 0; i < 4; i++) //Resets all images
             {
-                ((System.Windows.Controls.Image)grid_Images.Children[i]).Source = null;
+                ((System.Windows.Controls.Image) grid_Images.Children[i]).Source = null;
             }
 
-            for (int i = 0; i < tempProduct.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
+            for (int i = 0; i < tempProduct.Files.Count && i < 4; i++)
+                //Sets the UI images to display images related to the product
             {
                 if (!string.IsNullOrEmpty(tempProduct.Files[i].URI))
                 {
-                    ((System.Windows.Controls.Image)grid_Images.Children[i]).Source =
+                    ((System.Windows.Controls.Image) grid_Images.Children[i]).Source =
                         new BitmapImage(new Uri(tempProduct.Files[i].URI));
 
                     //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                 }
             }
         }
-
-        private void Hyper_CanonicalURL_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(tempProduct.Website);
-            e.Handled = true;
-        }
-
-        private void Hyper_Website_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
-            }
 
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
         {
@@ -197,6 +195,16 @@ namespace Foxtrot.GUI.Product
             number1 = tempProduct.Longitude.ToString().Replace(",", ".");
             number2 = tempProduct.Latitude.ToString().Replace(",", ".");
             Process.Start("https://www.google.com/maps?q=" + number2 + "," + number1);
+        }
+
+        private void Hyper_Website_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start(tempProduct.Website);
+        }
+
+        private void Hyper_CanonicalURL_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start(tempProduct.CanonicalUrl);
         }
     }
 }
