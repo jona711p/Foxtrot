@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -172,19 +173,21 @@ namespace Foxtrot.GUI.Product
         {
             for (int i = 0; i < 4; i++) //Resets all images
             {
-                ((System.Windows.Controls.Image)grid_Images.Children[i]).Source = null;
+                ((System.Windows.Controls.Image) grid_Images.Children[i]).Source = null;
             }
 
-            for (int i = 0; i < tempProduct.Files.Count && i < 4; i++) //Sets the UI images to display images related to the product
+            for (int i = 0; i < tempProduct.Files.Count && i < 4; i++)
+                //Sets the UI images to display images related to the product
             {
                 if (!string.IsNullOrEmpty(tempProduct.Files[i].URI))
                 {
-                    ((System.Windows.Controls.Image)grid_Images.Children[i]).Source =
+                    ((System.Windows.Controls.Image) grid_Images.Children[i]).Source =
                         new BitmapImage(new Uri(tempProduct.Files[i].URI));
 
                     //((System.Windows.Controls.TextBox)grid_urlInputs.Children[i]).Text = tempProduct.Files[i].URI;
                 }
             }
+        }
 
         private void Button_GoogleWebOpen_OnClick(object sender, RoutedEventArgs e)
         {

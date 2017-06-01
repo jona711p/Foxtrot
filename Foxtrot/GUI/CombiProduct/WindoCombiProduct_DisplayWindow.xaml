@@ -11,6 +11,16 @@
         <Label x:Name="label_CombiProduct_DisplayWindow_Name" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,23,0,0" Width="643" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="label_CombiProduct_DisplayWindow_PackagePrice" Content="Pris: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,121,0,0" Width="210" FontSize="14"/>
         <Label x:Name="label_CombiProduct_DisplayWindow_CreationDate" Content="Oprettelsesdato: " HorizontalAlignment="Left" Margin="57,169,0,0" VerticalAlignment="Top"/>
+      
+        
+        
+        <DataGrid x:Name="dataGrid_Product_List" IsReadOnly="True" SelectionMode="Single" HorizontalAlignment="Left" VerticalAlignment="Top" Height="108" Background="White" Width="402" AlternationCount="2" AlternatingRowBackground="LightGray" Margin="115,588,0,0">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Se Produkt Information" Click="MenuItem_OnClick"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
 
 
 

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Foxtrot.Classes;
+using Foxtrot.Classes.DB;
+using Foxtrot.GUI.Product;
 
 namespace Foxtrot.GUI.CombiProduct
 {
@@ -21,6 +23,7 @@ namespace Foxtrot.GUI.CombiProduct
     public partial class WindoCombiProduct_DisplayWindow : Window
     {
         Classes.CombiProduct tempNewCombiProduct = new Classes.CombiProduct();
+        Classes.Product tempProduct = new Classes.Product();
 
         public WindoCombiProduct_DisplayWindow(Classes.CombiProduct inputCombiProduct)
         {
@@ -29,13 +32,16 @@ namespace Foxtrot.GUI.CombiProduct
             ResizeMode = ResizeMode.NoResize;
             DataContext = tempNewCombiProduct;
             FillFieldWithInfo();
+            //DBReadLogic.FillProductTable(tempProduct.ProductTable);
+            //dataGrid_Product_List.DataContext = tempProduct.ProductTable;
         }
 
         public void FillFieldWithInfo()
         {
             label_CombiProduct_DisplayWindow_Name.Content = tempNewCombiProduct.Name;
 
-            if (tempNewCombiProduct.PackagePrice == 0 || string.IsNullOrEmpty(tempNewCombiProduct.PackagePrice.ToString()) )
+            if (tempNewCombiProduct.PackagePrice == 0 ||
+                string.IsNullOrEmpty(tempNewCombiProduct.PackagePrice.ToString()))
             {
                 label_CombiProduct_DisplayWindow_PackagePrice.Content = "Gratis";
             }
@@ -43,7 +49,7 @@ namespace Foxtrot.GUI.CombiProduct
             {
                 label_CombiProduct_DisplayWindow_PackagePrice.Content = tempNewCombiProduct.PackagePrice.ToString();
             }
-           
+
 
 
             label_CombiProduct_DisplayWindow_CreationDate.Content = tempNewCombiProduct.CreationDate;
@@ -56,7 +62,25 @@ namespace Foxtrot.GUI.CombiProduct
             }
             else
             {
-                AvailabilityIndicator.Fill = Brushes.Red;.
+                AvailabilityIndicator.Fill = Brushes.Red;
+            }
+        }
+
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_Product_List.SelectedItem != null)
+            {
+                tempProduct.ID =
+                    int.Parse(
+                        ((TextBlock)
+                            dataGrid_Product_List.Columns[0].GetCellContent(
+                                dataGrid_Product_List.SelectedItem))
+                        .Text);
+
+                tempProduct = DBReadLogic.GetProductInfo(tempProduct);
+                tempProduct = DBReadLogic.GetProductFileInfo(tempProduct);
+                Product_DisplayWindow newProductDisplayWindow = new Product_DisplayWindow(tempProduct);
+                newProductDisplayWindow.Show();
             }
         }
     }

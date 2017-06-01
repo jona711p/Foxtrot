@@ -288,7 +288,7 @@ namespace Foxtrot.GUI.CombiProduct
         {
             if (dataGrid_CombiProduct_List.SelectedItem != null)
             {
-                tempOldCombiProduct.ID =
+                tempNewCombiProduct.ID =
                     int.Parse(
                         ((TextBlock)
                             dataGrid_CombiProduct_List.Columns[0].GetCellContent(
