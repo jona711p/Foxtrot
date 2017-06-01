@@ -28,6 +28,36 @@ namespace Foxtrot.GUI.CombiProduct
             tempNewCombiProduct = inputCombiProduct;
             ResizeMode = ResizeMode.NoResize;
             DataContext = tempNewCombiProduct;
+            FillFieldWithInfo();
+        }
+
+        public void FillFieldWithInfo()
+        {
+            label_CombiProduct_DisplayWindow_Name.Content = tempNewCombiProduct.Name;
+
+            if (tempNewCombiProduct.PackagePrice == 0 || string.IsNullOrEmpty(tempNewCombiProduct.PackagePrice.ToString()) )
+            {
+                label_CombiProduct_DisplayWindow_PackagePrice.Content = "Gratis";
+            }
+            else
+            {
+                label_CombiProduct_DisplayWindow_PackagePrice.Content = tempNewCombiProduct.PackagePrice.ToString();
+            }
+           
+
+
+            label_CombiProduct_DisplayWindow_CreationDate.Content = tempNewCombiProduct.CreationDate;
+
+
+
+            if (tempNewCombiProduct.Availability == true)
+            {
+                AvailabilityIndicator.Fill = Brushes.Green;
+            }
+            else
+            {
+                AvailabilityIndicator.Fill = Brushes.Red;.
+            }
         }
     }
 }
