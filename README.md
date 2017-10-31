@@ -1,2 +1,2 @@
 # Foxtrot
-2. Semesters Projekt DM 2017
+2. Semester's Projekt DM 2017
